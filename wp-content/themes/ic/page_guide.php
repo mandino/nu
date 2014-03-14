@@ -10,10 +10,10 @@
 
   <ul class="right-links right" id="toggles">
 										
-		<li class="dine"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=505" title="Dining">Eat</a></li>
-		<li class="shop"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=507" title="Dining">Shop</a></li>
-		<li class="arts"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=503" title="Dining">Culture</a></li>
-		<li class="sights"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=509" title="Dining">Landmarks</a></li>
+		<li class="dine"><a class="linkerd active" href="/?page_id=505" title="Dining">Eat</a></li>
+		<li class="shop"><a class="linkerd active" href="/?page_id=507" title="Dining">Shop</a></li>
+		<li class="arts"><a class="linkerd active" href="/?page_id=503" title="Dining">Culture</a></li>
+		<li class="sights"><a class="linkerd active" href="/?page_id=509" title="Dining">Landmarks</a></li>
 		
 	</ul>
 
@@ -314,7 +314,7 @@
 							
 									 <?php
 									              
-										    $gallery = get_post_gallery_images('68');
+										    $gallery = get_post_gallery_images();
 										
 										
 										                        
@@ -445,7 +445,7 @@
 							
 									 <?php
 									              
-										    $gallery = get_post_gallery_images( 160 );
+										    $gallery = get_post_gallery_images();
 										
 										
 										                        
@@ -575,7 +575,7 @@
 							
 									 <?php
 									              
-										    $gallery = get_post_gallery_images(66);
+										    $gallery = get_post_gallery_images();
 										
 										
 										                        

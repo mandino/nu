@@ -370,8 +370,18 @@
 
 		// Hover effect
 
-	    $('.hover').bind('touchstart touchend', function(e) {
-	        e.preventDefault();
+	 //    $('.hover').bind({
+	 //    	touchstart: function(e) {
+		//         e.preventDefault();
+		//         $(this).addClass('hover_effect');
+		//     },
+		//     // touchend: function() {
+		//     // 	$(this).removeClass('hover_effect');
+		//     // }
+		// });
+
+		$('.hover').bind('touchstart mouseover', function(e) {
+	        //e.preventDefault();
 	        $(this).toggleClass('hover_effect');
 	    });
 

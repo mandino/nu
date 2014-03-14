@@ -28,3 +28,4 @@ wp-content/wp-content/themes/default/
 
 # individual generic ignores
 wp-content/plugins/wp-google-maps/1markers.xml
+*.timthumb.txt

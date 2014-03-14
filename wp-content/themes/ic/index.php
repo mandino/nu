@@ -74,7 +74,7 @@
 					<?php query_posts('post_type=page&p=15'); if(have_posts()) : while(have_posts()) : the_post(); 							  
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 					
-					<li>
+					<li class="hover">
 						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
 						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
@@ -112,7 +112,7 @@
 					
 					<!-- Special -->
 					
-					<li>
+					<li class="hover">
 					
 						<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
 						
@@ -165,7 +165,7 @@
 					
 					<!-- Amenities -->
 					
-					<li>
+					<li class="hover">
 						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
 						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
@@ -252,10 +252,10 @@
 		
 	<ul style="" class="right-links right" id="toggles">
 										
-		<li class="dine"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=505" title="Dining">Eat</a></li>
-		<li class="shop"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=507" title="Dining">Shop</a></li>
-		<li class="arts"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=503" title="Dining">Culture</a></li>
-		<li class="sights"><a class="linkerd active" href="http://nu.lurnglier.com/?page_id=509" title="Dining">Landmarks</a></li>
+		<li class="dine"><a class="linkerd active" href="/?page_id=505" title="Dining">Eat</a></li>
+		<li class="shop"><a class="linkerd active" href="/?page_id=507" title="Dining">Shop</a></li>
+		<li class="arts"><a class="linkerd active" href="/?page_id=503" title="Dining">Culture</a></li>
+		<li class="sights"><a class="linkerd active" href="/?page_id=509" title="Dining">Landmarks</a></li>
 			
 	</ul>
 

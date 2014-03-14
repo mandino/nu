@@ -85,7 +85,7 @@
 					)); if(have_posts()) : while(have_posts()) : the_post(); 
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
-							<li>
+							<li class="hover">
 								
 					
 								<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
