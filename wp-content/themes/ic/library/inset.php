@@ -220,6 +220,19 @@ footer nav ul.footling li a:hover {
 
   }
 
-.from-price { background: none repeat scroll 0 0 rgba(<?php echo print_r($rgb); ?>, 0.8);      } 
+.from-price { background: none repeat scroll 0 0 rgba(<?php echo print_r($rgb); ?>, 0.8);      }
+
+
+
+/* Hover Background */
+
+#room-featured-slider .button:hover,
+.room-details-content .button:hover,
+.room-box .button:hover,
+#primary-nav .button:hover {
+
+    background: none repeat scroll 0 0 <?php echo $accent; ?> !important;
+
+}
 
 <?php } ?>

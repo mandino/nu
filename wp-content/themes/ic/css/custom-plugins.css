@@ -112,6 +112,7 @@
     box-shadow: none;
     margin: 0;
     position: relative;
+    height: 100%;
 }
 
 #home-slider .flex-direction-nav a.flex-disabled, .flex-direction-nav, .flex-control-nav {
@@ -123,6 +124,20 @@
     z-index: 99;
 }
 
+.flexslider .slides {
+    height: 100%;
+}
+
+.flexslider .slides > li {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.flexslider .slides img {
+    display: none;
+}
 
 
 /* ======================================================== Map directions WP Plugin =====================================================  */

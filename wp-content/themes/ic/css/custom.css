@@ -131,6 +131,11 @@ h1, h2, h3, h4, h5, h6, h7 {
 	text-transform: none;
 }
 
+.hover {
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;        
+}
+
 .button:focus {
     background-color: #38BABF;
 }
@@ -672,6 +677,7 @@ color: #333;
 
 #home-slider {
 	width: 100%;
+	height: 560px;
 	background: #eee;
 	position: relative;
 }
@@ -680,7 +686,7 @@ color: #333;
     margin: 0 auto;
     position: absolute;
     text-align: center;
-    top: 25%;
+    top: 0;
     width: 100%;
 }
 
@@ -852,11 +858,13 @@ color: #333;
     margin-right: 13px;
     position: relative;
 }
-    #intro .section-photos li:hover .hover-effect, .thumbgal li:hover .hover-effect {
+    #intro .section-photos li:hover .hover-effect, .thumbgal li:hover .hover-effect, #intro .section-photos li.hover_effect:hover .hover-effect, .thumbgal li.hover_effect:hover .hover-effect {
         opacity: 1;
     }
     #intro .section-photos li:hover h3, #intro .section-photos li:hover .from-price, 
-    .thumbgal li:hover h3, .thumbgal li:hover .from-price {
+    .thumbgal li:hover h3, .thumbgal li:hover .from-price,
+    #intro .section-photos li.hover_effect:hover h3, #intro .section-photos li.hover_effect:hover .from-price, 
+    .thumbgal li.hover_effect:hover h3, .thumbgal li.hover_effect:hover .from-price {
         opacity: 0;
     }
 	.opaque {
@@ -1163,16 +1171,16 @@ color: #333;
     -webkit-transition: background-color 0.4s;
     -o-transition: background-color 0.4s;
     background: none repeat scroll 0 0 #38BABF !important;
+    border-radius: 0 !important;
     color: #ECECEC !important;
+    cursor: pointer !important;
     float: right !important;
     font-size: 17px !important;
     font-weight: bold !important;
-    padding: 10px 0 !important;
+    line-height: 1.45 !important;
+    padding: 12px 0 !important;
     text-transform: uppercase !important;
     width: 32% !important;
-    cursor: pointer !important;
-    line-height: 1.45 !important;
-	border-radius: 0 !important;
 }
     .newsletter-form input[type="submit"]:hover {
         background: none repeat scroll 0 0 #333;
@@ -3869,12 +3877,12 @@ position: relative !important;
     display: none;
 }
 .slicer {
-background-repeat: no-repeat;
-background-position: center top;
-width: 100%;
-min-height: 250px;
-max-width: 500px;
-margin: auto;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 100%;
+	min-height: 250px;
+	max-width: 500px;
+	margin: auto;
 }
 
 #mc_embed_signup label {
