@@ -1,0 +1,4 @@
+[05-Mar-2014 13:23:41 UTC] PHP Parse error:  syntax error, unexpected ''posts_per_page'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/admin/public_html/nu/wp-content/themes/ic/library/featured.php on line 52
+[05-Mar-2014 13:23:42 UTC] PHP Parse error:  syntax error, unexpected ''posts_per_page'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/admin/public_html/nu/wp-content/themes/ic/library/featured.php on line 52
+[05-Mar-2014 13:24:06 UTC] PHP Parse error:  syntax error, unexpected ''post_per_page'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/admin/public_html/nu/wp-content/themes/ic/library/featured.php on line 52
+[05-Mar-2014 13:24:06 UTC] PHP Parse error:  syntax error, unexpected ''post_per_page'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home/admin/public_html/nu/wp-content/themes/ic/library/featured.php on line 52
