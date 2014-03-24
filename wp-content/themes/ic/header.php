@@ -2,7 +2,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<title>
-		<?php global $page, $paged; wp_title( '|', true, 'right' ); bloginfo( 'name' );
+		<?php global $page, $paged; wp_title( '|', true, 'right' );
 	
 		// Add the blog description for the home/front page.
 		$site_description = get_bloginfo( 'description', 'display' );
