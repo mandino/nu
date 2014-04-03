@@ -13,7 +13,7 @@ and (max-width : 1280px) {
 	    width: 1040px;
 	}
 
-	
+
 }
 
 
@@ -39,7 +39,6 @@ and (max-width : 1439px) {
 	#primary-nav nav ul li a {
 	    font-size: 14px;
 	}
-
 
 
 }
@@ -1953,10 +1952,6 @@ and (max-width : 1300px)
 
 
 
-
-
-
-
 }
 	
 
@@ -1966,9 +1961,9 @@ and (max-width : 1399px)
 {
 
 	
-	
-	
-	
+	.slicer {
+		margin-top: 135px;
+	}
 	
 	
                 
@@ -1983,7 +1978,10 @@ and (max-width : 1399px)
 		
 
 
-
+.slicer {
+		margin-top: 135px;
+	}
+	
 
 
 
@@ -1995,7 +1993,10 @@ and (max-width : 1399px)
  
  
  
- 
+ .slicer {
+		margin-top: 135px;
+	}
+	
                 
 
 

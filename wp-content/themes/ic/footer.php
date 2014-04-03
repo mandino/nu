@@ -49,7 +49,7 @@
 					<?php } else { ?>
 					
 					<form name="newsletter-submission">
-						<input type="text" name="firstname" placeholder="Exclusive offers">
+						<input type="text" name="firstname" placeholder="Sign Up for Exclusive Offers">
 						<input type="submit" value="Sign Up">
 					</form>
 					

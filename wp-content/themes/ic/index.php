@@ -71,7 +71,7 @@
 					
 					<!-- featured Room -->
 				
-					<?php query_posts('post_type=page&p=15'); if(have_posts()) : while(have_posts()) : the_post(); 							  
+					<?php query_posts('post_type=page&p=755'); if(have_posts()) : while(have_posts()) : the_post(); 							  
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 					
 					<li class="hover">
@@ -225,7 +225,7 @@
 
 					<div class="cbp-qtcontent">
 						<blockquote>
-						  <p><?php echo excerpt(40); ?></p>
+						  <p><?php echo excerpt(55); ?></p>
 						  <footer><?php the_title(); ?></footer>
 						</blockquote>
 					</div>
