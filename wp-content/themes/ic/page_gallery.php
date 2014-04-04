@@ -131,8 +131,13 @@
 								
 								
 								                        
+								    // foreach( $gallery as $image ) {// Loop through each image in each gallery
+								    //     $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . get_bloginfo('template_url') . '/js/thumb.php?src=' . str_replace('-150x150','',$image) . '&w=429&h=308"  /></li></a>';
+								    // }                  
+								    // echo $image_list;
+
 								    foreach( $gallery as $image ) {// Loop through each image in each gallery
-								        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . get_bloginfo('template_url') . '/js/thumb.php?src=' . str_replace('-150x150','',$image) . '&w=429&h=308"  /></li></a>';
+								        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . str_replace('-150x150','',$image) . '"  /></li></a>';
 								    }                  
 								    echo $image_list;
 								                     

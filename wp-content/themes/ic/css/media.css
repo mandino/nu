@@ -37,7 +37,7 @@ and (max-width : 1439px) {
 	}
 
 	#primary-nav nav ul li a {
-	    font-size: 14px;
+	    font-size: 12px;
 	}
 
 
@@ -57,6 +57,10 @@ and (max-width : 1240px) {
 
 	#primary-nav .container {
 	    width: 680px;
+	}
+
+	#primary-nav nav ul li {
+		margin-right: 15px;
 	}
 
 	#primary-nav nav ul li a {

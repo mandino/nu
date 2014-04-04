@@ -536,7 +536,7 @@ color: #333;
 #primary-nav {
     clear: both;
     overflow: auto;
-    margin: -1px !important;
+    /*margin: -1px !important;*/
 }
 
 #primary-nav nav {
@@ -680,6 +680,7 @@ color: #333;
 	height: 560px;
 	background: #eee;
 	position: relative;
+	overflow: hidden;
 }
 
 .slide-header {
@@ -1321,7 +1322,7 @@ footer nav ul.footling li a {
 
 
 .fullpic .button {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     border: 5px solid #FFFFFF;
     font-family: helvetica,sans-serif;
     font-size: 18px;
@@ -3731,6 +3732,10 @@ ul.tabs li:last-child {
 
 div.pp_default .pp_nav {
     width: 130px !important;
+}
+
+.tribe-theme-ic .datepicker.dropdown-menu {
+	width: auto;
 }
 
 .tribe-mini-calendar-grid-wrapper {
