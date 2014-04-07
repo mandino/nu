@@ -107,8 +107,9 @@
 			
 				<?php if(get_option('cebo_address')) { ?>
 					<p><?php echo get_option('cebo_address'); ?><br />
-					<span class="mobile-number">805.965.4577</span></p>
-					<?php } ?>
+					<span class="mobile-number"><?php if(get_option('cebo_tele')) { echo get_option('cebo_tele'); } ?></span></p>
+				<?php } ?>
+				
 			</div>
 		</div>
 
