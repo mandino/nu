@@ -144,6 +144,12 @@ var google_remarketing_only = true;
 </noscript>
 <?php } ?>
 <!-- End Remarketing -->
+
+<?php if(get_option('cebo_tracking_code')) {
+
+	echo get_option('cebo_tracking_code');
+
+} ?>
 		
 </body>
 </html>
