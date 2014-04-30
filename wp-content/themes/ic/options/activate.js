@@ -1,4 +1,4 @@
-$(document).ready(function(){
-   $("#textExample").verticaltabs();
-    });
+$(document).ready(function(){
+   $("#textExample").verticaltabs();
+    });
 });
