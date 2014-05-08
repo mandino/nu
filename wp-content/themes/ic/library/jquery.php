@@ -32,7 +32,7 @@
 <!-- <script async type="text/javascript" async src="http://assets.pinterest.com/js/pinit.js"></script> -->
 
 <!-- Custom Modernizr for Quotes Rotator -->
-<script async src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/modernizr.custom.js"></script>
+<script src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/modernizr.custom.js"></script>
 
 <!-- Quotes Rotator -->
 <script async src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/jquery.cbpQTRotator.min.js"></script>
@@ -55,7 +55,7 @@
 <?php } ?>
 
 <!-- jquery mmenu -->
-<script async src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
+<script src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
 
 <!-- Optional FlexSlider Additions -->
 <!-- <script src="<?php bloginfo ('template_url'); ?>/js/jquery.easing.js"></script> -->
