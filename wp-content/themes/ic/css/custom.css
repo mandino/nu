@@ -1135,9 +1135,10 @@ color: #333;
 /* Newsletter form */
 
 .newsletter-form {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 2px solid #D9D9D9;
-    border-radius: 4px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    border-radius: 0;
+    margin-left: 40px;
     overflow: auto;
     width: 50%;
 }
@@ -1158,12 +1159,14 @@ color: #333;
 }
 
 .newsletter-form input[type="text"] {
+    border: 2px solid #D9D9D9;
     color: #BCBCBC !important;
     float: left !important;
     font-size: 18px !important;
+    margin-bottom: 10px;
     padding: 10px 20px !important;
-    width: 60% !important;
     text-transform: uppercase !important;
+    width: 60% !important;
 }
 
 .newsletter-form input[type="submit"] {
@@ -1173,22 +1176,24 @@ color: #333;
     -o-transition: background-color 0.4s;
     background: none repeat scroll 0 0 #F27333 !important;
     border-radius: 0 !important;
-    color: #ECECEC !important;
+    color: #fff !important;
     cursor: pointer !important;
-    float: right !important;
+    float: none !important;
     font-size: 17px !important;
     font-weight: bold !important;
     line-height: 1.45 !important;
     padding: 12px 0 !important;
     text-transform: uppercase !important;
     width: 32% !important;
+    clear: both;
 }
     .newsletter-form input[type="submit"]:hover {
-        background: none repeat scroll 0 0 #333;
+        background: none repeat scroll 0 0 #333 !important;
     }
 
 .newsletter-form input[type="text"]:focus, .newsletter-form input[type="password"]:focus, .newsletter-form input[type="email"]:focus, .newsletter-form textarea:focus {
-    border-bottom: 0 none;
+    /*border-bottom: 0 none;*/
+    border-bottom: 2px solid #D9D9D9;
 }
 
 
