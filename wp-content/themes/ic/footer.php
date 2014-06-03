@@ -51,7 +51,7 @@
 							var zmailApp = "MTIzNTQzMjYx";
 						</script> -->
 
-						<form name="surveysubmit5504" action="https://www.zdirect.com/forms/survey/5504" method="post">  
+						<form name="surveysubmit5504" action="https://www.zdirect.com/forms/survey/5504?thisPage=<?php the_permalink(); ?>" method="post">  
 
 							<input name="surveyId" value="11115" type="hidden" />
 							<input name="landingPageId" value="5504" type="hidden" /> 
@@ -64,18 +64,16 @@
 							</div>
 
 						</form>
-
 						
-						
-						<?php } else { ?>
-						
+					<?php } else { ?>
+					
 						<form name="newsletter-submission">
 							<input type="text" name="firstname" placeholder="Sign Up for Exclusive Offers">
 							<input type="submit" value="Sign Up">
 						</form>
-					
+				
 					<?php  } ?>
-	
+		
 				</div>
 				
 			</div>
