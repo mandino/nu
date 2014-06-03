@@ -51,7 +51,7 @@
 							var zmailApp = "MTIzNTQzMjYx";
 						</script> -->
 
-						<form name="surveysubmit5504" action="https://www.zdirect.com/forms/survey/5504?thisPage=<?php the_permalink(); ?>" method="post">  
+						<form name="surveysubmit5504" action="https://www.zdirect.com/forms/survey/5504?optinCheckbox=on&thisPage=http://nuhotelbrooklyn.com" method="post">  
 
 							<input name="surveyId" value="11115" type="hidden" />
 							<input name="landingPageId" value="5504" type="hidden" /> 
