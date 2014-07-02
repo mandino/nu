@@ -622,7 +622,7 @@
 
 				<h2>Upcoming Events</h2>
 
-				<div class="upcoming-calendar fl">
+				<div class="upcoming-calendar fl tribe_mini_calendar_widget">
 					
 					 <!-- widgetized  -->
 
