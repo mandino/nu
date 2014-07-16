@@ -1162,7 +1162,7 @@ color: #333;
     color: #BCBCBC !important;
     float: left !important;
     font-size: 18px !important;
-    padding: 10px 20px !important;
+    padding: 11px 24px !important;
     width: 60% !important;
     text-transform: uppercase !important;
 }
@@ -1175,7 +1175,7 @@ color: #333;
     margin-bottom: 10px;
     padding: 10px 20px !important;
     text-transform: uppercase !important;
-    width: 60% !important;
+    width: 135% !important;
 }
 
 .newsletter-form input[type="submit"] {
@@ -1193,7 +1193,7 @@ color: #333;
     line-height: 1.45 !important;
     padding: 12px 0 !important;
     text-transform: uppercase !important;
-    width: 32% !important;
+    width: 105% !important;
     clear: both;
 }
     .newsletter-form input[type="submit"]:hover {

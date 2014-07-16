@@ -51,9 +51,12 @@
 <form name="surveys" action="http://zmaildirect.com/app/new/MTIzNTQzMjYx" method="get">  
 
 <input type="hidden" name="formId" value="MTIzNTQzMjYx">
-<input name="email" type="text">  <br>
+    <div style="float: left;">
+<input name="email" type="text">
+	</div>
+  <div style="float: right;">	
 <input value="Subscribe" type="submit">
-
+	</div>
 </form>
 					
 					<?php  } ?>
