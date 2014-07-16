@@ -44,36 +44,20 @@
 					
 					<?php if(get_option('cebo_enewslettercode')) { ?>
 					
-					<?php //echo get_option('cebo_enewslettercode'); ?>
-
-						<!-- <script type="text/javascript" src="https://www.zdirect.com/scripts/newApp.js"></script>
-						<script type="text/javascript">
-							var zmailApp = "MTIzNTQzMjYx";
-						</script> -->
-
-						<form name="surveysubmit5504" action="https://www.zdirect.com/forms/survey/5504/?thisPage=http://nuhotelbrooklyn.com/thank-you" method="post">  
-
-							<input name="surveyId" value="11115" type="hidden" />
-							<input name="landingPageId" value="5504" type="hidden" /> 
-
-							<div class="survey" id="surveyStart">  
-
-								<input placeholder="Email Address" type="text" name="email" />  
-								<input type="submit" value="Subscribe">
-
-							</div>
-
-						</form>
-						
+					<?php echo get_option('cebo_enewslettercode'); ?>
+					
 					<?php } else { ?>
 					
-						<form name="newsletter-submission">
-							<input type="text" name="firstname" placeholder="Sign Up for Exclusive Offers">
-							<input type="submit" value="Sign Up">
-						</form>
-				
+<form name="surveys" action="http://zmaildirect.com/app/new/MTIzNTQzMjYx" method="get">  
+
+<input type="hidden" name="formId" value="MTIzNTQzMjYx">
+<input name="email" type="text">  <br>
+<input value="Subscribe" type="submit">
+
+</form>
+					
 					<?php  } ?>
-		
+	
 				</div>
 				
 			</div>
