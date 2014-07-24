@@ -220,7 +220,10 @@
 			</div>
 
 			<div class="quote">
-	
+
+				<a class="quote-nav quote-next"><i class="fa fa-angle-right"></i></a>
+				<a class="quote-nav quote-prev"><i class="fa fa-angle-left"></i></a>
+					
 				<div class="ico-quote quote-left fl"></div>
 				
 				<?php 

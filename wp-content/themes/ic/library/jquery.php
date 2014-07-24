@@ -35,7 +35,7 @@
 <script src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/modernizr.custom.js"></script>
 
 <!-- Quotes Rotator -->
-<script async src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/jquery.cbpQTRotator.min.js"></script>
+<script async src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/jquery.cbpQTRotator.js"></script>
 
 <!-- SlideJS -->
 <script async src="<?php bloginfo ('template_url'); ?>/js/jquery.slides.min.js"></script>
