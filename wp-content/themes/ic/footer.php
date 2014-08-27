@@ -151,11 +151,15 @@ var google_remarketing_only = true;
 <?php } ?>
 <!-- End Remarketing -->
 
-<?php if(get_option('cebo_tracking_code')) {
+<?php 
 
-	echo get_option('cebo_tracking_code');
+// if(get_option('cebo_tracking_code')) {
 
-} ?>
+// 	echo get_option('cebo_tracking_code');
+
+// } 
+
+?>
 		
 </body>
 </html>
