@@ -87,7 +87,7 @@
 							
 							<li class="hover">
 								
-					
+								<a href="<?php the_permalink(); ?>" class="overlink"></a>
 								<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
 								
 								<div class="from-price">
