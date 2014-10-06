@@ -150,17 +150,16 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <!-- script -->
 <script type="text/javascript" src="https://www.zdirect.com/scripts/newApp.js"></script>
 
-<!-- sojern script -->
-
+<!-- Sojern -->
 <script>
 (function () {
 var pl = document.createElement('script');
 pl.type = 'text/javascript';
 pl.async = true;
-pl.src = 'https://beacon.sojern.com/pixel/p/3678?cid=[destination_searched]&ha1=[destination_searched]&et=hs';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
+pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
 })();
 </script>
-
+<!-- End Sojern -->
 </head> 
 	
 <body id="oceana" <?php body_class($class); ?>>
