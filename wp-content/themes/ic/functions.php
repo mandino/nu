@@ -106,3 +106,11 @@ if ( !function_exists('ss_framework_admin_scripts') ) {
 }
 
 add_action('admin_enqueue_scripts', 'ss_framework_admin_scripts');
+
+//  Do not load smoothness calendar CSS
+
+function remove_events_css() {
+    wp_dequeue_style( 'tribe-events-custom-jquery-styles' );
+    wp_deregister_style( 'tribe-events-custom-jquery-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'remove_events_css', 20 );
