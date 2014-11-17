@@ -93,7 +93,7 @@ function creater_post_types() {
         'singular_name' => __( 'Specials' )
       ),
       'public' => true,
-      'rewrite' => array('slug' => 'specials'),
+      'rewrite' => array('slug' => 'brooklyn-hotel-deals'),
       'menu_icon' => get_bloginfo('template_url').'/options/images/icon_team.png',
       'supports' => array('title','custom-fields','editor','category','author','thumbnail')
     )
