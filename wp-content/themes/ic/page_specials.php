@@ -85,7 +85,7 @@
 					)); if(have_posts()) : while(have_posts()) : the_post(); 
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
-							<li class="hover">
+							<li>
 								
 								<a href="<?php the_permalink(); ?>" class="overlink"></a>
 								<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
@@ -123,7 +123,7 @@
 									
 									
 									<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
-									<a href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
+									<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
 								</div>
 								
 							</li>
