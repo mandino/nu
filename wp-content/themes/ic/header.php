@@ -274,6 +274,8 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 			
 			<!--<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>-->
 
+			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
+			
 			<a class="reserve fixeer mobile button fr" id="idp4" href="<?php echo get_option('cebo_genbooklink'); ?>" target="_blank">RESERVE</a>
 			
 			<div class="container" style="float: right;">

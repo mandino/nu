@@ -56,7 +56,7 @@ and (max-width : 1240px) {
 	/* Navigation */
 
 	#primary-nav .container {
-	    width: 680px;
+	    width: 720px;
 	}
 
 	#primary-nav nav ul li {
@@ -114,7 +114,7 @@ and (max-width : 1099px) {
 	}
 
 	#primary-nav nav ul {
-	    margin-left: 170px;
+	    margin-left: 40px;
 	}
 
 	/* Main slider */
