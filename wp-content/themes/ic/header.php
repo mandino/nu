@@ -219,7 +219,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 							</select>
 						</span>
 						
-						<a href="#" class="button">Search Now</a>
+						<a href="#" class="button" onclick="_gaq.push(['_trackEvent', 'Booking-widget', 'Search-now', 'Search dates with booking widget']);">Search Now</a>
 						
 					
 					</form>
