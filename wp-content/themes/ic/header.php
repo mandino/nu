@@ -12,6 +12,7 @@
 <!DOCTYPE HTML>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<?php if(is_author()) { ?><meta name="robots" content="noindex, nofollow"><?php } ?>
 	<title>
 		<?php global $page, $paged; wp_title( '|', true, 'right' );
 	
