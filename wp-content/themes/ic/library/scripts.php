@@ -389,7 +389,15 @@
 				$both.removeClass( zpos ).addClass( 'mm-' + this.value );
 			});
 
+		} else {
+		
+		var $menu	= $('nav#menu');
+				$menu.removeClass()
+				$('nav#menu ul').removeClass()
+				$('#primary-nav .container').prepend($menu);
+		
 		}
+
 
 	 	$( window ).resize(function() {
 
