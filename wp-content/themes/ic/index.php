@@ -95,7 +95,7 @@
 							
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 							
-							<h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
 							
 							<?php } ?>
 							<br>
@@ -147,7 +147,7 @@
 							
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 							
-							<h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
 							
 							<?php } ?>
 							
@@ -185,7 +185,7 @@
 						<div class="hover-effect">
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 							
-							<h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
 							
 							<?php } ?>
 							<br>
