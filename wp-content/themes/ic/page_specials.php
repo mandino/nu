@@ -66,7 +66,7 @@
 			
 			<div class="wonderline"></div>
 			
-			<div class="post-content" style="width: 100%;">
+			<div class="post-content">
 			
 				<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 				

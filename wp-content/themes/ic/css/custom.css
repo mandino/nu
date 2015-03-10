@@ -3484,7 +3484,12 @@ ul.tabs li:last-child {
 .post-tags li a:hover, .post-tags li.current a {
 	color: #F27333;
 }
+
 /* Post Content */
+
+.post-content {
+	padding: 25px 0;
+}
 
 .post-content.fl {
     border-right: 1px solid #D9D9D9;
