@@ -153,6 +153,28 @@ function content($limit) {
   return $content;
 }
 
+function the_title_word_limit($limit) {
+  $the_title_word_limit = explode(' ', get_the_title(), $limit);
+  if (count($the_title_word_limit)>=$limit) {
+    array_pop($the_title_word_limit);
+    $the_title_word_limit = implode(" ",$the_title_word_limit).'...';
+  } else {
+    $the_title_word_limit = implode(" ",$the_title_word_limit);
+  }	
+  $the_title_word_limit = preg_replace('`\[[^\]]*\]`','',$the_title_word_limit);
+  return $the_title_word_limit;
+}
+
+function the_title_char_limit($limit) {
+	$the_title_char_limit = get_the_title();
+	if ( strlen($the_title_char_limit) > $limit ) {
+	$the_title_char_limit = substr($the_title_char_limit,0,$limit);
+	echo $the_title_char_limit . '...';
+	} else {
+	echo $the_title_char_limit;
+	}
+}
+
 /* ==================================== */
 
 if ( function_exists( 'add_theme_support' ) ) { // WP 2.9 Post Thumbnail Feature
