@@ -339,5 +339,13 @@ if( !is_admin()){
 }
 
 
+/*
+function is_blog() {
+global $post;
+$posttype = get_post_type($post);
+return ( (is_page( 1226 )) || (is_single()) || (is_category()) || (is_tag()) || (is_archive()) || (is_author()) ) ? true : false ;
+}
+*/
+
 
 ?>

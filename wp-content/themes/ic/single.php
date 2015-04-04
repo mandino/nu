@@ -5,10 +5,6 @@
 */
  get_header(); ?>
 
-
-
-
-
 <?php if(get_post_meta($post->ID, 'cebo_fullpic', true)) { ?>
 
 <?php if(have_posts()) : while(have_posts()) : the_post(); ?>

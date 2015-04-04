@@ -58,7 +58,7 @@ get_header(); ?>
 					
 							
 			
-		<?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+				<?php  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 						
 						query_posts(
 						array(
@@ -127,11 +127,13 @@ get_header(); ?>
 		     	
 		     	
 			</div>
-				<div class="clear"></div>
+			
+			<div class="clear"></div>
 
 		</div>
 
-	<div class="clear"></div>
+		<div class="clear"></div>
+		
 	</div>
 
 	<?php get_footer(); ?>
