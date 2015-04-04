@@ -195,10 +195,10 @@ var google_remarketing_only = true;
 						<form name="surveys" method="get" action="http://zmaildirect.com/app/new/MTIzNTQzMjYx" target="_blank">
 
 							<input type="hidden" name="formId" value="MTIzNTQzMjYx">
-							<input type="email" name="email" value="" size="25" id="MERGE0" autocorrect="off" autocapitalize="off" placeholder="<?php echo get_post_meta($post->ID,'misfit_signup_placeholder', true); ?>">
+							<input type="text" name="email" value="" size="25" placeholder="<?php echo get_post_meta($post->ID,'misfit_signup_placeholder', true); ?>">
 							<!-- real people should not fill this in and expect good things -->
-							<div class="hidden-from-view"><input type="text" value="" tabindex="-1" name="b_bba380aec3f50098434defc93_a126c8bb0f"></div>
-							<input type="submit" value="<?php echo get_post_meta($post->ID,'misfit_signup_buttontext', true); ?>" name="submit" class="button">
+							<!--<div class="hidden-from-view"><input type="text" value="" tabindex="-1" name="b_bba380aec3f50098434defc93_a126c8bb0f"></div>-->
+							<input type="submit" value="<?php echo get_post_meta($post->ID,'misfit_signup_buttontext', true); ?>" class="button">
 
 						</form>
 
