@@ -392,7 +392,11 @@ and (max-width : 1099px) {
 	    width: 23.6%;
 	}
 
-	
+	/* light it up blue */
+
+	li.blue-btn {
+		left: 0px;
+	}
 
 }
 
@@ -729,13 +733,15 @@ and (max-width : 939px) {
 		left: 40px;
 		margin-left: 13px;
 		padding: 1px 0 0;
-		top: 29px;
+		top: 0px;
 		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 		border: none;
 	}
 	#primary-nav {
-min-height: 50px;
-}
+		min-height: 68px;
+	  top: 19px;
+	  position: relative;
+	}
 	.logo.mobile > img {
 	    height: 100%;
 	}
@@ -747,16 +753,16 @@ min-height: 50px;
 	#property-nav nav ul li a.clicknav-clicker, #navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
 	    font-size: 11px;
 	    letter-spacing: 3px;
-	    padding: 11px 6px;
+	    padding: 20px 6px;
 	    
 	}
 
 	#primary-nav .button, #navigation-sticky-wrapper.sticky #primary-nav .button {
 	    font-size: 16px;
-left: 0;
-padding: 16px 40px;
-height: 15px;
-line-height: 16px;
+		left: 0;
+		padding: 16px 40px;
+		height: 15px;
+		line-height: 16px;
 	}
 
 	#primary-nav span.navdrop, #primary-nav span.navdrop ul {
@@ -1301,6 +1307,12 @@ padding: 8px 12px;
 	}
 
 
+/* light it up blue */
+
+.blue-mobile {
+	display: none;
+}
+
 }
 
 
@@ -1555,7 +1567,11 @@ and (max-height : 480px)
 
 	.slide-header .button {
     display: none;
-}
+	}
+
+	li.blue-btn {
+		width: 35px;
+	}
 
 }
 
@@ -1576,9 +1592,9 @@ and (max-width : 399px)
 	#property-nav nav ul li a.clicknav-clicker, #navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
 
 	    background-size: 70%;
-font-size: 11px;
-letter-spacing: 3px;
-padding: 11px 5px;
+		font-size: 11px;
+		letter-spacing: 3px;
+		padding: 21px 5px;
 	}
 	ul.tabs {
 		width: inherit;
