@@ -191,7 +191,7 @@
 							<br>
 							<p><?php the_title(); ?></p>
 							
-							<a href="/?page_id=70"><i class="fa fa-chevron-right fa-lg"></i></a>
+							<a class="special-external" href="/?page_id=70"><i class="fa fa-chevron-right fa-lg"></i></a>
 						</div>
 					</li>
 					
