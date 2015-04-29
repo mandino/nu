@@ -60,11 +60,11 @@ and (max-width : 1240px) {
 	}
 
 	#primary-nav nav ul li {
-		margin-right: 15px;
+		margin-right: 13px;
 	}
 
 	#primary-nav nav ul li a {
-	    font-size: 11px;
+	    font-size: 10px;
 	}
 
 
@@ -114,7 +114,7 @@ and (max-width : 1099px) {
 	}
 
 	#primary-nav nav ul {
-	    margin-left: 40px;
+	    margin-left: 100px;
 	}
 
 	/* Main slider */
@@ -144,11 +144,11 @@ and (max-width : 1099px) {
 	}
 
 	#primary-nav nav ul li {
-	    margin-right: 12px;
+	    margin-right: 8px;
 	}
 
 	#primary-nav nav ul li a {
-	    font-size: 12px;
+	    font-size: 10px;
 	}
 
 	.ressys {
