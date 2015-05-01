@@ -350,7 +350,8 @@ color: #333;
 
 #navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
     font-size: 13px;
-    padding: 20px 6px;
+    /* padding: 20px 6px; */
+    padding: 12px 6px;
     font-weight: bold;
 }
 
@@ -415,7 +416,8 @@ color: #333;
 
 
 #property-nav nav {
-    background: none repeat scroll 0 0 #00adef;
+    /* background: none repeat scroll 0 0 #00adef; */
+    background: none repeat scroll 0 0 #fff;
     height: auto;
     border-bottom: 2px solid #333333;
     transition: all 0.5s;
@@ -426,7 +428,8 @@ color: #333;
 }
 
 #property-nav nav:hover {
-    background: none repeat scroll 0 0 #03b7fb;
+    /* background: none repeat scroll 0 0 #03b7fb; */
+    background: none repeat scroll 0 0 #333;
 }
 
 
@@ -463,7 +466,8 @@ color: #333;
     -o-transition: all 0.5s;
 	max-width: 100%;
 	font-weight: bold;
-	background: url(../images/ic_white.png) center no-repeat;
+	/* background: url(../images/ic_white.png) center no-repeat; */
+	background: url(../images/ic_dark.png) center no-repeat;
 }
 
 #property-nav nav:hover ul li a.clicknav-clicker {
@@ -4007,10 +4011,11 @@ li.blue-btn i {
   color: #00adef;
 }
 
+/* 
 .logo {
   top: 42px;
 }
-
+*/
 
 
 

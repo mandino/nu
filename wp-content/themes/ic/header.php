@@ -196,7 +196,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 						</ul> -->
 	
 					</li>
-					<li class="blue-btn"><a href="http://nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li>
+					<!-- <li class="blue-btn"><a href="http://nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li> -->
 				</ul>
 			</nav>
 			
