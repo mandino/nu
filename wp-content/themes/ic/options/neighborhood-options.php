@@ -48,14 +48,13 @@ $neighborhood_meta_box = array(
 		array( 
               "name" => "Neighborhood Title",
 	          "id" => $prefix."_neighborhood_title",
-	          "type" => "select",	          
-	          "options" => $pagetypes,
+	          "type" => "text",
 	          "std" => ""
               )
 		,	
 		array( 
               "name" => "Neighborhood Sub",
-	          "id" => $prefix."_neighborhood_title",
+	          "id" => $prefix."_neighborhood_sub",
 	          "type" => "text",
 	          "std" => ""
               )
@@ -70,11 +69,11 @@ wp_enqueue_script('color-picker', get_template_directory_uri().'/options/js/colo
 
 
 /* ----------------------------------------------- DONT TOUCH BELOW UNLESS YOU KNOW WHAT YOU'RE DOING */
-add_action('admin_menu', 'mythemer_add_boxer');
+add_action('admin_menu', 'neighborhood_add_boxer');
 // Add meta boxer
-function mythemer_add_boxer() {
+function neighborhood_add_boxer() {
 	global $neighborhood_meta_box;
-	foreach ( array( 'guides' ) as $page )
+	foreach ( array( 'page' ) as $page )
 	add_meta_box($neighborhood_meta_box['id'], $neighborhood_meta_box['title'], 'neighborhood_show_box', $page, $neighborhood_meta_box['context'], 			$neighborhood_meta_box['priority']);
 }
 // Callback function to show fields in meta boxer
@@ -145,7 +144,7 @@ jQuery(document).ready(function() {
 		
 		';
 		
-	echo '<input type="hidden" name="mythemer_neighborhood_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
+	echo '<input type="hidden" name="neighborhood_neighborhood_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
 	echo '<table class="form-table">';
 	foreach ($neighborhood_meta_box['fields'] as $field) {
 		// get current post meta data
@@ -197,12 +196,12 @@ jQuery(document).ready(function() {
 	echo '</table>';
 }
 
-add_action('save_post', 'mythemer_save_data');
+add_action('save_post', 'neighborhood_save_data');
 // Save data from meta boxer
-function mythemer_save_data($post_id) {
+function neighborhood_save_data($post_id) {
 	global $neighborhood_meta_box;	
 	// verify nonce
-	if (!wp_verify_nonce($_POST['mythemer_neighborhood_meta_box_nonce'], basename(__FILE__))) {
+	if (!wp_verify_nonce($_POST['neighborhood_neighborhood_meta_box_nonce'], basename(__FILE__))) {
 		return $post_id;
 	}
 	// check autosave
