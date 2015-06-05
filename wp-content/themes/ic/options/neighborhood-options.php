@@ -73,7 +73,7 @@ add_action('admin_menu', 'neighborhood_add_boxer');
 // Add meta boxer
 function neighborhood_add_boxer() {
 	global $neighborhood_meta_box;
-	foreach ( array( 'page' ) as $page )
+	foreach ( array( 'post' ) as $page )
 	add_meta_box($neighborhood_meta_box['id'], $neighborhood_meta_box['title'], 'neighborhood_show_box', $page, $neighborhood_meta_box['context'], 			$neighborhood_meta_box['priority']);
 }
 // Callback function to show fields in meta boxer
