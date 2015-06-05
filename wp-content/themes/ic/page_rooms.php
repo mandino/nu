@@ -41,7 +41,7 @@
 					<?php } ?>
 
 		
-					<h2 class="section-title fr"><?php the_title(); ?></h2>
+					<h2 class="section-title fr"><?php wp_title(); ?></h2>
 	
 				</div>
 	
@@ -99,7 +99,7 @@
 
 						<div class="fr">
 							
-							<h3><?php the_title(); ?></h3>
+							<h3><?php wp_title(); ?></h3>
 
 							<p><?php echo excerpt(100); ?></p>
 
