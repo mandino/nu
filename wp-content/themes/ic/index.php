@@ -30,12 +30,6 @@
 					<?php } ?>
 	
 					</div>
-
-					<?php if( is_home() || is_front_page() ) { ?>
-
-						<div class="wanderful-box">	<a class="stay-wanderful-button" href="https://staywanderful.com/widgets/#/7">Stay Wanderful</a> <script> window.stayWanderful=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.stayWanderful||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://staywanderful.com/widgets/widget.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","stay-wanderful-script")); </script></div>
-					
-					<?php } ?>
 	
 				<div class="fr">
 					

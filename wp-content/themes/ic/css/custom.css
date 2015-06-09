@@ -223,7 +223,6 @@ input[type="submit"] {
 	position: relative;
 	position: absolute;
 	right: -10px;
-	bottom: 50px;
 	width: 300px;
 	height: 100px;
 	z-index: 14;
@@ -248,6 +247,14 @@ input[type="submit"] {
 	-moz-animation-delay:4s;
 	-ms-animation-delay:4s;
 	-o-animation-delay:4s;
+}
+
+.ID2{
+	bottom: 50px;
+}
+
+.ID1{
+	top: 50px;
 }
 
 .welcome-text {
@@ -4058,39 +4065,4 @@ li.blue-btn i {
 
 .reservationform.flexdate {
   height: 40px;
-}
-
-.section-title.fr {
-    float: left;
-    padding-right: 55px !important;
-}
-
-.wanderful-box {
-    float: left;
-    margin-left: 13%;
-}
-
-/** iPad view **/
-@media only screen and (max-width: 1099px) { 
-	.wanderful-box {
-  		float: left;
- 		margin-left: -3%;
-	}
-}
-
-/** iPhone view **/
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) { 
-	.wanderful-box {
-		float: left;
-		margin-left: 13%;
-		padding-bottom: 10%;
-	} 
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) { 
-	.wanderful-box {
-		float: left;
-		margin-left: 30%;
-		padding-bottom: 2%;
-	} 
 }
