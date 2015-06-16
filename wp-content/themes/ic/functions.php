@@ -115,3 +115,7 @@ function remove_events_css() {
     wp_deregister_style( 'tribe-events-custom-jquery-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'remove_events_css', 20 );
+
+function tt($image,$width,$height){
+    return bloginfo('template_url') . "/library/thumb.php?src=$image&w=$width&h=$height";
+}
