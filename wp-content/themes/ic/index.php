@@ -89,7 +89,7 @@
 						
 						<?php } ?>
 						
-						<h3><?php wp_title(); ?></h3>
+						<h3><?php the_title(); ?></h3>
 
 						<div class="hover-effect">
 							
