@@ -249,12 +249,16 @@ input[type="submit"] {
 	-o-animation-delay:4s;
 }
 
-.ID2{
-	bottom: 50px;
+.ID1 {
+	top: 20px;
 }
 
-.ID1{
-	top: 50px;
+.ID2 {
+	top: 185px;
+}
+
+.ID3 {
+	top: 350px;
 }
 
 .welcome-text {
