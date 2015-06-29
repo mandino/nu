@@ -99,7 +99,7 @@
 							
 							<?php } ?>
 							<br>
-							<p><?php wp_title(); ?></p>
+							<p><?php the_title(); ?></p>
 							
 							<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
 						</div>
@@ -180,7 +180,7 @@
 						
 						<?php } ?>
 						
-						<h3><?php wp_title(); ?></h3>
+						<h3><?php the_title(); ?></h3>
 						
 						<div class="hover-effect">
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
@@ -189,7 +189,7 @@
 							
 							<?php } ?>
 							<br>
-							<p><?php wp_title(); ?></p>
+							<p><?php the_title(); ?></p>
 							
 							<a class="special-external" href="/?page_id=70"><i class="fa fa-chevron-right fa-lg"></i></a>
 						</div>
