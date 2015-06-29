@@ -250,6 +250,16 @@ input[type="submit"] {
 }
 
 .ID1 {
+	top: 50px;
+}
+
+.ID2 {
+	bottom: 50px;
+}
+
+
+/*
+.ID1 {
 	top: 20px;
 }
 
@@ -260,6 +270,7 @@ input[type="submit"] {
 .ID3 {
 	top: 350px;
 }
+*/
 
 .welcome-text {
 	font-weight: bold;
