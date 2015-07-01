@@ -250,13 +250,15 @@ input[type="submit"] {
 }
 
 .ID1 {
-	top: 50px;
-}
-
-.ID2 {
 	bottom: 50px;
 }
 
+.stay-wanderful-iframe {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    z-index: 99999999;
+}
 
 /*
 .ID1 {
