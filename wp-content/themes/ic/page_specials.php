@@ -98,11 +98,11 @@
 								
 								<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 								
-								<a href="<?php the_permalink(); ?>"><img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>"  style="width: 100%"></a>
+								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 262, 290); ?>"  style="width: 100%"></a>
 								
 								<?php } else { ?>
 								
-								<a href="<?php the_permalink(); ?>"><img src="<?php echo $imgsrc[0]; ?>" style="width: 100%"></a>
+								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 262, 290); ?>" style="width: 100%"></a>
 								
 								<?php } ?>
 								

@@ -81,11 +81,11 @@
 					<li class="hover">
 						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
+						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 291); ?>">
 						
 						<?php } else { ?>
 						
-						<img src="<?php echo $imgsrc[0]; ?>">
+						<img src="<?php echo tt($imgsrc[0], 260, 291); ?>">
 						
 						<?php } ?>
 						
@@ -128,11 +128,11 @@
 						
 						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
+						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 293); ?>">
 						
 						<?php } else { ?>
 						
-						<img src="<?php echo $imgsrc[0]; ?>">
+						<img src="<?php echo tt($imgsrc[0], 260, 293); ?>">
 						
 						<?php } ?>
 						
@@ -172,11 +172,11 @@
 					<li class="hover">
 						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
+						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 540, 290); ?>">
 						
 						<?php } else { ?>
 						
-						<img src="<?php echo $imgsrc[0]; ?>">
+						<img src="<?php echo tt($imgsrc[0], 540, 290); ?>">
 						
 						<?php } ?>
 						

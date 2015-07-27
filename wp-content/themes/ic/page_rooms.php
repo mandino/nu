@@ -87,11 +87,11 @@
 
 							<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-								<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
+								<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 557, 400); ?>">
 							
 							<?php } else { ?>
 							
-								<img src="<?php echo $imgsrc[0]; ?>">
+								<img src="<?php echo tt($imgsrc[0], 557, 400); ?>">
 							
 							<?php } ?>
 								
