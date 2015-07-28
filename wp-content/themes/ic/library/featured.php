@@ -9,7 +9,7 @@
 			$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");?>
 			
 			
-			<li style="background-image: url(<?php echo $imgsrc[0]; ?>);">
+			<li style="background-image: url(<?php echo tt($imgsrc[0], 1400, 498); ?>);">
 				<a target="_blank" href="<?php echo get_post_meta($post->ID, 'sliderurl', true); ?>">
 					<div class="slide-header">
 						
