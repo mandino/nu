@@ -210,7 +210,7 @@
 			
 				<?php query_posts('post_type=page&p=585'); if(have_posts()) : while(have_posts()) : the_post(); 	?>
 				
-				<h1><?php wp_title(); ?></h1>
+				<h1><?php the_title(); ?></h1>
 				
 				<?php the_content(); ?>
 				
