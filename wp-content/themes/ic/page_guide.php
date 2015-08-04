@@ -48,7 +48,7 @@
 					<?php } ?>
 
 		
-					<h2 class="section-title fr"><?php wp_title(); ?></h2>
+					<h2 class="section-title fr"><?php the_title(); ?></h2>
 	
 				</div>
 	
@@ -125,7 +125,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -160,7 +160,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -259,7 +259,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -294,7 +294,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -390,7 +390,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -425,7 +425,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -520,7 +520,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -555,7 +555,7 @@
 								
 							</div>
 							<div class="binder">
-								<h3 class="fl"><?php wp_title(); ?></h3>
+								<h3 class="fl"><?php the_title(); ?></h3>
 								<h3 class="fr"><?php echo get_post_meta($post->ID, 'cebo_category', true); ?></h3>
 								<div class="clear"></div>
 							</div>	
@@ -657,7 +657,7 @@
 							
 							<div class="event-date"><?php echo $shortdaterz; ?> <span><?php echo $shortdatez; ?></span></div>
 							<div class="event-description">
-								<p><?php wp_title(); ?></p>
+								<p><?php the_title(); ?></p>
 							</div>
 							
 							</a>
@@ -690,8 +690,8 @@
 							<?php query_posts('post_type=post&posts_per_page=2&offset=1&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php wp_title(); ?>' /></a>
-								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php wp_title(); ?></h3></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(10); ?></p>
 							</li>
 							<?php endwhile; endif; wp_reset_query(); ?>	
@@ -702,8 +702,8 @@
 						
 						<?php query_posts('post_type=post&posts_per_page=1&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 540, 361); ?>' alt='<?php wp_title(); ?>' /></a>
-								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php wp_title(); ?></h3></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 540, 361); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(80); ?></p>
 							</li>
 						</ul>
@@ -716,8 +716,8 @@
 							<?php query_posts('post_type=post&posts_per_page=2&offset=3&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php wp_title(); ?>' /></a>
-								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php wp_title(); ?></h3></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(10); ?></p>
 							</li>
 						<?php endwhile; endif; wp_reset_query(); ?>	
