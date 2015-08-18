@@ -192,13 +192,14 @@ var google_remarketing_only = true;
 							.hidden-from-view { left: -5000px; position: absolute; }
 						</style>
 
-						<form name="surveys" method="get" action="http://zmaildirect.com/app/new/MTIzNTQzMjYx" target="_blank">
+						<form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" method="post" action="//nuhotelbrooklyn.us3.list-manage.com/subscribe/post?u=59c75b2e64de9a8bf94c59372&id=9f057a50d1" class="validate" target="_blank" novalidate>
 
 							<input type="hidden" name="formId" value="MTIzNTQzMjYx">
-							<input type="text" name="email" value="" size="25" placeholder="<?php echo get_post_meta($post->ID,'misfit_signup_placeholder', true); ?>">
+							<input type="email" name="EMAIL" value="" size="25" class="email" id="mce-EMAIL" placeholder="<?php echo get_post_meta($post->ID,'misfit_signup_placeholder', true); ?>" required>
 							<!-- real people should not fill this in and expect good things -->
-							<!--<div class="hidden-from-view"><input type="text" value="" tabindex="-1" name="b_bba380aec3f50098434defc93_a126c8bb0f"></div>-->
-							<input type="submit" value="<?php echo get_post_meta($post->ID,'misfit_signup_buttontext', true); ?>" class="button">
+							<div class="hidden-from-view"><input type="text" value="" tabindex="-1" name="b_bba380aec3f50098434defc93_a126c8bb0f"></div>
+							<div style="position: absolute; left: -5000px;"><input type="text" name="b_59c75b2e64de9a8bf94c59372_9f057a50d1" tabindex="-1" value=""></div>
+							<input id="mc-embedded-subscribe" type="submit" value="<?php echo get_post_meta($post->ID,'misfit_signup_buttontext', true); ?>" class="button">
 
 						</form>
 

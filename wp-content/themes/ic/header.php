@@ -56,6 +56,9 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
+	<!-- MailChimp Subscription script -->
+	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+	
 	<!-- Jquery -->
 	<?php include(TEMPLATEPATH. "/library/jquery.php"); ?>	
 
