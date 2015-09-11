@@ -46,7 +46,7 @@
 		</ul>
 	</div>
 		
-	<?php 
+	<?php /*
 
 		$popout_query = new WP_Query(
 			array(
@@ -88,6 +88,6 @@
 	
 		
 
-	<?php endif; ?>
+	<?php endif; */?>
 
 </div>
