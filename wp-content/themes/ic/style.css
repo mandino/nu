@@ -1881,6 +1881,10 @@ h1, h2, h3, h4, h5, h6, h7 {
     text-transform: uppercase;
 }
 
+.neighbor-content {
+    margin: 50px 0;
+}
+
 
 
 /* ======================================================== FOOTER NEWSLETTER =====================================================  */
@@ -3911,6 +3915,39 @@ bottom: 38px !important;
 strong {
   font-weight: bold;
 }
+
+.category-neighbor div {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: table;
+    height: 350px;
+    width: 49.3%;
+    float: left;
+}
+
+.category-neighbor div a {
+    background-color: rgba(0,0,0,0.5);
+    font-family: didot, georgia;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    position: relative;
+    font-size: 36px;
+    color: #fff;
+
+
+
+    transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
+
+    .category-neighbor div a:hover {
+        background-color: rgba(0,0,0,0.1);
+    }
+
 
 /* Email Signup Popup box */
 
