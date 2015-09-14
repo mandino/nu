@@ -83,18 +83,18 @@
 			<div class="container">
 				<div class="category-neighbor">
 				<?php 
-					$post_thumbnail_eat = get_post_thumbnail_id( 505 );
-					$post_thumbnail_shop = get_post_thumbnail_id( 507 );
-					$post_thumbnail_culture = get_post_thumbnail_id( 503 );
-					$post_thumbnail_landmarks = get_post_thumbnail_id( 509 );
+					// $post_thumbnail_eat = get_post_thumbnail_id( 505 );
+					// $post_thumbnail_shop = get_post_thumbnail_id( 507 );
+					// $post_thumbnail_culture = get_post_thumbnail_id( 503 );
+					// $post_thumbnail_landmarks = get_post_thumbnail_id( 509 );
 
-					$image_eat = wp_get_attachment_url( $post_thumbnail_eat );
-					$image_shop = wp_get_attachment_url( $post_thumbnail_shop );
-					$image_culture = wp_get_attachment_url( $post_thumbnail_culture );
-					$image_landmarks = wp_get_attachment_url( $post_thumbnail_landmarks );
+					// $image_eat = wp_get_attachment_url( $post_thumbnail_eat );
+					// $image_shop = wp_get_attachment_url( $post_thumbnail_shop );
+					// $image_culture = wp_get_attachment_url( $post_thumbnail_culture );
+					// $image_landmarks = wp_get_attachment_url( $post_thumbnail_landmarks );
 				?>
 
-					<div class="eat" style="background-image: url(<?php echo $image_eat; ?>); margin-right: 10px; margin-top: 12px;">
+					<!-- <div class="eat" style="background-image: url(<?php echo $image_eat; ?>); margin-right: 10px; margin-top: 12px;">
 						<a href="<?php echo get_permalink( $post->post_parent ); ?>/eat">Eat</a>
 					</div>
 					<div class="shop" style="background-image: url(<?php echo $image_shop; ?>); margin-top: 12px;">
@@ -105,8 +105,71 @@
 					</div>
 					<div class="landmarks" style="background-image: url(<?php echo $image_landmarks; ?>); margin-top: 12px;">
 						<a href="<?php echo get_permalink( $post->post_parent ); ?>/landmarks">Landmarks</a>
-					</div>
-				</div>
+					</div>-->
+
+
+					<!-- ECHO EAT -->
+					<?php
+						$query_eat = new WP_Query('post_type=page&p=505');
+						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
+						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+					?>
+
+							<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px; margin-right: 10px;">
+								<a href="<?php echo get_permalink( $post->post_parent ); ?>/eat">
+									<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
+									<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
+								</a>		
+							</div>
+
+					<?php endwhile; endif; wp_reset_postdata(); ?>
+
+
+					<!-- ECHO SHOP -->
+					<?php
+						$query_eat = new WP_Query('post_type=page&p=507');
+						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
+						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+					?>
+						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 12px;">
+							<a href="<?php the_permalink(); ?>">
+								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
+								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
+							</a>
+						</div>
+					<?php endwhile; endif; wp_reset_postdata(); ?>
+
+
+					<!-- ECHO CULTURE -->
+					<?php
+						$query_eat = new WP_Query('post_type=page&p=503');
+						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
+						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+					?>
+						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-right: 10px; margin-top: 12px;">
+							<a href="<?php the_permalink(); ?>">
+								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
+								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
+							</a>	
+						</div>
+					<?php endwhile; endif; wp_reset_postdata(); ?>
+
+
+					<!-- ECHO LANDMARK -->
+					<?php
+						$query_eat = new WP_Query('post_type=page&p=509');
+						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
+						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+					?>
+						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 12px;">
+							<a href="<?php the_permalink(); ?>">
+								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
+								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
+							</a>
+						</div>
+					<?php endwhile; endif; wp_reset_postdata(); ?>
+
+				</div> 
 			</div>
 			
 			<div class="tabs-container">

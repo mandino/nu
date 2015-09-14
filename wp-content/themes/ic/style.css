@@ -3924,17 +3924,39 @@ strong {
     height: 350px;
     width: 49.3%;
     float: left;
+    position: relative;
+}
+
+.category-neighbor div span {
+    position: absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+    text-align: center;
+}
+
+.category-neighbor div .def-title {
+    font-family: didot, georgia;
+    font-size: 50px;
+    top: 40%;
+}
+
+.category-neighbor div .hover-title {
+    font-family: didot, georgia;
+    font-size: 24px;
+    display: none;
+    bottom: 30px;
 }
 
 .category-neighbor div a {
     background-color: rgba(0,0,0,0.5);
-    font-family: didot, georgia;
-    vertical-align: middle;
-    display: table-cell;
-    text-align: center;
-    position: relative;
-    font-size: 36px;
     color: #fff;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
 
 
 
@@ -3943,9 +3965,17 @@ strong {
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
 }
-
-    .category-neighbor div a:hover {
+  
+    .category-neighbor div:hover a {
         background-color: rgba(0,0,0,0.1);
+    }
+
+    .category-neighbor div:hover .def-title {
+        display: none;
+    }
+
+    .category-neighbor div:hover .hover-title {
+        display: block;
     }
 
 
