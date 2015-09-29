@@ -73,16 +73,12 @@
 					
 						<div class="specialtab">
 							
-							<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?>
-								<a href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
-							<?php } ?>
-
+							<a href="<?php if (get_post_meta($post->ID, 'cebo_popout_url', true)) { echo get_post_meta($post->ID, 'cebo_popout_url', true); } else { ?>#<?php } ?>"><h3 style="font-size: 25px;">
 								<span><?php echo get_post_meta($post->ID, 'cebo_popout_subtitle', true); ?></span>
 								<?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?><br>
 								<span><?php echo get_post_meta($post->ID, 'cebo_popout_tagline', true); ?></span></h3>
-
-							<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?></a><?php } ?>
-								
+							</a>	
+															
 						</div>
 
 				</div>
