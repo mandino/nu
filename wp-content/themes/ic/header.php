@@ -96,7 +96,7 @@
 	ga('send', 'pageview');
 	ga('require', 'linker');
 	ga('linker:autoLink', ['reztrip.com'], false, true);
-
+	setTimeout("ga('send', 'event', 'unbounce', '15_sec')", 15000);
 </script>
 
 <!-- script -->
