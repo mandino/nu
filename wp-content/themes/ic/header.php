@@ -160,7 +160,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 							</select>
 						</span>
 						
-						<button type="submit" class="button">Search Now</button>
+						<button type="submit" class="button" onclick="_gaq.push(['_trackEvent', 'Booking-widget', 'Search-now', 'Search dates with booking widget']);">Search Now</button>
 						
 					
 					</form>
