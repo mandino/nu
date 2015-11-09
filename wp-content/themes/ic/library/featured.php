@@ -33,6 +33,7 @@
 						<?php } ?>
 						
 					</div>
+				<!--<img src="<?php //echo $imgsrc[0]; ?>" alt="<?php //get_post_meta($post->ID, 'bigtitle', true); ?>" />-->
 				<img src="<?php echo $imgsrc[0]; ?>" alt="<?php get_post_meta($post->ID, 'bigtitle', true); ?>" />
 			</a>
 			</li>
