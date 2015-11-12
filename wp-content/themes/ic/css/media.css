@@ -184,11 +184,12 @@ and (max-width : 1099px) {
 	    float: left;
 	    margin-right: 13px;
 	    position: relative;
-	    width: 23.4%;
+	    /* width: 23.4%; */
+	   width:31.9%;
 	}
 
 	.section-photos li:first-child {
-	    width: 48.3% !important;
+	   /* width: 48.3% !important; */
 	}
 
 	.section-photos li h3, .thumbgal li h3 {
@@ -211,6 +212,11 @@ and (max-width : 1099px) {
 	    padding: 10px;
 	    width: 70px;
 	}
+	#intro .section-photos img{
+
+		 height: 200px;
+	}
+
 
 
 
