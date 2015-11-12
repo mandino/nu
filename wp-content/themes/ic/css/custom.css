@@ -735,6 +735,7 @@ color: #333;
     text-align: center;
     top: 80%;
     width: 100%;
+    z-index: -1;
 }
 
 
