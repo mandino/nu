@@ -8,11 +8,11 @@
 
  	<?php if (is_page(78)) { ?>
 
-	  	<ul class="right-links right" id="toggles">						
-			<li class="dine"><a class="linkerd active" href="/?page_id=505" title="Dining">Eat</a></li>
-			<li class="shop"><a class="linkerd active" href="/?page_id=507" title="Dining">Shop</a></li>
-			<li class="arts"><a class="linkerd active" href="/?page_id=503" title="Dining">Culture</a></li>
-			<li class="sights"><a class="linkerd active" href="/?page_id=509" title="Dining">Landmarks</a></li>
+	  	<ul class="right-links right" id="toggles">		
+			<li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=505" title="Dining">Eat</a></li>
+			<li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
+			<li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
+			<li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
 		</ul>
 
 	<?php } else { 
