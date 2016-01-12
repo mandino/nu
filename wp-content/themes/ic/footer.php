@@ -306,6 +306,23 @@ var google_remarketing_only = true;
 <?php } ?>
 	
 <!-- End Email signup popup -->
-		
+<!-- LINKERED LINKS -->
+<script>
+	jQuery(function ($) {
+	// Load dialog on page load
+	//$('#basic-modal-content').modal();
+ $(".linkerd").click(function(){
+
+ 	var id=$(this).attr("data-id");
+ 	
+ 	var hr=$("#"+id).attr("href");
+ 	window.parent.location=hr;
+ })
+ 
+});
+</script>
+<!-- LINKERED LINKS -->		
+
+
 </body>
 </html>

@@ -9,10 +9,10 @@
  	<?php if (is_page(78)) { ?>
 
 	  	<ul class="right-links right" id="toggles">		
-			<li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=505" title="Dining">Eat</a></li>
-			<li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
-			<li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
-			<li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
+			<li class="dine"><a data-id="eatl" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=505g" title="Dining">Eat</a></li>
+			<li class="shop"><a data-id="shopl" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
+			<li class="arts"><a data-id="cult"  class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
+			<li class="sights"><a data-id="landl"  class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
 		</ul>
 
 	<?php } else { 
@@ -22,10 +22,10 @@
 	?>
 						
 		<ul class="right-links right" id="toggles">						
-			<li class="dine"><a class="linkerd <?php if ($com_link == 'eat') { ?>active<?php } ?>" href="/?page_id=505" title="Dining">Eat</a></li>
-			<li class="shop"><a class="linkerd <?php if ($com_link == 'shop') { ?>active<?php } ?>" href="/?page_id=507" title="Dining">Shop</a></li>
-			<li class="arts"><a class="linkerd <?php if ($com_link == 'culture') { ?>active<?php } ?>" href="/?page_id=503" title="Dining">Culture</a></li>
-			<li class="sights"><a class="linkerd <?php if ($com_link == 'landmarks') { ?>active<?php } ?>" href="/?page_id=509" title="Dining">Landmarks</a></li>
+			<li class="dine"><a data-id="eatl" class="linkerd <?php if ($com_link == 'eat') { ?>active<?php } ?>" href="/?page_id=505" title="Dining">Eat</a></li>
+			<li class="shop"><a data-id="shopl" class="linkerd <?php if ($com_link == 'shop') { ?>active<?php } ?>" href="/?page_id=507" title="Dining">Shop</a></li>
+			<li class="arts"><a data-id="cult" class="linkerd <?php if ($com_link == 'culture') { ?>active<?php } ?>" href="/?page_id=503" title="Dining">Culture</a></li>
+			<li class="sights"><a data-id="landl" class="linkerd <?php if ($com_link == 'landmarks') { ?>active<?php } ?>" href="/?page_id=509" title="Dining">Landmarks</a></li>
 		</ul>
 
 	<?php } ?>					
@@ -173,12 +173,12 @@
 			
 			<div id="tabs-wrapper" class="tabs-wrapper">
 		
-				<ul class="tabs">
-					<li class="eat"><a href="<?php echo get_permalink( $post->post_parent ); ?>/eat">Eat</a></li>
-					<li class="shop"><a href="<?php echo get_permalink( $post->post_parent ); ?>/shop">Shop</a></li>
-					<li class="culture"><a href="<?php echo get_permalink( $post->post_parent ); ?>/culture">Culture</a></li>
-					<li class="landmarks"><a href="<?php echo get_permalink( $post->post_parent ); ?>/landmarks">Landmarks</a></li>
-				</ul>	
+			<ul class="tabs">
+				<li class="eat"><a id="eatl" href="<?php echo get_permalink( $post->post_parent ); ?>eat">Eat</a></li>
+				<li class="shop"><a id="shopl" href="<?php echo get_permalink( $post->post_parent ); ?>shop">Shop</a></li>
+				<li class="culture"><a id="cult" href="<?php echo get_permalink( $post->post_parent ); ?>culture">Culture</a></li>
+				<li class="landmarks"><a id="landl" href="<?php echo get_permalink( $post->post_parent ); ?>landmarks">Landmarks</a></li>
+			</ul>
 				
 				<div class="tabs-container">
 					
