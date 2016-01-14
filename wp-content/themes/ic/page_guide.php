@@ -9,10 +9,10 @@
  	<?php if (is_page(78)) { ?>
 
 	  	<ul class="right-links right" id="toggles">		
-			<li class="dine"><a data-id="eatl" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=505g" title="Dining">Eat</a></li>
-			<li class="shop"><a data-id="shopl" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
-			<li class="arts"><a data-id="cult"  class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
-			<li class="sights"><a data-id="landl"  class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
+			<li class="dine"><a onClick="location.href='<?php echo get_permalink( $post->post_parent ); ?>/eat'" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=505" title="Dining">Eat</a></li>
+			<li class="shop"><a onClick="location.href='<?php echo get_permalink( $post->post_parent ); ?>/shop'" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
+			<li class="arts"><a onClick="location.href='<?php echo get_permalink( $post->post_parent ); ?>/culture'" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
+			<li class="sights"><a onClick="location.href='<?php echo get_permalink( $post->post_parent ); ?>/landmarks'" class="linkerd2 active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
 		</ul>
 
 	<?php } else { 
@@ -103,7 +103,7 @@
 					?>
 
 							<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px; margin-right: 10px;">
-								<a href="<?php echo get_permalink( $post->post_parent ); ?>/eat">
+								<a data-id="eatl" href="<?php echo get_permalink( $post->post_parent ); ?>/eat">
 									<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 									<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
 								</a>		
@@ -119,7 +119,7 @@
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
 						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
-							<a href="<?php echo get_permalink( $post->post_parent ); ?>/shop">
+							<a data-id="shopl" href="<?php echo get_permalink( $post->post_parent ); ?>/shop">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
 							</a>
@@ -134,7 +134,7 @@
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
 						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-right: 10px; margin-top: 10px;">
-							<a href="<?php echo get_permalink( $post->post_parent ); ?>/culture">
+							<a data-id="cult" href="<?php echo get_permalink( $post->post_parent ); ?>/culture">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
 							</a>	
@@ -149,7 +149,7 @@
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
 						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
-							<a href="<?php echo get_permalink( $post->post_parent ); ?>/landmarks">
+							<a data-id="landl" href="<?php echo get_permalink( $post->post_parent ); ?>/landmarks">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
 							</a>
