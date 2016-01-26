@@ -306,7 +306,7 @@ var google_remarketing_only = true;
 <?php } ?>
 	
 <!-- End Email signup popup -->
-<!-- LINKERED LINKS -->
+<!-- LINKERED LINKS
 <script>
 	jQuery(function ($) {
 	// Load dialog on page load
