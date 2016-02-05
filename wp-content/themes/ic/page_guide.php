@@ -102,7 +102,7 @@
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
 
-							<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px; margin-right: 10px;">
+							<div id="mneighbor" style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px; margin-right: 10px;">
 								<a data-id="eatl" href="<?php echo get_permalink( $post->post_parent ); ?>/eat">
 									<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 									<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
@@ -118,7 +118,7 @@
 						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
-						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
+						<div id="mneighbor" style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
 							<a data-id="shopl" href="<?php echo get_permalink( $post->post_parent ); ?>/shop">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
@@ -133,7 +133,7 @@
 						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
-						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-right: 10px; margin-top: 10px;">
+						<div id="mneighbor" style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-right: 10px; margin-top: 10px;">
 							<a data-id="cult" href="<?php echo get_permalink( $post->post_parent ); ?>/culture">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
@@ -148,7 +148,7 @@
 						if ($query_eat->have_posts()) : while ($query_eat->have_posts()) : $query_eat->the_post();
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
 					?>
-						<div style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
+						<div id="mneighbor" style="background-image: url(<?php echo $imgsrc[0]; ?>); margin-top: 10px;">
 							<a data-id="landl" href="<?php echo get_permalink( $post->post_parent ); ?>/landmarks">
 								<span class="def-title"><?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?></span>
 								<span class="hover-title"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
