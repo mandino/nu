@@ -386,7 +386,7 @@
 				    id: goid,
 				    options:{
 						draggable: false,
-						icon : new google.maps.MarkerImage('yourImage.png')
+						icon : new google.maps.MarkerImage('')
 					}
 				  },
 				  overlay:{

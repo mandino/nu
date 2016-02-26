@@ -46,48 +46,4 @@
 		</ul>
 	</div>
 		
-	<?php /*
-
-		$popout_query = new WP_Query(
-			array(
-				'post_type' => 'popout-box', 
-				'posts_per_page' => 1,
-			)
-		);
-
-		if($popout_query->have_posts()) :
-	
-	?>
-
-			<?php 
-
-			$specialsboxID = 1;
-			while($popout_query->have_posts()) : $popout_query->the_post(); ?>
-			<a class="stay-wanderful-button" href="https://staywanderful.com/widgets/#/7">Stay Wanderful</a> <script> window.stayWanderful=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.stayWanderful||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://staywanderful.com/widgets/widget.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","stay-wanderful-script")); </script>
-			<div class="specialsbox ID<?php echo $specialsboxID; ?>">
-				
-				<div class="closebox"><a href="#">X</a></div>
-
-					<?php if(get_post_meta($post->ID, 'cebo_popout_welcome', true)) { ?>
-						<span class="welcome-text"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
-					<?php } ?>
-					
-						<div class="specialtab">
-							
-							<a href="<?php if (get_post_meta($post->ID, 'cebo_popout_url', true)) { echo get_post_meta($post->ID, 'cebo_popout_url', true); } else { ?>#<?php } ?>"><h3 style="font-size: 25px;">
-								<span><?php echo get_post_meta($post->ID, 'cebo_popout_subtitle', true); ?></span>
-								<?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?><br>
-								<span><?php echo get_post_meta($post->ID, 'cebo_popout_tagline', true); ?></span></h3>
-							</a>	
-															
-						</div>
-
-				</div>
-					<?php $specialsboxID ++; ?>
-			<?php endwhile; ?>
-	
-		
-
-	<?php endif; */?>
-
 </div>
