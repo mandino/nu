@@ -206,7 +206,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 
 					<div class="reservationform flexdate">
 					
-						<p><a href="https://nuhotelbrooklyn.reztrip.com" onClick="ga('send', 'event', 'Booking-widget', 'Flexible Dates', 'click');">Flexible dates?</a> Search for our best available rate</p>				
+						<p><a href="https://nuhotelbrooklyn.reztrip.com" onclick="ga('send', 'event', 'Booking-widget', 'click', 'Flexible Dates');">Flexible dates?</a> Search for our best available rate</p>
 						
 					</div>
 
