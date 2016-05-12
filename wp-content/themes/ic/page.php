@@ -75,9 +75,7 @@
 			
 			
 			<?php if(is_subpage()) { ?>
-			
-			
-			
+
 			<div class="post-tags">
 				<ul>
 	
@@ -92,6 +90,8 @@
 					'post_type' => 'page',
 					'post_parent' => $parents,
 					'posts_per_page'=> 8,
+					'orderby' => menu_order,
+					'order' => ASC,
 					// 'post__not_in' => array($currency)
 					
 					)); if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -112,7 +112,9 @@
 					array(
 					'post_type' => 'page',
 					'post_parent' => $parent,
-					'posts_per_page'=> 8
+					'posts_per_page'=> 8,
+					'orderby' => menu_order,
+					'order' => ASC,
 					
 					)); if(have_posts()) : while(have_posts()) : the_post(); ?>
 				<li <?php if( $this_post == $post->ID ) { echo ' class="current"'; } ?>><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
