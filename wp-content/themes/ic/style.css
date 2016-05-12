@@ -4267,3 +4267,10 @@ span.ns-close {
     background-position: -69px 0;
 
 }
+
+.post-content em {
+    font-style: italic;
+}
+.post-content strong {
+    font-weight: bold;
+}
