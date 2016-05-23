@@ -14,7 +14,7 @@ get_header(); ?>
 					<h2 class="section-pre-title fl">Archives</h2>
 					
 					<div class="section-header-divider fl"></div>
-					<h2 class="section-title fr">
+					<h1 class="section-title fr">
 						
 						<?php if ( is_day() ) : ?><?php printf( __('%s'), get_the_date() ); ?>
 						<?php elseif ( is_month() ) : ?><?php printf( __('%s'), get_the_date('F Y') ); ?>
@@ -23,7 +23,7 @@ get_header(); ?>
 						<?php endif; ?>
 						
 					
-					</h2>
+					</h1>
 	
 				</div>
 
@@ -59,7 +59,7 @@ get_header(); ?>
 
 						<div class="fr">
 							
-							<a href="<?php the_permalink(); ?>"><h3><?php the_title(); ?></h3></a>
+							<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
 							
 							<span><?php the_time('F jS, Y') ?>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<?php $project_terms = wp_get_object_terms($post->ID, 'category'); if(!empty($project_terms)) { if(!is_wp_error( $project_terms )) { echo ''; $count = 0; foreach($project_terms as $term){ if($count > 0) { echo ', '; } echo '<a href="'.get_term_link($term->slug, 'category'). '">'.$term->name. '</a>';  $count++; }  } } ?></span>
 
