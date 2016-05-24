@@ -3,12 +3,12 @@
     Plugin Name: Simple 301 Redirects - Addon - Bulk CSV Uploader
     Plugin URI: http://kingpro.me/plugins/support-plugins/simple-301-redirects-addon-bulk-csv-uploader
     Description: Adds the ability to upload a CSV to populate the Simple 301 Redirects plugin
-    Version: 1.0.7
+    Version: 1.0.14
     Author: Ash Durham
     Author URI: http://durham.net.au/
     License: GPL2
 
-    Copyright 2013  Ash Durham  (email : plugins@kingpro.me)
+    Copyright 2016  Ash Durham  (email : plugins@kingpro.me)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -52,7 +52,7 @@ if (!class_exists("Bulk301Uploader")) {
             */
             function create_bulk_menu()
             {
-              add_options_page('301 Bulk Redirects', '301 Bulk Redirects', 10, '301bulkoptions', array($this,'bulk_options_page'));
+              add_options_page('301 Bulk Redirects', '301 Bulk Redirects', 'manage_options', '301bulkoptions', array($this,'bulk_options_page'));
             }
             
             /*
@@ -104,13 +104,19 @@ if (!class_exists("Bulk301Uploader")) {
                 $mime_types = array(
                     'application/csv',
                     'application/excel',
+                    'application/ms-excel',
+                    'application/x-excel',
                     'application/vnd.ms-excel',
                     'application/vnd.msexcel',
                     'application/octet-stream',
                     'application/data',
+                    'application/x-csv',
+                    'application/txt',
+                    'plain/text',
                     'text/anytext',
                     'text/csv',
                     'text/x-csv',
+                    'text/plain',
                     'text/comma-separated-values'
                 );
                 
@@ -149,8 +155,15 @@ if (!class_exists("Bulk301Uploader")) {
                   }
                 else
                   {
-                  $report .= "Invalid file. Use the below for debugging and when asking for support.<br /><br />";
-                  $report .= "File: ".print_r($data, 1);
+                  $report .= "<strong>Invalid file</strong>. Use the below for debugging and when asking for support.<br /><br />";
+                  $report .= "<strong>File</strong>: ".print_r($data, 1);
+                  if (!in_array($data["type"], $mime_types))
+                    {
+                      $report .= "<br /><br /><strong>Approved Mime Types</strong>:<br />";
+                      foreach ($mime_types as $mtype)
+                        $report .= $mtype."<br />";
+                      $report .= "<br />If you are certain that your filetype should be in this list, please let us know on the <a href='http://wordpress.org/support/plugin/simple-301-redirects-addon-bulk-uploader' target='_blank'>forums</a>.";
+                    }
                   }
                   
                   if ($auto_detect == 1) ini_set('auto_detect_line_endings',FALSE);
