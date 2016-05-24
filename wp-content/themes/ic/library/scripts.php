@@ -41,7 +41,7 @@
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.slides.min.js"></script>
 
 <!-- Flex Slider -->
-<script src="<?php bloginfo ('template_url'); ?>/js/flexslider/jquery.flexslider.js"></script>
+<script src="<?php bloginfo ('template_url'); ?>/js/flexslider/jquery.flexslider-min.js"></script>
 
 <!-- Jquery Sticky -->
 <script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></s	<!-- Fonts -->
