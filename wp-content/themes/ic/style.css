@@ -257,7 +257,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 .calendars:after {
 	position: absolute;
 	background: #eee;
-	height: 103%;
+	height: 100%;
 	width: 50%;
 	top:0px;
 	right: -4px;
