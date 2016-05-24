@@ -3,8 +3,8 @@ Contributors: ashdurham
 Donate link: http://durham.net.au/donate/
 Tags: simple 301 redirects, bulk upload, csv, 301, redirects
 Requires at least: 3.0.1
-Tested up to: 3.8.1
-Stable tag: 1.0.8
+Tested up to: 4.4.2
+Stable tag: 1.0.14
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,28 @@ Have a question thats not listed? Get support either on the support forums here 
 
 == Changelog ==
 
+= 1.0.14 =
+* Added mime type "plain/text"
+
+= 1.0.13 =
+* Added mime type "application/ms-excel"
+* Added mime type "application/x-excel"
+
+= 1.0.12 =
+* Updated permissions to match that of the parent plugin
+* Another mime type added
+* Added icons for WP4.0
+
+= 1.0.11 =
+* Addition of another mime type
+* Addition of some error code to help determine mime type issues
+
+= 1.0.10 =
+* Addition of another mime type found in Firefox
+
+= 1.0.9 =
+* Update to deprecated user levels to the matching role
+
 = 1.0.8 =
 * Added ability to delete 301 redirect list
 
@@ -96,6 +118,28 @@ Have a question thats not listed? Get support either on the support forums here 
 * Initial
 
 == Upgrade Notice ==
+
+= 1.0.14 =
+* Added mime type "plain/text"
+
+= 1.0.13 =
+* Added mime type "application/ms-excel"
+* Added mime type "application/x-excel"
+
+= 1.0.12 =
+* Updated permissions to match that of the parent plugin
+* Another mime type added
+* Added icons for WP4.0
+
+= 1.0.11 =
+* Addition of another mime type
+* Addition of some error code to help determine mime type issues
+
+= 1.0.10 =
+* Addition of another mime type found in Firefox
+
+= 1.0.9 =
+* Update to deprecated user levels to the matching role
 
 = 1.0.8 =
 * Added ability to delete 301 redirects list
