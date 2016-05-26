@@ -1668,3 +1668,13 @@ li.blue-btn i {
 .reservationform.flexdate {
   height: 40px;
 }
+
+.single-tribe_events h1.tribe-events-single-event-title{
+    font-size: 33px;
+}
+
+h1.tribe-events-page-title {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
