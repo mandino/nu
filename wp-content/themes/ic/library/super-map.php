@@ -538,8 +538,8 @@
 
     
 </script>
-<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/jquery.simplemodal.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/basic.js"></script>
+
 <!--
 <script src="<?php bloginfo('template_url'); ?>/js/jquery.colorbox.js"></script>
   <script>

@@ -14,7 +14,7 @@ b, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, button, textarea, a {
   	background: transparent;
@@ -29,9 +29,9 @@ time, mark, audio, video, button, textarea, a {
 	 -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     -o-font-smoothing: antialiased;
-}                  
+}
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section { 
+footer, header, hgroup, menu, nav, section {
     display:block;
 }
 blockquote, q { quotes:none; }
@@ -60,7 +60,7 @@ html {
 	height: 100%;
 }
 
-.no-boxshadow input:invalid, 
+.no-boxshadow input:invalid,
 .no-boxshadow textarea:invalid {  }
 
 /* By default the selection color is pink */
@@ -86,7 +86,7 @@ p {
 	font-family: Arial;
 	color: #2e2d2d;
 	font-size: 13px;
-	line-height: 22px;	
+	line-height: 22px;
 }
 
 a {
@@ -135,9 +135,9 @@ a img {border:0}
 
 /* Float Definitions -----------------------------------------------------------*/
 
-.clear {clear:both;} 
+.clear {clear:both;}
 
-.right {float: right;} 
+.right {float: right;}
 
 .left {float: left;}
 
@@ -174,7 +174,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 
 /*--------------------------------------------------------
 	v.--FLYOUT CALENDAR
---------------------------------------------------------*/	
+--------------------------------------------------------*/
 
 
 .reservationform > form {
@@ -191,7 +191,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 .calsec {
 	position: relative;
 	width: 23%;
-	float: left;	
+	float: left;
 }
 
 
@@ -257,7 +257,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 .calendars:after {
 	position: absolute;
 	background: #eee;
-	height: 103%;
+	height: 100%;
 	width: 50%;
 	top:0px;
 	right: -4px;
@@ -277,7 +277,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 }
 /*--------------------------------------------------------
 	v.--MAP
---------------------------------------------------------*/	
+--------------------------------------------------------*/
 
 
 
@@ -357,7 +357,7 @@ img.right, img.alignright {float: right;margin: 0 0 7px 15px;}
 	background: none repeat scroll 0 0 #048B8F;
     border-bottom: 1px solid #036B6D;
     border-top: 1px solid #03A8AA;
-  
+
     margin-bottom: 30px;
     position: relative;
 }
@@ -534,7 +534,7 @@ a.detailsAnchor {
 /* Tweet Markers */
 
   .marker {
-    
+
     color: #ffffff;
     font-family: arial;
     font-size: 10px;
@@ -556,20 +556,20 @@ a.detailsAnchor {
    .marker:hover {
     z-index: 100000;
   }
-  
+
   .marker:hover img {
     margin: 0px 5px 5px 0px;
   }
-  
+
   .marker:hover .tweet {
     display: block;
   }
 
 /* place markers */
   .marker {
-    
+
   }
-  
+
   .location {
     background: #faffff;
     border: 2px solid #ffffff;
@@ -600,7 +600,7 @@ a.detailsAnchor {
     overflow: hidden;
     position: relative;
     width: 50px;*/
-    z-index: 1; 
+    z-index: 1;
     height: 15px;
 	width: 15px;
 	z-index: 1;
@@ -617,7 +617,7 @@ a.detailsAnchor {
   .placeMark:hover {
   }
 
-  
+
    #maparea .placeMark:before {
   	position: absolute;
   	z-index: 9;
@@ -673,7 +673,7 @@ a.detailsAnchor {
 	opacity: 0;
 	visibility: hidden;
    }
-   
+
 .placeMark a:before {
 	background: transparent;
 	z-index: 9999;
@@ -721,7 +721,7 @@ a.detailsAnchor {
    .placeMark a .infobox b.monumental {
    		line-height: 19px;
 		font-weight: bold;
-		background: none repeat scroll 0 0 #1C93D1;
+		background: none repeat scroll 0 0 #f27333;
 		color: #FFFFFF;
 		display: block;
 		height: 20px;
@@ -819,7 +819,7 @@ a.detailsAnchor {
      #maparea .shop small {
     }
   #maparea .shop:hover {
-  	
+
   }
   .placeMark a {
     display: block;
@@ -827,7 +827,7 @@ a.detailsAnchor {
 	height: 18px;
 
   }
-  
+
   .placeMark:hover {
     z-index: 999999999;
     display: block;
@@ -836,9 +836,9 @@ a.detailsAnchor {
   }
 
   #toggles .shop {
-  	
+
   }
-  
+
   #toggles li a  {
   	background: #eeefff;
   	height: 100%;
@@ -852,9 +852,9 @@ a.detailsAnchor {
   	height: 100%;
   	display: block;
   	width: 100%;
-  	color: #fff;	
+  	color: #fff;
   }
-  
+
   #toggles li {
   	border: 3px solid #fff;
 	padding: 0px 0 0 0;
@@ -868,7 +868,7 @@ a.detailsAnchor {
 	overflow: hidden;
 	position: relative;
 	margin-top: 0;
-	
+
 	-webkit-transition: all 0.6s ease-in-out;
 	-moz-transition: all 0.6s ease-in-out;
 	transition: all 0.6s ease-in-out;
@@ -877,7 +877,7 @@ a.detailsAnchor {
   #toggles li:hover {
   	top: -3px;
   }
-  
+
    #toggles li a {
    	font-size: 15px;
    	font-family: scala-sans, sans-serif;
@@ -915,7 +915,7 @@ a.detailsAnchor {
     top: -10px;
     width: 100%;
     }
-    
+
   .placeData a.closeData {
   	background: url("images/closes.png") no-repeat scroll 0 0 transparent;
     display: block;
@@ -946,7 +946,7 @@ a.detailsAnchor {
   	color: #666666;
   	font-size: 12px;
   	margin: 10px 0 0 0;
-  } 
+  }
   .placeData h4 {
   	margin: 0 0 5px 0;
   }
@@ -973,13 +973,13 @@ a.detailsAnchor {
   }
    .infoData {
     background: #585858;
-    display: none;    
+    display: none;
     padding: 20px;
     position: relative;
     position: absolute;
     top: 100px;
     right: 10px;
-    min-height:200px;    
+    min-height:200px;
     width: 400px;
     z-index: 10000;
   }
@@ -1002,7 +1002,7 @@ a.detailsAnchor {
     right: 340px;
     z-index: 10000;
   }
-  
+
   #warning {
     background: #000;
     color: #ffffff;
@@ -1022,7 +1022,7 @@ a.detailsAnchor {
     width: 400px;;
     z-index: 100000;
   }
-  
+
   #warning a.closeData {
   	background: url(images/closes.png) no-repeat;
   	position: absolute;
@@ -1033,7 +1033,7 @@ a.detailsAnchor {
   	width: 48px;
   	text-indent: -9999px;
   }
-  
+
   .largebox .linkersonclose {
     background: url("images/bg_dot.png") repeat scroll 0 0 transparent;
    	background: #BABABA;
@@ -1049,7 +1049,7 @@ a.detailsAnchor {
 /*--- 8.4. Toggles ---*/
 
 #toggle-view {
-    list-style:none;    
+    list-style:none;
     font-size:12px;
     margin:0;
     padding:0;
@@ -1091,7 +1091,7 @@ a.detailsAnchor {
 	background: transparent;
 	overflow:hidden;
 	padding:10px 10px 20px 10px;
-}   
+}
 
 #toggle-view .panel img {
 	border: 3px solid #ddd;
@@ -1355,7 +1355,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 .logo img {
 	max-width: 150px;
-	
+
 }
 
 
@@ -1512,7 +1512,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	background: #fff;
 	width: 600px;
 	min-height: 386px;
-	right: 0; 
+	right: 0;
 	top: 92px;
 	border-left: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
@@ -1633,7 +1633,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     width: 0;
 }
 
-.section-header h2.section-title {
+.section-header h1.section-title {
 	font-family: didot, georgia;
 	font-size: 36px;
 	text-decoration: uppercase;
@@ -1902,7 +1902,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 
 #footer-newsletter p {
-	
+
 }
 #footer-newsletter .container p {
     color: #4E4E4E;
@@ -2272,7 +2272,7 @@ h3.featured-gallery-thumb-title {
     width: 35%;
 }
 
-.room-list h3 {
+.room-list h2 {
     color: #444444;
     font-size: 26px;
     margin-bottom: 30px;
@@ -2315,7 +2315,7 @@ h3.featured-gallery-thumb-title {
 	border-radius: 0 0 0 0;
     padding: 10px;
     z-index: 2147483647 !important;
-  
+
 }
 
 /* Layout helpers
@@ -3135,7 +3135,7 @@ button.ui-button::-moz-focus-inner {
 	max-width: 300px;
 	-webkit-box-shadow: 0 0 5px #aaa;
 	box-shadow: 0 0 5px #aaa;
-	
+
 }
 body .ui-tooltip {
 	border-width: 2px;
@@ -3496,25 +3496,25 @@ body .ui-tooltip {
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-	
+
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-	
+
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-	
+
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-	
+
 }
 
 
@@ -3770,7 +3770,7 @@ body .ui-tooltip {
 /* Around The Neighborhood */
 
 
-.tabs-wrapper { 
+.tabs-wrapper {
 	width: 100%;
 	margin: 15px 0;
 }
@@ -3787,13 +3787,13 @@ body .ui-tooltip {
 	position:relative;
 	display:block;
 	width:100%;
-	
+
 }
 
-.tabs-wrapper .tab-content { 
-	background:#fff; 
+.tabs-wrapper .tab-content {
+	background:#fff;
 	padding: 50px 0 80px;
-	overflow:hidden; 
+	overflow:hidden;
 	border: 1px solid #CBCBCB;
 	border-radius: 0px 3px 3px 3px;
 }
@@ -3849,7 +3849,7 @@ ul.tabs li a {
 }
 
 ul.tabs li:last-child {
-	
+
 }
 
 
@@ -3970,7 +3970,7 @@ strong {
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
 }
-  
+
     .category-neighbor div:hover a {
         background-color: rgba(0,0,0,0.1);
     }
@@ -4184,7 +4184,7 @@ i.ns-close {
     i.ns-close:hover {
         opacity: .6;
     }
-	
+
 span.ns-close {
   background: url(images/ns-close.png) center no-repeat;
   width: 14px;
@@ -4258,7 +4258,7 @@ span.ns-close {
     width: 69px;
     height: 60px;
     background-position: 0 0;
-    
+
 }
 
 .sprite-ic_02 {

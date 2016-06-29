@@ -1,12 +1,35 @@
+<!-- Fonts -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+
+<!-- MailChimp Subscription script -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
+<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+
+<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
+<?php } ?>
+
+<!-- Custom Plugin Settings -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
+
+<!-- Lightbox - Prettyphoto -->	
+<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
+
+<!-- responsive style -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
+
+<!-- Color Override CSS -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
+
 <!-- JS -->
 <!--<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>-->
 <script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.prettyPhoto.js"></script>
-
-<!-- ClickNav -->
-<script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery-clicknav.js"></script>	
-
-<!-- Pinterest -->
-<!-- <script async type="text/javascript" async src="http://assets.pinterest.com/js/pinit.js"></script> -->
 
 <!-- Custom Modernizr for Quotes Rotator -->
 <script src="<?php bloginfo ('template_url'); ?>/js/quotes-rotator/modernizr.custom.js"></script>
@@ -18,10 +41,39 @@
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.slides.min.js"></script>
 
 <!-- Flex Slider -->
-<script src="<?php bloginfo ('template_url'); ?>/js/flexslider/jquery.flexslider.js"></script>
+<script src="<?php bloginfo ('template_url'); ?>/js/flexslider/jquery.flexslider-min.js"></script>
 
 <!-- Jquery Sticky -->
-<script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></script>
+<script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></s	<!-- Fonts -->
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+
+	<!-- MailChimp Subscription script -->
+	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+	
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+
+	<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+		<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
+	<?php } ?>
+
+	<!-- Custom Plugin Settings -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
+	
+	<!-- Lightbox - Prettyphoto -->	
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
+
+	<!-- responsive style -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
+
+	<!-- Color Override CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
+
+cript>
 
 <!-- Jquery UI -->
 <!-- <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
@@ -33,10 +85,6 @@
 
 <!-- jquery mmenu -->
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
-
-<!-- Optional FlexSlider Additions -->
-<!-- <script src="<?php bloginfo ('template_url'); ?>/js/jquery.easing.js"></script> -->
-<script src="<?php bloginfo ('template_url'); ?>/js/jquery.mousewheel.js"></script>
 
 <script type="text/javascript">
 
