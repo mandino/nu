@@ -128,7 +128,7 @@ ga('send', 'pageview');
 					<div class="reservationform">
 					
 					
-					<form method="get" action="<?php echo get_option('cebo_genbooklink'); ?>/search?">
+					<form method="get" action="<?php echo get_option('cebo_genbooklink'); ?>">
 						
 						<input type="hidden" value="1" name="rooms">
 						
