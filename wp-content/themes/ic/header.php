@@ -25,6 +25,11 @@
 			echo ' | ' . sprintf( __( 'Page %s', 'cebolang' ), max( $paged, $page ) );
 		?>
 	</title>
+	<?php 
+		if ( file_exists( dirname( __FILE__ ) . '/noindex.php' ) ) {
+		    include( dirname( __FILE__ ) . '/noindex.php' );
+		}
+	?>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	
@@ -51,35 +56,6 @@
 	
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom.css">
-
-	<!-- Fonts -->
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
-
-	<!-- MailChimp Subscription script -->
-	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-	
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
-
-	<?php if ( 'rooms' == get_post_type() ) 	{ ?>
-		<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
-	<?php } ?>
-
-	<!-- Custom Plugin Settings -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
-	
-	<!-- Lightbox - Prettyphoto -->	
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
-
-	<!-- responsive style -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
-
-	<!-- Color Override CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 	
 	<style>
 		<?php include(TEMPLATEPATH. "/library/inset.php"); ?>	
@@ -111,19 +87,15 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 </script>
 <!-- End Sojern -->
 
-<script>
+<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
 
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-24686149-1', 'auto', {
-		'allowLinker': true
-	});
-	ga('send', 'pageview');
-	ga('require', 'linker');
-	ga('linker:autoLink', ['reztrip.com'], false, true);
+ga('create', 'UA-24686149-1', 'auto',{'allowLinker': true });
+
+ga('require', 'linker'); ga('linker:autoLink', ['nuhotelbrooklyn.reztrip.com','nuhotelbrooklyn.reztripmobile.com']);
+
+ga('send', 'pageview');
 
 </script>
 
@@ -161,7 +133,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 					<div class="reservationform">
 					
 					
-					<form method="get" action="<?php echo get_option('cebo_genbooklink'); ?>/search?">
+					<form method="get" action="<?php echo get_option('cebo_genbooklink'); ?>">
 						
 						<input type="hidden" value="1" name="rooms">
 						
@@ -206,7 +178,7 @@ pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName
 
 					<div class="reservationform flexdate">
 					
-						<p><a href="https://nuhotelbrooklyn.reztrip.com" onclick="ga('send', 'event', 'Booking-widget', 'click', 'Flexible Dates');">Flexible dates?</a> Search for our best available rate</p>
+						<p><a href="https://nuhotelbrooklyn.reztrip.com" onclick="ga('send', 'event', 'Flexible Dates', 'click', 'Booking-widget');">Flexible dates?</a> Search for our best available rate</p>
 						
 					</div>
 

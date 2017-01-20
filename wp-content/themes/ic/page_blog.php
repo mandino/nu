@@ -22,7 +22,7 @@ get_header(); ?>
 				
 
 		
-					<h2 class="section-title fr">NU Hotel Blog</h2>
+					<h1 class="section-title fr">NU Hotel Blog</h1>
 	
 				</div>
 
@@ -79,7 +79,7 @@ get_header(); ?>
 
 						<div class="fr">
 							
-							<a href="<?php the_permalink(); ?>"><h3><?php the_title(); ?></h3></a>
+							<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
 							
 							<span><?php the_time('F jS, Y') ?>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<?php $project_terms = wp_get_object_terms($post->ID, 'category'); if(!empty($project_terms)) { if(!is_wp_error( $project_terms )) { echo ''; $count = 0; foreach($project_terms as $term){ if($count > 0) { echo ', '; } echo '<a href="'.get_term_link($term->slug, 'category'). '">'.$term->name. '</a>';  $count++; }  } } ?></span>
 
@@ -103,8 +103,8 @@ get_header(); ?>
 				
 				
                     <div class="navigation">
-                        <div class="alignleft"><?php next_posts_link( __(' Older Entries' , 'cebolang') ) ?></div>
-                        <div class="alignright"><?php previous_posts_link( __('Newer Entries', 'cebolang') ) ?></div>
+                        <div rel="prev" class="alignleft"><?php next_posts_link( __(' Older Entries' , 'cebolang') ) ?></div>
+                        <div rel="next" class="alignright"><?php previous_posts_link( __('Newer Entries', 'cebolang') ) ?></div>
                         <div class="clear"></div>
                     </div>
 					<?php else : ?>
