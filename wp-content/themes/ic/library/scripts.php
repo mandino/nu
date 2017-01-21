@@ -44,7 +44,9 @@
 <script src="<?php bloginfo ('template_url'); ?>/js/flexslider/jquery.flexslider-min.js"></script>
 
 <!-- Jquery Sticky -->
-<script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></s	<!-- Fonts -->
+<script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></script>
+
+	<!-- Fonts -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
