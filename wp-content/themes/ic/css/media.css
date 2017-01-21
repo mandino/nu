@@ -113,9 +113,6 @@ and (max-width : 1099px) {
 		display: block;
 	}
 
-	#primary-nav nav ul {
-	    margin-left: 100px;
-	}
 
 	/* Main slider */
 
@@ -127,20 +124,19 @@ and (max-width : 1099px) {
 
 	/* Navigation */	
 
-	#primary-nav .container {
-	    width: 82%;
-	}
-
-	#primary-nav nav {
-	    margin: 13px 0;
-	    width: 100%;
-	}
-
 	#primary-nav .button, #navigation-sticky-wrapper.sticky #primary-nav .button {
 	    font-size: 17px;
 	    font-weight: bold;
 	    margin: 0 0 0 20px;
 	    padding: 11px 40px;
+	}
+
+	#primary-nav .button {
+		margin: 10px;
+	}
+
+	#navigation-sticky-wrapper.sticky #primary-nav .button {
+		margin: 0;
 	}
 
 	#primary-nav nav ul li {
@@ -746,10 +742,6 @@ and (max-width : 939px) {
 	}
 
 	/* Navigation */
-	
-	#property-nav {
-		height: 26px;
-	}
 
 	.logo {
 	    display: none;
@@ -761,18 +753,24 @@ and (max-width : 939px) {
 		left: 40px;
 		margin-left: 13px;
 		padding: 1px 0 0;
-		/* top: 0px; */
-		top: 29px;
+		top: 15px;
 		background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 		border: none;
+		transition: all 0.5s;
+	    -moz-transition: all 0.5s;
+	    -webkit-transition: all 0.5s;
+	    -o-transition: all 0.5s;
 	}
+
+	.sticky .logo.mobile {
+		top: 0;
+	}
+
 	#primary-nav {
-		/* min-height: 68px;
-	  top: 19px;
-	  position: relative; 
-	  */
-	  min-height: 50px;
+	 	min-height: 50px;
+	 	position: relative;
  	}
+
 	.logo.mobile > img {
 	    height: 100%;
 	}
@@ -784,8 +782,8 @@ and (max-width : 939px) {
 	#property-nav nav ul li a.clicknav-clicker, #navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
 	    font-size: 11px;
 	    letter-spacing: 3px;
-	    padding: 20px 6px;
-	    
+	    padding: 15px 6px;
+	    line-height: 18px;
 	}
 
 	#primary-nav .button, #navigation-sticky-wrapper.sticky #primary-nav .button {
@@ -816,6 +814,7 @@ and (max-width : 939px) {
 	#primary-nav .container {
 	    float: left !important;
 	    width: 30%;
+	    padding: 0;
 	}
 
 	.mmenu-icon .fa.fa-bars {
@@ -823,6 +822,15 @@ and (max-width : 939px) {
 	    color: #FFFFFF;
 	    padding: 6px;
 	    font-size: 34px;
+	    margin: 10px 0;
+	    transition: all 0.5s;
+	    -moz-transition: all 0.5s;
+	    -webkit-transition: all 0.5s;
+	    -o-transition: all 0.5s;
+	}
+
+	.sticky .mmenu-icon .fa.fa-bars {
+		margin: 0;
 	}
 
 
