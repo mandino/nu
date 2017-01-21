@@ -276,8 +276,8 @@ color: #333;
 }
 
 #navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
-    font-size: 13px;
-    padding: 12px 6px;
+    font-size: 11px;
+    padding: 13px 6px;
     font-weight: bold;
 }
 
@@ -361,23 +361,24 @@ color: #333;
     -o-transition: all 0.5s;
     color: #000;
     font-family: didot, georgia;
-    font-size: 13px;
+    font-size: 11px;
     font-style: italic;
     font-weight: normal;
     letter-spacing: 5px;
-    padding:20px 11px;
+    padding:13px 11px;
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
 	max-width: 100%;
 	font-weight: bold;
-	/* background: url(../images/ic_white.png) center no-repeat; */
-	background: url(../images/ic_dark.png) center no-repeat;
+	/*background: url(../images/ic_white.png) center no-repeat; */
+	/*background: url(../images/ic_dark.png) center no-repeat;*/
 }
 
 #property-nav nav:hover ul li a.clicknav-clicker {
-		background: url(../images/ic_white.png) center no-repeat;
+	/*background: url(../images/ic_white.png) center no-repeat;*/
+    color: #fff;
 }
 #property-nav nav ul li a.clicknav-clicker span {
 	font-style: normal;
@@ -418,7 +419,7 @@ color: #333;
 }
 
 #primary-nav nav ul {
-	text-align: center;
+	text-align: right;
 }
 
 #primary-nav nav ul li a {
