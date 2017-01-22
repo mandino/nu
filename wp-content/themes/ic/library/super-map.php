@@ -298,10 +298,10 @@
       
       $("#maparea").mouseover(function(e) {
 
-  $("a[rel='example1']").colorbox();
-        $(".placeData .closeData").click(function() {
-          $(".placeData").hide();  
-        });
+  // $("a[rel='example1']").colorbox();
+  //       $(".placeData .closeData").click(function() {
+  //         $(".placeData").hide();  
+  //       });
 
   $("#infoBox .closeData").click(function() {
           $("#infoBox").hide();  
@@ -373,8 +373,8 @@
              var coords = val["coords"].split(",", 2);
              var latlon = [coords[0], coords[1]];
              var goid = val["cater"];
-             //var imgs = (val["images"] !== "undefined") ? '' : buildPlaceCarousel(val["images"]);
-             var imgs = (val["images"] !== undefined) ? buildPlaceCarousel(val["images"]) : '';
+             // var imgs = (val["images"] !== "undefined") ? '' : buildPlaceCarousel(val["images"]);
+             // var imgs = (val["images"] !== undefined) ? buildPlaceCarousel(val["images"]) : '';
 
              <?php 
 
