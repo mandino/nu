@@ -352,7 +352,7 @@ button.ui-button::-moz-focus-inner {
 	clear: left;
 }
 .ui-datepicker-row-break {
-	clear: none;
+	clear: both;
 	width: 100%;
 	font-size: 0;
 }
