@@ -61,6 +61,7 @@
 
 						$blogPage_query = new WP_Query(array(
 							'post_type' => 'post',
+							'posts_per_page' => 10,
 							'paged' => $paged,
 						));
 
@@ -91,16 +92,16 @@
 				</ul>
 
 				<div class="navigation">
-					<div rel="prev" class="alignleft"><?php next_posts_link( __(' Older Entries' , 'cebolang') ) ?></div>
-					<div rel="next" class="alignright"><?php previous_posts_link( __('Newer Entries', 'cebolang') ) ?></div>
+					<div rel="prev" class="alignleft"><?php next_posts_link( __(' Older Entries' , 'cebolang'), $blogPage_query->max_num_pages ) ?></div>
+					<div rel="next" class="alignright"><?php previous_posts_link( __('Newer Entries', 'cebolang'), $blogPage_query->max_num_pages ) ?></div>
 					<div class="clear"></div>
 				</div>
 
 					<?php else : ?>
 
-						<p><?php _e('Sorry, no posts in this category' , 'cebolang'); ?></p>
+						<p><?php _e('Sorry, no posts in this page' , 'cebolang'); ?></p>
 
-					<?php endif; ?>
+					<?php endif; wp_reset_postdata(); ?>
 
 			</div>
 			
