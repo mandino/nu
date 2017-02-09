@@ -23,7 +23,7 @@ class WPSEO_OpenGraph {
 			add_filter( 'fb_meta_tags', array( $this, 'facebook_filter' ), 10, 1 );
 		}
 		else {
-			add_filter( 'language_attributes', array( $this, 'add_opengraph_namespace' ) );
+			add_filter( 'language_attributes', array( $this, 'add_opengraph_namespace' ), 15 );
 
 			add_action( 'wpseo_opengraph', array( $this, 'locale' ), 1 );
 			add_action( 'wpseo_opengraph', array( $this, 'type' ), 5 );
@@ -114,7 +114,36 @@ class WPSEO_OpenGraph {
 	 * @return string
 	 */
 	public function add_opengraph_namespace( $input ) {
-		return $input . ' prefix="og: http://ogp.me/ns#' . ( ( $this->options['fbadminapp'] != 0 || ( is_array( $this->options['fb_admins'] ) && $this->options['fb_admins'] !== array() ) ) ? ' fb: http://ogp.me/ns/fb#' : '' ) . '"';
+		$namespaces = array(
+			'og: http://ogp.me/ns#',
+		);
+		if ( $this->options['fbadminapp'] != 0 || ( is_array( $this->options['fb_admins'] ) && $this->options['fb_admins'] !== array() ) ) {
+			$namespaces[] = 'fb: http://ogp.me/ns/fb#';
+		}
+
+		/**
+		 * Allow for adding additional namespaces to the <html> prefix attributes.
+		 *
+		 * @since 3.9.0
+		 *
+		 * @param array $namespaces Currently registered namespaces which are to be
+		 *                          added to the prefix attribute.
+		 *                          Namespaces are strings and have the following syntax:
+		 *                          ns: http://url.to.namespace/definition
+		 */
+		$namespaces       = apply_filters( 'wpseo_html_namespaces', $namespaces );
+		$namespace_string = implode( ' ', array_unique( $namespaces ) );
+
+		if ( strpos( $input, ' prefix=' ) !== false ) {
+			$regex   = '`prefix=([\'"])(.+?)\1`';
+			$replace = 'prefix="$2 ' . $namespace_string . '"';
+			$input   = preg_replace( $regex, $replace, $input );
+		}
+		else {
+			$input .= ' prefix="' . $namespace_string . '"';
+		}
+
+		return $input;
 	}
 
 	/**
@@ -233,7 +262,7 @@ class WPSEO_OpenGraph {
 		elseif ( is_category() || is_tax() || is_tag() ) {
 			$title = WPSEO_Taxonomy_Meta::get_meta_without_term( 'opengraph-title' );
 			if ( $title === '' ) {
-				$title = $frontend->get_taxonomy_title( '' );
+				$title = $frontend->title( '' );
 			}
 			else {
 				// Replace Yoast SEO Variables.
@@ -758,7 +787,10 @@ class WPSEO_OpenGraph_Image {
 	 */
 	private $images = array();
 
-	/** @var array $dimensions Holds image dimensions, if determined. */
+	/**
+	 * @TODO This needs to be refactored since we only hold one set of dimensions for multiple images. R.
+	 * @var array $dimensions Holds image dimensions, if determined.
+	 */
 	protected $dimensions = array();
 
 	/**
@@ -769,10 +801,12 @@ class WPSEO_OpenGraph_Image {
 	 */
 	public function __construct( $options, $image = false ) {
 		$this->options = $options;
-		$this->set_images();
 
-		if ( ! empty( $image ) ) {
-			$this->add_image( $image );
+		if ( ! empty( $image ) && $this->add_image( $image ) ) {
+			// Safely assume an image was added so we don't need to automatically determine it anymore.
+		}
+		else {
+			$this->set_images();
 		}
 	}
 
@@ -801,6 +835,9 @@ class WPSEO_OpenGraph_Image {
 		if ( is_front_page() ) {
 			$this->get_front_page_image();
 		}
+		elseif ( is_home() ) { // Posts page, which won't be caught by is_singular() below.
+			$this->get_posts_page_image();
+		}
 
 		if ( is_singular() ) {
 			$this->get_singular_image();
@@ -819,6 +856,22 @@ class WPSEO_OpenGraph_Image {
 	private function get_front_page_image() {
 		if ( $this->options['og_frontpage_image'] !== '' ) {
 			$this->add_image( $this->options['og_frontpage_image'] );
+		}
+	}
+
+	/**
+	 * Get the images of the posts page.
+	 */
+	private function get_posts_page_image() {
+
+		$post_id = get_option( 'page_for_posts' );
+
+		if ( $this->get_opengraph_image_post( $post_id ) ) {
+			return;
+		}
+
+		if ( $this->get_featured_image( $post_id ) ) {
+			return;
 		}
 	}
 
@@ -847,18 +900,20 @@ class WPSEO_OpenGraph_Image {
 	 * Get default image and call add_image
 	 */
 	private function get_default_image() {
-		if ( count( $this->images ) == 0 && isset( $this->options['og_default_image'] ) && $this->options['og_default_image'] !== '' ) {
+		if ( count( $this->images ) === 0 && isset( $this->options['og_default_image'] ) && $this->options['og_default_image'] !== '' ) {
 			$this->add_image( $this->options['og_default_image'] );
 		}
 	}
 
 	/**
-	 * If opengraph-image is set, call add_image and return true
+	 * If opengraph-image is set, call add_image and return true.
+	 *
+	 * @param int $post_id Optional post ID to use.
 	 *
 	 * @return bool
 	 */
-	private function get_opengraph_image_post() {
-		$ogimg = WPSEO_Meta::get_value( 'opengraph-image' );
+	private function get_opengraph_image_post( $post_id = 0 ) {
+		$ogimg = WPSEO_Meta::get_value( 'opengraph-image', $post_id );
 		if ( $ogimg !== '' ) {
 			$this->add_image( $ogimg );
 
@@ -975,8 +1030,15 @@ class WPSEO_OpenGraph_Image {
 	 * @return bool
 	 */
 	private function add_image( $img ) {
+
+		$original = trim( $img );
+
 		// Filter: 'wpseo_opengraph_image' - Allow changing the OpenGraph image.
 		$img = trim( apply_filters( 'wpseo_opengraph_image', $img ) );
+
+		if ( $original !== $img ) {
+			$this->dimensions = array();
+		}
 
 		if ( empty( $img ) ) {
 			return false;
@@ -1008,7 +1070,7 @@ class WPSEO_OpenGraph_Image {
 
 		// If it's a relative URL, it's relative to the domain, not necessarily to the WordPress install, we
 		// want to preserve domain name and URL scheme (http / https) though.
-		$parsed_url = parse_url( home_url() );
+		$parsed_url = wp_parse_url( home_url() );
 		$img        = $parsed_url['scheme'] . '://' . $parsed_url['host'] . $img;
 
 		return $img;

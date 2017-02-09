@@ -1884,10 +1884,6 @@ h1, h2, h3, h4, h5, h6, h7 {
     text-transform: uppercase;
 }
 
-.neighbor-content {
-    margin: 50px 0;
-}
-
 
 
 /* ======================================================== FOOTER NEWSLETTER =====================================================  */
@@ -3961,10 +3957,7 @@ strong {
     display: block;
     height: 100%;
     width: 100%;
-    position: relative;
-
-
-
+    position: absolute;
     transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;

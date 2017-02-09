@@ -17,7 +17,6 @@
  *    as those will not always be available before the taxonomy/post_type is registered.
  *    (they will be available if a value was set, they won't be if it wasn't as the class won't know
  *    that a default needs to be injected).
- *    Oh and the very few options where the default value is null, i.e. wpseo->'theme_has_description'
  *
  * [Updating/Adding options]
  * - For multisite site_options, please use the WPSEO_Options::update_site_option() method.
@@ -126,12 +125,7 @@ abstract class WPSEO_Option {
 			 */
 			add_action( 'add_option', array( $this, 'add_default_filters' ) ); // Adding back after INSERT.
 
-			if ( version_compare( $GLOBALS['wp_version'], '3.7', '!=' ) ) { // Adding back after non-WP 3.7 UPDATE.
-				add_action( 'update_option', array( $this, 'add_default_filters' ) );
-			}
-			else { // Adding back after WP 3.7 UPDATE.
-				add_filter( 'pre_update_option_' . $this->option_name, array( $this, 'wp37_add_default_filters' ) );
-			}
+			add_action( 'update_option', array( $this, 'add_default_filters' ) );
 		}
 		else if ( is_multisite() ) {
 			/*
@@ -226,13 +220,15 @@ abstract class WPSEO_Option {
 	 *
 	 * @param   mixed $new_value Pass through value in filter.
 	 *
-	 * @deprecated 3.7 version no longer supported.
+	 * @deprecated 3.0 WP 3.7 is no longer supported.
 	 *
 	 * @todo Drop this and logic adding it. R.
 	 *
 	 * @return  mixed   unchanged value
 	 */
 	public function wp37_add_default_filters( $new_value ) {
+		_deprecated_function( __METHOD__, 'WPSEO 3.0' );
+
 		$this->add_default_filters();
 
 		return $new_value;
@@ -280,10 +276,6 @@ abstract class WPSEO_Option {
 					case 'yandexverify':
 						$service = 'Yandex Webmaster tools';
 						break;
-
-					case 'alexaverify':
-						$regex   = '`^[A-Za-z0-9_-]{20,}$`';
-						$service = 'Alexa ID';
 				}
 
 				if ( preg_match( $regex, $meta ) ) {
@@ -736,7 +728,7 @@ abstract class WPSEO_Option {
 	 * @return string
 	 */
 	public static function sanitize_text_field( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::sanitize_text_field()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::sanitize_text_field()' );
 
 		return WPSEO_Utils::sanitize_text_field( $value );
 	}
@@ -756,7 +748,7 @@ abstract class WPSEO_Option {
 	 * @return  string
 	 */
 	public static function sanitize_url( $value, $allowed_protocols = array( 'http', 'https' ) ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::sanitize_url()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::sanitize_url()' );
 
 		return WPSEO_Utils::sanitize_url( $value, $allowed_protocols );
 	}
@@ -775,7 +767,7 @@ abstract class WPSEO_Option {
 	 * @return  bool
 	 */
 	public static function validate_bool( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::validate_bool()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::validate_bool()' );
 
 		return WPSEO_Utils::validate_bool( $value );
 	}
@@ -794,7 +786,7 @@ abstract class WPSEO_Option {
 	 * @return    bool
 	 */
 	public static function emulate_filter_bool( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::emulate_filter_bool()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::emulate_filter_bool()' );
 
 		return WPSEO_Utils::emulate_filter_bool( $value );
 	}
@@ -812,7 +804,7 @@ abstract class WPSEO_Option {
 	 * @return  mixed  int or false in case of failure to convert to int
 	 */
 	public static function validate_int( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::validate_int()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::validate_int()' );
 
 		return WPSEO_Utils::validate_int( $value );
 	}
@@ -831,7 +823,7 @@ abstract class WPSEO_Option {
 	 * @return    int|bool
 	 */
 	public static function emulate_filter_int( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::emulate_filter_int()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::emulate_filter_int()' );
 
 		return WPSEO_Utils::emulate_filter_int( $value );
 	}
@@ -852,7 +844,7 @@ abstract class WPSEO_Option {
 	 * @return  mixed      Trimmed value or array of trimmed values
 	 */
 	public static function trim_recursive( $value ) {
-		_deprecated_function( __FUNCTION__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::trim_recursive()' );
+		_deprecated_function( __METHOD__, 'WPSEO 1.5.6.1', 'WPSEO_Utils::trim_recursive()' );
 
 		return WPSEO_Utils::trim_recursive( $value );
 	}
