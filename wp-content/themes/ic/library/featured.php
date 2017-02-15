@@ -45,5 +45,43 @@
 			
 		</ul>
 	</div>
-		
+
+	<?php 
+/* popout box */
+		$popout_query = new WP_Query(
+			array(
+				'post_type' => 'popout-box', 
+				'posts_per_page' => 1,
+			)
+		);
+
+		if($popout_query->have_posts()) :
+
+			$specialsboxID = 1;
+
+			while($popout_query->have_posts()) : $popout_query->the_post();
+	?>
+				<div class="specialsbox ID<?php echo $specialsboxID; ?>">
+					<div class="closebox"><a href="#">X</a></div>
+
+					<?php if(get_post_meta($post->ID, 'cebo_popout_welcome', true)) { ?>
+						<span class="welcome-text"><?php echo get_post_meta($post->ID, 'cebo_popout_welcome', true); ?></span>
+					<?php } ?>
+
+					<div class="specialtab">
+						<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?>
+							<a href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
+						<?php } ?>
+
+							<span><?php echo get_post_meta($post->ID, 'cebo_popout_subtitle', true); ?></span>
+							<?php echo get_post_meta($post->ID, 'cebo_popout_title', true); ?><br>
+							<span><?php echo get_post_meta($post->ID, 'cebo_popout_tagline', true); ?></span></h3>
+
+						<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?></a><?php } ?>
+					</div>
+				</div>
+				<?php $specialsboxID ++; ?>
+			<?php endwhile; ?>
+
+	<?php endif; ?>
 </div>
