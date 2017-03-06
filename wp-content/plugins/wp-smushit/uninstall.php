@@ -18,10 +18,14 @@ $smushit_keys = array(
 	'lossy',
 	'backup',
 	'resize',
+	'png_to_jpg',
 	'resize-sizes',
 	'nextgen',
 	'keep_exif',
 	'resmush-list',
+	'resize_sizes',
+	'transparent_png',
+	'image_sizes',
 	'skip-redirect',
 	'nextgen-resmush-list',
 	'super_smushed',
@@ -32,7 +36,8 @@ $smushit_keys = array(
 	'hide_upgrade_notice',
 	'hide_update_info',
 	'install-type',
-	'lossy-updated'
+	'lossy-updated',
+	'version'
 );
 
 //Cache Keys
@@ -43,6 +48,7 @@ $cache_keys = array(
 $cache_smush_group   = array(
 	'exceeding_items',
 	'wp-smush-resize_savings',
+	'pngjpg_savings'
 );
 $cache_nextgen_group = array(
 	'wp_smush_images',
@@ -57,6 +63,7 @@ if ( ! is_multisite() ) {
 	foreach ( $smushit_keys as $key ) {
 		$key = 'wp-smush-' . $key;
 		delete_option( $key );
+		delete_site_option( $key );
 	}
 	//Delete Cache data
 	foreach ( $cache_keys as $key ) {
@@ -89,6 +96,8 @@ if ( is_multisite() ) {
 				delete_metadata( $meta_type, null, $meta_key, $meta_value, $delete_all );
 				delete_metadata( $meta_type, null, 'wp-smush-lossy', '', $delete_all );
 				delete_metadata( $meta_type, null, 'wp-smush-resize_savings', '', $delete_all );
+				delete_metadata( $meta_type, null, 'wp-smush-original_file', '', $delete_all );
+				delete_metadata( $meta_type, null, 'wp-smush-pngjpg_savings', '', $delete_all );
 				foreach ( $smushit_keys as $key ) {
 					$key = 'wp-smush-' . $key;
 					delete_option( $key );
@@ -115,6 +124,9 @@ if ( is_multisite() ) {
 	delete_metadata( $meta_type, null, $meta_key, $meta_value, $delete_all );
 	delete_metadata( $meta_type, null, 'wp-smush-lossy', '', $delete_all );
 	delete_metadata( $meta_type, null, 'wp-smush-resize_savings', '', $delete_all );
+	delete_metadata( $meta_type, null, 'wp-smush-original_file', '', $delete_all );
+	delete_metadata( $meta_type, null, 'wp-smush-pngjpg_savings', '', $delete_all );
 }
 //@todo: Add procedure to delete backup files
+//@todo: Update NextGen Metadata to remove Smush stats on plugin deletion
 ?>

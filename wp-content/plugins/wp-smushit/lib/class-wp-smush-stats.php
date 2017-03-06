@@ -17,6 +17,8 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 		function __construct() {
 			//Update resize savings
 			add_action( 'wp_smush_image_resized', array( $this, 'resize_savings' ) );
+			//Update Conversion savings
+			add_action( 'wp_smush_png_jpg_converted', array( $this, 'conversion_savings' ) );
 		}
 
 		/**
@@ -27,7 +29,7 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			global $wpsmushit_admin;
 
 			//Remove the Filters added by WP Media Folder
-			$this->remove_wmf_filters();
+			$this->remove_filters();
 
 			$count = 0;
 
@@ -49,7 +51,7 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 		 *
 		 * @return array|int
 		 */
-		function smushed_count( $return_ids ) {
+		function smushed_count( $return_ids = false ) {
 			global $wpsmushit_admin;
 
 			//Don't query again, if the variable is already set
@@ -58,10 +60,9 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			}
 
 			$query = array(
-				'fields'         => 'ids',
+				'fields'         => array( 'ids', 'post_mime_type' ) ,
 				'post_type'      => 'attachment',
 				'post_status'    => 'inherit',
-				'post_mime_type' => $wpsmushit_admin->mime_types,
 				'order'          => 'ASC',
 				'posts_per_page' => - 1,
 				'meta_key'       => 'wp-smpro-smush-data',
@@ -69,17 +70,20 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			);
 
 			//Remove the Filters added by WP Media Folder
-			$this->remove_wmf_filters();
+			$this->remove_filters();
 
 			$results = new WP_Query( $query );
 
 			if ( ! is_wp_error( $results ) && $results->post_count > 0 ) {
+
+				$posts = $wpsmushit_admin->filter_by_mime( $results->posts );
+
 				if ( ! $return_ids ) {
 					//return Post Count
-					return $results->post_count;
+					return count( $posts );
 				} else {
 					//Return post ids
-					return $results->posts;
+					return $posts;
 				}
 			} else {
 				return false;
@@ -166,8 +170,9 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 		 *
 		 */
 		function media_super_smush_count( $return_ids = false ) {
+
 			global $wpsmushit_admin;
-			$lossy_update = false;
+
 			//Check if we have updated the stats for existing images, One time
 			if ( ! $lossy_updated = get_option( WP_SMUSH_PREFIX . 'lossy-updated' ) ) {
 
@@ -179,15 +184,15 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 					}
 				}
 			}
+
 			//Get all the attachments with wp-smush-lossy
 			$limit         = $wpsmushit_admin->query_limit();
 			$get_posts     = true;
 			$super_smushed = array();
-			$args          = array(
-				'fields'                 => 'ids',
+			$args = array(
+				'fields'                 => array( 'ids', 'post_mime_type' ),
 				'post_type'              => 'attachment',
 				'post_status'            => 'any',
-				'post_mime_type'         => $wpsmushit_admin->mime_types,
 				'orderby'                => 'ID',
 				'order'                  => 'DESC',
 				'posts_per_page'         => $limit,
@@ -205,13 +210,14 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			while ( $get_posts ) {
 
 				//Remove the Filters added by WP Media Folder
-				$this->remove_wmf_filters();
+				$this->remove_filters();
 
 				$query = new WP_Query( $args );
 
 				if ( ! empty( $query->post_count ) && sizeof( $query->posts ) > 0 ) {
+					$posts = $wpsmushit_admin->filter_by_mime( $query->posts );
 					//Merge the results
-					$super_smushed = array_merge( $super_smushed, $query->posts );
+					$super_smushed = array_merge( $super_smushed, $posts );
 
 					//Update the offset
 					$args['offset'] += $limit;
@@ -235,7 +241,7 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 		/**
 		 * Remove any pre_get_posts_filters added by WP Media Folder plugin
 		 */
-		function remove_wmf_filters() {
+		function remove_filters() {
 			//remove any filters added b WP media Folder plugin to get the all attachments
 			if ( class_exists( 'Wp_Media_Folder' ) ) {
 				global $wp_media_folder;
@@ -243,6 +249,17 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 					remove_filter( 'pre_get_posts', array( $wp_media_folder, 'wpmf_pre_get_posts1' ) );
 					remove_filter( 'pre_get_posts', array( $wp_media_folder, 'wpmf_pre_get_posts' ), 0, 1 );
 				}
+			}
+			global $wpml_query_filter;
+			//If WPML is not installed, return
+			if ( ! is_object( $wpml_query_filter ) ) {
+				return;
+			}
+
+			//Remove language filter and let all the images be smushed at once
+			if ( has_filter( 'posts_join', array( $wpml_query_filter, 'posts_join_filter' ) ) ) {
+				remove_filter( 'posts_join', array( $wpml_query_filter, 'posts_join_filter' ), 10, 2 );
+				remove_filter( 'posts_where', array( $wpml_query_filter, 'posts_where_filter' ), 10, 2 );
 			}
 		}
 
@@ -266,33 +283,128 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			if ( ! $force_update ) {
 				$savings = wp_cache_get( WP_SMUSH_PREFIX . 'resize_savings', 'wp-smush' );
 			}
+
+			global $wpsmushit_admin;
+
 			//If nothing in cache, Calculate it
 			if ( empty( $savings ) || $force_update ) {
-				global $wpsmushit_admin;
 				$savings = array(
-					'bytes'     => 0,
+					'bytes'       => 0,
 					'size_before' => 0,
 					'size_after'  => 0,
 				);
 
-				//Get the List of resized images
-				$resized_images = $this->resize_images();
+				$limit      = $wpsmushit_admin->query_limit();
+				$offset     = 0;
+				$query_next = true;
+				global $wpdb;
 
-				//Iterate over them
-				foreach ( $resized_images as $id ) {
-					$meta = get_post_meta( $id, WP_SMUSH_PREFIX . 'resize_savings', true );
-					if ( ! empty( $meta ) && ! empty( $meta['bytes'] ) ) {
-						$savings['bytes'] += intval( $meta['bytes'] );
-						$savings['size_before'] += intval( $meta['size_before'] );
-						$savings['size_after'] += intval( $meta['size_after'] );
+				while ( $query_next ) {
+
+					$resize_data = $wpdb->get_col( $wpdb->prepare( "SELECT meta_value FROM $wpdb->postmeta WHERE meta_key=%s LIMIT $offset, $limit", WP_SMUSH_PREFIX . 'resize_savings' ) );
+
+					if ( ! empty( $resize_data ) ) {
+						foreach ( $resize_data as $data ) {
+
+							if ( ! empty( $data ) ) {
+								$meta = maybe_unserialize( $data );
+								if ( ! empty( $meta ) && ! empty( $meta['bytes'] ) ) {
+									$savings['bytes'] += $meta['bytes'];
+									$savings['size_before'] += $meta['size_before'];
+									$savings['size_after'] += $meta['size_after'];
+								}
+							}
+						}
+					}
+					//Update the offset
+					$offset += $limit;
+
+					//Compare the Offset value to total images
+					if ( ! empty( $wpsmushit_admin->total_count ) && $wpsmushit_admin->total_count < $offset ) {
+						$query_next = false;
+					} elseif ( ! $resize_data ) {
+						//If we didn' got any results
+						$query_next = false;
 					}
 				}
 
 				if ( $format ) {
-					$savings['bytes'] = $wpsmushit_admin->format_bytes( $savings['bytes'] );
+					$savings['bytes'] = size_format( $savings['bytes'], 1 );
 				}
 
 				wp_cache_set( WP_SMUSH_PREFIX . 'resize_savings', $savings, 'wp-smush' );
+			}
+
+			return $savings;
+		}
+
+		/**
+		 * Return/Update PNG -> JPG Conversion savings
+		 *
+		 * @param bool $force_update Whether to force update the conversion savings or not
+		 * @param bool $format Optionally return formatted savings
+		 *
+		 * @return array Savings
+		 */
+		function conversion_savings( $force_update = true, $format = false ) {
+			$savings = '';
+
+			if ( ! $force_update ) {
+				$savings = wp_cache_get( WP_SMUSH_PREFIX . 'pngjpg_savings', 'wp-smush' );
+			}
+			//If nothing in cache, Calculate it
+			if ( empty( $savings ) || $force_update ) {
+				global $wpsmushit_admin;
+				$savings = array(
+					'bytes'       => 0,
+					'size_before' => 0,
+					'size_after'  => 0,
+				);
+
+				$limit      = $wpsmushit_admin->query_limit();
+				$offset     = 0;
+				$query_next = true;
+				global $wpdb;
+
+				while ( $query_next ) {
+
+					$conversion_savings = $wpdb->get_col( $wpdb->prepare( "SELECT meta_value FROM $wpdb->postmeta WHERE meta_key=%s LIMIT $offset, $limit", WP_SMUSH_PREFIX . 'pngjpg_savings' ) );
+
+					if ( ! empty( $conversion_savings ) ) {
+						foreach ( $conversion_savings as $data ) {
+
+							if ( ! empty( $data ) ) {
+								$meta = maybe_unserialize( $data );
+
+								if( is_array( $meta ) ) {
+									foreach ( $meta as $size ) {
+										if ( ! empty( $size ) && is_array( $size ) ) {
+											$savings['bytes'] += $size['bytes'];
+											$savings['size_before'] += $size['size_before'];
+											$savings['size_after'] += $size['size_after'];
+										}
+									}
+								}
+							}
+						}
+					}
+					//Update the offset
+					$offset += $limit;
+
+					//Compare the Offset value to total images
+					if ( ! empty( $wpsmushit_admin->total_count ) && $wpsmushit_admin->total_count < $offset ) {
+						$query_next = false;
+					} elseif ( ! $conversion_savings ) {
+						//If we didn' got any results
+						$query_next = false;
+					}
+				}
+
+				if ( $format ) {
+					$savings['bytes'] = size_format( $savings['bytes'], 1 );
+				}
+
+				wp_cache_set( WP_SMUSH_PREFIX . 'pngjpg_savings', $savings, 'wp-smush' );
 			}
 
 			return $savings;
@@ -311,10 +423,9 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			$get_posts      = true;
 			$resized_images = array();
 			$args           = array(
-				'fields'                 => 'ids',
+				'fields'                 => array( 'ids', 'post_mime_type' ),
 				'post_type'              => 'attachment',
 				'post_status'            => 'inherit',
-				'post_mime_type'         => $wpsmushit_admin->mime_types,
 				'orderby'                => 'ID',
 				'order'                  => 'DESC',
 				'posts_per_page'         => $limit,
@@ -327,13 +438,16 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			while ( $get_posts ) {
 
 				//Remove the Filters added by WP Media Folder
-				$this->remove_wmf_filters();
+				$this->remove_filters();
 
 				$query = new WP_Query( $args );
 
 				if ( ! empty( $query->post_count ) && sizeof( $query->posts ) > 0 ) {
+
+					$posts = $wpsmushit_admin->filter_by_mime( $query->posts );
+
 					//Merge the results
-					$resized_images = array_merge( $resized_images, $query->posts );
+					$resized_images = array_merge( $resized_images, $posts );
 
 					//Update the offset
 					$args['offset'] += $limit;
@@ -349,6 +463,62 @@ if ( ! class_exists( 'WpSmushStats' ) ) {
 			}
 
 			return $resized_images;
+		}
+
+		/**
+		 * Get all the PNGJPG Converted images
+		 *
+		 * @return array Array of post ids of all the converted images
+		 *
+		 */
+		function converted_images() {
+			global $wpsmushit_admin;
+			$limit            = $wpsmushit_admin->query_limit();
+			$limit            = ! empty( $wpsmushit_admin->total_count ) && $wpsmushit_admin->total_count < $limit ? $wpsmushit_admin->total_count : $limit;
+			$get_posts        = true;
+			$converted_images = array();
+			$args             = array(
+				'fields'                 => array( 'ids', 'post_mime_type' ),
+				'post_type'              => 'attachment',
+				'post_status'            => 'inherit',
+				'orderby'                => 'ID',
+				'order'                  => 'DESC',
+				'posts_per_page'         => $limit,
+				'offset'                 => 0,
+				'meta_key'               => WP_SMUSH_PREFIX . 'pngjpg_savings',
+				'update_post_term_cache' => false,
+				'no_found_rows'          => true,
+			);
+			//Loop Over to get all the attachments
+			while ( $get_posts ) {
+
+				//Remove the Filters added by WP Media Folder
+				$this->remove_filters();
+
+				$query = new WP_Query( $args );
+
+				if ( ! empty( $query->post_count ) && sizeof( $query->posts ) > 0 ) {
+
+					//Filter Posts by mime types
+					$posts = $wpsmushit_admin->filter_by_mime( $query->posts );
+
+					//Merge the results
+					$converted_images = array_merge( $converted_images, $posts );
+
+					//Update the offset
+					$args['offset'] += $limit;
+				} else {
+					//If we didn't get any posts from query, set $get_posts to false
+					$get_posts = false;
+				}
+
+				//If total Count is set, and it is alread lesser than offset, don't query
+				if ( ! empty( $wpsmushit_admin->total_count ) && $wpsmushit_admin->total_count < $args['offset'] ) {
+					$get_posts = false;
+				}
+			}
+
+			return $converted_images;
 		}
 
 		/**

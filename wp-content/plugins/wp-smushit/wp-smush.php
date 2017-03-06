@@ -4,9 +4,9 @@ Plugin Name: WP Smush
 Plugin URI: http://wordpress.org/extend/plugins/wp-smushit/
 Description: Reduce image file sizes, improve performance and boost your SEO using the free <a href="https://premium.wpmudev.org/">WPMU DEV</a> WordPress Smush API.
 Author: WPMU DEV
-Version: 2.3
+Version: 2.5.3
 Author URI: http://premium.wpmudev.org/
-Textdomain: wp-smushit
+Text Domain: wp-smushit
 */
 
 /*
@@ -35,7 +35,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * Constants
  */
 $prefix  = 'WP_SMUSH_';
-$version = '2.3';
+$version = '2.5.3';
+
+//Deactivate the .org version, if pro version is active
+add_action( 'admin_init', 'deactivate_smush_org' );
+
+if ( ! function_exists( 'deactivate_smush_org' ) ) {
+	function deactivate_smush_org() {
+		if ( is_plugin_active( 'wp-smush-pro/wp-smush.php' ) && is_plugin_active( 'wp-smushit/wp-smush.php' ) ) {
+			deactivate_plugins( 'wp-smushit/wp-smush.php' );
+			//Store in database, in order to show a notice on page load
+			update_site_option( 'smush_deactivated', 1 );
+		}
+	}
+}
 
 /**
  * Set the default timeout for API request and AJAX timeout
@@ -52,7 +65,9 @@ $smush_constants = array(
 	'MAX_BYTES'         => 1000000,
 	'PREMIUM_MAX_BYTES' => 32000000,
 	'PREFIX'            => 'wp-smush-',
-	'TIMEOUT'           => $timeout
+	'TIMEOUT'           => $timeout,
+	//If Set to false, WP Smush switch backs to the Old Sync Optimisation
+	'ASYNC'             => true
 );
 
 foreach ( $smush_constants as $const_name => $constant_val ) {
@@ -74,7 +89,7 @@ require_once WP_SMUSH_DIR . 'lib/class-wp-smush.php';
 if ( ! function_exists( 'wp_smush_rating_message' ) ) {
 	function wp_smush_rating_message( $message ) {
 		global $wpsmushit_admin, $wpsmush_stats;
-		$savings     = $wpsmushit_admin->global_stats();
+		$savings     = $wpsmushit_admin->global_stats_from_ids();
 		$image_count = $wpsmush_stats->total_count();
 		$show_stats  = false;
 
@@ -109,10 +124,23 @@ if ( ! function_exists( 'wp_smush_email_message' ) ) {
 		return $message;
 	}
 }
+if( !function_exists('get_plugin_dir') ) {
+	/**
+	 * Returns the dir path for the plugin
+	 *
+	 * @return string
+	 */
+	function get_plugin_dir() {
+		$dir_path = plugin_dir_path( __FILE__ );
+
+		return $dir_path;
+	}
+}
 
 if ( is_admin() ) {
 
-	$dir_path = plugin_dir_path( __FILE__ );
+	$dir_path = get_plugin_dir();
+
 	//Only for wordpress.org members
 	if ( strpos( $dir_path, 'wp-smushit' ) !== false ) {
 		require_once( WP_SMUSH_DIR . 'extras/free-dashboard/module.php' );
@@ -154,21 +182,10 @@ if ( is_admin() ) {
 			'id'      => 912164,
 			'name'    => 'WP Smush Pro',
 			'screens' => array(
-				'upload'
+				'upload',
+				'media_page_wp-smush-bulk'
 			)
 		);
-	}
-}
-//Deactivate the .org version, if pro version is active
-add_action( 'admin_init', 'deactivate_smush_org' );
-
-if ( ! function_exists( 'deactivate_smush_org' ) ) {
-	function deactivate_smush_org() {
-		if ( is_plugin_active( 'wp-smush-pro/wp-smush.php' ) && is_plugin_active( 'wp-smushit/wp-smush.php' ) ) {
-			deactivate_plugins( 'wp-smushit/wp-smush.php' );
-			//Store in database, in order to show a notice on page load
-			update_option( 'smush_deactivated', 1 );
-		}
 	}
 }
 
@@ -178,11 +195,88 @@ add_action( 'admin_notices', 'smush_deactivated' );
 //Display a admin Notice about plugin deactivation
 if ( ! function_exists( 'smush_deactivated' ) ) {
 	function smush_deactivated() {
-		if ( get_option( 'smush_deactivated' ) && is_admin() ) { ?>
+		if ( get_site_option( 'smush_deactivated' ) && is_super_admin() ) { ?>
 			<div class="updated">
 				<p><?php esc_html_e( 'WP Smush Free was deactivated. You have WP Smush Pro active!', 'wp-smushit' ); ?></p>
 			</div> <?php
-			delete_option( 'smush_deactivated' );
+			delete_site_option( 'smush_deactivated' );
 		}
 	}
 }
+
+if ( ! function_exists( 'smush_activated' ) ) {
+//Check if a existing install or new
+	function smush_activated() {
+
+		$version = get_site_option( WP_SMUSH_PREFIX . 'version' );
+
+		//If the version is not saved or if the version is not same as the current version,
+		if ( ! $version || WP_SMUSH_VERSION != $version ) {
+			global $wpdb;
+			//Check if there are any existing smush stats
+			$query   = "SELECT meta_id FROM {$wpdb->postmeta} WHERE meta_key=%s LIMIT 1";
+			$results = $wpdb->get_var( $wpdb->prepare( $query, 'wp-smpro-smush-data' ) );
+
+			if ( $results ) {
+				update_site_option( 'wp-smush-install-type', 'existing' );
+			} else {
+				//Check for existing settings
+				if ( false !== get_site_option( WP_SMUSH_PREFIX . 'auto' ) || false !== get_option( WP_SMUSH_PREFIX . 'auto' ) ) {
+					update_site_option( 'wp-smush-install-type', 'existing' );
+				}
+			}
+
+			//Store the plugin version in db
+			update_site_option( WP_SMUSH_PREFIX . 'version', WP_SMUSH_VERSION );
+		}
+
+	}
+}
+
+
+if ( ! function_exists( 'smush_sanitize_hex_color' ) ) {
+	/**
+	 * Sanitizes a hex color.
+	 *
+	 * @param $color
+	 *
+	 * @return string Returns either '', a 3 or 6 digit hex color (with #), or nothing
+	 */
+	function smush_sanitize_hex_color( $color ) {
+		if ( '' === $color ) {
+			return '';
+		}
+
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			return $color;
+		}
+	}
+}
+
+if ( ! function_exists( 'smush_sanitize_hex_color_no_hash' ) ) {
+	/**
+	 * Sanitizes a hex color without hash
+	 *
+	 * @param $color
+	 *
+	 * @return string Returns either '', a 3 or 6 digit hex color (with #), or nothing
+	 */
+	function smush_sanitize_hex_color_no_hash( $color ) {
+		$color = ltrim( $color, '#' );
+
+		if ( '' === $color ) {
+			return '';
+		}
+
+		return smush_sanitize_hex_color( '#' . $color ) ? $color : null;
+	}
+}
+//Load Translation files
+add_action( 'plugins_loaded', 'i18n' );
+function i18n() {
+	$path = path_join( dirname( plugin_basename( __FILE__ ) ), 'languages/' );
+	load_plugin_textdomain( 'wp-smushit', false, $path );
+}
+
+register_activation_hook( __FILE__, 'smush_activated' );
