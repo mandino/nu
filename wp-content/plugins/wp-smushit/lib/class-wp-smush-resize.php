@@ -36,7 +36,7 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			/**
 			 * Initialize class variables, after all stuff has been loaded
 			 */
-			add_action( 'wp_loaded', array( $this, 'initialize' ) );
+			add_action( 'admin_init', array( $this, 'initialize' ) );
 
 		}
 
@@ -44,10 +44,26 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 		 * Get the settings for resizing
 		 */
 		function initialize() {
-			//If resizing is enabled
-			$this->resize_enabled = get_option( WP_SMUSH_PREFIX . 'resize' );
+			//Do not initialize unless in the WP Backend Or On one of the smush pages
+			if ( ! is_user_logged_in() || ! is_admin() ) {
+				return;
+			}
 
-			$resize_sizes = get_option( WP_SMUSH_PREFIX . 'resize_sizes', array() );
+			global $wpsmush_settings, $wpsmushit_admin;
+			$current_screen = get_current_screen();
+
+			if( !empty( $current_screen ) ) {
+				//Do not Proceed if not on one of the required screens
+				$current_page = $current_screen->base;
+				if ( ! in_array( $current_page, $wpsmushit_admin->pages ) ) {
+					return;
+				}
+			}
+
+			//If resizing is enabled
+			$this->resize_enabled = $wpsmush_settings->get_setting( WP_SMUSH_PREFIX . 'resize' );
+
+			$resize_sizes = $wpsmush_settings->get_setting( WP_SMUSH_PREFIX . 'resize_sizes', array() );
 
 			//Resize width and Height
 			$this->max_w = ! empty( $resize_sizes['width'] ) ? $resize_sizes['width'] : 0;
@@ -62,7 +78,7 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function should_resize( $id = '' ) {
+		public function should_resize( $id = '', $meta = '' ) {
 
 			//If resizing not enabled, or if both max width and height is set to 0, return
 			if ( ! $this->resize_enabled || ( $this->max_w == 0 && $this->max_h == 0 ) ) {
@@ -86,7 +102,7 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			}
 
 			//Check for a supported mime type
-			global $wpsmushit_admin;
+			global $wpsmushit_admin, $wpsmush_settings;
 
 			//Get image mime type
 			$mime = get_post_mime_type( $id );
@@ -97,13 +113,31 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			if ( ! empty( $mime ) && ! $mime_supported = apply_filters( 'wp_smush_resmush_mime_supported', $mime_supported, $mime ) ) {
 				return false;
 			}
+
 			//Check if already resized
 			$resize_meta = get_post_meta( $id, WP_SMUSH_PREFIX . 'resize_savings', true );
 			if ( ! empty( $resize_meta ) ) {
 				return false;
 			}
 
-			return true;
+			//Get attachment metadata
+			$meta = empty( $meta ) ? wp_get_attachment_metadata( $id ) : $meta;
+
+			if ( ! empty( $meta['width'] ) && ! empty( $meta['height'] ) ) {
+				$oldW = $meta['width'];
+				$oldH = $meta['height'];
+
+				$resize_dim = $wpsmush_settings->get_setting( WP_SMUSH_PREFIX . 'resize_sizes' );
+
+				$maxW = ! empty( $resize_dim['width'] ) ? $resize_dim['width'] : 0;
+				$maxH = ! empty( $resize_dim['height'] ) ? $resize_dim['height'] : 0;
+
+				if ( ( $oldW > $maxW && $maxW > 0 ) || ( $oldH > $maxH && $maxH > 0 ) ) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		/**
@@ -126,7 +160,7 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			}
 
 			//Check if the image should be resized or not
-			$should_resize = $this->should_resize( $id );
+			$should_resize = $this->should_resize( $id, $meta );
 
 			/**
 			 * Filter whether the uploaded image should be resized or not
@@ -166,10 +200,13 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			$replaced = $this->replcae_original_image( $file_path, $resize, $id, $meta );
 
 			if ( $replaced ) {
+				//Clear Stat Cache, Else the size obtained is same as the original file size
+				clearstatcache();
+
 				//Updated File size
 				$u_file_size = filesize( $file_path );
 
-				$savings['bytes']     = $original_file_size > $u_file_size ? $original_file_size - $u_file_size : 0;
+				$savings['bytes']       = $original_file_size > $u_file_size ? $original_file_size - $u_file_size : 0;
 				$savings['size_before'] = $original_file_size;
 				$savings['size_after']  = $u_file_size;
 
@@ -249,7 +286,7 @@ if ( ! class_exists( 'WpSmushResize' ) ) {
 			$file_size = filesize( $resize_path );
 			if ( $file_size > $original_file_size ) {
 				//Don't Unlink for nextgen images
-				if( $unlink ) {
+				if ( $unlink ) {
 					$this->maybe_unlink( $resize_path, $meta );
 				}
 
