@@ -24,7 +24,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 		function __construct() {
 
 			global $WpSmush;
-			$this->is_pro_user = $WpSmush->is_pro();
+			$this->is_pro_user = $WpSmush->validate_install();
 
 			//Update Total Image count
 			add_action( 'ngg_added_new_image', array( $this, 'image_count' ), 10 );
@@ -177,7 +177,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 		 * @return bool|null|string|void
 		 */
 		function show_stats( $pid, $wp_smush_data = false, $image_type = '', $text_only = false, $echo = true ) {
-			global $WpSmush, $wpsmushnextgenadmin;
+			global $WpSmush, $wpsmushnextgenadmin, $wpsmush_settings;
 			if ( empty( $wp_smush_data ) ) {
 				return false;
 			}
@@ -185,7 +185,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 			$show_button = $show_resmush = $show_restore = false;
 
 			$bytes          = isset( $wp_smush_data['stats']['bytes'] ) ? $wp_smush_data['stats']['bytes'] : 0;
-			$bytes_readable = ! empty( $bytes ) ? $WpSmush->format_bytes( $bytes ) : '';
+			$bytes_readable = ! empty( $bytes ) ? size_format( $bytes, 1 ) : '';
 			$percent        = isset( $wp_smush_data['stats']['percent'] ) ? $wp_smush_data['stats']['percent'] : 0;
 			$percent        = $percent < 0 ? 0 : $percent;
 
@@ -267,7 +267,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 
 			//Check if Lossy enabled
 			$opt_lossy     = WP_SMUSH_PREFIX . 'lossy';
-			$opt_lossy_val = get_option( $opt_lossy, false );
+			$opt_lossy_val = $wpsmush_settings->get_setting( $opt_lossy, false );
 
 			//Check if premium user, compression was lossless, and lossy compression is enabled
 			if ( !$show_resmush && $this->is_pro_user && ! $is_lossy && $opt_lossy_val && ! empty( $image_type ) && $image_type != 'image/gif' ) {
@@ -310,7 +310,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 				$smush_stats['bytes'] = ! empty( $smush_stats['bytes'] ) ? ( $smush_stats['bytes'] + $stats['bytes'] ) : $stats['bytes'];
 
 				//Human Readable
-				$smush_stats['human'] = ! empty( $smush_stats['bytes'] ) ? $WpSmush->format_bytes( $smush_stats['bytes'] ) : '';
+				$smush_stats['human'] = ! empty( $smush_stats['bytes'] ) ? size_format( $smush_stats['bytes'], 1 ) : '';
 
 				//Size of images before the compression
 				$smush_stats['size_before'] = ! empty( $smush_stats['size_before'] ) ? ( $smush_stats['size_before'] + $stats['size_before'] ) : $stats['size_before'];
@@ -347,7 +347,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 				$smush_stats['bytes'] = ! empty( $smush_stats['bytes'] ) ? ( $smush_stats['bytes'] + $stats['bytes'] ) : $stats['bytes'];
 
 				//Human Readable
-				$smush_stats['human'] = ! empty( $smush_stats['bytes'] ) ? $WpSmush->format_bytes( $smush_stats['bytes'] ) : '';
+				$smush_stats['human'] = ! empty( $smush_stats['bytes'] ) ? size_format( $smush_stats['bytes'], 1 ) : '';
 
 				//Size of images before the compression
 				$smush_stats['size_before'] = ! empty( $smush_stats['size_before'] ) ? ( $smush_stats['size_before'] + $stats['size_before'] ) : $stats['size_before'];
@@ -399,9 +399,9 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 			}
 
 			//Round off precentage
-			$smushed_stats['percent'] = ! empty( $smushed_stats['percent'] ) ? round( $smushed_stats['percent'], 2 ) : 0;
+			$smushed_stats['percent'] = ! empty( $smushed_stats['percent'] ) ? round( $smushed_stats['percent'], 1 ) : 0;
 
-			$smushed_stats['human'] = $WpSmush->format_bytes( $smushed_stats['bytes'] );
+			$smushed_stats['human'] = size_format( $smushed_stats['bytes'], 1 );
 
 			return $smushed_stats;
 		}
@@ -460,7 +460,7 @@ if ( ! class_exists( 'WpSmushNextGenStats' ) ) {
 				if ( $size_value->bytes > 0 ) {
 					$stats .= '<tr>
 					<td>' . strtoupper( $size_key ) . '</td>
-					<td>' . $WpSmush->format_bytes( $size_value->bytes ) . ' ( ' . $size_value->percent . '% )</td>
+					<td>' . size_format( $size_value->bytes, 1 ) . ' ( ' . $size_value->percent . '% )</td>
 				</tr>';
 				}
 			}

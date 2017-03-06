@@ -27,6 +27,58 @@ var progress_bar = function (cur_ele, txt, state) {
         progress_button.hide();
     }
 };
+
+var dash_offset = function (percent) {
+    //Get the dasharray value
+    var dasharray = jQuery('.wp-smush-svg-circle-progress').attr('stroke-dasharray');
+    return dasharray - ( dasharray * percent );
+}
+
+var update_dashoffset = function (stats) {
+    if (stats.total > 0) {
+        var dashoffset = dash_offset(stats.smushed / stats.total);
+        var circle_progress = jQuery('.wp-smush-svg-circle-progress');
+        if (typeof dashoffset != 'undefined' && circle_progress.length) {
+            circle_progress.css({'stroke-dashoffset': dashoffset});
+        }
+    }
+};
+
+var membership_validity = function( data ) {
+    var member_validity_notice = jQuery('#wp-smush-invalid-member');
+
+    //Check for Membership warning
+    if( 'undefined' != typeof ( data.show_warning ) && member_validity_notice.length > 0 ) {
+        if( data.show_warning ) {
+            member_validity_notice.show();
+        }else{
+            member_validity_notice.hide();
+        }
+    }
+};
+/**
+ * Resize Background width
+ */
+var resize_width = function () {
+    var width = jQuery('.wp-smush-pro-for-free').width();
+    if ('undefined' != typeof ( width ) && 500 < width) {
+        jQuery('.wpmud .wp-smush-pro-adv').css({'background-size': '500px'});
+    } else {
+        jQuery('.wpmud .wp-smush-pro-adv').css({'background-size': '90%'});
+    }
+};
+
+var remove_element = function( el, timeout ) {
+    if( typeof timeout == 'undefined' ) {
+        timeout = 100;
+    }
+    el.fadeTo(timeout, 0, function () {
+        el.slideUp(timeout, function () {
+            el.remove();
+        });
+    });
+};
+
 jQuery(function ($) {
     var smushAddParams = function (url, data) {
         if (!$.isEmptyObject(data)) {
@@ -70,7 +122,7 @@ jQuery(function ($) {
             this.deferred.errors = [];
 
             //If button has resmush class, and we do have ids that needs to resmushed, put them in the list
-            this.ids = wp_smushit_data.resmush.length > 0 && !skip_resmush ? ( wp_smushit_data.unsmushed.length > 0 ? wp_smushit_data.resmush.concat(wp_smushit_data.unsmushed) :  wp_smushit_data.resmush ): wp_smushit_data.unsmushed;
+            this.ids = wp_smushit_data.resmush.length > 0 && !skip_resmush ? ( wp_smushit_data.unsmushed.length > 0 ? wp_smushit_data.resmush.concat(wp_smushit_data.unsmushed) : wp_smushit_data.resmush ) : wp_smushit_data.unsmushed;
 
             this.is_bulk_resmush = wp_smushit_data.resmush.length > 0 && !skip_resmush ? true : false;
 
@@ -154,14 +206,22 @@ jQuery(function ($) {
                 if (typeof response.data != 'undefined') {
                     //Append the smush stats or error
                     self.$status.html(response.data);
+
+                    //Check whether to show membership validity notice or not
+                    membership_validity(response.data);
+
                     if (response.success && response.data !== "Not processed") {
                         self.$status.removeClass('hidden');
                         self.$button.parent().removeClass('unsmushed').addClass('smushed');
                         self.$button.remove();
                     } else {
                         self.$status.addClass("error");
+                        self.$status.html(response.data.error_msg);
+                        self.$status.show();
                     }
-                    self.$status.html(response.data.status);
+                    if (response.data.status) {
+                        self.$status.html(response.data.status);
+                    }
                     //Check if stats div exists
                     var parent = self.$status.parent();
                     var stats_div = parent.find('.smush-stats-wrapper');
@@ -259,7 +319,7 @@ jQuery(function ($) {
                     if (wp_smushit_data.resmush.length > 0) {
                         //Update the Count
                         $('.wp-smush-images-remaining').html(wp_smushit_data.resmush.length);
-                    } else if (wp_smushit_data.resmush.length == 0 && this.ids.length == 0 ) {
+                    } else if (wp_smushit_data.resmush.length == 0 && this.ids.length == 0) {
                         //If all images are resmushed, show the All Smushed message
 
                         //Show All Smushed
@@ -286,8 +346,8 @@ jQuery(function ($) {
             }
 
             //Update Total Images Tooltip
-            if( 'undefined' !== typeof _res.data.stats.tooltip_text && '' != _res.data.stats.tooltip_text ) {
-                $('.wp-smush-stats .smushed-count').attr('tooltip', _res.data.stats.tooltip_text );
+            if ('undefined' !== typeof _res.data.stats.tooltip_text && '' != _res.data.stats.tooltip_text) {
+                $('.wp-smush-current-progress').attr('tooltip', _res.data.stats.tooltip_text);
             }
 
             //Update remaining count
@@ -296,15 +356,34 @@ jQuery(function ($) {
             //if we have received the progress data, update the stats else skip
             if ('undefined' != typeof _res.data.stats) {
 
-                //Update stats
-                $('.smush-total-reduction-percent .wp-smush-stats').html(_res.data.stats.percent);
-                $('.smush-total-reduction-bytes .wp-smush-stats').html(_res.data.stats.human);
+                //Update Progress on Circle
+                update_dashoffset(_res.data.stats);
 
-                $('.smush-attachments .wp-smush-stats .smushed-count, .wp-smush-images-smushed').html(_res.data.stats.smushed);
+                //Update stats
+                $('.wp-smush-savings .wp-smush-stats-percent').html(_res.data.stats.percent);
+                $('.wp-smush-savings .wp-smush-stats-human').html(_res.data.stats.human);
+
+                $('.wp-smush-images-smushed, .wp-smush-optimised').html(_res.data.stats.smushed);
                 if ($('.super-smush-attachments .smushed-count').length && 'undefined' != typeof _res.data.stats.super_smushed) {
                     $('.super-smush-attachments .smushed-count').html(_res.data.stats.super_smushed);
                 }
 
+                var smush_conversion_savings = $('.smush-conversion-savings');
+                //Update Conversion Savings
+                if (smush_conversion_savings.length > 0 && 'undefined' != typeof ( _res.data.stats.conversion_savings ) && _res.data.stats.conversion_savings != '') {
+                    var conversion_savings = smush_conversion_savings.find('.wp-smush-stats');
+                    if (conversion_savings.length > 0) {
+                        conversion_savings.html(_res.data.stats.conversion_savings);
+                    }
+                }
+                var smush_resize_savings = $('.smush-resize-savings');
+                //Update Resize Savings
+                if (smush_resize_savings.length > 0 && 'undefined' != typeof ( _res.data.stats.resize_savings ) && _res.data.stats.resize_savings != '') {
+                    var resize_savings = smush_resize_savings.find('.wp-smush-stats');
+                    if (resize_savings.length > 0) {
+                        resize_savings.html(_res.data.stats.resize_savings);
+                    }
+                }
                 // increase the progress bar
                 this._update_progress(_res.data.stats.smushed, progress);
             }
@@ -351,7 +430,7 @@ jQuery(function ($) {
             this.current_id = this.is_bulk ? this.ids.shift() : this.$button.data("id"); //remove from array while processing so we can continue where left off
 
             //Remove the id from respective variable as well
-            this.update_smush_ids( this.current_id );
+            this.update_smush_ids(this.current_id);
 
             var nonce_field = this.$button.parent().find('#_wp_smush_nonce');
             if (nonce_field) {
@@ -374,6 +453,9 @@ jQuery(function ($) {
                             self.$log.removeClass('hidden');
                         }
                     }
+
+                    //Check whether to show the warning notice or not
+                    membership_validity(res.data);
 
                     if (typeof res.data !== "undefined" && res.data.error == 'bulk_request_image_limit_exceeded' && !self.is_resolved()) {
                         //Add a data attribute to the smush button, to stop sending ajax
@@ -465,7 +547,7 @@ jQuery(function ($) {
          * Remove the current id from unsmushed/resmush variable
          * @param current_id
          */
-        this.update_smush_ids = function( current_id ) {
+        this.update_smush_ids = function (current_id) {
             if ('undefined' !== typeof wp_smushit_data.unsmushed && wp_smushit_data.unsmushed.length > 0) {
                 var u_index = wp_smushit_data.unsmushed.indexOf(current_id);
                 if (u_index > -1) {
@@ -547,7 +629,7 @@ jQuery(function ($) {
      * @param smush_action
      * @returns {boolean}
      */
-    var process_smush_action = function (e, current_button, smush_action) {
+    var process_smush_action = function (e, current_button, smush_action, action) {
 
         //If disabled
         if ('disabled' == current_button.attr('disabled')) {
@@ -572,12 +654,12 @@ jQuery(function ($) {
         //Reduce the opacity of stats and disable the click
         disable_links(current_button);
 
-        progress_bar(current_button, wp_smush_msgs.smushing, 'show');
+        progress_bar(current_button, wp_smush_msgs[action], 'show');
 
         //Restore the image
         $.post(ajaxurl, params, function (r) {
 
-            progress_bar(current_button, wp_smush_msgs.smushing, 'hide');
+            progress_bar(current_button, wp_smush_msgs[action], 'hide');
 
             //reset all functionality
             enable_links(current_button);
@@ -629,7 +711,7 @@ jQuery(function ($) {
         }
 
         //Check for width
-        if ( !height_only && 'undefined' != typeof width_input && parseInt(wp_smushit_data.resize_sizes.width) > parseInt(width_input.val())) {
+        if (!height_only && 'undefined' != typeof width_input && parseInt(wp_smushit_data.resize_sizes.width) > parseInt(width_input.val())) {
             width_input.addClass('error');
             width_error_note.show('slow');
             width_error = true;
@@ -692,6 +774,116 @@ jQuery(function ($) {
         $progress_bar.css('width', width + '%');
     };
 
+    var run_re_check = function( button, process_settings ) {
+        var spinner = button.parent().find('.spinner');
+
+        //Check if type is set in data attributes
+        var scan_type = button.data('type');
+        scan_type = 'undefined' == typeof scan_type ? 'media' : scan_type;
+
+        //Show spinner
+        spinner.addClass('is-active');
+
+        //Remove the Skip resmush attribute from button
+        $('button.wp-smush-all').removeAttr('data-smush');
+
+        //remove notices
+        var el = $('.wp-smush-notice.wp-smush-resmush-message, .wp-smush-notice.wp-smush-settings-updated');
+        el.slideUp(100, function () {
+            el.remove();
+        });
+
+        //Disable Bulk smush button and itself
+        button.attr('disabled', 'disabled');
+        $('.wp-smush-button').attr('disabled', 'disabled');
+
+        //Hide Settings changed Notice
+        $('.wp-smush-settings-changed').hide();
+
+        //Show Loading Animation
+        jQuery('.bulk-resmush-wrapper .wp-smush-progress-bar-wrap').removeClass('hidden');
+
+        //Ajax Params
+        var params = {
+            action: 'scan_for_resmush',
+            type: scan_type,
+            get_ui: true,
+            process_settings: process_settings,
+            wp_smush_options_nonce: jQuery('#wp_smush_options_nonce').val()
+        };
+
+        //Send ajax request and get ids if any
+        $.get(ajaxurl, params, function (r) {
+            //Check if we have the ids,  initialize the local variable
+            if ('undefined' != typeof r.data) {
+                //Update Resmush id list
+                if ('undefined' != typeof r.data.resmush_ids) {
+                    wp_smushit_data.resmush = r.data.resmush_ids;
+
+                    //Get the Smushed image count
+                    var smushed_count = wp_smushit_data.count_smushed - r.data.resmush_ids.length;
+
+                    //Update it in stats bar
+                    $('.wp-smush-images-smushed, .wp-smush-optimised').html(smushed_count);
+
+                    //Hide the Existing wrapper
+                    var notices = $('.bulk-smush-wrapper .wp-smush-notice');
+                    if (notices.length > 0) {
+                        notices.hide();
+                    }
+                    //remove existing Re-Smush notices
+                    $('.wp-smush-resmush-notice').remove();
+
+                    //Show Bulk wrapper
+                    $('.wp-smush-bulk-wrapper').show();
+
+                    if ('undefined' !== typeof r.data.count) {
+                        //Update progress bar
+                        update_progress_bar_resmush(r.data.count);
+                    }
+                }
+                //If content is received, Prepend it
+                if ('undefined' != typeof r.data.content) {
+                    $('.bulk-smush-wrapper .box-container').prepend(r.data.content);
+                }
+                //If we have any notice to show
+                if ('undefined' != typeof r.data.notice) {
+                    $('.wp-smush-page-header').after(r.data.notice);
+                }
+                //Hide errors
+                $('.smush-final-log').hide();
+
+                //Hide Super Smush notice if it's enabled in media settings
+                if ('undefined' != typeof r.data.super_smush && r.data.super_smush) {
+                    var enable_lossy = jQuery('.wp-smush-enable-lossy');
+                    if (enable_lossy.length > 0) {
+                        enable_lossy.remove();
+                    }
+                    if ('undefined' !== r.data.super_smush_stats) {
+                        $('.super-smush-attachments .wp-smush-stats').html(r.data.super_smush_stats);
+                    }
+                }
+            }
+
+        }).always(function () {
+
+            //Hide the progress bar
+            jQuery('.bulk-smush-wrapper .wp-smush-bulk-progress-bar-wrapper').hide();
+
+            //Enable the Bulk Smush Button and itself
+            button.removeAttr('disabled');
+
+            //Hide Spinner
+            spinner.removeClass('is-active');
+            $('.wp-smush-button').removeAttr('disabled');
+
+            //If wp-smush-re-check-message is there, remove it
+            if ($('.wp-smush-re-check-message').length) {
+                remove_element($('.wp-smush-re-check-message'));
+            }
+        });
+    }
+
     /**
      * Handle the Smush Stats link click
      */
@@ -753,28 +945,28 @@ jQuery(function ($) {
     $('body').on('click', '.wp-smush-action.wp-smush-restore', function (e) {
         var current_button = $(this);
         var smush_action = 'smush_restore_image';
-        process_smush_action(e, current_button, smush_action);
+        process_smush_action(e, current_button, smush_action, 'restore');
     });
 
     /** Resmush: Media Library **/
     $('body').on('click', '.wp-smush-action.wp-smush-resmush', function (e) {
         var current_button = $(this);
         var smush_action = 'smush_resmush_image';
-        process_smush_action(e, current_button, smush_action);
+        process_smush_action(e, current_button, smush_action, 'smushing');
     });
 
     /** Restore: NextGen Gallery **/
     $('body').on('click', '.wp-smush-action.wp-smush-nextgen-restore', function (e) {
         var current_button = $(this);
         var smush_action = 'smush_restore_nextgen_image';
-        process_smush_action(e, current_button, smush_action);
+        process_smush_action(e, current_button, smush_action, 'restore');
     });
 
     /** Resmush: NextGen Gallery **/
     $('body').on('click', '.wp-smush-action.wp-smush-nextgen-resmush', function (e) {
         var current_button = $(this);
         var smush_action = 'smush_resmush_nextgen_image';
-        process_smush_action(e, current_button, smush_action);
+        process_smush_action(e, current_button, smush_action, 'smushing');
     });
 
     //Scan For resmushing images
@@ -782,108 +974,8 @@ jQuery(function ($) {
 
         e.preventDefault();
 
-        var button = jQuery(this);
-        var spinner = button.parent().find('.spinner');
-
-        //Check if type is set in data attributes
-        var scan_type = button.data('type');
-        scan_type = 'undefined' == typeof scan_type ? 'media' : scan_type;
-
-        //Show spinner
-        spinner.addClass('is-active');
-
-        //Remove the Skip resmush attribute from button
-        $('button.wp-smush-all').removeAttr('data-smush');
-
-        //remove notices
-        var el = $('.wp-smush-notice.wp-smush-resmush-message, .wp-smush-notice.wp-smush-settings-updated');
-        el.slideUp(100, function () {
-            el.remove();
-        });
-
-        //Disable Bulk smush button and itself
-        button.attr('disabled', 'disabled');
-        $('.wp-smush-button').attr('disabled', 'disabled');
-
-        //Hide Settings changed Notice
-        $('.wp-smush-settings-changed').hide();
-
-        //Show Loading Animation
-        jQuery('.bulk-resmush-wrapper .wp-smush-progress-bar-wrap').removeClass('hidden');
-
-        //Ajax Params
-        var params = {
-            action: 'scan_for_resmush',
-            type: scan_type,
-            get_ui: true,
-            wp_smush_options_nonce: jQuery('#wp_smush_options_nonce').val()
-        };
-
-        //Send ajax request and get ids if any
-        $.get(ajaxurl, params, function (r) {
-            //Check if we have the ids,  initialize the local variable
-            if ('undefined' != typeof r.data) {
-                //Update Resmush id list
-                if ('undefined' != typeof r.data.resmush_ids) {
-                    wp_smushit_data.resmush = r.data.resmush_ids;
-
-                    //Get the Smushed image count
-                    var smushed_count = wp_smushit_data.count_smushed - r.data.resmush_ids.length;
-
-                    //Update it in stats bar
-                    $('.smush-attachments .wp-smush-stats .smushed-count, .wp-smush-images-smushed').html(smushed_count);
-
-                    //Hide the Existing wrapper
-                    var notices = $('.bulk-smush-wrapper .wp-smush-notice');
-                    if (notices.length > 0) {
-                        notices.hide();
-                    }
-                    //remove existing Re-Smush notices
-                    $('.wp-smush-resmush-notice').remove();
-
-                    //Show Bulk wrapper
-                    $('.wp-smush-bulk-wrapper').show();
-
-                    if( 'undefined' !== typeof r.data.count ) {
-                        //Update progress bar
-                        update_progress_bar_resmush( r.data.count );
-                    }
-                }
-                //If content is received, Prepend it
-                if ('undefined' != typeof r.data.content) {
-                    $('.bulk-smush-wrapper .box-container').prepend(r.data.content);
-                }
-                //If we have any notice to show
-                if ('undefined' != typeof r.data.notice) {
-                    $('.wp-smush-page-header').after(r.data.notice);
-                }
-                //Hide errors
-                $('.smush-final-log').hide();
-
-                //Hide Super Smush notice if it's enabled in media settings
-                if ('undefined' != typeof r.data.super_smush && r.data.super_smush ) {
-                    var enable_lossy = jQuery('.wp-smush-enable-lossy');
-                    if( enable_lossy.length > 0 ) {
-                        enable_lossy.remove();
-                    }
-                    if( 'undefined' !== r.data.super_smush_stats ) {
-                        $('.super-smush-attachments .wp-smush-stats').html( r.data.super_smush_stats );
-                    }
-                }
-            }
-
-        }).always(function () {
-
-            //Hide the progress bar
-            jQuery('.bulk-smush-wrapper .wp-smush-bulk-progress-bar-wrapper').hide();
-
-            //Enable the Bulk Smush Button and itself
-            button.removeAttr('disabled');
-
-            //Hide Spinner
-            spinner.removeClass('is-active');
-            $('.wp-smush-button').removeAttr('disabled');
-        });
+        //Run the Re-check
+        run_re_check( $(this ), false );
 
     });
 
@@ -891,11 +983,8 @@ jQuery(function ($) {
     $('#wp-smush-welcome-box .smush-dismiss-welcome').on('click', function (e) {
         e.preventDefault();
         var $el = $(this).parents().eq(1);
-        $el.fadeTo(100, 0, function () {
-            $el.slideUp(100, function () {
-                $el.remove();
-            });
-        });
+        remove_element($el);
+
         //Send a ajax request to save the dismissed notice option
         var param = {
             action: 'dismiss_welcome_notice'
@@ -907,58 +996,85 @@ jQuery(function ($) {
     $('body').on('click', '.wp-smush-notice .dev-icon-cross', function (e) {
         e.preventDefault();
         var $el = $(this).parent();
-        $el.fadeTo(100, 0, function () {
-            $el.slideUp(100, function () {
-                $el.remove();
-            });
-        });
+        remove_element($el);
     });
 
     //On Click Update Settings. Check for change in settings
     $('#wp-smush-save-settings').on('click', function (e) {
         e.preventDefault();
 
-        var self = $(this);
-        var wrapper_div = self.parents().eq(1);
-
-        //Get all the main settings
-        var keep_exif = document.getElementById("wp-smush-keep_exif");
-        var super_smush = document.getElementById("wp-smush-lossy");
-        var smush_original = document.getElementById("wp-smush-original");
-
-        var update_button_txt = true;
-
-        //If Preserve Exif is Checked, and all other settings are off, just save the settings
-        if (keep_exif.checked && !super_smush.checked && !smush_original.checked) {
-            update_button_txt = false;
+        var setting_type = '';
+        var setting_input = $('input[name="setting-type"]');
+        //Check if setting type is set in the form
+        if ( setting_input.length > 0 ) {
+            setting_type = setting_input.val();
         }
 
-        //Update text
-        self.attr('disabled', 'disabled').addClass('button-grey');
+        //Save settings if in network admin
+        if ('' != setting_type && 'network' == setting_type) {
+            //Ajax param
+            var param = {
+                action: 'save_settings',
+                nonce: $('#wp_smush_options_nonce').val()
+            };
 
-        if (update_button_txt) {
-            self.val(wp_smush_msgs.checking)
+            param = jQuery.param(param) + '&' + jQuery('form#wp-smush-settings-form').serialize();
+
+            //Send ajax, Update Settings, And Check For resmush
+            jQuery.post(ajaxurl, param).done(function () {
+                jQuery('form#wp-smush-settings-form').submit();
+                return true;
+            });
+        } else {
+
+            //Check for all the settings, and scan for resmush
+            var self = $(this);
+            var wrapper_div = self.parents().eq(1);
+
+            //Get all the main settings
+            var keep_exif = document.getElementById("wp-smush-keep_exif");
+            var super_smush = document.getElementById("wp-smush-lossy");
+            var smush_original = document.getElementById("wp-smush-original");
+            var resize_images = document.getElementById("wp-smush-resize");
+            var smush_pngjpg = document.getElementById("wp-smush-png_to_jpg");
+
+            var update_button_txt = true;
+
+            $('.wp-smush-hex-notice').hide();
+
+            //If Preserve Exif is Checked, and all other settings are off, just save the settings
+            if (keep_exif.checked && !super_smush.checked && !smush_original.checked && !resize_images.checked && !smush_pngjpg.checked) {
+                update_button_txt = false;
+            }
+
+            //Update text
+            self.attr('disabled', 'disabled').addClass('button-grey');
+
+            if (update_button_txt) {
+                self.val(wp_smush_msgs.checking)
+            }
+
+            self.parent().find('.spinner').addClass('is-active');
+
+            //Check if type is set in data attributes
+            var scan_type = self.data('type');
+            scan_type = 'undefined' == typeof scan_type ? 'media' : scan_type;
+
+            //Ajax param
+            var param = {
+                action: 'scan_for_resmush',
+                wp_smush_options_nonce: jQuery('#wp_smush_options_nonce').val(),
+                scan_type: scan_type
+            };
+
+            param = jQuery.param(param) + '&' + jQuery('form#wp-smush-settings-form').serialize();
+
+            //Send ajax, Update Settings, And Check For resmush
+            jQuery.post(ajaxurl, param).done(function () {
+                jQuery('form#wp-smush-settings-form').submit();
+                return true;
+            });
         }
-
-        self.parent().find('.spinner').addClass('is-active');
-
-        //Check if type is set in data attributes
-        var scan_type = self.data('type');
-        scan_type = 'undefined' == typeof scan_type ? 'media' : scan_type;
-
-        //Ajax param
-        var param = {
-            action: 'scan_for_resmush',
-            scan_type: scan_type
-        };
-
-        param = jQuery.param(param) + '&' + jQuery('form#wp-smush-settings-form').serialize();
-
-        //Send ajax, Update Settings, And Check For resmush
-        jQuery.post(ajaxurl, param).done(function () {
-            jQuery('form#wp-smush-settings-form').submit();
-            return true;
-        });
     });
 
     //On Resmush click
@@ -969,11 +1085,7 @@ jQuery(function ($) {
 
         //Remove Parent div
         var $el = self.parent();
-        $el.fadeTo(100, 0, function () {
-            $el.slideUp(100, function () {
-                $el.remove();
-            });
-        });
+        remove_element($el);
 
         //Remove Settings Notice
         $('.wp-smush-notice.wp-smush-settings-updated').remove();
@@ -998,7 +1110,7 @@ jQuery(function ($) {
         type = 'undefined' == typeof type ? 'media' : type;
 
         var smushed_count = 'undefined' != typeof wp_smushit_data.count_smushed ? wp_smushit_data.count_smushed : 0
-        $('.smush-attachments .wp-smush-stats .smushed-count, .wp-smush-images-smushed').html(smushed_count);
+        $('.wp-smush-images-smushed, .wp-smush-optimised').html(smushed_count);
 
         //Update the Progress Bar Width
         // get the progress bar
@@ -1030,6 +1142,16 @@ jQuery(function ($) {
 
         //Enable Super Smush
         $('#wp-smush-lossy').prop('checked', true);
+        //Induce Setting button save click
+        $('#wp-smush-save-settings').click();
+    });
+
+    //Enable Resize
+    $('.wp-smush-resize-enable').on('click', function (e) {
+        e.preventDefault();
+
+        //Enable Super Smush
+        $('#wp-smush-resize').prop('checked', true);
         //Induce Setting button save click
         $('#wp-smush-save-settings').click();
     });
@@ -1066,7 +1188,7 @@ jQuery(function ($) {
     });
 
     //Handle Resize Checkbox toggle, to show/hide width, height settings
-    $('#wp-smush-resize').click(function() {
+    $('#wp-smush-resize').click(function () {
         var self = $(this);
         var settings_wrap = $('.wp-smush-resize-settings-wrap');
 
@@ -1077,6 +1199,104 @@ jQuery(function ($) {
         }
     });
 
+    //Handle PNG to JPG Checkbox toggle, to show/hide Transparent image conversion settings
+    $('#wp-smush-png_to_jpg').click(function () {
+        var self = $(this);
+        var settings_wrap = $('.wp-smush-png_to_jpg-wrap');
+
+        if (self.is(':checked')) {
+            settings_wrap.show();
+        } else {
+            settings_wrap.hide();
+        }
+    });
+
+    //Handle, Change event in Enable Networkwide settings
+    $('#wp-smush-networkwide').on('click', function (e) {
+        if ($(this).is(':checked')) {
+            $('.network-settings-wrapper').show();
+        } else {
+            $('.network-settings-wrapper').hide();
+        }
+    });
+
+    //Handle Twitter Share
+    $('#wp-smush-twitter-share').on('click', function (e) {
+        e.preventDefault();
+        var width = 550,
+            height = 420,
+            left = ($(window).width() - width) / 2,
+            top = ($(window).height() - height) / 2,
+            url = this.href,
+            opts = 'status=1' +
+                ',width=' + width +
+                ',height=' + height +
+                ',top=' + top +
+                ',left=' + left;
+
+        window.open(url, 'twitter', opts);
+
+        return false;
+    });
+
+    //Handle Facebook Share
+    $('#wp-smush-facebook-share').on('click', function (e) {
+        e.preventDefault();
+        var width = 550,
+            height = 420,
+            left = ($(window).width() - width) / 2,
+            top = ($(window).height() - height) / 2,
+            url = this.href,
+            opts = 'status=1' +
+                ',width=' + width +
+                ',height=' + height +
+                ',top=' + top +
+                ',left=' + left;
+
+        window.open(url, 'facebook', opts);
+
+        return false;
+    });
+
+    //Adjust background image size if required
+    if( $('.wp-smush-pro-for-free').length ) {
+        //On Page load
+        resize_width();
+        //Adjust background image
+        $(window).resize(function () {
+            resize_width();
+        });
+    }
+    //Handle Re-check button functionality
+    $("#wp-smush-revalidate-member").on( 'click', function( e ) {
+        e.preventDefault();
+        //Ajax Params
+        var params = {
+            action: 'smush_show_warning',
+        };
+        var link = $(this);
+        var parent = link.parents().eq(1);
+        parent.addClass('loading-notice');
+        $.get(ajaxurl, params, function ( r ) {
+            //remove the warning
+            parent.removeClass('loading-notice').addClass("loaded-notice");
+            if( 0 == r ) {
+                parent.attr('data-message', wp_smush_msgs.membership_valid );
+                remove_element( parent, 1000 );
+            }else{
+                parent.attr( 'data-message', wp_smush_msgs.membership_invalid );
+                setTimeout(function remove_loader() {
+                    parent.removeClass('loaded-notice');
+                }, 1000)
+            }
+        });
+    });
+
+    //Initiate Re-check if the variable is set
+    if( 'undefined' != typeof (wp_smush_run_re_check) && 1 == wp_smush_run_re_check && $('.wp-smush-scan').length > 0 ) {
+        //Run the Re-check
+        run_re_check( $('.wp-smush-scan' ), false );
+    }
 
 });
 (function ($) {
