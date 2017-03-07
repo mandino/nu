@@ -364,7 +364,7 @@ class WP_REST_Request implements ArrayAccess {
 			$this->parse_body_params();
 		}
 
-		$accepts_body_data = array( 'POST', 'PUT', 'PATCH', 'DELETE' );
+		$accepts_body_data = array( 'POST', 'PUT', 'PATCH' );
 		if ( in_array( $this->method, $accepts_body_data ) ) {
 			$order[] = 'POST';
 		}
