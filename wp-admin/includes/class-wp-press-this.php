@@ -718,11 +718,7 @@ class WP_Press_This {
 			 * making PT fully backward compatible with the older bookmarklet.
 			 */
 			if ( empty( $_POST ) && ! empty( $data['u'] ) ) {
-				if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'scan-site' ) ) {
-					$data = $this->source_data_fetch_fallback( $data['u'], $data );
-				} else {
-					$data['errors'] = 'missing nonce';
-				}
+				$data = $this->source_data_fetch_fallback( $data['u'], $data );
 			} else {
 				foreach ( array( '_images', '_embeds' ) as $type ) {
 					if ( empty( $_POST[ $type ] ) ) {
@@ -1239,7 +1235,7 @@ class WP_Press_This {
 		$site_data = array(
 			'v' => ! empty( $data['v'] ) ? $data['v'] : '',
 			'u' => ! empty( $data['u'] ) ? $data['u'] : '',
-			'hasData' => ! empty( $data ) && ! isset( $data['errors'] ),
+			'hasData' => ! empty( $data ),
 		);
 
 		if ( ! empty( $images ) ) {
@@ -1371,9 +1367,8 @@ class WP_Press_This {
 	<div id="scanbar" class="scan">
 		<form method="GET">
 			<label for="url-scan" class="screen-reader-text"><?php _e( 'Scan site for content' ); ?></label>
-			<input type="url" name="u" id="url-scan" class="scan-url" value="<?php echo esc_attr( $site_data['u'] ) ?>" placeholder="<?php esc_attr_e( 'Enter a URL to scan' ) ?>" />
+			<input type="url" name="u" id="url-scan" class="scan-url" value="" placeholder="<?php esc_attr_e( 'Enter a URL to scan' ) ?>" />
 			<input type="submit" name="url-scan-submit" id="url-scan-submit" class="scan-submit" value="<?php esc_attr_e( 'Scan' ) ?>" />
-			<?php wp_nonce_field( 'scan-site' ); ?>
 		</form>
 	</div>
 
