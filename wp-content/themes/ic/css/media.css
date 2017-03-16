@@ -236,7 +236,8 @@ and (max-width : 1099px) {
 	    margin: 0 25px;
 	}
 
-	.section-header h2.section-title {
+	.section-header h2.section-title,
+	.section-header h1.section-title {
 	    font-size: 31px;
 	    padding: 18px 0;
 	    width: 450px;
@@ -355,7 +356,8 @@ and (max-width : 1099px) {
 	    max-width: 100%;
 	}
 
-	.single-rooms .section-header h2.section-title {
+	.single-rooms .section-header h2.section-title,
+	.single-rooms .section-header h1.section-title {
 		display: inline;
 	}
 
@@ -1061,7 +1063,8 @@ and (max-width : 640px)
 	    display: none;
 	}
 
-	.section-header h2.section-title {
+	.section-header h2.section-title,
+	.section-header h1.section-title {
 	    font-size: 26px;
 	    padding: 18px 0;
 	    width: 100%;
@@ -1442,7 +1445,8 @@ and (max-width : 480px)
 
 	/* Room - Single */
 	
-	.single-rooms .section-header h2.section-title {
+	.single-rooms .section-header h2.section-title,
+	.single-rooms .section-header h1.section-title {
 		display: block;
 	}
 	
@@ -1703,7 +1707,8 @@ and (max-width : 399px)
 	    width: 100%;
 	}
 
-	.single-rooms .section-header h2.section-title {
+	.single-rooms .section-header h2.section-title,
+	.single-rooms .section-header h1.section-title {
 	    font-size: 23px;
 	    padding: 18px 0;
 	}
