@@ -54,17 +54,17 @@
 					<ul class="social-buttons">
 					<?php if(get_option('cebo_facebook')) { ?>
 					
-						<li class="facebook"><a href="http://facebook.com/<?php echo get_option('cebo_facebook'); ?>" target="_blank"><i class="fa fa-facebook fa-2x"></i><span>facebook</span></a></li>
+						<li class="facebook"><a href="//facebook.com/<?php echo get_option('cebo_facebook'); ?>" target="_blank"><i class="fa fa-facebook fa-2x"></i><span>facebook</span></a></li>
 						
 					<?php } ?>
 					<?php if(get_option('cebo_twitter')) { ?>
 					
-						<li class="twitter"><a href="http://twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter fa-2x"></i><span>twitter</span></a></li>
+						<li class="twitter"><a href="//twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter fa-2x"></i><span>twitter</span></a></li>
 						
 					<?php } ?>
 					<?php if(get_option('cebo_instagram')) { ?>
 					
-						<li class="instagram"><a href="http://instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>twitter</span></a></li>
+						<li class="instagram"><a href="//instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>twitter</span></a></li>
 						
 					<?php } ?>
 					</ul>
@@ -137,11 +137,11 @@
 				<div id="TA_ssnarrowcollectreview85" class="TA_ssnarrowcollectreview">
 				<ul id="uvAgInbFjas4" class="TA_links qoUlZo">
 				<li id="PseDsyt" class="w2pgplkdn8B">
-				<a target="_blank" href="http://www.tripadvisor.com/"><img src="https://www.tripadvisor.com/img/cdsi/img2/branding/150_logo-16124-2.png" alt="TripAdvisor"/></a>
+				<a target="_blank" href="//www.tripadvisor.com/"><img src="https://www.tripadvisor.com/img/cdsi/img2/branding/150_logo-16124-2.png" alt="TripAdvisor"/></a>
 				</li>
 				</ul>
 				</div>
-				<script src="http://www.jscache.com/wejs?wtype=ssnarrowcollectreview&amp;uniq=85&amp;locationId=1103707&amp;lang=en_US&amp;border=true&amp;display_version=2"></script>
+				<script src="//www.jscache.com/wejs?wtype=ssnarrowcollectreview&amp;uniq=85&amp;locationId=1103707&amp;lang=en_US&amp;border=true&amp;display_version=2"></script>
 				<!--TRIP ADVISOR WIDGET -->
 			</div>
 
