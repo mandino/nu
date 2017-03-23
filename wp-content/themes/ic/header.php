@@ -13,12 +13,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<title>
-		<?php global $page, $paged; wp_title( '|', true, 'right' ); //bloginfo( 'name' );
-	
-		// Add the blog description for the home/front page.
-		// $site_description = get_bloginfo( 'description', 'display' );
-		// if ( $site_description && ( is_home() || is_front_page() ) )
-		// 	echo " | $site_description";
+		<?php global $page, $paged; wp_title( '|', true, 'right' );
 	
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 )
@@ -205,14 +200,6 @@ ga('send', 'pageview');
 	
 						<a href="//www.independentcollection.com/ic-local" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
 	
-						<!-- <ul>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-						</ul> -->
-	
 					</li>
 					<!-- <li class="blue-btn"><a href="//nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li> -->
 				</ul>
@@ -228,8 +215,6 @@ ga('send', 'pageview');
 			<a href="<?php bloginfo('url'); ?>" class="logo<?php if(is_home()) { ?> droplogo<?php } ?>"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
 			<a href="<?php bloginfo('url'); ?>" class="logo mobile"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
-			
-			<!--<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>-->
 
 			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
 			
