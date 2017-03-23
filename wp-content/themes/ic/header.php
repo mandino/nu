@@ -13,12 +13,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<title>
-		<?php global $page, $paged; wp_title( '|', true, 'right' ); //bloginfo( 'name' );
-	
-		// Add the blog description for the home/front page.
-		// $site_description = get_bloginfo( 'description', 'display' );
-		// if ( $site_description && ( is_home() || is_front_page() ) )
-		// 	echo " | $site_description";
+		<?php global $page, $paged; wp_title( '|', true, 'right' );
 	
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 )
@@ -31,7 +26,7 @@
 		}
 	?>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="profile" href="//gmpg.org/xfn/11" />
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php if (get_option('cebo_custom_favicon') == '') { ?>
@@ -63,7 +58,7 @@
 	
 	<!-- Jquery -->
 	<?php //include(TEMPLATEPATH. "/library/jquery.php"); ?>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type='text/javascript' src='<?php bloginfo ('url'); ?>/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
 
 	<?php
@@ -102,7 +97,7 @@ ga('send', 'pageview');
 
 	<script type="application/ld+json">
 		{
-		"@context": "http://schema.org",
+		"@context": "//schema.org",
 		"@type": "NewsArticle",
 		"headline": "Article headline",
 		"alternativeHeadline": "The headline of the Article",
@@ -203,18 +198,10 @@ ga('send', 'pageview');
 				<ul class="container no-js">
 					<li>
 	
-						<a href="http://www.independentcollection.com/ic-local" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
-	
-						<!-- <ul>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-							<li class="navitem"><a href="#">Independet Collection</a></li>
-						</ul> -->
+						<a href="//www.independentcollection.com/ic-local" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
 	
 					</li>
-					<!-- <li class="blue-btn"><a href="http://nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li> -->
+					<!-- <li class="blue-btn"><a href="//nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li> -->
 				</ul>
 			</nav>
 			
@@ -228,8 +215,6 @@ ga('send', 'pageview');
 			<a href="<?php bloginfo('url'); ?>" class="logo<?php if(is_home()) { ?> droplogo<?php } ?>"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
 			<a href="<?php bloginfo('url'); ?>" class="logo mobile"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
-			
-			<!--<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>-->
 
 			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
 			

@@ -46,7 +46,7 @@
 					
 					<?php } else { ?>
 					
-						<form name="surveys" action="http://zmaildirect.com/app/new/MTIzNTQzMjYx" method="get">  
+						<form name="surveys" action="//zmaildirect.com/app/new/MTIzNTQzMjYx" method="get">  
 
 						<input type="hidden" name="formId" value="MTIzNTQzMjYx">
 							<div style="float: left;">
@@ -66,8 +66,8 @@
 		</div>
 
 		<div id="property-name">
-			<a href="http://www.independentcollection.com/ic-local/" target="_blank"><i class="sprite sprite-ic_01"></i></a>
-			<a href="http://www.independentcollection.com/" target="_blank"><i class="sprite sprite-ic_02"></i></a>
+			<a href="//www.independentcollection.com/ic-local/" target="_blank"><i class="sprite sprite-ic_01"></i></a>
+			<a href="//www.independentcollection.com/" target="_blank"><i class="sprite sprite-ic_02"></i></a>
 		</div>
 		<div class="footer-nav container">
 
@@ -81,25 +81,25 @@
 
 					<?php if(get_option('cebo_twitter')) { ?>
 					
-						<li class="twitter"><a href="http://twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter fa-2x"></i><span>twitter</span></a></li>
+						<li class="twitter"><a href="//twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter fa-2x"></i><span>twitter</span></a></li>
 						
 					<?php } ?>
 				
 					<?php if(get_option('cebo_facebook')) { ?>
 					
-						<li class="facebook"><a href="http://facebook.com/<?php echo get_option('cebo_facebook'); ?>" target="_blank"><i class="fa fa-facebook fa-2x"></i><span>facebook</span></a></li>
+						<li class="facebook"><a href="//facebook.com/<?php echo get_option('cebo_facebook'); ?>" target="_blank"><i class="fa fa-facebook fa-2x"></i><span>facebook</span></a></li>
 						
 					<?php } ?>
 					
 					<?php if(get_option('cebo_instagram')) { ?>
 
-						<li class="instagram"><a href="http://instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>instagram</span></a></li>
+						<li class="instagram"><a href="//instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>instagram</span></a></li>
 
 					<?php } ?>
 					
 					<?php if(get_option('cebo_youtube')) { ?>
 					
-						<li class="youtube"><a href="http://youtube.com/<?php echo get_option('cebo_youtube'); ?>" target="_blank"><i class="fa fa-youtube fa-2x"></i><span>youtube</span></a></li>
+						<li class="youtube"><a href="//youtube.com/<?php echo get_option('cebo_youtube'); ?>" target="_blank"><i class="fa fa-youtube fa-2x"></i><span>youtube</span></a></li>
 					
 					<?php } ?>
 				</ul>
@@ -153,17 +153,6 @@ var google_remarketing_only = true;
 </noscript>
 <?php } ?>
 <!-- End Remarketing -->
-
-<?php 
-
-// if(get_option('cebo_tracking_code')) {
-
-// 	echo get_option('cebo_tracking_code');
-
-// } 
-
-?>
-
 
 <!-- Email signup popup -->
 <?php wp_reset_query(); ?>
