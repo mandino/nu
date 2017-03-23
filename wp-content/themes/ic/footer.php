@@ -154,17 +154,6 @@ var google_remarketing_only = true;
 <?php } ?>
 <!-- End Remarketing -->
 
-<?php 
-
-// if(get_option('cebo_tracking_code')) {
-
-// 	echo get_option('cebo_tracking_code');
-
-// } 
-
-?>
-
-
 <!-- Email signup popup -->
 <?php wp_reset_query(); ?>
 <?php if ( is_single() || is_page( 'blog' ) ) { ?>
