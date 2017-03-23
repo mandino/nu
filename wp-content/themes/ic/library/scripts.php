@@ -1,6 +1,6 @@
 <!-- Fonts -->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
 <!-- MailChimp Subscription script -->
 <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 
 <!-- JS -->
-<!--<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>-->
+<!--<script src="//code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>-->
 <script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.prettyPhoto.js"></script>
 
 <!-- Custom Modernizr for Quotes Rotator -->
@@ -48,7 +48,7 @@
 
 	<!-- Fonts -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
 	<!-- MailChimp Subscription script -->
 	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
@@ -78,7 +78,7 @@
 cript>
 
 <!-- Jquery UI -->
-<!-- <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
+<!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
 
 <!-- Iosslider -->
 <?php if ( 'rooms' == get_post_type() ) 	{ ?>
