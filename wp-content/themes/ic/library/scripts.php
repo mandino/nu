@@ -75,8 +75,6 @@
 	<!-- Color Override CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 
-cript>
-
 <!-- Jquery UI -->
 <!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
 
