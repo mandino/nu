@@ -182,10 +182,6 @@ var google_remarketing_only = true;
 				
 				<div class="signup-form">
 
-						<style type="text/css">
-							.hidden-from-view { left: -5000px; position: absolute; }
-						</style>
-
 						<form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" method="post" action="//nuhotelbrooklyn.us3.list-manage.com/subscribe/post?u=59c75b2e64de9a8bf94c59372&id=9f057a50d1" class="validate" target="_blank" novalidate>
 
 							<input type="hidden" name="formId" value="MTIzNTQzMjYx">

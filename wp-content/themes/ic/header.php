@@ -51,11 +51,9 @@
 	
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom.css">
-	
-	<style>
-		<?php include(TEMPLATEPATH. "/library/inset.php"); ?>	
-	</style>
-	
+
+	<?php include(TEMPLATEPATH. "/library/inset.php"); ?>
+
 	<!-- Jquery -->
 	<?php //include(TEMPLATEPATH. "/library/jquery.php"); ?>
 	<script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -211,34 +209,29 @@ ga('send', 'pageview');
 		</div>
 	
 		<div id="primary-nav">
-		
+
 			<a href="<?php bloginfo('url'); ?>" class="logo<?php if(is_home()) { ?> droplogo<?php } ?>"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
 			<a href="<?php bloginfo('url'); ?>" class="logo mobile"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
 			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
-			
+
 			<a class="reserve fixeer mobile button fr" id="idp4" href="<?php echo get_option('cebo_genbooklink'); ?>" target="_blank">RESERVE</a>
-			
+
 			<div class="container" style="float: right;">
 
 				<a class="mmenu-icon" href="#menu"><i class="fa fa-bars"></i></a>
-	
+
 				<nav id="menu" class="fl" style="z-index:1">
 					<ul>
 						 <?php wp_nav_menu( array( 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
 					</ul>
 				</nav>
-	
+
 			</div>
-	
-				
-				
-				
-	
+
 		</div>
 
 	</div>
-	
+
 	<div id="quiet"></div>
-   
