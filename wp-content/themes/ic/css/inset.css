@@ -1,0 +1,260 @@
+.section-photos li div h3, .thumbgal li div h3 {
+font-size: 35px;
+}
+
+.logo {
+max-height: none !important;
+}
+
+.welcometext h1 {
+font-size: 39px !important;
+}
+
+.post-content h2 {
+margin: 0;
+}
+.wpcf7-form input, textarea {
+width: 94%;
+}
+
+.wpcf7 input[type="submit"] {
+margin-right: 20px;
+}
+
+.post-content.fl {
+padding: 25px 20px;
+}
+
+
+	.specialsbox:before {
+		background: #f27333;
+	}
+
+	.mmenu-icon .fa.fa-bars {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	.button:focus {
+		background-color: #f27333;
+	}
+
+
+	#room-featured-slider .button:hover {
+		background: none repeat scroll 0 0 #f27333; !important;
+	}
+
+	.fullpic .button:hover {
+		background: none repeat scroll 0 0 #f27333; !important;
+	}
+
+	.room-details-content .button:hover {
+		background-color: #f27333; !important;
+	}
+
+	.sidebar .button:hover {
+		background: #f27333; !important;
+	}
+
+	.upcoming-events .fr li:hover .event-date {
+		background: #f27333;
+	}
+
+	.upcoming-events li:hover .event-description {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	nav .icon-mail:hover {
+		color: #f27333;
+	}
+
+	nav .icon-mail {
+		background: #f27333;
+	}
+
+	.button {
+		background: #f27333;
+	}
+
+	.circle {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	a {
+		color: #f27333;
+	}
+
+	.button:focus {
+		background-color: #f27333;
+	}
+
+	.boxer .lowball {
+		color: #f27333;
+	}
+
+	.boxer h3 {
+		color: #f27333;
+	}
+
+	.boxer h6 {
+	 color: #f27333;
+	}
+
+
+	.boxer a {
+		color: #f27333;
+	}
+
+
+	p a {
+		color: #f27333; }
+
+	.dropmenu select {
+		border: 1px solid #f27333;
+	}
+
+
+	.icon-menu {
+		color: #f27333;
+	}
+
+	#slidecaption .footprints li:hover {
+	 background: #f27333;
+	}
+
+	.boxer aside ul li a:hover {
+		color: #f27333;
+	}
+
+	ul.tabs li.active a {
+		color: #f27333;
+	}
+
+
+	#toggle-view li.activated:after {
+		background: #f27333;
+	}
+
+	.nextposters .boxer li a:hover h4 {
+		color: #f27333;
+	}
+
+	.usercomments h4 i a {
+		color: #f27333;
+	}
+
+	.social-buttons a:hover, .social-buttons i:hover {
+		color: #f27333;
+	}
+
+	#primary-nav nav ul li a:hover {
+		color: #f27333;
+	}
+
+	#primary-nav .button {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	#neighborhood .section-header .fr li {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	.newsletter-form input[type="submit"] {
+		background: none repeat scroll 0 0 #f27333; !important;
+	}
+
+	footer nav ul.footling li a:hover {
+		color: #f27333; }
+
+	#primary-nav nav ul li a:hover, footer nav ul li.navitem a:hover, .social-buttons a:hover, .social-buttons i:hover, #room-featured-slider .iosslider-next:hover i, #room-featured-slider .iosslider-prev:hover i, #room-details-slider .iosslider-next:hover i, #room-details-slider .iosslider-prev:hover i, .cbp-qtrotator blockquote p:hover, #primary-nav nav ul li.current-menu-item a {
+		color: #f27333;
+	}
+
+	#navigation-sticky-wrapper #primary-nav .fixeer {
+		background: #f27333;
+	}
+
+	.ui-timepicker-div .ui-state-default,
+	.ui-timepicker-div .ui-widget-content .ui-state-default,
+	.ui-timepicker-div .ui-widget-header .ui-state-default {
+		background: #f27333;
+	}
+	.dp-highlight .ui-state-default {
+		background: #f27333;
+	}
+
+
+
+	#map .activities li {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	.post-content h3 {
+		color: #f27333;
+	}
+
+	.post-tags li a:hover, .post-tags li.current a {
+		color: #f27333;
+	}
+
+
+	.post-content blockquote p {
+		color: #f27333;
+	}
+
+
+	.wpcf7 input[type="submit"]:hover {
+		background-color: #f27333;
+	}
+
+
+	.upcoming-calendar .tribe-mini-calendar td.tribe-events-has-events {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	.section-photos li div.hover-effect, .thumbgal li div.hover-effect {
+		background: none repeat scroll 0 0 rgba(print_r(242,115,5);, .8);
+	}
+
+
+	#neighborhood .section-header .fr li {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	footer nav ul.footling li a:hover {
+		color: #f27333;
+	}
+
+
+	.dp-highlight .ui-state-default {
+		background: #f27333;
+		color: #FFF;
+	}
+
+	#map .activities li {
+		background: none repeat scroll 0 0 #f27333;
+	}
+
+	.placeMark {
+		background: #f27333;
+	}
+
+	#toggles li {
+		background: #f27333;
+	}
+
+	.from-price {
+		background: none repeat scroll 0 0 rgba(print_r(242,115,5), 0.8);
+	}
+
+	/* Hover Background */
+	#room-featured-slider .button:hover,
+	.room-details-content .button:hover,
+	.room-box .button:hover,
+	#primary-nav .button:hover {
+		background: none repeat scroll 0 0 #f27333; !important;
+	}
+
+	/*use in footer*/
+	.hidden-from-view {
+		left: -5000px; position: absolute;
+	}
