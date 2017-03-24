@@ -1,0 +1,1 @@
+var php_variables = php_vars;
