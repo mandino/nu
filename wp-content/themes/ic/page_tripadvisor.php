@@ -18,7 +18,7 @@
 	<div class="slide-header">
 		<a class="button" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>" onclick="_gaq.push(['_link', this.href]);return false;"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 	</div>
-	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" />
+	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 
 
 </div>
@@ -170,11 +170,11 @@
 									
 									<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>"></a>
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" ></a>
 									
 									<?php } else { ?>
 									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>"></a>
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
 									
 									<?php } ?>
 									
