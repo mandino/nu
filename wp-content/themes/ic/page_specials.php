@@ -32,6 +32,8 @@
 					
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
 					
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
@@ -40,9 +42,6 @@
 					
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -108,7 +107,7 @@
 								
 								<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 								
-								<h2><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h2>
+								<span><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></span>
 								
 								
 								<?php } ?>
@@ -117,7 +116,7 @@
 									
 									<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 									
-									<h2><a href="<?php the_permalink(); ?>"><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></a></h2>
+									<span><a href="<?php the_permalink(); ?>"><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></a></span>
 									
 									<?php } ?>
 									

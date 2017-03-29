@@ -14,9 +14,9 @@
 
 				<div class="fl">
 
+					<h1 class="section-title fr">NU Hotel Blog</h1>
 					<h2 class="section-pre-title fl">Blog</h2>
 					<div class="section-header-divider fl"></div>
-					<h1 class="section-title fr">NU Hotel Blog</h1>
 
 				</div>
 
