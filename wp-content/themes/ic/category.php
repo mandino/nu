@@ -10,12 +10,12 @@ get_header(); ?>
 			<div class="section-header">
 				
 				<div class="fl">
-					
-					<h2 class="section-pre-title fl">Category</h2>
-					
-					<div class="section-header-divider fl"></div>
+
 					<h1 class="section-title fr"><?php single_cat_title(); ?></h1>
-	
+
+					<h2 class="section-pre-title fl">Category</h2>
+					<div class="section-header-divider fl"></div>
+
 				</div>
 
 				<div class="fr">

@@ -298,11 +298,11 @@ get_header();
 
 				<div class="fl">
 
+					<h2 class="section-title fr">Brooklyn</h2>
+
 					<h2 class="section-pre-title fl">Neighborhood</h2>
 
 					<div class="section-header-divider fl"></div>
-
-					<h2 class="section-title fr">Brooklyn</h2>
 
 				</div>
 
