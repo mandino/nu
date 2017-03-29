@@ -1638,7 +1638,8 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-size: 36px;
 	text-decoration: uppercase;
 	color: #3d3d3d;
-	padding: 23px 0;
+	padding-top: 20px;
+	max-width: 84%;
 }
 .welcometext {
 	padding: 0 0 15px 0;
