@@ -1623,7 +1623,8 @@ li.blue-btn {
 	bottom: 9px;
 	background-color: #fff;
 	width: 98px;
-	right: 110px;
+	right: 150px;
+	padding: 3px 0;
 }
 
 li.blue-btn i {
