@@ -399,7 +399,7 @@ and (max-width : 1099px) {
 	/* light it up blue */
 
 	li.blue-btn {
-		left: 0px;
+		left: 5px;
 	}
 
 }
@@ -1070,10 +1070,17 @@ and (max-width : 640px)
 	    font-size: 18px;
 	    padding: 16px 0;
 	    width: 100%;
+		position: absolute;
+		top: 0;
 	}
 
 	.section-header-divider.fl {
 	    display: none;
+	}
+
+	.section-header div.fl:first-of-type {
+		position: relative;
+		margin-bottom: 50px;
 	}
 
 	.section-header h2.section-title,
@@ -1081,6 +1088,9 @@ and (max-width : 640px)
 	    font-size: 26px;
 	    padding: 18px 0;
 	    width: 100%;
+		position: relative;
+		top: 50px;
+		max-width: 100%;
 	}
 
 	.section-header {
@@ -1090,7 +1100,7 @@ and (max-width : 640px)
 	.section-header .fr {
 	    clear: both;
 	    float: none;
-	    padding: 0 0 20px;
+	    padding: 20px 0 20px;
 	    position: relative;
 	}
 
