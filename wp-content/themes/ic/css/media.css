@@ -399,7 +399,7 @@ and (max-width : 1099px) {
 	/* light it up blue */
 
 	li.blue-btn {
-		left: 0px;
+		left: 10px;
 	}
 
 }
