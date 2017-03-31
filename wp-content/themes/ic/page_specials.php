@@ -107,7 +107,7 @@
 								
 								<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 								
-								<span><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></span>
+								<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
 								
 								
 								<?php } ?>
@@ -116,7 +116,7 @@
 									
 									<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 									
-									<span><a href="<?php the_permalink(); ?>"><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></a></span>
+									<h4><a href="<?php the_permalink(); ?>"><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></a></h4>
 									
 									<?php } ?>
 									

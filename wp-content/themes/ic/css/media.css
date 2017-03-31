@@ -226,7 +226,8 @@ and (max-width : 1099px) {
 
 	/* Section Header */
 
-	.section-header h2.section-pre-title {
+	.section-header h2.section-pre-title,
+	.section-header span.section-pre-title {
 	    font-size: 21px;
 	    padding: 25px 0;
 	}
@@ -237,7 +238,8 @@ and (max-width : 1099px) {
 	}
 
 	.section-header h2.section-title,
-	.section-header h1.section-title {
+	.section-header h1.section-title,
+	.section-header span.section-title {
 	    font-size: 31px;
 	    padding: 18px 0;
 	    width: 450px;
@@ -1052,13 +1054,17 @@ and (max-width : 640px)
 	    max-width: 100%;
 	}
 
-	.section-header h2.section-pre-title {
+	.section-header h2.section-pre-title, .section-header span.section-pre-title {
 	    border-bottom: 1px solid #DEDEDE;
 	    font-size: 18px;
 	    padding: 16px 0;
 	    width: 100%;
 		position: absolute;
 		top: 0;
+	}
+
+	.section-header span.section-pre-title {
+		position: relative;
 	}
 
 	.section-header-divider.fl {
@@ -1071,13 +1077,18 @@ and (max-width : 640px)
 	}
 
 	.section-header h2.section-title,
-	.section-header h1.section-title {
+	.section-header h1.section-title,
+	.section-header span.section-title {
 	    font-size: 26px;
 	    padding: 18px 0;
 	    width: 100%;
 		position: relative;
 		top: 50px;
 		max-width: 100%;
+	}
+
+	.section-header span.section-title {
+		top: 12px;
 	}
 
 	.section-header {
