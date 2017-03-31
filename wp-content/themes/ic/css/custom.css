@@ -126,7 +126,7 @@ p a, li a {
     -o-transition: all 0.4s;
 }
 
-h1, h2, h3, h4, h5, h6, h7 {
+h1, h2, h3, h4, h5, h6, h7, span.section-title {
     font-family: didot, serif;
     text-transform: none;
 }
@@ -570,9 +570,9 @@ color: #333;
         opacity: 1;
     }
     #intro .section-photos li:hover h2, #intro .section-photos li:hover .from-price, 
-    .thumbgal li:hover h2, .thumbgal li:hover .from-price, .thumbgal li:hover span,
+    .thumbgal li:hover h2, .thumbgal li:hover .from-price, .thumbgal li:hover h3,
     #intro .section-photos li.hover_effect:hover h2, #intro .section-photos li.hover_effect:hover .from-price, 
-    .thumbgal li.hover_effect:hover h2, .thumbgal li.hover_effect:hover .from-price, .thumbgal li.hover_effect:hover span {
+    .thumbgal li.hover_effect:hover h2, .thumbgal li.hover_effect:hover .from-price, .thumbgal li.hover_effect:hover h4 {
         opacity: 0;
     }
 	.opaque {
@@ -583,7 +583,7 @@ color: #333;
     margin-bottom: 15px;
 }
 
-.section-photos li h2, .thumbgal li h2, .thumbgal li span {
+.section-photos li h2, .thumbgal li h2, .thumbgal li h3, .thumbgal li h4 {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -628,7 +628,7 @@ color: #333;
     width: 100%;
 }
 
-.section-photos li div h2, .thumbgal li div h2, .thumbgal li div span {
+.section-photos li div h2, .thumbgal li div h2, .thumbgal li div h4 {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     font-size: 40px;
     line-height: 1;
@@ -1057,7 +1057,7 @@ color: #333;
 	text-transform: uppercase;
 }
 
-.page-id-35 .post-content span {
+.page-id-35 .post-content h4 {
 	display: block;
 }
 
@@ -1242,7 +1242,7 @@ color: #333;
 	opacity: 0.8;
 }
 
-.imagegal li h2, .imagegal li span {
+.imagegal li h2, .imagegal li h3, .imagegal li h4 {
     bottom: 4px;
     font-family: didot,serif;
     font-weight: normal;
@@ -1251,13 +1251,14 @@ color: #333;
     margin: 0;
     padding: 0;
     text-transform: none;
+    font-style: normal;
 }
 
-.imagegal li .hover-effect > h2, .imagegal li .hover-effect > span {
+.imagegal li .hover-effect > h2, .imagegal li .hover-effect > h4 {
     top: 22%;
 }
 
-.imagegal li .hover-effect > h2 a, .imagegal li .hover-effect > span a{
+.imagegal li .hover-effect > h2 a, .imagegal li .hover-effect > h4 a{
 	color: #fff;
 }
 
