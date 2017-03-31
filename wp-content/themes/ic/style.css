@@ -1680,7 +1680,7 @@ h1, h2, h3, h4, h5, h6, h7 {
         opacity: 0;
     }
 
-.section-photos li h3 {
+.section-photos li h3, .section-photos li h4 {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -1792,7 +1792,7 @@ h1, h2, h3, h4, h5, h6, h7 {
         opacity: 1;
     }
 
-.section-photos li div h3 {
+.section-photos li div h3, .section-photos li div h4 {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     font-size: 40px;
     line-height: 1;
@@ -1800,6 +1800,10 @@ h1, h2, h3, h4, h5, h6, h7 {
     position: relative;
     width: 80%;
     opacity: 1 !important;
+}
+
+.section-photos li div a.special-copy-link h4 {
+    font-size: 35px;
 }
 
 

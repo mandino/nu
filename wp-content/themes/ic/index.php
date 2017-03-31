@@ -101,7 +101,7 @@ get_header();
 
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
+							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
 
 							<?php } ?>
 							<br>
@@ -153,7 +153,7 @@ get_header();
 
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
 
 							<?php } ?>
 
@@ -191,7 +191,7 @@ get_header();
 						<div class="hover-effect">
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
 
 							<?php } ?>
 							<br>
