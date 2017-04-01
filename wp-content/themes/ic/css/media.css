@@ -1055,15 +1055,13 @@ and (max-width : 640px)
 	}
 
 	.section-header h2.section-pre-title, .section-header span.section-pre-title {
-	    border-bottom: 1px solid #DEDEDE;
-	    font-size: 18px;
-	    padding: 16px 0;
-	    width: 100%;
-		position: absolute;
-		top: 0;
+		border-bottom: 1px solid #DEDEDE;
+		font-size: 18px;
+		padding: 16px 0;
+		width: 100%;
 	}
 
-	.section-header span.section-pre-title {
+	div#intro .section-header span.section-pre-title {
 		position: relative;
 	}
 
@@ -1073,7 +1071,11 @@ and (max-width : 640px)
 
 	.section-header div.fl:first-of-type {
 		position: relative;
-		margin-bottom: 50px;
+		margin-bottom: 55px;
+	}
+
+	#neighborhood .section-header div.fl:first-of-type {
+		margin-bottom: 0px;
 	}
 
 	.section-header h2.section-title,
@@ -1082,9 +1084,17 @@ and (max-width : 640px)
 	    font-size: 26px;
 	    padding: 18px 0;
 	    width: 100%;
+	    max-width: 100%;
+	}
+
+	.section-header h1.section-title {
 		position: relative;
-		top: 50px;
-		max-width: 100%;
+		top: 55px;
+	}
+
+	.section-header h2.section-pre-title {
+		position: absolute;
+		top: 0;
 	}
 
 	.section-header span.section-title {

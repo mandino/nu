@@ -95,13 +95,13 @@ get_header();
 
 						<?php } ?>
 
-						<h3><?php the_title(); ?></h3>
+						<span><?php the_title(); ?></span>
 
 						<div class="hover-effect">
 
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
+							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
 
 							<?php } ?>
 							<br>
@@ -144,7 +144,7 @@ get_header();
 
 						<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 
-						<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
+						<span><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></span>
 
 
 						<?php } ?>
@@ -153,7 +153,7 @@ get_header();
 
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
 
 							<?php } ?>
 
@@ -186,12 +186,12 @@ get_header();
 
 						<?php } ?>
 
-						<h3><?php the_title(); ?></h3>
+						<span><?php the_title(); ?></span>
 
 						<div class="hover-effect">
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4></a>
+							<a class="special-copy-link" href="<?php the_permalink(); ?>"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
 
 							<?php } ?>
 							<br>
@@ -298,11 +298,11 @@ get_header();
 
 				<div class="fl">
 
-					<h2 class="section-title fr">Brooklyn</h2>
-
-					<h2 class="section-pre-title fl">Neighborhood</h2>
+					<span class="section-pre-title fl">Neighborhood</span>
 
 					<div class="section-header-divider fl"></div>
+
+					<h2 class="section-title fr">Brooklyn</h2>
 
 				</div>
 
