@@ -69,9 +69,6 @@
 	<!-- Lightbox - Prettyphoto -->	
 	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
 
-	<!-- responsive style -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
-
 	<!-- Color Override CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 

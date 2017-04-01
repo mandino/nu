@@ -126,7 +126,7 @@ p a, li a {
     -o-transition: all 0.4s;
 }
 
-h1, h2, h3, h4, h5, h6, h7, span.section-title {
+h1, h2, h3, h4, h5, h6, h7, span.section-title, .section-photos span {
     font-family: didot, serif;
     text-transform: none;
 }
