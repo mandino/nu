@@ -136,7 +136,7 @@ if( count( $children ) != 0 ) { ?>
 									
 									<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 									
-									<h2><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h2>
+									<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
 									
 									
 									<?php } ?>
@@ -145,7 +145,7 @@ if( count( $children ) != 0 ) { ?>
 										
 										<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 										
-										<h2><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h2>
+										<h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4>
 										
 										<?php } ?>
 										
