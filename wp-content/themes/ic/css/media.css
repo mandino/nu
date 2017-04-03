@@ -399,7 +399,7 @@ and (max-width : 1099px) {
 	/* light it up blue */
 
 	li.blue-btn {
-		left: 0px;
+		left: 10px;
 	}
 
 }
@@ -716,6 +716,19 @@ and (max-width : 940px)
     padding: 5px 36px 5px 19px !important;
 	}
 
+	li.blue-btn
+	{
+		bottom: 27%;
+		width: 20px !important;
+	}
+
+	li.blue-btn i {
+		padding-right: 0px !important;
+	}
+
+	li.blue-btn span.blue-mobile {
+		display: none;
+	}
 
 }
 
@@ -1357,6 +1370,31 @@ padding: 8px 12px;
 
 }
 
+@media only screen and (max-width: 600px) {
+	.click-nav ul li:first-child a {
+		left: 3%;
+	}
+}
+@media only screen and (max-width: 556px) {
+	.click-nav ul li:first-child a {
+		left: 3%;
+	}
+
+	.click-nav ul li:first-child {
+		width: 90%;
+	}
+
+	li.blue-btn {
+		bottom: 33%;
+	}
+}
+
+@media only screen and (max-width: 510px) {
+	.click-nav ul li:first-child a {
+		left: 4%;
+	}
+}
+
 
 
 /* ================================================  MOBILES BELOW 480 ======================================= */
@@ -1612,13 +1650,14 @@ and (max-height : 480px)
     display: none;
 	}
 
-	li.blue-btn {
-		width: 35px;
-	}
 
 }
 
-
+@media only screen and (max-width: 480px) {
+	li.blue-btn {
+		width: 35px;
+	}
+}
 
 
 /* ================================================  MOBILES BELOW 399 ======================================= */
