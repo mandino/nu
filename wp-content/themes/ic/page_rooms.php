@@ -32,6 +32,8 @@
 					
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
 					
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
@@ -40,9 +42,6 @@
 					
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -99,7 +98,7 @@
 
 						<div class="fr">
 							
-							<h2><?php the_title(); ?></h2>
+							<h3><?php the_title(); ?></h3>
 
 							<p><?php echo excerpt(100); ?></p>
 

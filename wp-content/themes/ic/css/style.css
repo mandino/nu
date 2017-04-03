@@ -679,7 +679,7 @@ img.scaleimg {
 Typography
 --------------------------------------------------------*/
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .section-photos span {
 	text-transform: uppercase;
 	font-weight: 400;
 }
@@ -696,7 +696,7 @@ h1.white {
 	color: white;
 }
 
-h2 {
+h2, span.section-title {
 	font-family:  sans-serif;
 	font-weight: 100;
 	font-size: 45px;
@@ -708,7 +708,7 @@ h2.white {
 }
 
 
-h3 {
+h3, .section-photos span {
 	font-family: 'Oswald', sans-serif;
 	font-size: 22px;
 }

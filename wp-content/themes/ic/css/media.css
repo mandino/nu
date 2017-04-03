@@ -196,7 +196,7 @@ and (max-width : 1099px) {
 	    height: 98.7%;
 	}
 
-	.section-photos li div h3, .thumbgal li div h3 {
+	.section-photos li div h3, .thumbgal li div h3, .thumbgal li div h4 {
 	    font-size: 30px;
 	}
 
@@ -226,7 +226,8 @@ and (max-width : 1099px) {
 
 	/* Section Header */
 
-	.section-header h2.section-pre-title {
+	.section-header h2.section-pre-title,
+	.section-header span.section-pre-title {
 	    font-size: 21px;
 	    padding: 25px 0;
 	}
@@ -237,7 +238,8 @@ and (max-width : 1099px) {
 	}
 
 	.section-header h2.section-title,
-	.section-header h1.section-title {
+	.section-header h1.section-title,
+	.section-header span.section-title {
 	    font-size: 31px;
 	    padding: 18px 0;
 	    width: 450px;
@@ -1065,22 +1067,51 @@ and (max-width : 640px)
 	    max-width: 100%;
 	}
 
-	.section-header h2.section-pre-title {
-	    border-bottom: 1px solid #DEDEDE;
-	    font-size: 18px;
-	    padding: 16px 0;
-	    width: 100%;
+	.section-header h2.section-pre-title, .section-header span.section-pre-title {
+		border-bottom: 1px solid #DEDEDE;
+		font-size: 18px;
+		padding: 16px 0;
+		width: 100%;
+	}
+
+	div#intro .section-header span.section-pre-title {
+		position: relative;
 	}
 
 	.section-header-divider.fl {
 	    display: none;
 	}
 
+	.section-header div.fl:first-of-type {
+		position: relative;
+		margin-bottom: 55px;
+	}
+
+	#neighborhood .section-header div.fl:first-of-type {
+		margin-bottom: 0px;
+	}
+
 	.section-header h2.section-title,
-	.section-header h1.section-title {
+	.section-header h1.section-title,
+	.section-header span.section-title {
 	    font-size: 26px;
 	    padding: 18px 0;
 	    width: 100%;
+	    max-width: 100%;
+	}
+
+	.section-header h1.section-title {
+		position: relative;
+		top: 55px;
+	}
+
+	.section-header h2.section-pre-title {
+		position: absolute;
+		top: 0;
+	}
+
+	.section-header span.section-title {
+		top: 12px;
 	}
 
 	.section-header {
@@ -1090,7 +1121,7 @@ and (max-width : 640px)
 	.section-header .fr {
 	    clear: both;
 	    float: none;
-	    padding: 0 0 20px;
+	    padding: 20px 0 20px;
 	    position: relative;
 	}
 

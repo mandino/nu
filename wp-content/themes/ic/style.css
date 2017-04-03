@@ -1617,7 +1617,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     padding: 30px 0;
 }
 
-.section-header h2.section-pre-title {
+.section-header h2.section-pre-title, .section-header span.section-pre-title {
 	font-size: 24px;
 	color: #6e6e6e;
 	font-family: didot, georgia;
@@ -1638,7 +1638,8 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-size: 36px;
 	text-decoration: uppercase;
 	color: #3d3d3d;
-	padding: 23px 0;
+	padding-top: 20px;
+	max-width: 84%;
 }
 .welcometext {
 	padding: 0 0 15px 0;
@@ -1675,11 +1676,11 @@ h1, h2, h3, h4, h5, h6, h7 {
     #intro .section-photos li:hover .hover-effect {
         opacity: 1;
     }
-    #intro .section-photos li:hover h3, #intro .section-photos li:hover .from-price {
+    #intro .section-photos li:hover span, #intro .section-photos li:hover .from-price {
         opacity: 0;
     }
 
-.section-photos li h3 {
+.section-photos li span, .section-photos li h3, .section-photos li h4 {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -1748,6 +1749,10 @@ h1, h2, h3, h4, h5, h6, h7 {
     width: 100%;
 }
 
+.section-photos li div.hover-effect a.special-copy-link span {
+    display: block;
+}
+
 .hover-effect {
     transition: all 0;
     -moz-transition: all 0;
@@ -1791,7 +1796,7 @@ h1, h2, h3, h4, h5, h6, h7 {
         opacity: 1;
     }
 
-.section-photos li div h3 {
+.section-photos li div span, .section-photos li div h3, .section-photos li div h4 {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     font-size: 40px;
     line-height: 1;
@@ -1799,6 +1804,10 @@ h1, h2, h3, h4, h5, h6, h7 {
     position: relative;
     width: 80%;
     opacity: 1 !important;
+}
+
+.section-photos li div a.special-copy-link span {
+    font-size: 35px;
 }
 
 
@@ -2268,7 +2277,7 @@ h3.featured-gallery-thumb-title {
     width: 35%;
 }
 
-.room-list h2 {
+.room-list h2, .room-list h3 {
     color: #444444;
     font-size: 26px;
     margin-bottom: 30px;
