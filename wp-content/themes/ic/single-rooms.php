@@ -19,7 +19,7 @@
 				<li>
 					<div class="room-slider-gradience"></div>
 					<div class="slide-header">
-						<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
+						<a class="button"  onclick="_gaq.push(['_link', this.href]);ga('send', 'event', 'Reserve', 'Reservation-button-banner', 'Reserve Now');return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 					</div>
 					<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 				</li>
@@ -126,7 +126,7 @@
 					<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 					
 					
-					<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">RESERVE NOW</a>
+					<a class="button"  onclick="_gaq.push(['_link', this.href]);ga('send', 'event', 'Booking', 'Reserve', '<?php echo get_the_title(); ?>');return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">RESERVE NOW</a>
 
 					<!-- <a class="button" href="#inline-1" title="" rel="prettyPhoto">SEE ROOM FEATURES</a> -->
 					
@@ -153,7 +153,7 @@
                                     }
                                     $image_title = $attachment->post_title;
                                     $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '" style="width: 80px; height: 80px;" /></li></a>';
+                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '" style="width: 80px; height: 80px;" /></a></li>';
                                 }
                                 echo $image_list;
                             ?>

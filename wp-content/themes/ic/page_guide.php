@@ -227,7 +227,7 @@
 			                                    }
 			                                    $image_title = $attachment->post_title;
 			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></li></a>';
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
 			                                }
 			                                echo $image_list;
 			                            ?>
@@ -302,7 +302,7 @@
 			                                    }
 			                                    $image_title = $attachment->post_title;
 			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></li></a>';
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
 			                                }
 			                                echo $image_list;
 			                            ?>
@@ -375,7 +375,7 @@
 			                                    }
 			                                    $image_title = $attachment->post_title;
 			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></li></a>';
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
 			                                }
 			                                echo $image_list;
 			                            ?>
@@ -447,7 +447,7 @@
 			                                    }
 			                                    $image_title = $attachment->post_title;
 			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
-			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></li></a>';
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
 			                                }
 			                                echo $image_list;
 			                            ?>
