@@ -70,7 +70,7 @@
 
 					<div class="specialtab">
 						<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?>
-							<a href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
+							<a onclick="ga('send', 'event', 'Booking', 'Reserve', '<?php echo get_the_title(); ?>');" href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
 						<?php } ?>
 
 							<span><?php echo get_post_meta($post->ID, 'cebo_popout_subtitle', true); ?></span>
