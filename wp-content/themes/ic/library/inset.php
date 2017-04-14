@@ -230,7 +230,7 @@ $css .=<<<CSS
 	}
 
 	.section-photos li div.hover-effect, .thumbgal li div.hover-effect {
-		background: none repeat scroll 0 0 rgba(print_r($rgb);, .8);
+		background: none repeat scroll 0 0 rgba($rgb;, .8);
 	}
 
 
@@ -261,7 +261,7 @@ $css .=<<<CSS
 	}
 
 	.from-price {
-		background: none repeat scroll 0 0 rgba(print_r($rgb), 0.8);
+		background: none repeat scroll 0 0 rgba($rgb;, 0.8);
 	}
 
 	/* Hover Background */
