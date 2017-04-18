@@ -88,20 +88,19 @@
 		</div>
 			
 		<div id="tabs-wrapper" class="tabs-wrapper">
-			
-			<div class="tabs-container">
-				
-				<div class="container">
-					<div class="neighbor-content">
-						<?php the_content(); ?>
-					</div>
-				</div>
-				
-			</div>
-			
+
 			<?php if (is_page(78)) { ?>
 
 			<div class="container">
+				<div class="tabs-container">
+					
+					<div class="container">
+						<div class="neighbor-content">
+							<?php the_content(); ?>
+						</div>
+					</div>
+					
+				</div>
 				<div class="category-neighbor">
 			
 					<!-- ECHO EAT -->
