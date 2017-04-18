@@ -1726,7 +1726,7 @@ nav .container .columns {
 
 ul.tabs {
 	float: left; 
-	height: 44px; 
+	height: 54px; 
 	width: 100%; 
 	padding-left: 0 !important; 
 	margin-bottom: 0 !important;
@@ -1734,17 +1734,6 @@ ul.tabs {
 
 .tabs-container p:last-child {
 	margin-bottom:0;
-}
-
-ul.tabs li { 
-	float: left; 
-	padding-left: 0 !important; 
-	overflow: hidden; 
-	padding-bottom: 0; 
-	position: relative; 
-	text-align:center;
-	outline:none;
-	padding-top: 5px;
 }
 
 ul.tabs li a { 
