@@ -1401,28 +1401,13 @@ padding: 8px 12px;
 
 }
 
-@media only screen and (max-width: 600px) {
-	.click-nav ul li:first-child a {
-		left: 3%;
-	}
-}
 @media only screen and (max-width: 556px) {
-	.click-nav ul li:first-child a {
-		left: 3%;
-	}
-
 	.click-nav ul li:first-child {
 		width: 90%;
 	}
 
 	li.blue-btn {
 		bottom: 33%;
-	}
-}
-
-@media only screen and (max-width: 510px) {
-	.click-nav ul li:first-child a {
-		left: 4%;
 	}
 }
 
