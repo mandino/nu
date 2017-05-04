@@ -1891,6 +1891,8 @@ h1, h2, h3, h4, h5, h6, h7 {
     font-weight: bold;
     margin-top: -20px;
     text-transform: uppercase;
+    position: relative;
+    z-index: 2;
 }
 
 
