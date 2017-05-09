@@ -1855,12 +1855,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	overflow: auto;
 }
 
-.neighborhood-sliders .fl {
-    height: auto;
-    width: 540px;
-}
-
-.neighborhood-sliders .fr {
+.neighborhood-sliders .fr, .neighborhood-sliders .fl {
     height: 292px;
     width: 540px;
 }
@@ -1893,6 +1888,10 @@ h1, h2, h3, h4, h5, h6, h7 {
     text-transform: uppercase;
     position: relative;
     z-index: 2;
+}
+
+.viewall {
+    text-align: center;
 }
 
 
