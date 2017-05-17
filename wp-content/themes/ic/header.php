@@ -225,7 +225,7 @@ ga('send', 'pageview');
 
 				<nav id="menu" class="fl" style="z-index:1">
 					<ul>
-						<?php wp_nav_menu( array( 'walker' => new MV_Cleaner_Walker_Nav_Menu(), 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
 						<li class="hamburgermenu">
 							<a class="cheese" href="#">
 								<div class="hamburger">
