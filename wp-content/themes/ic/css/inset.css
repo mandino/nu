@@ -263,13 +263,13 @@ padding: 25px 20px;
 	.topnavigationmob li .tnbox i,
 	.hamburger span { 
 	  
-	  background-color: <?php echo #f27333; ?>;
+	  background-color: #f27333;
 
 	}
 
 	li.social_share_side a i,
 	.topnavigationmob li i {
 	  
-	  color: <?php echo #f27333; ?>;
+	  color: #f27333;
 
 	}

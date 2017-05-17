@@ -281,14 +281,14 @@ $css .=<<<CSS
 	.topnavigationmob li .tnbox i,
 	.hamburger span { 
 	  
-	  background-color: <?php echo $accent; ?>;
+	  background-color: $accent;
 
 	}
 
 	li.social_share_side a i,
 	.topnavigationmob li i {
 	  
-	  color: <?php echo $accent; ?>;
+	  color: $accent;
 
 	}
 CSS;
