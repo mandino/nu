@@ -850,6 +850,10 @@ and (max-width : 939px) {
 		margin: 0;
 	}
 
+	.mm-list > li.display-none {
+		display: block !important;
+	}
+	
 
 
 	/* Home - Specials */
