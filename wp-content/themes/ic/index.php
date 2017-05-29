@@ -256,16 +256,13 @@ get_header();
 
 				<?php endif; wp_reset_query(); ?>
 
-				</div>
-
-				<div class="ico-quote quote-right fr"></div>
-
 			</div>
+
+			<div class="ico-quote quote-right fr"></div>
 
 		</div>
 
 	</div>
-
 
 
 
