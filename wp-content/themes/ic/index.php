@@ -101,13 +101,13 @@ get_header();
 
 							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 
-							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
+							<a class="special-copy-link" href="<?php if (get_post_meta($post->ID, 'cebo_booklink', true)) { echo get_post_meta($post->ID, 'cebo_booklink', true); } else { the_permalink(); } ?>" target="_blank"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
 
 							<?php } ?>
 							<br>
 							<p><?php the_title(); ?></p>
 
-							<a class="special-external" href="//www.independentcollection.com/ic-local" target="_blank"><i class="fa fa-chevron-right fa-lg"></i></a>
+							<a class="special-external" href="<?php if (get_post_meta($post->ID, 'cebo_booklink', true)) { echo get_post_meta($post->ID, 'cebo_booklink', true); } else { the_permalink(); } ?>" target="_blank"><i class="fa fa-chevron-right fa-lg"></i></a>
 						</div>
 					</li>
 
@@ -256,16 +256,13 @@ get_header();
 
 				<?php endif; wp_reset_query(); ?>
 
-				</div>
-
-				<div class="ico-quote quote-right fr"></div>
-
 			</div>
+
+			<div class="ico-quote quote-right fr"></div>
 
 		</div>
 
 	</div>
-
 
 
 
@@ -374,7 +371,7 @@ get_header();
 
 					<!-- <a class="slidesjs-previous slidesjs-navigation" href="#"><i class="icon-chevron-left icon-large"></i></a> -->
 
-					<h3><?php _e('Upcoming events', 'cebolang'); ?></h3>
+					<h3><a href="<?php echo get_option('eventsSlug', 'events'); ?>"><?php _e('Upcoming events', 'cebolang'); ?></a></h3>
 				</div>
 
 				<div class="fr">
@@ -398,7 +395,7 @@ get_header();
 						<a href="#" class="slidesjs-next slidesjs-navigation"><i class="fa fa-chevron-right fa-lg"></i></a>
 					</div>
 
-					<h3><?php _e('From our blog', 'cebolang'); ?></h3>
+					<h3><a href="<?php echo get_permalink(1226); ?>"><?php _e('From our blog', 'cebolang'); ?></a></h3>
 				</div>
 
 			</div>

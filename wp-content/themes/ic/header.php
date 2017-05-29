@@ -115,6 +115,8 @@ ga('send', 'pageview');
 	
 <body id="oceana" <?php body_class($class); ?>>
 
+<div class="menu-wrap">	
+
 	<div id="navigation">
 			
 			
@@ -196,9 +198,7 @@ ga('send', 'pageview');
 			<nav class="click-nav">
 				<ul class="container no-js">
 					<li>
-	
-						<a href="//www.independentcollection.com/ic-local" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
-	
+						<a href="//www.iclocalrewards.com/" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
 					</li>
 					<li class="blue-btn"><a href="//nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li>
 				</ul>
@@ -225,7 +225,22 @@ ga('send', 'pageview');
 
 				<nav id="menu" class="fl" style="z-index:1">
 					<ul>
-						 <?php wp_nav_menu( array( 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
+						<?php wp_nav_menu( array( 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
+						<li class="hamburgermenu">
+							<a class="cheese" href="#">
+								<div class="hamburger">
+									<span></span>
+									<span></span>
+									<span></span>
+								</div>
+								<span class="menutext">Menu</span>
+							</a>
+						</li>
+						<?php wp_nav_menu( array( 
+							'theme_location' => 'mobilenav',
+							'items_wrap' => '%3$s', 
+							'container' => ''
+						)); ?>
 					</ul>
 				</nav>
 

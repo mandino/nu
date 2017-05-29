@@ -276,6 +276,21 @@ $css .=<<<CSS
 	.hidden-from-view {
 		left: -5000px; position: absolute;
 	}
+
+	.royalewrap,
+	.topnavigationmob li .tnbox i,
+	.hamburger span { 
+	  
+	  background-color: $accent;
+
+	}
+
+	li.social_share_side a i,
+	.topnavigationmob li i {
+	  
+	  color: $accent;
+
+	}
 CSS;
 
 }
