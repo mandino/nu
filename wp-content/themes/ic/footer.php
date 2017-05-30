@@ -145,8 +145,12 @@
 <?php wp_footer(); ?>
 
 <!-- Scripts -->
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyAZjFpCbjcDw2JIBKBRFiQjyBVY2lcNfcQ"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/gmap3new.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/super-map.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/basic.js"></script>
 <?php include(TEMPLATEPATH. "/library/scripts.php"); ?>
-	
+
 <!-- <div id="fb-root"></div> -->
 <script>(function(d, s, id) {
 var js, fjs = d.getElementsByTagName(s)[0];
