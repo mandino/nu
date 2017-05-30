@@ -600,6 +600,4 @@
 
 	</div>
 
-
-<?php include (TEMPLATEPATH . '/library/super-map.php'); ?>
 <?php get_footer(); ?>
