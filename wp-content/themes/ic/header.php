@@ -195,7 +195,14 @@ ga('send', 'pageview');
 			
 		<div id="property-nav">
 			
-			<nav class="click-nav">
+			<div class="pride pos-right">
+				<img src="<?php bloginfo('template_directory'); ?>/images/pride.png">
+			    <a href="//www.nuhotelbrooklyn.com/blog/guide-pride-month-nyc/"><i class="fa fa-info-circle" aria-hidden="true"></i>Celebrate Pride</a>
+			</div>
+			<div class="pride pos-left">
+				<img src="<?php bloginfo('template_directory'); ?>/images/pride-left.png">	
+			</div>
+			<nav class="click-nav" style="border: none;">
 				<ul class="container no-js">
 					<li>
 						<a href="//www.iclocalrewards.com/" target="_blank" class="clicknav-clicker">Join IC Local and Start Receiving Perks with Every Stay</a>
