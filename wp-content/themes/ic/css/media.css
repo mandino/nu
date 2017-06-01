@@ -952,6 +952,35 @@ and (max-width : 939px) {
 	}
 
 	
+	/* Pride Banner*/
+
+	#property-nav nav ul li.blue-btn {
+		bottom: 13px;
+	}
+
+	#property-nav .pride.pos-right {
+		right: -105px;
+		top: -25px;
+	}
+
+	#property-nav .pride.pos-right img {
+		width: 50%;
+	}
+
+	#property-nav .pride.pos-left {
+		left: -103px;
+		bottom: -27px;
+	}
+
+	#property-nav .pride.pos-left img {
+		width: 50%;
+	}
+
+	#property-nav .pride.pos-right a {
+		display: none;
+	}
+
+	
 
 }
 
