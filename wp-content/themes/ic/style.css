@@ -2136,7 +2136,7 @@ footer nav ul.footling li a {
 	color: #fff;
 	z-index: 999;
 	position: absolute;
-	top: 385px;
+	bottom: 45px;
 	left: 0px;
 }
 
@@ -4715,4 +4715,13 @@ li.social_share_side a i:hover{
     margin-right: 8px;
     margin-right: 8px;
     font-size: 14px;
+}
+
+#room-details-slider .iosSlider,
+#room-details-slider .iosSlider .slider .item {
+    width: auto !important;
+}
+
+.iosSlider .slider .item img {
+    width: auto !important;
 }
