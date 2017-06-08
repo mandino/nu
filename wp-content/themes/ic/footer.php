@@ -136,7 +136,7 @@
 					<?php wp_nav_menu( array( 'theme_location' => 'slideoutnav' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem', 'before' => '<div class="tnbox">', 'after' => '</div>' ) ); ?>
 
 					<li class="social_share_side noborder"><a href="//twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter"></i></a><a  href="//facebook.com/<?php echo get_option('cebo_facebook'); ?>" target="_blank"><i class="fa fa-facebook"></i></a><a href="//instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
-					<li class="locationa noborder"><a href="https://goo.gl/maps/5qPvMF26WTy" target="_blank"><i class="fa fa-map-marker fa-lg"></i><span>944 Collins Ave Miami Beach, FL 33139</span></a></li>
+					<li class="locationa noborder"><a href="https://goo.gl/maps/xp5E2CpQYXx" target="_blank"><i class="fa fa-map-marker fa-lg"></i><span><?php echo get_option('cebo_address'); ?></span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -145,8 +145,12 @@
 <?php wp_footer(); ?>
 
 <!-- Scripts -->
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyAZjFpCbjcDw2JIBKBRFiQjyBVY2lcNfcQ"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/gmap3new.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/super-map.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/basic.js"></script>
 <?php include(TEMPLATEPATH. "/library/scripts.php"); ?>
-	
+
 <!-- <div id="fb-root"></div> -->
 <script>(function(d, s, id) {
 var js, fjs = d.getElementsByTagName(s)[0];
