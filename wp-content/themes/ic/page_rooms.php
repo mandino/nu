@@ -105,8 +105,15 @@
 							<div class="room-list-buttons">
 
 								<a class="button"  onclick="_gaq.push(['_link', this.href]); ga('send', 'event', 'Booking', 'Reserve', '<?php echo get_the_title(); ?>'); return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a>
+								<?php
+								$postid=get_the_ID();
+									if ($postid=='90') { ?>
+									<a class="button" href="//www.nuhotelbrooklyn.com/downtown-brooklyn-hotel/nu-perspectives/">Read More</a>
+								<?php } else { ?>
 
 								<a class="button" href="<?php the_permalink(); ?>">Read More</a>
+
+								<?php } ?>
 
 								<!--<a class="button" href="<?php the_permalink(); ?>"><?php _e('More Info', 'cebolang'); ?></a>-->
 
