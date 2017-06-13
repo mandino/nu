@@ -1442,6 +1442,17 @@ padding: 8px 12px;
 	li.blue-btn {
 		bottom: 33%;
 	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 96%;
+	}
+}
+
+/* ================================================ MOBILES BELOW 500 ======================================== */
+@media only screen and (max-width: 500px) {
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 87%;
+	}
 }
 
 
@@ -1553,6 +1564,10 @@ and (max-width : 480px)
 	    font-size: 20px;
 	    top: 50%;
 	    width: 100%;
+	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 84%;
 	}
 	
 	.post-content .imagegal.photos ul li {
@@ -1708,6 +1723,38 @@ and (max-height : 480px)
 	}
 }
 
+/* ================================================  MAX HEIGHT 460 ======================================= */
+
+
+@media only screen and (max-width : 460px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 80%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 440 ======================================= */
+
+
+@media only screen and (max-width : 440px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 77%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 420 ======================================= */
+
+
+@media only screen and (max-width : 420px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 74%;
+	}
+
+}
 
 /* ================================================  MOBILES BELOW 399 ======================================= */
 
@@ -1816,6 +1863,10 @@ and (max-width : 399px)
 	    font-size: 20px;
 	    top: 50%;
 	    width: 100%;
+	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 70%;
 	}
 
 	.slideSelectors {
@@ -1935,6 +1986,28 @@ and (max-width : 399px)
 
 }
 
+/* ================================================  MAX HEIGHT 370 ======================================= */
+
+
+@media only screen and (max-width : 370px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 65%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 350 ======================================= */
+
+
+@media only screen and (max-width : 350px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 61%;
+	}
+
+}
+
 
 
 /* ================================================  MOBILES BELOW 320 ======================================= */
@@ -1981,6 +2054,10 @@ and (max-width : 320px)
 	.slide-header .button {
     display: none;
 }
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 57%;
+	}
 
 }
 
