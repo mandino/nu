@@ -70,29 +70,36 @@
 		wp_head();
 	?>
 
-<!-- Sojern Head -->
-<script>
-(function () {
-var pl = document.createElement('script');
-pl.type = 'text/javascript';
-pl.async = true;
-pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
-})();
-</script>
-<!-- End Sojern -->
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-KSBRGRP');</script>
+	<!-- End Google Tag Manager -->
 
-<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+	<!-- Sojern Head -->
+	<script>
+	(function () {
+	var pl = document.createElement('script');
+	pl.type = 'text/javascript';
+	pl.async = true;
+	pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
+	})();
+	</script>
+	<!-- End Sojern -->
 
-Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
 
-ga('create', 'UA-24686149-1', 'auto',{'allowLinker': true });
+	Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('require', 'linker'); ga('linker:autoLink', ['nuhotelbrooklyn.reztrip.com','nuhotelbrooklyn.reztripmobile.com']);
+	ga('create', 'UA-24686149-1', 'auto',{'allowLinker': true });
 
-ga('send', 'pageview');
+	ga('require', 'linker'); ga('linker:autoLink', ['nuhotelbrooklyn.reztrip.com','nuhotelbrooklyn.reztripmobile.com']);
 
-</script>
+	ga('send', 'pageview');
 
+	</script>
 
 	<script type="application/ld+json">
 		{
@@ -108,13 +115,15 @@ ga('send', 'pageview');
 		"description": "A most wonderful article",
 		"articleBody": "The full body of the article"
 		}
-	</script> 
-	
+	</script>
 
 </head> 
 	
 <body id="oceana" <?php body_class($class); ?>>
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSBRGRP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="menu-wrap">	
 
 	<div id="navigation">
