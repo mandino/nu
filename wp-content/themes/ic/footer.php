@@ -46,15 +46,13 @@
 					
 					<?php } else { ?>
 					
-						<form name="surveys" action="//zmaildirect.com/app/new/MTIzNTQzMjYx" method="get">  
+						<form action="https://web2.cendynhub.com/FormPost/FormPost.ashx" method="post">
+						<input name="emailAddress" required="" type="text" value="" placeholder="Your Email" />
 
-						<input type="hidden" name="formId" value="MTIzNTQzMjYx">
-							<div style="float: left;">
-						<input name="email" type="text">
-							</div>
-						  <div style="float: right;">	
-						<input value="Subscribe" type="submit">
-							</div>
+						<input name="formId" type="hidden" value="C1A43A13-7F54-472E-A1F0-B1DB5DDECF3B" />
+						<input name="CompanyID" type="hidden" value="1154" />
+						<input type="submit" value="Submit" />
+
 						</form>
 					
 					<?php  } ?>
