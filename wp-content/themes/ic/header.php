@@ -160,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							</select>
 						</span>
 						
-						<button type="submit" class="button" onClick="ga('send', 'event', 'Booking-widget', 'Search-now', 'Search dates with booking widget');">Search Now</button>
+						<button type="submit" class="button">Search Now</button>
 						
 					
 					</form>
@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 					<div class="reservationform flexdate">
 					
-						<p><a href="https://nuhotelbrooklyn.reztrip.com" onclick="ga('send', 'event', 'Flexible Dates', 'click', 'Booking-widget');">Flexible dates?</a> Search for our best available rate</p>
+						<p><a href="https://nuhotelbrooklyn.reztrip.com">Flexible dates?</a> Search for our best available rate</p>
 						
 					</div>
 
@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
 
-			<a class="reserve fixeer mobile button fr" id="idp4" href="<?php echo get_option('cebo_genbooklink'); ?>" target="_blank" onclick="ga('send', 'event', 'Booking', 'Reserve');">RESERVE</a>
+			<a class="reserve fixeer mobile button fr" id="idp4" href="<?php echo get_option('cebo_genbooklink'); ?>" target="_blank">RESERVE</a>
 
 			<div class="container" style="float: right;">
 
