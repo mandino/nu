@@ -4734,7 +4734,7 @@ li.social_share_side a i:hover{
   display: block;
   height: 60px;
   width: 100%;
-  bottom: 50px;
+  bottom: 35px;
   left: 0;
   position: absolute;
   background: linear-gradient(transparent , white 32%, white);
@@ -4764,6 +4764,7 @@ li.social_share_side a i:hover{
   cursor: pointer;
   letter-spacing: 5px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .read-more-button i {
