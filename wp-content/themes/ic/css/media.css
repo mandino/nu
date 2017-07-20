@@ -731,6 +731,9 @@ and (max-width : 940px)
 	li.blue-btn span.blue-mobile {
 		display: none;
 	}
+	.white-shadow {
+		display: none;
+	}
 
 }
 
