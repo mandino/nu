@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 					<div class="reservationform flexdate">
 					
-						<p><a href="https://nuhotelbrooklyn.reztrip.com">Flexible dates?</a> Search for our best available rate</p>
+						<p><a href="https://nuhotelbrooklyn.reztrip.com/calendar">Flexible dates?</a> Search for our best available rate</p>
 						
 					</div>
 
