@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: No Index on Events Calendar Past Events
-Plugin URI:  https://www.theindependenthotel.com/
+Plugin URI:  http://misfit-inc.com/
 Description: Automatically add a "noindex" meta tag to past events on event calendar' detail pages to prevent them from appearing in search engines.
 Version:     1.0
 Author:      Misfit Inc
-Author URI:  https://www.theindependenthotel.com/
+Author URI:  http://misfit-inc.com/
 Text Domain: misfit
 License:     GPL2
 */
