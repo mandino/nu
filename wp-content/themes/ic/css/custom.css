@@ -1662,7 +1662,9 @@ li.blue-btn i {
 }
 
 .reservationform.flexdate {
-  height: 40px;
+    height: 40px;
+    z-index: 99999999;
+    position: relative;
 }
 
 .single-tribe_events h1.tribe-events-single-event-title{
