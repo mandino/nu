@@ -1818,6 +1818,9 @@ h1.tribe-events-page-title {
     width: 20%;
     float: right;
 }
+.eat-menu-container h3 {
+    margin-top: 20px;
+}
 
 .drink-menu-container .menu-list {
     display: block; 
