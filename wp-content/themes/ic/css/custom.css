@@ -1774,7 +1774,8 @@ h1.tribe-events-page-title {
     float: right;
 }
 .eat-menu-container {
-    width: 790px
+    width: 790px;
+    margin-top: 20px;
 }
 .eat-menu-container .menu-list {
     display: block; 
@@ -1802,7 +1803,8 @@ h1.tribe-events-page-title {
 }
 
 .eat-menu-container [class*="menu-content"] .menu-items span{
-    font-weight: 700;;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .eat-menu-container [class*="menu-content"] .menu-items p {
@@ -1876,4 +1878,4 @@ h1.tribe-events-page-title {
 
 .menu-table tr td {
     width: 300px;
-}
+}   
