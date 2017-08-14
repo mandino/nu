@@ -1788,6 +1788,7 @@ h1.tribe-events-page-title {
 .eat-menu-container h3 {
     color: #000 !important;
     text-align: left;
+    margin-top: 20px;
 }
 .eat-menu-container [class*="menu-content"] {
     width: 100%;
@@ -1826,8 +1827,7 @@ h1.tribe-events-page-title {
 
 .drink-menu-container h2 {
     color: #000;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0 20px !important;
 }
 
 .drink-menu-container h3 {
@@ -1838,6 +1838,13 @@ h1.tribe-events-page-title {
     width: 50%;
     float: left;
     font-family: 'Arial Regular';
+}
+
+.drink-menu-container [class*="menu-content"] .menu-items span{
+    font-weight: 700;
+    font-size: 15px;
+    margin: 5px 0 5px;
+    display: block;
 }
 
 .drink-menu-container .price-label {
