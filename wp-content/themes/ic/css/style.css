@@ -502,7 +502,7 @@ img.scaleimg {
 .container {
 	max-width: 1180px;
 	margin: auto;
-	padding: 0 20px;
+	padding: 0;
 }
 .without {
 	background: transparent !important;
