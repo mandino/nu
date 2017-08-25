@@ -1543,6 +1543,10 @@ and (max-width : 480px)
 	}
 
 
+	.page-template-page_blog .room-list li {
+		padding-bottom: 0;
+	}
+
 
 	/* Room - Single */
 	
@@ -1984,8 +1988,12 @@ and (max-width : 399px)
 
 
 	.slide-header .button {
-    display: none;
-}
+		display: none;
+	}
+
+	.popup-logo-area {
+		padding: 35px 45px;
+	}
 
 	.container.no-js {
 		width: 100%;
