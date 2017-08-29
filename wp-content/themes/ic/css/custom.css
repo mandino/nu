@@ -1754,3 +1754,7 @@ h1.tribe-events-page-title {
     display: none;
     padding-top: 15px;
 }
+
+#primary-nav nav ul li.navis-mobile {
+    display: none;
+}
