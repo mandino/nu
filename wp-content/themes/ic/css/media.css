@@ -1439,7 +1439,7 @@ padding: 8px 12px;
 
 @media only screen and (max-width: 556px) {
 	.click-nav ul li:first-child {
-		width: 90%;
+		width: 100%;
 	}
 
 	li.blue-btn {
@@ -1542,6 +1542,10 @@ and (max-width : 480px)
 	    padding-bottom: 20px;
 	}
 
+
+	.page-template-page_blog .room-list li {
+		padding-bottom: 0;
+	}
 
 
 	/* Room - Single */
@@ -1984,8 +1988,16 @@ and (max-width : 399px)
 
 
 	.slide-header .button {
-    display: none;
-}
+		display: none;
+	}
+
+	.popup-logo-area {
+		padding: 35px 45px;
+	}
+
+	.container.no-js {
+		width: 100%;
+	}
 
 }
 
