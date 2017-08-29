@@ -1891,4 +1891,8 @@ h1.tribe-events-page-title {
 
 .menu-table tr td {
     width: 300px;
-}   
+}
+
+#primary-nav nav ul li.navis-mobile {
+    display: none;
+}
