@@ -194,9 +194,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 			<nav class="click-nav" style="border: none;">
 				<ul class="container no-js">
-					<li>
-						<a href="//www.iclocalrewards.com/" target="_blank" class="clicknav-clicker">Enter to Win a Two Night Stay at an Independent Collection Hotel</a>
-					</li>
+					<li><a href="//iclocalrewards.com/en-US/Login?ReturnUrl=%2F#signup" target="_blank" class="clicknav-clicker">Join The IC Local Perks Program & Get Rewarded With Every Stay</a></li>
 					<li class="blue-btn"><a href="//nuhotelbrooklyn.com/why-blue/"><i class="fa fa-info-circle"></i><span class="blue-mobile">why blue?</span></a></li>
 				</ul>
 			</nav>
@@ -218,9 +216,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<a class="mmenu-icon" href="#menu"><i class="fa fa-bars"></i></a>
 
 				<nav id="menu" class="fl" style="z-index:1">
+
+					<?php
+
+						$getTel = get_option('cebo_tele');
+						$getTel = str_replace('(', '', $getTel);
+						$getTel = str_replace(')', '', $getTel);
+						$getTel = str_replace(' ', '-', $getTel);
+						$getTel = str_replace('.', '-', $getTel);
+
+					?>
+
 					<ul>
 						<li class="navis-mobile">
-							<a id="lnkP2Talkmobile" href="//www.navistechnologies.info/p2talk/p2talk.aspx?Account=15407" target="new"><span class="ic-navis"><i class="fa fa-phone"></i> <span id="NavisTFNmobnav"><?php echo get_option('cebo_tele'); ?></span></span></a>
+							<a id="lnkP2Talkmobile" href="tel:+1-<?php echo $getTel; ?>" target="new"><span class="ic-navis"><i class="fa fa-phone"></i> <span id="NavisTFNmobnav"><?php echo get_option('cebo_tele'); ?></span></span></a>
 						</li>
 						<?php wp_nav_menu( array( 'theme_location' => 'primary' ,  'items_wrap' => '%3$s', 'container' => '', 'menu_class' => 'navitem' ) ); ?>
 						<li class="hamburgermenu">
