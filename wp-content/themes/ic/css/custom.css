@@ -1896,7 +1896,7 @@ h1.tribe-events-page-title {
 }
     
 }   
-.menu-table tr td.item-price {
+.menu-table tr .item-price{
     text-align: center;
 }
 
