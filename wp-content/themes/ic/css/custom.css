@@ -1875,18 +1875,13 @@ h1.tribe-events-page-title {
     text-align: center;
 }
 
-/*.drink-menu-container .menu-content-1 .glass-price {
-    margin-left: 310px;
-}
-
-.drink-menu-container .menu-content-1 .bottle-price {
-    margin-left: 390px;
-}*/
-
 .menu-table tr td {
     width: 300px;
     
-}   
+}
+.item-title {
+    text-align: left;
+}  
 .menu-table tr .item-price{
     text-align: center;
 }
