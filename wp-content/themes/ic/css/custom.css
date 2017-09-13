@@ -1818,6 +1818,7 @@ h1.tribe-events-page-title {
 .eat-menu-container [class*="menu-content"] .menu-price {
     width: 20%;
     float: right;
+    padding-right: 5px;
 }
 
 .drink-menu-container .menu-list {
@@ -1836,7 +1837,7 @@ h1.tribe-events-page-title {
 
 .drink-menu-container .menu-content-1 {
     width: 50%;
-    float: left;
+    
     font-family: 'Arial Regular';
 }
 
@@ -1871,20 +1872,21 @@ h1.tribe-events-page-title {
 }
 .drink-menu-container .menu-content-1 .glass-price,
 .drink-menu-container .menu-content-1 .bottle-price{
-    width: 20%;
-    float: left;
-    padding-right: 15px;
-    margin-top: -35px;
+    text-align: center;
 }
 
-.drink-menu-container .menu-content-1 .glass-price {
+/*.drink-menu-container .menu-content-1 .glass-price {
     margin-left: 310px;
 }
 
 .drink-menu-container .menu-content-1 .bottle-price {
     margin-left: 390px;
-}
+}*/
 
 .menu-table tr td {
     width: 300px;
+    
 }   
+.menu-table tr td.item-price {
+    text-align: center;
+}

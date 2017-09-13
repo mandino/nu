@@ -137,6 +137,73 @@
 
 			</div>
 
+
+
+			<div class="sidebar fr">
+				
+				<a class="button" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>" onclick="_gaq.push(['_link', this.href]);return false;"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
+				
+				
+				<ul class="thumbgal">
+						
+						<?php query_posts('post_type=specials&posts_per_page=4'); if(have_posts()) : while(have_posts()) : the_post(); 
+						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
+
+							<?php if(get_post_meta($post->ID, 'cebo_available_on_sidebar', true)) { ?>
+								
+								<li>
+									
+						
+									<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
+									
+									<div class="from-price">
+										<?php echo get_post_meta($post->ID, 'cebo_pricepoint', true); ?>
+									</div>
+									
+									<?php } ?>
+									
+									<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
+									
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" ></a>
+									
+									<?php } else { ?>
+									
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
+									
+									<?php } ?>
+									
+									<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
+									
+									<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
+									
+									
+									<?php } ?>
+
+									<div class="hover-effect">
+										
+										<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
+										
+										<h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4>
+										
+										<?php } ?>
+										
+										
+										<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
+										<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
+									</div>
+									
+								</li>
+
+							<?php } ?>
+							
+							<?php endwhile; endif; wp_reset_query(); ?>
+							
+						
+							
+						</ul>
+		
+				</div>
+
 			<div class="post-content fl">
 				<?php $class = ""; $cnt = 0; ?>
 				<div class="eat-container">
@@ -268,110 +335,50 @@
 						$glass_bottle_price = get_sub_field('enable_glassbottle_price');
 					 ?>
 					<section id="<?php echo $_class; ?>" class="drink-menu-container <?php echo $hideClass; ?>">
-						<h2><?php the_sub_field('menu_title') ?></h2>
-						<?php if ($glass_bottle_price): ?>
-							<div class="price-label">
-								<span>Glass Price</span>
-								<span>Bottle Price</span>
-							</div>
-						<?php endif ?>
-						
-						
-						<div class="menu-list">
-							
-							<div class="menu-content-1">
-								<?php if (have_rows('items')) : while(have_rows('items'))  : the_row();?>
-									<div class="menu-items-container">
-										<div class="menu-items">
-											<span><?php the_sub_field('item_name'); ?></span>
-											<?php the_sub_field('content') ?>
-										</div>
-									</div>
-									<?php if ($glass_bottle_price): ?>
-										<div class="glass-price">
-											<span><?php the_sub_field('glass_price') ?></span>
-										</div>
-										<div class="bottle-price">
-											<span><?php the_sub_field('bottle_price') ?></span>
-										</div>
-									<?php endif ?>
-
-								<?php endwhile; endif; ?>
-							</div>
-
-							<div class="clear"></div>
-						</div>
+						<table class="menu-table">
+							<tr>
+								<th class="item-title"><h2><?php the_sub_field('menu_title') ?></h2></th>
+							</tr>
+							<?php if ($glass_bottle_price): ?>
+							<tr>
+								<th></th>
+								<th class="price-label"><span>Glass Price</span></th>
+								<th class="price-label"><span>Bottle Price</span></th>	
+							</tr>
+							<?php else : ?>
+								<tr>
+								<th></th>
+								<th class="price-label"><span>Price</span></th>
+							</tr>
+							<?php endif ?>
+							<?php if (have_rows('items')) : while(have_rows('items'))  : the_row();?>
+							<tr class="menu-content-1">
+								
+								<td class="menu-items"><span><?php the_sub_field('item_name'); ?></span></td>
+								<?php if ($glass_bottle_price): ?>
+									<td class="glass-price">
+										<span><?php the_sub_field('glass_price') ?></span>
+									</td>
+									<td class="bottle-price">
+										<span><?php the_sub_field('bottle_price') ?></span>
+									</td>
+								<?php else : ?>
+									<td class="item-price"><span><?php the_sub_field('price') ?></span></td>
+								<?php endif ?>
+								
+							</tr>
+							<tr>
+								<td class="menu-items">
+									<?php the_sub_field('content') ?>
+								</td>
+							</tr>
+							<?php endwhile; endif; ?>
+						</table>
 					</section>
 					
 				<?php $cnt2++; endwhile; endif; ?>
 				</div>
 			</div>
-
-			<div class="sidebar fr">
-				
-				<a class="button" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>" onclick="_gaq.push(['_link', this.href]);return false;"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
-				
-				
-				<ul class="thumbgal">
-						
-						<?php query_posts('post_type=specials&posts_per_page=4'); if(have_posts()) : while(have_posts()) : the_post(); 
-						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
-
-							<?php if(get_post_meta($post->ID, 'cebo_available_on_sidebar', true)) { ?>
-								
-								<li>
-									
-						
-									<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
-									
-									<div class="from-price">
-										<?php echo get_post_meta($post->ID, 'cebo_pricepoint', true); ?>
-									</div>
-									
-									<?php } ?>
-									
-									<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
-									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" ></a>
-									
-									<?php } else { ?>
-									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
-									
-									<?php } ?>
-									
-									<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
-									
-									<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
-									
-									
-									<?php } ?>
-
-									<div class="hover-effect">
-										
-										<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
-										
-										<h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4>
-										
-										<?php } ?>
-										
-										
-										<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
-										<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
-									</div>
-									
-								</li>
-
-							<?php } ?>
-							
-							<?php endwhile; endif; wp_reset_query(); ?>
-							
-						
-							
-						</ul>
-		
-				</div>
-			
 			<div class="clear"></div>
 
 		</div>
