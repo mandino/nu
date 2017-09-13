@@ -1887,6 +1887,6 @@ h1.tribe-events-page-title {
     width: 300px;
     
 }   
-.menu-table tr td.item-price {
+.menu-table tr .item-price{
     text-align: center;
 }
