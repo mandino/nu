@@ -404,6 +404,14 @@ and (max-width : 1099px) {
 		left: 10px;
 	}
 
+	.section-photos li div span,
+	.section-photos li div h3,
+	.thumbgal li div h3,
+	.thumbgal li div h4 {
+		font-size: 30px;
+		width: 100%;
+	}
+
 }
 
 
