@@ -10,32 +10,30 @@
 			
 			
 			<li style="background-image: url(<?php echo tt($imgsrc[0], 1400, 498); ?>);">
-				<a target="_blank" href="<?php echo get_post_meta($post->ID, 'sliderurl', true); ?>">
-					<div class="slide-header">
-						
-						<?php if(get_post_meta($post->ID, 'logopic', true)) { ?>
-						
-						<div class="slicer" style="background-image: url(<?php echo get_post_meta($post->ID, 'logopic', true); ?>);"></div>
-											
-						<?php } ?>
-						
-						
-						<?php if(get_post_meta($post->ID, 'bigtitle', true)) { ?>
-						
-						<h2><?php echo get_post_meta($post->ID, 'bigtitle', true); ?></h2>
-						
-						<?php } ?>
-						
-						<?php if(get_post_meta($post->ID, 'littletitle', true)) { ?>
-						
-						<h3><?php echo get_post_meta($post->ID, 'littletitle', true); ?></h3>
-						
-						<?php } ?>
-						
-					</div>
+				<div class="slide-header">
+					
+					<?php if(get_post_meta($post->ID, 'logopic', true)) { ?>
+					
+					<div class="slicer" style="background-image: url(<?php echo get_post_meta($post->ID, 'logopic', true); ?>);"></div>
+										
+					<?php } ?>
+					
+					
+					<?php if(get_post_meta($post->ID, 'bigtitle', true)) { ?>
+					
+					<h2><?php echo get_post_meta($post->ID, 'bigtitle', true); ?></h2>
+					
+					<?php } ?>
+					
+					<?php if(get_post_meta($post->ID, 'littletitle', true)) { ?>
+					
+					<h3><?php echo get_post_meta($post->ID, 'littletitle', true); ?></h3>
+					
+					<?php } ?>
+					
+				</div>
 				<!--<img src="<?php //echo $imgsrc[0]; ?>" alt="<?php //get_post_meta($post->ID, 'bigtitle', true); ?>" />-->
 				<img src="<?php echo $imgsrc[0]; ?>" alt="<?php if( get_post_meta($post->ID, 'bigtitle', true) ) echo get_post_meta($post->ID, 'bigtitle', true); else echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID )); ?>" />
-			</a>
 			</li>
 			
 			
@@ -70,7 +68,7 @@
 
 					<div class="specialtab">
 						<?php if(get_post_meta($post->ID, 'cebo_popout_url', true)) { ?>
-							<a onclick="ga('send', 'event', 'Booking', 'Reserve', '<?php echo get_the_title(); ?>');" href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
+							<a href="<?php echo get_post_meta($post->ID, 'cebo_popout_url', true); ?>"><h3 style="font-size: 25px;">
 						<?php } ?>
 
 							<span><?php echo get_post_meta($post->ID, 'cebo_popout_subtitle', true); ?></span>

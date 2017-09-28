@@ -291,6 +291,11 @@ $css .=<<<CSS
 	  color: $accent;
 
 	}
+
+.read-more-button i {
+	color: $accent;
+}
+
 CSS;
 
 }

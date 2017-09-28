@@ -404,6 +404,14 @@ and (max-width : 1099px) {
 		left: 10px;
 	}
 
+	.section-photos li div span,
+	.section-photos li div h3,
+	.thumbgal li div h3,
+	.thumbgal li div h4 {
+		font-size: 30px;
+		width: 100%;
+	}
+
 }
 
 
@@ -731,6 +739,9 @@ and (max-width : 940px)
 	li.blue-btn span.blue-mobile {
 		display: none;
 	}
+	.white-shadow {
+		display: none;
+	}
 
 }
 
@@ -949,6 +960,35 @@ and (max-width : 939px) {
 
 	footer #footer-details p {
 	    font-size: 14px;
+	}
+
+	
+	/* Pride Banner*/
+
+	#property-nav nav ul li.blue-btn {
+		bottom: 13px;
+	}
+
+	#property-nav .pride.pos-right {
+		right: -105px;
+		top: -25px;
+	}
+
+	#property-nav .pride.pos-right img {
+		width: 50%;
+	}
+
+	#property-nav .pride.pos-left {
+		left: -103px;
+		bottom: -27px;
+	}
+
+	#property-nav .pride.pos-left img {
+		width: 50%;
+	}
+
+	#property-nav .pride.pos-right a {
+		display: none;
 	}
 
 	
@@ -1407,11 +1447,22 @@ padding: 8px 12px;
 
 @media only screen and (max-width: 556px) {
 	.click-nav ul li:first-child {
-		width: 90%;
+		width: 100%;
 	}
 
 	li.blue-btn {
 		bottom: 33%;
+	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 96%;
+	}
+}
+
+/* ================================================ MOBILES BELOW 500 ======================================== */
+@media only screen and (max-width: 500px) {
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 87%;
 	}
 }
 
@@ -1500,6 +1551,10 @@ and (max-width : 480px)
 	}
 
 
+	.page-template-page_blog .room-list li {
+		padding-bottom: 0;
+	}
+
 
 	/* Room - Single */
 	
@@ -1524,6 +1579,10 @@ and (max-width : 480px)
 	    font-size: 20px;
 	    top: 50%;
 	    width: 100%;
+	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 84%;
 	}
 	
 	.post-content .imagegal.photos ul li {
@@ -1679,6 +1738,38 @@ and (max-height : 480px)
 	}
 }
 
+/* ================================================  MAX HEIGHT 460 ======================================= */
+
+
+@media only screen and (max-width : 460px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 80%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 440 ======================================= */
+
+
+@media only screen and (max-width : 440px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 77%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 420 ======================================= */
+
+
+@media only screen and (max-width : 420px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 74%;
+	}
+
+}
 
 /* ================================================  MOBILES BELOW 399 ======================================= */
 
@@ -1787,6 +1878,10 @@ and (max-width : 399px)
 	    font-size: 20px;
 	    top: 50%;
 	    width: 100%;
+	}
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 70%;
 	}
 
 	.slideSelectors {
@@ -1901,8 +1996,38 @@ and (max-width : 399px)
 
 
 	.slide-header .button {
-    display: none;
+		display: none;
+	}
+
+	.popup-logo-area {
+		padding: 35px 45px;
+	}
+
+	.container.no-js {
+		width: 100%;
+	}
+
 }
+
+/* ================================================  MAX HEIGHT 370 ======================================= */
+
+
+@media only screen and (max-width : 370px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 65%;
+	}
+
+}
+
+/* ================================================  MAX HEIGHT 350 ======================================= */
+
+
+@media only screen and (max-width : 350px) 
+{
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 61%;
+	}
 
 }
 
@@ -1952,6 +2077,10 @@ and (max-width : 320px)
 	.slide-header .button {
     display: none;
 }
+
+	#room-details-slider .iosSlider .slider .item h3 {
+		width: 57%;
+	}
 
 }
 
