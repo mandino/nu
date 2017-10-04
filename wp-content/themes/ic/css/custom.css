@@ -1895,3 +1895,7 @@ h1.tribe-events-page-title {
     text-align: center;
 }
 
+#primary-nav nav ul li.navis-mobile {
+    display: none;
+}
+
