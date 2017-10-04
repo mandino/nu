@@ -409,6 +409,10 @@ color: #333;
 	display: none !important;
 }
 
+.container.no-js {
+    padding: 0;
+}
+
 
 /* ======================================================== TRANSITION EFFECTS =====================================================  */
 
@@ -1884,4 +1888,7 @@ h1.tribe-events-page-title {
 }  
 .menu-table tr .item-price{
     text-align: center;
+}
+#primary-nav nav ul li.navis-mobile {
+    display: none;
 }
