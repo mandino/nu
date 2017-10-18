@@ -24,7 +24,7 @@
              
          <?php } } else { echo esc_html( $this->get( 'blog_name' ) ); } ?>
     </a>       
-       <a class="amp-reserve-btn" href="https://capitolhillhotel-dc.reztrip.com/?_ga=2.163488764.194409529.1507537860-1363754031.1507537860" target="_blank">RESERVE</a>    
+       <a class="amp-reserve-btn" href="https://nuhotelbrooklyn.reztrip.com/?_ga=2.203868944.1226424352.1508305189-1951739701.1508305189" target="_blank">RESERVE</a>    
 
 
     </a>
