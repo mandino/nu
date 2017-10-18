@@ -422,7 +422,17 @@ and (max-width : 1099px) {
 and (max-width : 1024px) {
 
 
-	
+	.white-shadow {
+		display: block;
+	}
+
+	.read-more {
+		display: none;
+	}
+
+	.read-more-button {
+		display: block;
+	}
 
 
 
