@@ -1892,3 +1892,36 @@ h1.tribe-events-page-title {
 #primary-nav nav ul li.navis-mobile {
     display: none;
 }
+
+#home-slider .video-banner {
+    transform: translate3d(0px, 0px, 0px);
+    height: 498px;
+    background-position: 100% 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.video-banner video {
+    max-width: initial;
+}
+
+#home-slider .video-banner .video-header .slicer {
+    background-position: center;
+}
+
+.logo-container {
+  height: inherit;
+  width: 100%;
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.video-header {
+  position: relative;
+  height: auto;
+  display: table-cell;
+  width: 100%;
+  vertical-align: middle;
+}
