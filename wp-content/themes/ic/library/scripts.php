@@ -21,6 +21,8 @@
 <!-- Lightbox - Prettyphoto -->	
 <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
 
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.vide.js"></script>
+
 <!-- responsive style -->
 <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
 
@@ -624,8 +626,17 @@
 			}
 			
 		});
-		
-			
+
+		$(window).load(function() {
+
+			// Home - Video Banner
+			var check_home = $('video').length;
+
+			if (check_home) {
+				$('video').get(0).play();
+			}
+		});
+
 	});
 
 </script>

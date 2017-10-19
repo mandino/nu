@@ -1026,6 +1026,10 @@ height: 350px;
 	width: 150%;
 	}
 
+	#home-slider .video-banner {
+		height: 350px;
+	}
+
 }
 /* ================================================  MAX WIDTH 640 ======================================= */
 
@@ -1075,6 +1079,10 @@ and (max-width : 640px)
 	#home-slider {
 		height: 300px;
 		overflow: hidden;
+	}
+
+	#home-slider .video-banner {
+		height: 300px;
 	}
 
 	.flex-control-nav {
@@ -1490,6 +1498,10 @@ and (max-width : 480px)
 	/* HOMEPAGE - Slider */
 
 	#home-slider {
+		height: 250px;
+	}
+
+	#home-slider .video-banner {
 		height: 250px;
 	}
 
