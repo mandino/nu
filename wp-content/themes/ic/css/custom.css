@@ -1904,24 +1904,3 @@ h1.tribe-events-page-title {
 .video-banner video {
     max-width: initial;
 }
-
-#home-slider .video-banner .video-header .slicer {
-    background-position: center;
-}
-
-.logo-container {
-  height: inherit;
-  width: 100%;
-  display: table;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.video-header {
-  position: relative;
-  height: auto;
-  display: table-cell;
-  width: 100%;
-  vertical-align: middle;
-}
