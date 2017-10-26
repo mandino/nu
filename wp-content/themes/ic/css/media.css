@@ -1005,9 +1005,17 @@ and (max-width : 939px) {
 
 }
 
-
-
-
+@media only screen 
+and (max-width : 768px) {
+	.video-banner video {
+		width: 100% !important;
+		height: 100% !important;
+		position: relative !important;
+		top: 0 !important;
+		left: 0 !important;
+		transform: none !important;
+	}
+}
 
 
 
@@ -1024,10 +1032,6 @@ height: 350px;
 
 .home .flexslider .slides img {
 	width: 150%;
-	}
-
-	#home-slider .video-banner {
-		height: 350px;
 	}
 
 }
@@ -1079,10 +1083,6 @@ and (max-width : 640px)
 	#home-slider {
 		height: 300px;
 		overflow: hidden;
-	}
-
-	#home-slider .video-banner {
-		height: 300px;
 	}
 
 	.flex-control-nav {
@@ -1498,10 +1498,6 @@ and (max-width : 480px)
 	/* HOMEPAGE - Slider */
 
 	#home-slider {
-		height: 250px;
-	}
-
-	#home-slider .video-banner {
 		height: 250px;
 	}
 
