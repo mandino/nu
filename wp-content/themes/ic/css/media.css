@@ -1007,12 +1007,16 @@ and (max-width : 939px) {
 
 @media only screen 
 and (max-width : 768px) {
-	.video-banner video {
+	.video-banner video[style] {
 		width: 100% !important;
 		height: 100% !important;
 		position: relative !important;
 		top: 0 !important;
 		left: 0 !important;
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-o-transform: none !important;
+		-ms-transform: none !important;
 		transform: none !important;
 	}
 }
