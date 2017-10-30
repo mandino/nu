@@ -97,7 +97,7 @@ and (max-width : 1099px) {
 	/* General settings */
 
 	.container, #tribe-events-pg-template {
-		width: 95%;
+		width: 90%;
 	}
 
 
@@ -594,11 +594,11 @@ and (max-width : 940px)
 	/* Page - Specials */
 
 	.post-content .imagegal ul li:nth-child(3n) {
-	    margin-right: 0;
+	    margin-right: auto;
 	}
 
 	.post-content .imagegal ul li:nth-child(4n) {
-	    margin-right: 13px;
+	    margin-right: auto;
 	}
 
 	.post-content .imagegal ul li {
@@ -1326,7 +1326,8 @@ and (max-width : 640px)
 	}
 
 	#intro .container .section-photos {
-	    width: 260px;
+	    width: 100%;
+	    text-align: center;
 	}
 
 	#intro .section-photos img {
