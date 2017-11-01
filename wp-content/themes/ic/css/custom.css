@@ -485,6 +485,13 @@ color: #333;
     top: 0;
 }
 
+.slide-header.slide-header-mobileonly { display: none; }
+.slide-header.slide-header-video {
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+}
+
 .fullpic .slide-header {
     margin: 0 auto;
     position: absolute;
@@ -1919,4 +1926,8 @@ h1.tribe-events-page-title {
 }
 .video-banner video {
     max-width: initial;
+}
+
+#home-slider.home-video {
+    background-size: 100% 100%;
 }
