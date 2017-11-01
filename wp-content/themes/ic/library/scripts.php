@@ -21,8 +21,6 @@
 <!-- Lightbox - Prettyphoto -->	
 <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
 
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.lazyloadxt.extra.js"></script>
-
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.vide.js"></script>
 
 <!-- responsive style -->
@@ -49,6 +47,8 @@
 
 <!-- Jquery Sticky -->
 <script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></script>
+
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.lazyloadxt.extra.js"></script>
 
 	<!-- Fonts -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -644,6 +644,11 @@
 			if (check_home) {
 				$('video').get(0).play();
 			}
+
+			if ( vide_video ) {
+				$('.video-banner-onload').vide(vide_video);
+			}
+
 		});
 
 		if ($(window).width() > 768 ) {
