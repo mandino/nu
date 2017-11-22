@@ -512,8 +512,23 @@ and (max-width : 940px)
 	    height: auto;
 	}
 
+	.fl .slidesjs-slide .ptit, .fr .slidesjs-slide {
+		max-height: unset;
+	}
+
+	.fl .slidesjs-slide .ptit div, .fr .slidesjs-slide div {
+		height: auto;
+	}
+
+	.fl .slidesjs-slide div span, .fr .slidesjs-slide div span {
+		height: auto;
+		right: 10px;
+		bottom: 10px;
+
+	}
+
 	.fl .slidesjs-slide .ptit, .fr .slidesjs-slide .ptits {
-	    bottom: -104px;
+	    bottom: 0px;
 	}
 
 
@@ -1481,7 +1496,9 @@ padding: 8px 12px;
 and (max-width : 480px) 
 {
 
-
+	.slides-mini .slidesjs-navigation {
+		top: 25%;
+	}
 
 	/* HOMEPAGE - Slider */
 
