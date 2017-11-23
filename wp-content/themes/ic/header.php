@@ -89,6 +89,7 @@
 	</script>
 	<!-- End Sojern -->
 
+<!--
 	<script type="application/ld+json">
 		{
 		"@context": "//schema.org",
@@ -104,6 +105,7 @@
 		"articleBody": "The full body of the article"
 		}
 	</script>
+-->
 
 </head> 
 	
