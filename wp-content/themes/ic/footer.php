@@ -115,6 +115,9 @@
 				<?php } ?>
 				
 			</div>
+            <?php if(get_option('cebo_locb-schema')) 
+                echo get_option('cebo_locb-schema');
+            ?>
 		</div>
 
 	</footer>
