@@ -434,20 +434,20 @@ and (max-width : 1024px) {
 		display: block;
 	}
 
-	.slide-header.slide-header-mobileonly {
-		display: block;
-		top: 0;
-		left: 0;
-		right: 0;
-		-webkit-transform: translateY(0%);
-		-o-transform: translateY(0%);
-		-ms-transform: translateY(0%);
-		transform: translateY(0%);
+	#home-slider {
+		background-image: none !important;
 	}
 
-	.slide-header.slide-header-mobileonly .slicer {
-		min-height: auto;
-		height: 100%;
+	#home-slider.home-video {
+		display: table;
+	}
+
+	.flexslider--mobileonly {
+		display: block;
+	}
+
+	.flexslider.flexslider--mobileonly .slides img {
+		display: block;
 	}
 
 	.video-banner {
