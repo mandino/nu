@@ -1008,8 +1008,17 @@ and (max-width : 939px) {
 
 
 
+@media only screen 
+and (max-width : 768px) 
+{
 
-
+	.post-tags li {
+		float: unset;
+		text-align: center;
+		display: block;
+		margin-bottom: 10px;
+	}
+}
 
 
 @media only screen 
@@ -1467,6 +1476,9 @@ padding: 8px 12px;
 	#room-details-slider .iosSlider .slider .item h3 {
 		width: 96%;
 	}
+	.post-content p iframe {
+		width: 100%;
+	}
 }
 
 /* ================================================ MOBILES BELOW 500 ======================================== */
@@ -1521,7 +1533,7 @@ and (max-width : 480px)
 	}
 
 	.post-tags li {
-	    display: inline-block;
+	    /*display: inline-block;*/
 	    font-size: 15px;
 	    margin-bottom: 10px;
 	    float: none;
