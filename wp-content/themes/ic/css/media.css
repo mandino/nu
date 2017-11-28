@@ -440,13 +440,10 @@ and (max-width : 1024px) {
 
 	#home-slider.home-video {
 		display: table;
+		height: 498px;
 	}
 
 	.flexslider--mobileonly {
-		display: block;
-	}
-
-	.flexslider.flexslider--mobileonly .slides img {
 		display: block;
 	}
 
@@ -1048,7 +1045,8 @@ and (max-width : 720px)
 {	
 
 
-		#home-slider {
+		#home-slider,
+		#home-slider.home-video {
 height: 350px;
 }
 
@@ -1102,7 +1100,8 @@ and (max-width : 640px)
 
 	/* Home Slider */
 
-	#home-slider {
+	#home-slider,
+	#home-slider.home-video {
 		height: 300px;
 		overflow: hidden;
 	}
@@ -1519,7 +1518,7 @@ and (max-width : 480px)
 
 	/* HOMEPAGE - Slider */
 
-	#home-slider {
+	#home-slider, #home-slider.home-video {
 		height: 250px;
 	}
 
