@@ -1526,6 +1526,12 @@ $options[] = array( "name" => __('Email','cebolang'),
 			"type" => "text");			
 
 
+$options[] = array( "name" => __('Local Business Schema','cebolang'),
+			"desc" => __('Paste Local Business Schema JSON-LD','cebolang'),
+			"id" => $shortname."_locb-schema",
+			"std" => "",
+			"type" => "textarea");     
+
 $options[] = array( "name" => __('Email Newsletter Form Code','cebolang'),
 			"desc" => __('Paste in your newsletter signup form in the footer','cebolang'),
 			"id" => $shortname."_enewslettercode",
