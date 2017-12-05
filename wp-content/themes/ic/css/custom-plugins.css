@@ -135,6 +135,11 @@
     background-position: center center;
 }
 
+.flexslider.flexslider--mobileonly .slides img {
+    display: block;
+    width: 145%;
+}
+
 .flexslider .slides img {
     display: none;
 }
