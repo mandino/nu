@@ -1468,10 +1468,11 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 #primary-nav nav ul li {
 	color: #868282;
-	margin-right: 10px;
+	margin: 0;
+	padding: 0 6px;
 	display: inline-block;
-	*display: inline;
 	zoom: 1;
+	position: relative;
 }
 
 #primary-nav nav ul li a {
