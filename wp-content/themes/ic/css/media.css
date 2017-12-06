@@ -1022,8 +1022,8 @@ and (max-width : 939px) {
 and (max-width : 768px) 
 {
 
-	.post-tags li {
-		float: unset;
+	.single-specials .post-tags li {
+		float: none;
 		text-align: center;
 		display: block;
 		margin-bottom: 10px;
@@ -1546,13 +1546,16 @@ and (max-width : 480px)
 	}
 
 	.post-tags li {
-	    /*display: inline-block;*/
+	    display: inline-block;
 	    font-size: 15px;
 	    margin-bottom: 10px;
 	    float: none;
 	    margin-right: 14px;
 	}
 
+	.single-specials .post-tags li {
+		display: block;
+	}
 
 
 	/* Post */
