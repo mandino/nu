@@ -30,6 +30,7 @@ wp-content/wp-content/themes/default/
 wp-content/plugins/wp-google-maps/1markers.xml
 *.timthumb.txt
 barclays-center-hotel-deals/
+robots.txt
 
 #####################################
 # Wordpress untracked plugins files #
