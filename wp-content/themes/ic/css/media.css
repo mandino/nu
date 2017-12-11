@@ -434,7 +434,25 @@ and (max-width : 1024px) {
 		display: block;
 	}
 
+	#home-slider {
+		background-image: none !important;
+	}
 
+	#home-slider.home-video {
+		display: table;
+	}
+
+	.flexslider--mobileonly {
+		display: block;
+	}
+
+	.flexslider--mobileonly .slicer {
+		min-height: 0;
+	}
+
+	.video-banner {
+		display: none;
+	}
 
 }
 
@@ -1016,11 +1034,20 @@ and (max-width : 939px) {
 }
 
 
-
-
 @media only screen 
-and (max-width : 768px) 
-{
+and (max-width : 768px) {
+	.video-banner video[style] {
+		width: 100% !important;
+		height: 100% !important;
+		position: relative !important;
+		top: 0 !important;
+		left: 0 !important;
+		-moz-transform: none !important;
+		-webkit-transform: none !important;
+		-o-transform: none !important;
+		-ms-transform: none !important;
+		transform: none !important;
+	}
 
 	.single-specials .post-tags li {
 		float: none;
@@ -1044,7 +1071,9 @@ height: 350px;
 .home .flexslider .slides img {
 	width: 150%;
 	}
-
+	.home .flexslider.flexslider--mobileonly .slides img {
+		width: 220%;
+	}
 }
 /* ================================================  MAX WIDTH 640 ======================================= */
 
@@ -1096,6 +1125,10 @@ and (max-width : 640px)
 		overflow: hidden;
 	}
 
+	#home-slider.home-video {
+		overflow: hidden;
+	}
+
 	.flex-control-nav {
 	    bottom: 360px;
 	    display: block;
@@ -1106,8 +1139,17 @@ and (max-width : 640px)
 		width: auto;
 		height: 100%;
 	}
+
+	.flexslider.flexslider--mobileonly .slides img {
+		height: auto;
+	}
+
 	.home .flexslider .slides img {
 		width: 150%;
+	}
+
+	.home .flexslider.flexslider--mobileonly .slides img {
+		width: 210%;
 	}
 
 	#home-slider h2 {
@@ -1462,8 +1504,12 @@ padding: 8px 12px;
     display: none;
 }
 
-.home .flexslider .slides img {
+	.home .flexslider .slides img {
 		width: 180%;
+	}
+
+	.home .flexslider.flexslider--mobileonly .slides img {
+		width: 250%;
 	}
 
 
@@ -1520,6 +1566,11 @@ and (max-width : 480px)
 
 	.slicer {
 	    height: 80%;
+	}
+
+	.flexslider.flexslider--mobileonly .slicer {
+		height: 100%;
+		max-width: 100px;
 	}
 
 	.specialsbox {
