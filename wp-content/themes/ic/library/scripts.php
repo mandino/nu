@@ -24,7 +24,7 @@
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.vide.js"></script>
 
 <!-- responsive style -->
-<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css" media="screen">
 
 <!-- Color Override CSS -->
 <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
@@ -59,7 +59,7 @@
 	
 	<!-- Plugins CSS -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
+	<!-- <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" /> -->
 	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
 
@@ -156,12 +156,12 @@
 		$('#jquery-ui-theme-css').remove();
 		
 		
-		if ($(window).width() > 399) {
+		// if ($(window).width() > 399) {
 			$("a[rel^='prettyPhoto']").prettyPhoto({
 		    	default_width: 800,
 		    	default_height: 600
 		    });
-		}
+		// }
 	    
 		$(".closebox a").click(function(e) {
 			e.preventDefault();

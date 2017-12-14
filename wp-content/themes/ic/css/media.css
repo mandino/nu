@@ -97,7 +97,7 @@ and (max-width : 1099px) {
 	/* General settings */
 
 	.container, #tribe-events-pg-template {
-		width: 95%;
+		width: 90%;
 	}
 
 
@@ -463,11 +463,6 @@ and (max-width : 1024px) {
 @media only screen 
 and (max-width : 1023px) {
 
-	#maparea, #toggles {
-		display: none !important;
-	}
-
-
 
 }
 
@@ -535,8 +530,23 @@ and (max-width : 940px)
 	    height: auto;
 	}
 
+	.fl .slidesjs-slide .ptit, .fr .slidesjs-slide {
+		max-height: unset;
+	}
+
+	.fl .slidesjs-slide .ptit div, .fr .slidesjs-slide div {
+		height: auto;
+	}
+
+	.fl .slidesjs-slide div span, .fr .slidesjs-slide div span {
+		height: auto;
+		right: 10px;
+		bottom: 10px;
+
+	}
+
 	.fl .slidesjs-slide .ptit, .fr .slidesjs-slide .ptits {
-	    bottom: -104px;
+	    bottom: 0px;
 	}
 
 
@@ -612,11 +622,11 @@ and (max-width : 940px)
 	/* Page - Specials */
 
 	.post-content .imagegal ul li:nth-child(3n) {
-	    margin-right: 0;
+	    margin-right: auto;
 	}
 
 	.post-content .imagegal ul li:nth-child(4n) {
-	    margin-right: 13px;
+	    margin-right: auto;
 	}
 
 	.post-content .imagegal ul li {
@@ -1095,6 +1105,7 @@ and (max-width : 939px) {
 
 }
 
+
 @media only screen 
 and (max-width : 768px) {
 	.video-banner video[style] {
@@ -1109,9 +1120,14 @@ and (max-width : 768px) {
 		-ms-transform: none !important;
 		transform: none !important;
 	}
+
+	.single-specials .post-tags li {
+		float: none;
+		text-align: center;
+		display: block;
+		margin-bottom: 10px;
+	}
 }
-
-
 
 
 @media only screen 
@@ -1431,7 +1447,8 @@ and (max-width : 640px)
 	}
 
 	#intro .container .section-photos {
-	    width: 260px;
+	    width: 100%;
+	    text-align: center;
 	}
 
 	#intro .section-photos img {
@@ -1588,6 +1605,9 @@ padding: 8px 12px;
 	#room-details-slider .iosSlider .slider .item h3 {
 		width: 96%;
 	}
+	.post-content p iframe {
+		width: 100%;
+	}
 }
 
 /* ================================================ MOBILES BELOW 500 ======================================== */
@@ -1606,7 +1626,9 @@ padding: 8px 12px;
 and (max-width : 480px) 
 {
 
-
+	.slides-mini .slidesjs-navigation {
+		top: 25%;
+	}
 
 	/* HOMEPAGE - Slider */
 
@@ -1654,6 +1676,9 @@ and (max-width : 480px)
 	    margin-right: 14px;
 	}
 
+	.single-specials .post-tags li {
+		display: block;
+	}
 
 
 	/* Post */
