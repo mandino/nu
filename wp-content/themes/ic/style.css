@@ -1666,7 +1666,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     margin-bottom: 63px;
 }
 #intro .section-photos img {
-	width: 100%;
+	/*width: 100%;*/
 }
 
 #intro .section-photos .gallery {
