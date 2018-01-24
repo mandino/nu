@@ -139,7 +139,7 @@ get_header();
 							<?php endif; ?>
 
 							<?php //images ?>
-							<img width="<?php echo $size[0]; ?>" height="<?php echo $size[1]; ?>" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+							<img width="<?php echo $size[0]; ?>" height="<?php echo $size[1]; ?>" src="<?php echo tt($image['url'], $size[0], $size[1]); ?>" alt="<?php echo $image['alt']; ?>">
 
 							<span><?php echo $title; ?></span>
 
