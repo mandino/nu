@@ -296,6 +296,11 @@ $css .=<<<CSS
 	color: $accent;
 }
 
+.ticker span,
+.ticker a {
+	background-color: $accent;
+}
+
 CSS;
 
 }

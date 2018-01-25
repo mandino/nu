@@ -277,3 +277,8 @@ padding: 25px 20px;
 .read-more-button i {
 	color: #f27333;
 }
+
+.ticker span,
+.ticker a {
+	background-color: #f27333;
+}
