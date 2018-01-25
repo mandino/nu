@@ -49,6 +49,7 @@
 <script type="text/javascript" src="<?php bloginfo ('template_url'); ?>/js/jquery.sticky.js"></script>
 
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.lazyloadxt.extra.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/ticker.js"></script>
 
 	<!-- Fonts -->
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -90,6 +91,18 @@
 <script type="text/javascript">
 
 	$(document).ready(function(){
+
+		$(window).scroll(function() {
+			var verschil = ($(window).scrollTop() / 5);
+
+			if (verschil > 40) {
+				$('.droplogo').addClass('jumpshot');
+				$('.ticker').addClass('ticker-down');
+			} else if (verschil < 40) {
+				$('.droplogo').removeClass('jumpshot');
+				$('.ticker').removeClass('ticker-down');
+			}
+		});
 
 		$(".eat-tab-button").click(function() {
 			var id = "#"+$(this).data('class');
