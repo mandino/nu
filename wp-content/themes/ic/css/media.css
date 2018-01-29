@@ -100,7 +100,9 @@ and (max-width : 1099px) {
 		width: 90%;
 	}
 
-
+	.ticker-down {
+		top: 84px;
+	}
 
 	/* Navigation */
 
@@ -862,8 +864,13 @@ and (max-width : 940px)
 and (max-width : 939px) {
 	
 	
+	.ticker {
+		top: 68px;
+	}
 	
-	
+	.ticker-down {
+		top: 51px;
+	}
 	
 	#footer-newsletter {
 		display: none;

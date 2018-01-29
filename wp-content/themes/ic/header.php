@@ -211,9 +211,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 		<div id="primary-nav" style="overflow:visible;">
 
-			<a href="<?php bloginfo('url'); ?>" class="logo<?php if(is_home()) { ?> droplogo<?php } ?>"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
+			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
 			<a href="<?php bloginfo('url'); ?>" class="logo mobile"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
+
+			<?php 
+				$arg = array(
+							'post_type' => array('specials', 'tribe_events'),
+							'value' => time(),
+							'meta_key' => 'ticker_date_end',
+							'order' => 'ASC',
+							'meta_query' => array(
+								'relation' => 'AND',
+								array(
+									'key' => 'ticker_status',
+									'value' => 'On',
+									'compare' => '='
+								),
+								array(
+									'relation' => 'OR',
+									array(
+										'key' => 'ticker_date_start',
+										'value' => date('Ymd'),
+										'compare' => '<='
+									),
+									array(
+										'relation' => 'AND',
+										array(
+											'key' => 'ticker_date_start',
+											'value' => date('Ymd'),
+											'compare' => '>='
+										),
+										array(
+											'key' => 'ticker_date_end',
+											'value' => date('Ymd'),
+											'compare' => '<='
+										),
+									)
+								)
+							)
+						);
+				$text = new WP_Query($arg);
+				if ($text->posts) {
+					foreach ($text->posts as $post) {
+						$tickerName = $post->post_title;
+						$tickerDate = date('m/d/Y H:i:s', strtotime(get_field('ticker_date_end')));
+						$tickerId = $post->ID;
+						if (strtotime("now") < strtotime($tickerDate)) {
+			?>
+							<div class="ticker">
+								<span><?php echo get_field('ticker_offer') ?></span>
+								<a class="close">X</a>
+								<div class="ticker-content">
+									<h3><?php echo get_field('ticker_title') ?></h3>
+									<div id="ticker">
+										<?php echo $tickerDate; ?>
+									</div>
+									<div class="clear"></div>
+										<a href="<?php echo get_field('ticker_cta_url'); ?>"><?php echo get_field('ticker_cta_text') ?></a>
+									<?php // } ?>
+								</div>
+							</div>
+							<?php break; ?>
+						<?php } ?>
+					<?php } ?>
+				<?php } ?>
+			<?php wp_reset_postdata(); ?>
 
 			<a class="reserve fixeer button fr input-append date" id="idp3" data-date="12-02-2012" data-date-format="mm-dd-yyyy">RESERVE</a>
 
