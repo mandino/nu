@@ -1056,10 +1056,12 @@ color: #333;
 }
 
 .post-content img {
+    display: block;
 	height: auto;
 	max-height: 100%;
 	max-width: 100%;
-	width: 100%;
+	width: auto;
+    margin: auto;
 }
 
 .page-id-35 .post-content h2 {
