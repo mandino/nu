@@ -75,134 +75,91 @@ get_header();
 				<ul>
 
 
+					<?php
+						$counter = 0;
+						$image_sizes['name'] = array( 'Image 260x290', 'Image 260x290', 'Image 540x290' );
+						$image_sizes['sizes'] = array( array(260, 290), array(260, 290), array(540, 290));
+
+						if( have_rows( 'homepage_tiles', 'options' ) ) : while( have_rows( 'homepage_tiles', 'options' ) ) : the_row();
+
+							$image = array();
+							$page_info = get_sub_field('related_page');
+							$title = '';
+							$subtitle = '';
+							$image_size = $image_sizes['name'][$counter];
+							$size = $image_sizes['sizes'][$counter];
+
+							if (get_sub_field('image')) {
+								$imageDetail = get_sub_field('image');
+								$image['url'] = $imageDetail['sizes'][$image_size];
+								$image['alt'] = $imageDetail['alt'] ? $imageDetail['alt'] : $imageDetail['name'];
+							} else {
+								$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $page_info->ID ), $image_size);
+								$image_id = get_attachment_id_by_url(get_post_meta($page_info->ID, 'cebo_homethumb', true));
+								$image_url = wp_get_attachment_image_src($image_id , $image_size);
+								$image['alt'] = ( get_image_alt_text_by_post_id('',$post->ID) ? get_image_alt_text_by_post_id('',$post->ID) : get_image_alt_text_by_post_id(get_post_meta($post->ID, 'cebo_homethumb', true), '') );
+
+								if(get_post_meta($post->ID, 'cebo_homethumb', true))
+									$image['url'] = $image_url[0];
+								else
+									$image['url'] = $imgsrc[0];
+							}
+
+							if (get_sub_field('title')) {
+								$title = get_sub_field('title');
+
+							} else {
+								$title = $page_info->post_title;
+							}
+
+							if (get_sub_field('subtitle')) {
+								$subtitle = get_sub_field('subtitle');
+							}
 
 
+							if (get_sub_field('link'))
+								$link = get_sub_field('link');
+							else
+								$link = get_page_link($page_info->ID);
 
+							if (get_sub_field('open_link_in_new_tab'))
+								$newtab = 'target="_blank"';
+							else
+								$newtab = '';
 
-					<!-- featured Room -->
+					?>
 
-					<?php query_posts('post_type=page&p=2155'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
+						<li class="hover">
 
-					<li class="hover">
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
+							<?php //price ?>
+							<?php if(get_post_meta($page_info->ID, 'cebo_pricepoint', true)) : ?>
+								<div class="from-price">
+									<?php echo get_post_meta($page_info->ID, 'cebo_pricepoint', true); ?>
+								</div>
+							<?php endif; ?>
 
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 291); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" >
+							<?php //images ?>
+							<img width="<?php echo $size[0]; ?>" height="<?php echo $size[1]; ?>" src="<?php echo tt($image['url'], $size[0], $size[1]); ?>" alt="<?php echo $image['alt']; ?>">
 
-						<?php } else { ?>
+							<span><?php echo $title; ?></span>
 
-						<img src="<?php echo tt($imgsrc[0], 260, 291); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>">
+							<div class="hover-effect">
 
-						<?php } ?>
+								<?php if($subtitle) { ?>
 
-						<span><?php the_title(); ?></span>
+								<a class="special-copy-link" href="<?php echo $link; ?>" <?php echo $newtab; ?>><span><?php echo $subtitle; ?></span></a>
 
-						<div class="hover-effect">
+								<?php } ?>
+								<br>
+								<p><?php echo $title; ?></p>
 
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
+								<a class="special-external" href="<?php echo $link; ?>" <?php echo $newtab; ?>><i class="fa fa-chevron-right fa-lg"></i></a>
 
-							<a class="special-copy-link" href="<?php if (get_post_meta($post->ID, 'cebo_booklink', true)) { echo get_post_meta($post->ID, 'cebo_booklink', true); } else { the_permalink(); } ?>" target="_blank"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
+							</div>
 
-							<?php } ?>
-							<br>
-							<p><?php the_title(); ?></p>
+						</li>
 
-							<a class="special-external" href="<?php if (get_post_meta($post->ID, 'cebo_booklink', true)) { echo get_post_meta($post->ID, 'cebo_booklink', true); } else { the_permalink(); } ?>" target="_blank"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-					<?php query_posts('post_type=specials&posts_per_page=1'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
-
-
-
-
-					<!-- Special -->
-
-					<li class="hover">
-
-						<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
-
-						<div class="from-price">
-							<?php echo get_post_meta($post->ID, 'cebo_pricepoint', true); ?>
-						</div>
-
-						<?php } ?>
-
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
-
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 293); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" >
-
-						<?php } else { ?>
-
-						<img src="<?php echo tt($imgsrc[0], 260, 293); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" >
-
-						<?php } ?>
-
-						<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
-
-						<span><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></span>
-
-
-						<?php } ?>
-
-						<div class="hover-effect">
-
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
-
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
-
-							<?php } ?>
-
-
-							<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
-							<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-					<?php query_posts('post_type=page&p=70'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
-
-
-
-
-
-
-
-					<!-- Amenities -->
-
-					<li class="hover">
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
-
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 540, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" >
-
-						<?php } else { ?>
-
-						<img src="<?php echo tt($imgsrc[0], 540, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" >
-
-						<?php } ?>
-
-						<span><?php the_title(); ?></span>
-
-						<div class="hover-effect">
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
-
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><span><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></span></a>
-
-							<?php } ?>
-							<br>
-							<p><?php the_title(); ?></p>
-
-							<a class="special-external" href="/?page_id=70"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-
+					<?php $counter++; endwhile; endif; ?>
 
 					<div class="clear"></div>
 
