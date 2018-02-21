@@ -122,8 +122,6 @@ get_header();
 							else
 								$link = get_the_permalink($page_info->ID);
 
-							}
-
 							if (get_sub_field('open_link_in_new_tab'))
 								$newtab = 'target="_blank"';
 							else
