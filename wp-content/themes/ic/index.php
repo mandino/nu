@@ -123,7 +123,7 @@ get_header();
 								if (get_post_type($page_info->ID) == 'specials') {
 									$link = get_post_permalink($page_info->ID);
 								} else {
-									$link = get_page_link($page_info->ID);
+									$link = get_the_permalink($page_info->ID);
 								}
 							}
 
