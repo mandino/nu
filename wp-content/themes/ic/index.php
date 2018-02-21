@@ -120,7 +120,7 @@ get_header();
 							if (get_sub_field('link'))
 								$link = get_sub_field('link');
 							else
-								$link = get_page_link($page_info->ID);
+								$link = get_the_permalink($page_info->ID);
 
 							if (get_sub_field('open_link_in_new_tab'))
 								$newtab = 'target="_blank"';
