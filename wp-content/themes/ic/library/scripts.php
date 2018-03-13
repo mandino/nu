@@ -721,5 +721,11 @@
 		}
 
 	});
+    // mobile booking button target
+    jQuery( document ).ready(function( $ ) {
+        if ($(window).width() < 768) {
+           $('.button').removeAttr('target');
+       }         
+    });
 
 </script>
