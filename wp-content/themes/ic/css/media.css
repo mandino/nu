@@ -2030,7 +2030,7 @@ and (max-width : 399px)
 	    padding: 18px 0;
 	}
 
-	.single-rooms #room-details-slider {
+	.single-rooms #room-details-slider,.single-perspective_room #room-details-slider  {
 	    margin-top: 0 !important;
 	}
 

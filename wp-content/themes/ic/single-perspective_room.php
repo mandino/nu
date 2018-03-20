@@ -225,7 +225,7 @@
 			</div>
 			
 			
-			<div class="section-header" style="border-top: 1px solid #ddd; margin-top: 60px; margin-bottom: 0; float: none; text-align: center;">
+<!--			<div class="section-header" style="border-top: 1px solid #ddd; margin-top: 60px; margin-bottom: 0; float: none; text-align: center;">
 					
 				<div class="fl" style="float: none; text-align: center; padding: 20px 0;">
 	
@@ -254,10 +254,10 @@
 			<div class='item'></div>
 			<div class='item'></div>
 		
-		</div>
+		</div> -->
 
 				
-		<div class='iosSlider'>
+	<!--	<div class='iosSlider'>
 		
 			<div class='slider'>
 				<?php $thisid = $post->ID; ?>
@@ -275,12 +275,12 @@
 				
 			</div>
 		
-		</div>
+		</div> 
 
 		<div class="iosslider-prev"><i class="fa fa-chevron-left"></i></div>
 		<div class="iosslider-next"><i class="fa fa-chevron-right"></i></div>
 
-	</div>
+	</div> -->
 
 	
 					
