@@ -81,7 +81,7 @@
 <!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
 
 <!-- Iosslider -->
-<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+<?php if ( 'rooms' == get_post_type() || 'perspective_room' == get_post_type() ) 	{ ?>
 	<script src="<?php bloginfo ('template_url'); ?>/js/jquery.iosslider.min.js"></script>
 <?php } ?>
 
@@ -396,8 +396,8 @@
 
 		// iosslider
 
-		<?php if ( 'rooms' == get_post_type() ) 	{ ?>
-
+		<?php if ( 'rooms' == get_post_type() || 'perspective_room' == get_post_type() ) 	{ ?>
+            
 			$('#room-details-slider .iosSlider').iosSlider({
 				snapToChildren: true,
 				desktopClickDrag: true,
@@ -410,6 +410,7 @@
 				navNextSelector: $('.iosslider-next'),
 			    navPrevSelector: $('.iosslider-prev'),
 			});
+        
 
 			function slideComplete(args) {
 					
