@@ -46,7 +46,23 @@ function project_items()
 
 include(TEMPLATEPATH . '/options/secondary-panel.php'); 
 
+//CREATE POST TYPE FOR PERSPECTIVE ROOMS
 
+add_action( 'init', 'create_post_types_perspective_rooms' );
+function create_post_types_perspective_rooms() {
+  register_post_type( 'Perspective_room',
+    array(
+      'labels' => array(
+        'name' => __( 'Perspective Rooms' ),
+        'singular_name' => __( 'Perspective Rooms' )
+      ),
+      'public' => true,
+      'rewrite' => array('slug' => 'nu-perspective-rooms'),
+      'menu_icon' => 'dashicons-admin-multisite',
+      'supports' =>  array('title','custom-fields','editor','author','excerpt','comments','thumbnail')
+    )
+  );
+}
 
 
 add_action( 'init', 'creates_post_types' );
@@ -202,5 +218,36 @@ function email_signup_form() {
     )
   );
 }
+
+
+
+//
+//create_persroom_taxonomies();
+//function create_persroom_taxonomies()
+//{
+  // Taxonomy for Perspective Rooms
+//  $labels = array(
+//    'name' => _x( 'Perspective Room Type', 'taxonomy general name' ),
+//    'singular_name' => _x( 'Perspective Room Type', 'taxonomy singular name' ),
+//    'search_items' =>  __( 'Search Perspective Room Types' ),
+//    'all_items' => __( 'All Perspective Room Types' ),
+//    'parent_item' => __( 'Parent Perspective Room Type' ),
+//    'parent_item_colon' => __( 'Parent Perspective Room Type:' ),
+//    'edit_item' => __( 'Edit Perspective Room Type' ),
+//    'update_item' => __( 'Update Perspective Room Type' ),
+//    'add_new_item' => __( 'Add New Perspective Room Type' ),
+//    'new_item_name' => __( 'New Perspective Room Type Name' ),
+//  ); 	
+//
+//  register_taxonomy('persroom', array('perspective_room'), array(
+//    'hierarchical' => true,
+//    'labels' => $labels,
+//    'show_ui' => true,
+//    'query_var' => true,
+//    'rewrite' => array( 'slug' => 'perspective-rooms-type' ),
+//  ));
+//
+//}
+
 
 ?>
