@@ -131,7 +131,7 @@ add_action('admin_menu', 'mythemer_add_boxer');
 // Add meta boxer
 function mythemer_add_boxer() {
 	global $meta_boxer;
-	foreach ( array( 'rooms', 'page', 'event' ) as $page )
+	foreach ( array( 'rooms', 'page', 'event','perspective_room' ) as $page )
 	add_meta_box($meta_boxer['id'], $meta_boxer['title'], 'mythemer_show_boxer', $page, $meta_boxer['context'], 			$meta_boxer['priority']);
 }
 // Callback function to show fields in meta boxer

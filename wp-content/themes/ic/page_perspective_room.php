@@ -1,6 +1,6 @@
 <?php 
 
-/* Template Name: Rooms List Page
+/* Template Name: Perspective Rooms List Page
 
 */
  get_header(); ?>
@@ -78,7 +78,7 @@
 				
 				<ul>
 					
-					<?php query_posts('post_type=rooms&posts_per_page=-1&order=ASC'); if(have_posts()) : while(have_posts()) : the_post(); 							  
+					<?php query_posts('post_type=perspective_room&posts_per_page=-1&order=ASC'); if(have_posts()) : while(have_posts()) : the_post(); 							  
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 					
 					<li class="room-box">
