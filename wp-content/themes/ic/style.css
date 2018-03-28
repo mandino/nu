@@ -4880,3 +4880,13 @@ li.social_share_side a i:hover{
     float: left;
     width: 30%;
 }
+
+#tribe-events-pg-template .tribe-events-content ol li, 
+#tribe-events-pg-template .tribe-events-content ul li, 
+.tribe-events-after-html ol li, 
+.tribe-events-after-html ul li, 
+.tribe-events-before-html ol li, 
+.tribe-events-before-html ul li{
+    list-style: disc inside;
+    font-size: 16px;
+ }
