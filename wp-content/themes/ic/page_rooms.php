@@ -103,12 +103,12 @@
 							<p><?php echo excerpt(50); ?></p>
 
 							<div class="room-list-buttons">
-
+  
 								<a class="button"  onclick="_gaq.push(['_link', this.href]); return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a>
 								<?php
 								$postid=get_the_ID();
 									if ($postid=='90') { ?>
-									<a class="button" href="//www.nuhotelbrooklyn.com/downtown-brooklyn-hotel/nu-perspectives/">Read More</a>
+									<a class="button" href="<?php echo get_bloginfo('url'); ?>/nu-perspective-rooms/">Read More</a>
 								<?php } else { ?>
 
 								<a class="button" href="<?php the_permalink(); ?>">Read More</a>
