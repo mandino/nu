@@ -69,7 +69,13 @@
 			</div>
 
 			<div class="wonderline"></div>
-
+            <?php                        
+                if ( function_exists('yoast_breadcrumb') ) {
+                    yoast_breadcrumb('
+                    <p id="breadcrumbs">','</p>
+                    ');
+                }
+            ?> 
 			<div class="post-content" style="padding: 20px;">
 				<?php the_content(); ?>
 			</div>
