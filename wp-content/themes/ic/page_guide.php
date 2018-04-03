@@ -46,7 +46,13 @@
 		<div class="container">
 
 			<div class="section-header">
-					
+                <?php                        
+                    if ( function_exists('yoast_breadcrumb') ) {
+                        yoast_breadcrumb('
+                        <p id="breadcrumbs">','</p>
+                        ');
+                    }
+                ?> 	
 				<div class="fl">
 	
 					<h1 class="section-title fr"><?php the_title(); ?></h1>
