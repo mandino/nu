@@ -104,7 +104,7 @@
 
 							<div class="room-list-buttons">
 
-								<a class="button"  onclick="_gaq.push(['_link', this.href]); return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a>
+								<!--<a class="button"  onclick="_gaq.push(['_link', this.href]); return false;" href="<?php //if(get_post_meta ($post->ID, 'cebo_booklink', true)) { //echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a> -->
 								<?php
 								$postid=get_the_ID();
 									if ($postid=='90') { ?>
