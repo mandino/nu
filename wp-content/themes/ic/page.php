@@ -133,7 +133,7 @@
                     ');
                 }
             ?>  
-			<div class="post-content fl">
+			<div class="post-content fl <?php if(get_post_meta ($post->ID, 'cebo_full_width', true)) echo 'content-fullwidth';?>">
 			
 				<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
 				
@@ -144,7 +144,10 @@
 
 			</div>
 
-
+            <?php 
+                $fw = get_post_meta($post->ID, 'cebo_full_width', true);
+                if (!$fw){ 
+           ?>   
 
 			<div class="sidebar fr">
 				
@@ -210,8 +213,8 @@
 						</ul>
 		
 				</div>
-
-			<div class="post-content fl">
+                <?php } ?> 
+			<div class="post-content fl <?php if(get_post_meta ($post->ID, 'cebo_full_width', true)) echo 'content-fullwidth';?>">
 				<?php $class = ""; $cnt = 0; ?>
 				<div class="eat-container">
 					<div>
