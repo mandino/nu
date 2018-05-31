@@ -740,5 +740,88 @@
 			}
 		});        
     });
+    
+// landing-page
+    
+  
+$(window).scroll(function () {
+	$trigger = $('.banner').height();
+
+	if ( $(window).scrollTop() >= ($trigger - 350) ) {
+		$('body').addClass('onscroll');
+        $('.landing-page').removeClass('display-none');
+        $(".landing-page").fadeIn(700);
+		
+       // $('landing-page-logo img').fadeIn(500);
+	} else {
+		$('body').removeClass('onscroll');
+        $(".landing-page").fadeOut(300);
+       // $('landing-page-logo img').fadeIn(500);
+		$('.landing-page').addClass('display-none');
+	}
+
+});    
+
+//slick
+$(document).ready(function() {
+    
+
+ $('.lp-slider, .lp-slider-no-map').slick({
+      dots: false,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      adaptiveHeight: true,
+      arrows: true,
+      fade: true,
+      cssEase: 'linear',
+      prevArrow: $('.lp-slider-prev'),
+      nextArrow: $('.lp-slider-next')
+  });
+    
+    var gallery_magnific_popup = {
+		type: 'image',
+		closeOnContentClick: false,
+		closeBtnInside: false,
+		mainClass: 'gallery-mfp',
+		image: {
+			verticalFit: true,
+			titleSrc: function(item) {
+				return item.el.attr('title');
+			}
+		},
+		gallery: {
+			enabled: true
+		},
+		zoom: {
+			enabled: true,
+			duration: 300, // don't foget to change the duration also in CSS
+			opener: function(element) {
+				return element.find('img');
+			}
+		}
+	}
+    
+  $('.lp-icon-link').magnificPopup(gallery_magnific_popup);    
+    
+  $('.accordion-titlebox').on('click', function() {
+		$btn = $(this).find('.accordion-btn');
+		$hiddenContent = $(this).parent().find('.accordion-contentbox');
+
+		if( $btn.hasClass('accordion-btn-plus') ) {
+			$btn.removeClass('accordion-btn-plus');
+			$btn.addClass('accordion-btn-minus');
+
+			$hiddenContent.slideDown();
+		} else {
+			$btn.removeClass('accordion-btn-minus');
+			$btn.addClass('accordion-btn-plus');
+
+			$hiddenContent.slideUp();
+		}
+
+  });    
+    
+});    
 
 </script>
