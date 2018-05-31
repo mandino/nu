@@ -1907,7 +1907,12 @@ and (max-width : 480px)
 
 	.slide-header .button {
     display: none;
-}
+    }
+    
+/*    landing page*/
+    .landing-page-logo, .landing-page-logo-header {
+        display:none;
+    }
 
 }
 
