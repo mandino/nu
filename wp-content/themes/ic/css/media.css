@@ -854,6 +854,12 @@ and (max-width : 940px)
 		-ms-transform: rotate(180deg);
 		transform: rotate(180deg);
 	}
+    
+    /*    landing page*/
+    
+    .accordion-title h3 {
+        font-size: 12px;
+    }
 
 }
 
@@ -1134,6 +1140,15 @@ and (max-width : 768px) {
 		display: block;
 		margin-bottom: 10px;
 	}
+    
+       /*    landing page*/
+    .landing-page-logo-header a img {
+        width: 200px;
+    }
+    
+    .landing-page-logo a img {
+        width: 200px;
+    }
 }
 
 
@@ -1548,6 +1563,14 @@ and (max-width : 640px)
 		width: 260px;
 	}
 
+    /*landing page    */
+    .page-template-page_landing_template_without_map .section-header div.fl:first-of-type {
+        margin-bottom: 0;
+    }   
+    
+    .page-template-page_landing_template_without_map .section-header h1.section-title {
+        top: 0;
+    }    
 	
 
 }
@@ -1615,6 +1638,40 @@ padding: 8px 12px;
 	.post-content p iframe {
 		width: 100%;
 	}
+    
+    /*    landing page*/
+    
+    .acc-right {
+        width: 100%;
+    }
+    
+    .acc-left {
+        width: 100%;
+        float:none;
+    }
+    
+    .slide-header.lp-banner-slide {
+        top: 64%;
+    }
+    
+    .exc-icons-container {
+        width: 100%;
+    }
+    
+    .exc-icon-items {
+        font-size: 14px !important;
+    }
+    
+    .exc-button {
+        width: 100%;
+        float: none;
+        position: relative;
+        left: 5%;
+    }
+    
+    .slider-container {
+        margin-top: 0;
+    }
 }
 
 /* ================================================ MOBILES BELOW 500 ======================================== */
@@ -1850,7 +1907,12 @@ and (max-width : 480px)
 
 	.slide-header .button {
     display: none;
-}
+    }
+    
+/*    landing page*/
+    .landing-page-logo, .landing-page-logo-header {
+        display:none;
+    }
 
 }
 
