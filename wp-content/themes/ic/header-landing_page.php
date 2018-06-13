@@ -1,29 +1,26 @@
 <?php 
+
 	if ( file_exists( TEMPLATEPATH.'/library/mobile-detect.php' ) ) {
+
 		require_once TEMPLATEPATH.'/library/mobile-detect.php';
 		$detect = new Mobile_Detect;
 		$check = $detect->isMobile();
+
 	}
+
 ?>
 <!DOCTYPE HTML>
-<html <?php language_attributes() ?>>
+<html <?php language_attributes('html') ?> >
 <head>
-    
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
     <style>.async-hide { opacity: 0 !important} </style>
     <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
     h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
     (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
     })(window,document.documentElement,'async-hide','dataLayer',4000,
-    {'GTM-5XBBBWD':true});</script>
-    
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
+    {'GTM-KSBRGRP':true});</script>
 	<title>
-		<?php global $page, $paged; wp_title( '|', true, 'right' ); //bloginfo( 'name' );
-	
-		// Add the blog description for the home/front page.
-		// $site_description = get_bloginfo( 'description', 'display' );
-		// if ( $site_description && ( is_home() || is_front_page() ) )
-		// 	echo " | $site_description";
+		<?php global $page, $paged; wp_title( '|', true, 'right' );
 	
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 )
@@ -36,10 +33,13 @@
 		}
 	?>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="profile" href="//gmpg.org/xfn/11" />	
+	<link rel="profile" href="//gmpg.org/xfn/11" />
+	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	<?php if (get_option('cebo_custom_favicon') == '') { ?>	
-	<link rel="icon" href="<?php bloginfo ('template_url'); ?>/cebo_options/<?php bloginfo ('template_url'); ?>/images/admin_sidebar_icon.png" type="image/x-ico"/>	
+	<?php if (get_option('cebo_custom_favicon') == '') { ?>
+	
+	<link rel="icon" href="<?php bloginfo ('template_url'); ?>/cebo_options/<?php bloginfo ('template_url'); ?>/images/admin_sidebar_icon.png" type="image/x-ico"/>
+	
 	<?php } else { ?>
 	
 	<link rel="icon" href="<?php echo get_option('cebo_custom_favicon'); ?>" type="image/x-ico"/>
@@ -59,47 +59,20 @@
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/landingpage.css">
-
-	<!-- Fonts -->
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
-	
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
-
-	<?php if ( 'rooms' == get_post_type() ) 	{ ?>
-		<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
-	<?php } ?>
-
-	<!-- Custom Plugin Settings -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
-
-	<!-- responsive style -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
-	
-    <!--    slick css-->
+    <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/js/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/js/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/magnific-popup.css">
-	<!-- Color Override CSS -->
-	<!-- <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/oceana-hotel.css"> -->
-	
-	<style>
-	<?php include(TEMPLATEPATH. "/library/inset.php"); ?>	
-	</style>
+    <?php if (is_page_template('page_landing_template_without_map.php')) : ?>
+        <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/landingpage.css">   
+    <?php endif; ?>
+
+	<?php include(TEMPLATEPATH. "/library/inset.php"); ?>
 
 	<!-- Jquery -->
-	<?php //include(TEMPLATEPATH. "/library/jquery.php"); ?>	
-<!--	<script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<?php //include(TEMPLATEPATH. "/library/jquery.php"); ?>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type='text/javascript' src='<?php bloginfo ('url'); ?>/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-	
-
-	<!-- pinterest -->
-	<meta name="p:domain_verify" content="fdcd1755542385831e526a2a712cc134"/>
 
 	<?php
 		/****************** DO NOT REMOVE **********************
@@ -116,49 +89,43 @@
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-5XBBBWD');</script>
+	})(window,document,'script','dataLayer','GTM-KSBRGRP');</script>
 	<!-- End Google Tag Manager -->
 
 	<!-- Sojern Head -->
 	<script>
-		(function () {
-		var pl = document.createElement('script');
-		pl.type = 'text/javascript';
-		pl.async = true;
-		pl.src = 'https://beacon.sojern.com/pixel/p/3035';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
-		})();
+	(function () {
+	var pl = document.createElement('script');
+	pl.type = 'text/javascript';
+	pl.async = true;
+	pl.src = 'https://beacon.sojern.com/pixel/p/3032';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(pl);
+	})();
 	</script>
+	<!-- End Sojern -->
 
-	<script>
-		!function(w,d,s,u) {
-		if(window.curacity) { return; }
-		window.curacity = function() { window.curacity.callMethod ?
-		window.curacity.callMethod.apply(window.curacity, arguments) :
-		window.curacity.queue.push(arguments); }
-		window.curacity.version = '1.0';
-		window.curacity.queue = [];
-		var scriptElement = document.createElement(s);
-		scriptElement.type = 'text/javascript';
-		scriptElement.async = true;
-		scriptElement.src = u;
-		var e = d.getElementsByTagName(s)[0];
-		e.parentNode.insertBefore(scriptElement,e);
-		}(window, document, 'script',
-		'https://booking.curacity.com/api/js/curacity_events.js');
-		curacity('init', 'merchant', '365'); // 365 = hotel id
-		curacity('track', 'view_checkout', null);
+<!--
+	<script type="application/ld+json">
+		{
+		"@context": "//schema.org",
+		"@type": "NewsArticle",
+		"headline": "Article headline",
+		"alternativeHeadline": "The headline of the Article",
+		"image": [
+		"thumbnail1.jpg",
+		"thumbnail2.jpg"
+		],
+		"datePublished": "2015-02-05T08:00:00+08:00",
+		"description": "A most wonderful article",
+		"articleBody": "The full body of the article"
+		}
 	</script>
-
-	<noscript>
-		<img height="1" width="1" style="display: none" src="https://booking.curacity.com/trackevent?merchant_id=365&ev=view_checkout&noscript=1" />
-	</noscript>
+-->
 
 </head> 
 	
 <body id="oceana" <?php body_class($class); ?>>
-
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XBBBWD"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSBRGRP"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -257,5 +224,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<script>
 		var vide_video = false;
 	</script>
-	
-<!--	<div id="quiet"></div>-->
