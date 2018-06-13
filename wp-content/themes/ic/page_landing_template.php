@@ -14,8 +14,8 @@
                 <a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_sub_field('landing_page_logo')['url']?>" alt="<?php echo get_sub_field('landing_page_logo')['title']?>"/></a>
             </div>    
 
-            <div class="fullpic banner">  
-                <img src="<?php echo get_sub_field('banner_image')['url']?>" alt=""/>
+            <div class="fullpic banner-lp banner banner--<?php echo get_sub_field('banner_height'); ?>" style="background-image: url('<?php echo get_sub_field('banner_image')['url']?>');">
+                <img src="<?php echo get_sub_field('banner_image')['url']; ?>" alt="<?php echo get_sub_field('banner_image')['alt']; ?>" class="img-hidden"/>
             </div>
         <?php endif; ?>
 <!--intro titles-->
@@ -40,7 +40,7 @@
                         <div> <h2 ><?php echo get_sub_field('main_title'); ?></h2> </div>
                         <div> <h3 ><?php echo get_sub_field('sub_title'); ?></h3> </div>
                         <div class="intro-content"><?php echo get_sub_field('intro_content'); ?> </div>
-                        <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_option('cebo_genbooklink'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
+                        <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_sub_field('booking_url'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
                     </div>
         <?php endif; ?> 
 <!--content list                    -->
