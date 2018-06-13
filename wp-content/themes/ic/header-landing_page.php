@@ -253,5 +253,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 		</div>
 	</div>
+
+	<script>
+		var vide_video = false;
+	</script>
 	
 <!--	<div id="quiet"></div>-->

@@ -37,10 +37,21 @@
 
 
                     <div class="intro text-center">
-                        <div> <h2 ><?php echo get_sub_field('main_title'); ?></h2> </div>
-                        <div> <h3 ><?php echo get_sub_field('sub_title'); ?></h3> </div>
-                        <div class="intro-content"><?php echo get_sub_field('intro_content'); ?> </div>
-                        <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_sub_field('booking_url'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
+                        <?php if ( get_sub_field('main_title') ): ?>
+                            <div> <h2 ><?php echo get_sub_field('main_title'); ?></h2> </div>
+                        <?php endif; ?>
+                        
+                        <?php if ( get_sub_field('sub_title') ) : ?>
+                            <div> <h3 ><?php echo get_sub_field('sub_title'); ?></h3> </div>
+                        <?php endif; ?>
+                        
+                        <?php if ( get_sub_field('intro_content') ) : ?>
+                            <div class="intro-content"><?php echo get_sub_field('intro_content'); ?> </div>
+                        <?php endif; ?>
+
+                        <?php if ( get_sub_field('booking_btn') ) : ?>
+                            <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_sub_field('booking_url'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
+                        <?php endif; ?>
                     </div>
         <?php endif; ?> 
 <!--content list                    -->
@@ -215,10 +226,10 @@
 
 	<ul style="" class="right-links right" id="toggles">
 
-		<li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=74" title="Dining">Eat</a></li>
-		<li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=76" title="Dining">Shop</a></li>
-		<li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=72" title="Dining">Culture</a></li>
-		<li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=78" title="Dining">Landmarks</a></li>
+		<li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=505" title="Dining">Eat</a></li>
+		<li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=507" title="Dining">Shop</a></li>
+		<li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=503" title="Dining">Culture</a></li>
+		<li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=509" title="Dining">Landmarks</a></li>
 
 	</ul>
 
