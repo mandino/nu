@@ -2045,3 +2045,7 @@ h1.tribe-events-page-title {
     background-size: cover;
     position: relative;
 }
+
+.menu-wrap {
+    overflow: hidden;
+}
