@@ -2034,3 +2034,14 @@ h1.tribe-events-page-title {
     cursor: pointer;
     font-size: 13px;
     letter-spacing: 1px; }
+
+.img-hidden {
+    visibility: hidden;
+}
+
+.banner-lp {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

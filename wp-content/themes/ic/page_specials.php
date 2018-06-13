@@ -81,11 +81,57 @@
 					<div class="imagegal thumbgal">
 						
 						<ul>
+                <?php 
+                            $args = array(
+                                'numberposts'	=> 8,
+                                'post_type'		=> 'page',
+                                'meta_key'		=> 'special_featured_list',
+                                'meta_value'    => '1'
+                            );
+                            $lpquery = new WP_Query( $args );
+                            $counter = 0;
+                        if($lpquery->have_posts()) : while ($lpquery->have_posts()) : $lpquery->the_post();
+                            $lpimgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $lpquery->post->ID ), "Full");
+                            ?>
+                                
+                              <li>
+                                <a href="<?php the_permalink(); ?>" class="overlink"></a>
+                                  <div class="from-price">
+                                   <?php while(the_flexible_field('exclusive_offer_button')):
+                                        if(get_row_layout() == "button"): ?>
+                                         <?php echo get_sub_field('button_text'); ?>
+                                    <?php endif; endwhile; ?>
+                                  </div>
+                                <a href="<?php the_permalink(); ?>"><img src="<?php echo tt($lpimgsrc[0], 262, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $lpquery->post->ID ));?>" style="width: 100%"></a>
+                                
+                                <h3><?php the_title(); ?></h3>  	
+                                <div class="hover-effect">
+									
+									<?php //if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
+									
+									<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+									
+														   				
+									<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
+									<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
+                                   
+								</div>
+                            </li>
+                            
+                         <?php $counter++;endwhile;endif; wp_reset_query(); ?>
+                            
 							
-							 <?php  query_posts(
-					array(
-					'post_type' => 'specials',
-					'posts_per_page'=> 8
+							 <?php                   
+                              $climit = 8;
+                             if($climit >= $counter){
+                                 $climit = $climit - $counter;    
+                             }
+                            if($climit > 0):
+                                query_posts(
+                                array(
+                                'post_type' => 'specials',
+                                'posts_per_page'=> $climit
+
 					
 					)); if(have_posts()) : while(have_posts()) : the_post(); 
 					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
@@ -135,7 +181,7 @@
 						
 							
 							<?php endwhile; endif; wp_reset_query(); ?>	
-								
+				    <?php endif; ?>				
 								<div class="clear"></div>
 						</ul>
 						

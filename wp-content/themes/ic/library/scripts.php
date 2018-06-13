@@ -51,31 +51,31 @@
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.lazyloadxt.extra.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/ticker.js"></script>
 
-	<!-- Fonts -->
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+<!-- Fonts -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
-	<!-- MailChimp Subscription script -->
-	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-	
-	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
-	<!-- <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" /> -->
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+<!-- MailChimp Subscription script -->
+<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
 
-	<?php if ( 'rooms' == get_post_type() ) 	{ ?>
-		<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
-	<?php } ?>
+<!-- Plugins CSS -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
+<!-- <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" /> -->
+<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
 
-	<!-- Custom Plugin Settings -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
-	
-	<!-- Lightbox - Prettyphoto -->	
-	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
+<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
+<?php } ?>
 
-	<!-- Color Override CSS -->
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
+<!-- Custom Plugin Settings -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
+
+<!-- Lightbox - Prettyphoto -->	
+<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
+
+<!-- Color Override CSS -->
+<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 
 <!-- Jquery UI -->
 <!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
@@ -87,6 +87,7 @@
 
 <!-- jquery mmenu -->
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
+<script src="<?php bloginfo('template_url'); ?>/js/jquery.magnific-popup.min.js"></script>
 
 <script type="text/javascript">
 
@@ -765,19 +766,20 @@ $(window).scroll(function () {
 //slick
 $(document).ready(function() {
     
-
- $('.lp-slider, .lp-slider-no-map').slick({
-      dots: false,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true,
-      arrows: true,
-      fade: true,
-      cssEase: 'linear',
-      prevArrow: $('.lp-slider-prev'),
-      nextArrow: $('.lp-slider-next')
-  });
+	if ( $('.lp-slider').length || $('.lp-slider-no-map').length ) {
+		$('.lp-slider, .lp-slider-no-map').slick({
+			dots: false,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
+			adaptiveHeight: true,
+			arrows: true,
+			fade: true,
+			cssEase: 'linear',
+			prevArrow: $('.lp-slider-prev'),
+			nextArrow: $('.lp-slider-next')
+		});
+	}
     
     var gallery_magnific_popup = {
 		type: 'image',
@@ -821,7 +823,31 @@ $(document).ready(function() {
 		}
 
   });    
-    
+
+	docReady_winResize_functions();    
 });    
+
+$(window).resize(function() {
+	docReady_winResize_functions();
+});
+    
+function fullBleedImage( elem, multiplier ) {
+	var getHeight = $(window).height();
+	var getWidth = $(window).width();
+
+	elem.css('height', ''); // reset
+
+	elem.height(getHeight * multiplier);
+}
+    
+function docReady_winResize_functions() {
+	fullBleedImage( $('.banner--40'), 0.4 );
+	fullBleedImage( $('.banner--50'), 0.5 );
+	fullBleedImage( $('.banner--60'), 0.6 );
+	fullBleedImage( $('.banner--70'), 0.7 );
+	fullBleedImage( $('.banner--80'), 0.8 );
+	fullBleedImage( $('.banner--90'), 0.9 );
+	fullBleedImage( $('.banner--100'), 1 );
+}
 
 </script>
