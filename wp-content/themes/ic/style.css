@@ -2028,11 +2028,14 @@ h1, h2, h3, h4, h5, h6, h7 {
 .newsletter-form-hamburger input[type="text"] {
     width: 55% !important;
     padding: 7px 20px !important;
+    border: none;
 }
  
 .newsletter-form-hamburger input[type="submit"] {
     background: none repeat scroll 0 0 #F27333 !important;
     padding: 7px 0 !important;
+    border: none;
+    color: #fff;
 
     -moz-transition: padding 0.4s;
     -webkit-transition: padding 0.4s;
