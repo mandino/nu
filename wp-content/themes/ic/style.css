@@ -2034,8 +2034,8 @@ h1, h2, h3, h4, h5, h6, h7 {
 .newsletter-form-hamburger input[type="submit"] {
     background: none repeat scroll 0 0 #F27333 !important;
     padding: 7px 0 !important;
-    border: none;
-    color: #fff;
+    border: none !important;
+    color: #fff !important;
 
     -moz-transition: padding 0.4s;
     -webkit-transition: padding 0.4s;
