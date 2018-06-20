@@ -1961,7 +1961,8 @@ h1, h2, h3, h4, h5, h6, h7 {
 
 /* Newsletter form */
 
-.newsletter-form {
+.newsletter-form,
+.newsletter-form-hamburger {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 2px solid #D9D9D9;
     border-radius: 4px;
@@ -1969,16 +1970,19 @@ h1, h2, h3, h4, h5, h6, h7 {
     width: 50%;
 }
 
-.newsletter-form form {
+.newsletter-form form, 
+.newsletter-form-hamburger form {
 	margin: 0;
 }
 
-.newsletter-form input {
+.newsletter-form input,
+.newsletter-form-hamburger input {
     border: 0 none;
     margin: 0;
 }
 
-.newsletter-form input[type="text"] {
+.newsletter-form input[type="text"],
+.newsletter-form-hamburger input[type="text"] {
     color: #BCBCBC;
     float: left;
     font-size: 18px;
@@ -1987,7 +1991,8 @@ h1, h2, h3, h4, h5, h6, h7 {
     text-transform: uppercase;
 }
 
-.newsletter-form input[type="submit"] {
+.newsletter-form input[type="submit"],
+.newsletter-form-hamburger input[type="submit"] {
     transition: background-color 0.4s;
     -moz-transition: background-color 0.4s;
     -webkit-transition: background-color 0.4s;
@@ -2002,12 +2007,56 @@ h1, h2, h3, h4, h5, h6, h7 {
     width: 32%;
     cursor: pointer;
 }
-    .newsletter-form input[type="submit"]:hover {
+    .newsletter-form input[type="submit"]:hover,
+    .newsletter-form-hamburger input[type="submit"]:hover {
         background: none repeat scroll 0 0 #333;
     }
 
 .newsletter-form input[type="text"]:focus, .newsletter-form input[type="password"]:focus, .newsletter-form input[type="email"]:focus, .newsletter-form textarea:focus {
     border-bottom: 0 none;
+}
+
+.newsletter-form-hamburger {
+    width: 85%;
+}
+
+.topnavigationmob .newsletter-form-hamburger {
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.newsletter-form-hamburger input[type="text"] {
+    width: 55% !important;
+    padding: 7px 20px !important;
+}
+ 
+.newsletter-form-hamburger input[type="submit"] {
+    background: none repeat scroll 0 0 #F27333 !important;
+    padding: 7px 0 !important;
+
+    -moz-transition: padding 0.4s;
+    -webkit-transition: padding 0.4s;
+    -o-transition: padding 0.4s;
+    transition: padding 0.4s;
+}
+
+.newsletter-form-hamburger__container {
+    left: 20px; 
+    width: 400px; 
+    bottom: 5px; 
+    position: absolute;
+    -moz-transition: bottom 0.4s;
+    -webkit-transition: bottom 0.4s;
+    -o-transition: bottom 0.4s;
+    transition: bottom 0.4s;
+}
+
+.sticky .newsletter-form-hamburger__container {
+    bottom: 0;
+    -moz-transition: bottom 0.4s;
+    -webkit-transition: bottom 0.4s;
+    -o-transition: bottom 0.4s;
+    transition: bottom 0.4s;
 }
 
 
