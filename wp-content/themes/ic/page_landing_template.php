@@ -193,7 +193,7 @@
 									
 									<?php if(get_post_meta($id, 'cebo_tagline', true)) { ?>
 									
-									<h3><a href="<?php echo get_permalink($id); ?>"><?php echo get_post_meta($id, 'cebo_tagline', true); ?></a></h3>
+									<h4><a href="<?php echo get_permalink($id); ?>"><?php echo get_post_meta($id, 'cebo_tagline', true); ?></a></h4>
 									
 									<?php } ?>
 									
