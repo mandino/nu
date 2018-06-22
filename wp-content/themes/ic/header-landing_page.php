@@ -116,7 +116,7 @@
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-5XBBBWD');</script>
+	})(window,document,'script','dataLayer','GTM-KSBRGRP');</script>
 	<!-- End Google Tag Manager -->
 
 	<!-- Sojern Head -->
@@ -158,7 +158,7 @@
 <body id="oceana" <?php body_class($class); ?>>
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5XBBBWD"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSBRGRP"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -252,6 +252,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			
 			
 		</div>
+	</div>
+
+	<div class="cookie-consent">
+	 	<p>
+	 		<?php echo get_bloginfo( 'name' ); ?> site uses cookies. By using this site, you are agreeing to our <a href="<?php bloginfo('url'); ?>/privacy-policy/" target="_blank" target="_blank">Privacy Policy</a>.
+	 	</p>
+	 	<a class="cookie-consent__accept-btn button">accept</a>
 	</div>
 	
 <!--	<div id="quiet"></div>-->
