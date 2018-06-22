@@ -748,7 +748,7 @@
 $(window).scroll(function () {
 	$trigger = $('.banner').height();
 
-	if ( $(window).scrollTop() >= ($trigger - 350) ) {
+	if ( $(window).scrollTop() >= 350 ) {
 		$('body').addClass('onscroll');
         $('.landing-page').removeClass('display-none');
         $(".landing-page").fadeIn(700);
