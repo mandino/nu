@@ -150,6 +150,8 @@
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/gmap3new.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/super-map.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/basic.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/slick/slick.min.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.magnific-popup.min.js"></script>
 <?php include(TEMPLATEPATH. "/library/scripts.php"); ?>
 
 <!-- <div id="fb-root"></div> -->

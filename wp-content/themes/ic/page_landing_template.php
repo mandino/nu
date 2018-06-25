@@ -14,8 +14,8 @@
                 <a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_sub_field('landing_page_logo')['url']?>" alt="<?php echo get_sub_field('landing_page_logo')['title']?>"/></a>
             </div>    
 
-            <div class="fullpic banner">  
-                <img src="<?php echo get_sub_field('banner_image')['url']?>" alt=""/>
+            <div class="fullpic banner-lp banner banner--<?php echo get_sub_field('banner_height'); ?>" style="background-image: url(<?php echo get_sub_field('banner_image')['url']?>);">  
+                <img src="<?php echo get_sub_field('banner_image')['url']?>" alt="" class="img-hidden"/>
             </div>
         <?php endif; ?>
 <!--intro titles-->
@@ -40,7 +40,7 @@
                         <div> <h2 ><?php echo get_sub_field('main_title'); ?></h2> </div>
                         <div> <h3 ><?php echo get_sub_field('sub_title'); ?></h3> </div>
                         <div class="intro-content"><?php echo get_sub_field('intro_content'); ?> </div>
-                        <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_option('cebo_genbooklink'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
+                        <a class="reserve fixeer button intro-btn" id="idp4"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php echo get_sub_field('booking_url'); ?>"><?php echo get_sub_field('booking_btn'); ?></a>
                     </div>
         <?php endif; ?> 
 <!--content list                    -->
@@ -99,7 +99,7 @@
                                     <?php the_sub_field('right_content'); ?>
                                 </div>
                             </div>
-                         </div>
+                         </div>                    
                      <?php endif; ?>
                     <?php if(get_sub_field('left_title')) : ?>
                          <div class="accordion acc-left">
@@ -113,6 +113,7 @@
                                 </div>
                              </div>            
                         </div>
+                        <div class="clear"></div>
                     <?php endif; ?>
                      <?php if(get_sub_field('title')) : ?>
                          <div class="accordion acc-full">
@@ -124,8 +125,9 @@
                                 <div class="accordion-contentbox">
                                     <?php the_sub_field('content'); ?>
                                 </div>
-                             </div>            
+                             </div> 
                         </div>
+                    
                      <?php endif; ?>    
                 </div>      
                  <?php endwhile; endif; ?> 
@@ -135,101 +137,101 @@
 <!--    special offers                -->
        <?php if(get_row_layout() == 'special_offers') : ?>              
                     <div class="special-offers-title text-center"><h2><?php the_sub_field('special_offers_title'); ?></h2></div>
-					<div class="imagegal thumbgal">
-						
-						<ul>
-							
-							 <?php  //query_posts(
-							//array(
-							//'post_type' => 'specials',
-							//'posts_per_page'=> 4
+                    <div class="imagegal thumbgal">
+                        
+                        <ul>
+                            
+                             <?php  //query_posts(
+                            //array(
+                            //'post_type' => 'specials',
+                            //'posts_per_page'=> 4
                             if ( have_rows('special_offers_layout') ) : while( have_rows('special_offers_layout') ) : the_row();
-							//)); //if(have_posts()) : while(have_posts()) : the_post(); 
+                            //)); //if(have_posts()) : while(have_posts()) : the_post(); 
                             $id = get_sub_field('special_offer_items');
-							$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), "Full"); ?>
-							
-							<li>
-								
-								<a href="<?php echo get_permalink($id); ?>" class="overlink"></a>
-					
-								<?php if(get_post_meta($id, 'cebo_pricepoint', true)) { ?>
-								
-								<div class="from-price">
-									<?php echo get_post_meta($id, 'cebo_pricepoint', true); ?>
-								</div>
-								
-								<?php } ?>
-								
-								<?php if(get_post_meta($id, 'cebo_homethumb', true)) { ?>
-								
-								<a href="<?php echo get_permalink($id); ?>"><img src="<?php echo tt(get_post_meta($id, 'cebo_homethumb', true), 262, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($id, 'cebo_homethumb', true), ''); ?>"
+                            $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), "Full"); ?>
+                            
+                            <li>
+                                
+                                <a href="<?php echo get_permalink($id); ?>" class="overlink"></a>
+                    
+                                <?php if(get_post_meta($id, 'cebo_pricepoint', true)) { ?>
+                                
+                                <div class="from-price">
+                                    <?php echo get_post_meta($id, 'cebo_pricepoint', true); ?>
+                                </div>
+                                
+                                <?php } ?>
+                                
+                                <?php if(get_post_meta($id, 'cebo_homethumb', true)) { ?>
+                                
+                                <a href="<?php echo get_permalink($id); ?>"><img src="<?php echo tt(get_post_meta($id, 'cebo_homethumb', true), 262, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($id, 'cebo_homethumb', true), ''); ?>"
  style="width: 100%"></a>
-								
-								<?php } else { ?>
-								
-								<a href="<?php echo get_permalink($id); ?>"><img src="<?php echo tt($imgsrc[0], 262, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $id ));?>" style="width: 100%"></a>
-								
-								<?php } ?>
-								
-								<?php if(get_post_meta($id, 'cebo_subtagline', true)) { ?>
-								
-								<h3><?php echo get_post_meta($id, 'cebo_subtagline', true); ?></h3>
-								
-								
-								<?php } ?>
+                                
+                                <?php } else { ?>
+                                
+                                <a href="<?php echo get_permalink($id); ?>"><img src="<?php echo tt($imgsrc[0], 262, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $id ));?>" style="width: 100%"></a>
+                                
+                                <?php } ?>
+                                
+                                <?php if(get_post_meta($id, 'cebo_subtagline', true)) { ?>
+                                
+                                <h3><?php echo get_post_meta($id, 'cebo_subtagline', true); ?></h3>
+                                
+                                
+                                <?php } ?>
 
-								<div class="hover-effect">
-									
-									<?php if(get_post_meta($id, 'cebo_tagline', true)) { ?>
-									
-									<h4><a href="<?php echo get_permalink($id); ?>"><?php echo get_post_meta($id, 'cebo_tagline', true); ?></a></h4>
-									
-									<?php } ?>
-									
-									
-									<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
-									<a class="special-external" href="<?php echo get_permalink($id); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
-								</div>
-								
-							</li>
-						
-							
-							<?php endwhile; endif; ?>	
-								
-								<div class="clear"></div>
-						</ul>
-						
-					<div class="clear"></div>
+                                <div class="hover-effect">
+                                    
+                                    <?php if(get_post_meta($id, 'cebo_tagline', true)) { ?>
+                                    
+                                    <h3><a href="<?php echo get_permalink($id); ?>"><?php echo get_post_meta($id, 'cebo_tagline', true); ?></a></h3>
+                                    
+                                    <?php } ?>
+                                    
+                                    
+                                    <!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
+                                    <a class="special-external" href="<?php echo get_permalink($id); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
+                                </div>
+                                
+                            </li>
+                        
+                            
+                            <?php endwhile; endif; ?>   
+                                
+                                <div class="clear"></div>
+                        </ul>
+                        
+                    <div class="clear"></div>
                 </div>
     <?php endif; ?>
     <?php endwhile; endif; ?>                
-			</div>
+            </div>
 
-		</div>
+        </div>
 
-	</div>
+    </div>
 
 <div id="neighborhood" class="section lp-neighborhood">
 
-		<!-- section containing the to do map -->
+        <!-- section containing the to do map -->
 
-	<ul style="" class="right-links right" id="toggles">
+    <ul style="" class="right-links right" id="toggles">
 
-		<li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=74" title="Dining">Eat</a></li>
-		<li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=76" title="Dining">Shop</a></li>
-		<li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=72" title="Dining">Culture</a></li>
-		<li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=78" title="Dining">Landmarks</a></li>
+        <li class="dine"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=130" title="Dining">Eat</a></li>
+        <li class="shop"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=135" title="Dining">Shop</a></li>
+        <li class="arts"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=132" title="Dining">Culture</a></li>
+        <li class="sights"><a class="linkerd active" href="<?php bloginfo('url'); ?>/?page_id=138" title="Dining">Landmarks</a></li>
 
-	</ul>
+    </ul>
 
 
 
-		<a href="#features-1" id="link" class="navigateTo page-down"></a>
+        <a href="#features-1" id="link" class="navigateTo page-down"></a>
 
 
     <!-- begins map area -->
-	<div id="maparea" style="width: 100%; height: 500px; position: relative;">
-	</div>
+    <div id="maparea" style="width: 100%; height: 500px; position: relative;">
+    </div>
     <!-- begins map area -->
 </div>
 
@@ -262,6 +264,6 @@
            <div class="ico-quote quote-right fr"></div>
         
 
-    </div>	
+    </div>  
 <?php include (TEMPLATEPATH . '/library/super-map.php'); ?>
 <?php get_footer(); ?>
