@@ -2049,3 +2049,7 @@ h1.tribe-events-page-title {
 .menu-wrap {
     overflow: hidden;
 }
+
+.page-template-page_landing_template .post-content h2 {
+    margin-bottom: 20px;
+}
