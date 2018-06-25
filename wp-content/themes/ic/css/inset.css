@@ -13,6 +13,11 @@ font-size: 39px !important;
 .post-content h2 {
 margin: 0;
 }
+
+.page-template-page_landing_template .post-content h2 {
+	margin-bottom: 20px;
+}
+
 .wpcf7-form input, textarea {
 width: 94%;
 }
