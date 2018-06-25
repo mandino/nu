@@ -37,7 +37,7 @@
 
 
                     <div class="intro text-center">
-
+                        
                         <div> <h2 ><?php echo get_sub_field('main_title'); ?></h2> </div>
                         <div> <h3 ><?php echo get_sub_field('sub_title'); ?></h3> </div>
                         <div class="intro-content"><?php echo get_sub_field('intro_content'); ?> </div>
