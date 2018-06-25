@@ -2027,3 +2027,7 @@ h1.tribe-events-page-title {
     cursor: pointer;
     font-size: 13px;
     letter-spacing: 1px; }
+
+.page-template-page_landing_template .post-content h2 {
+    margin-bottom: 20px;
+}
