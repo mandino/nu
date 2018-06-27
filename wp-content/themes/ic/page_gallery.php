@@ -18,7 +18,7 @@
 	<div class="slide-header">
 		<a class="button" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>" onclick="_gaq.push(['_link', this.href]);return false;"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 	</div>
-	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" />
+	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 
 
 </div>
@@ -36,16 +36,16 @@
 
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
-					
+
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
 
 					<div class="section-header-divider fl"></div>
 					
 					<?php } ?>
-
 		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
 	
 				</div>
 	
@@ -120,6 +120,13 @@
 			
 			<?php } } ?>
 			<div class="wonderline"></div>
+            <?php                        
+                if ( function_exists('yoast_breadcrumb') ) {
+                    yoast_breadcrumb('
+                    <p id="breadcrumbs">','</p>
+                    ');
+                }
+            ?> 
 			<div class="post-content" style="width: 100%;">
 			
 				<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -130,23 +137,29 @@
 						
 						<ul>
 							
-							 <?php
-							              
-								    $gallery = get_post_gallery_images( $post->ID );
-								
-								
-								                        
-								    // foreach( $gallery as $image ) {// Loop through each image in each gallery
-								    //     $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . get_bloginfo('template_url') . '/js/thumb.php?src=' . str_replace('-150x150','',$image) . '&w=429&h=308"  /></li></a>';
-								    // }                  
-								    // echo $image_list;
-
-								    foreach( $gallery as $image ) {// Loop through each image in each gallery
-								        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . str_replace('-150x150','',$image) . '"  /></li></a>';
-								    }                  
-								    echo $image_list;
-								                     
-								?>
+							<?php
+                                $gallery = get_post_gallery(get_the_ID(), false);
+                                $args = array( 
+                                    'post_type'      => 'attachment', 
+                                    'posts_per_page' => -1, 
+                                    'post_status'    => 'any', 
+                                    'post__in'       => explode(',', $gallery['ids']) 
+                                ); 
+                                $attachments = get_posts($args);
+                                foreach ($attachments as $attachment) {
+                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+                                    if (empty($image_alt)) {
+                                        $image_alt = $attachment->post_title;
+                                    }
+                                    if (empty($image_alt)) {
+                                        $image_alt = $attachment->post_excerpt;
+                                    }
+                                    $image_title = $attachment->post_title;
+                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+                                    $image_list .= '<a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><li><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></li></a>';
+                                }
+                                echo $image_list;
+                            ?>
 								
 								<div class="clear"></div>
 						</ul>

@@ -83,7 +83,9 @@ function is_subpage() {
 	}
 }
 
-
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page();
+}
 
  /* ................. ADDITIONAL INFO FOR SHORTCODES .................... */
 /* Below is an include to a few options for your projects.*/
@@ -95,15 +97,15 @@ define( 'SS_BASE_URL', get_template_directory_uri() . '/' );
 if ( !function_exists('ss_framework_admin_scripts') ) {
 
 	// Backend Scripts
-	// function ss_framework_admin_scripts( $hook ) {
+	function ss_framework_admin_scripts( $hook ) {
 
-	// 	if( $hook == 'post.php' || $hook == 'post-new.php' ) {
-	// 		wp_register_script( 'tinymce_scripts', SS_BASE_URL . 'library/tinymce/js/scripts.js', array('jquery'), false, true );
-	// 		wp_enqueue_script('tinymce_scripts');
-	// 	}
+		if( $hook == 'post.php' || $hook == 'post-new.php' ) {
+			wp_register_script( 'tinymce_scripts', SS_BASE_URL . 'library/tinymce/js/scripts.js', array('jquery'), false, true );
+			wp_enqueue_script('tinymce_scripts');
+		}
 
-	// }
-	
+	}
+
 }
 
 add_action('admin_enqueue_scripts', 'ss_framework_admin_scripts');
@@ -155,5 +157,280 @@ function blogPage_relNextPrev() {
 		}
 
 		wp_reset_postdata();
+	}
+}
+
+function php_init() {
+	wp_register_script( 'php_init', get_bloginfo('template_url').'/js/php_vars.js', 'jQuery', '', false );
+
+	$php_vars = array(
+		'cebo_address' => get_option('cebo_address'),
+		'bloginfo_name' => get_bloginfo('name'),
+		'cebo_mapmarker' => (get_option('cebo_mapmarker') ? get_option('cebo_mapmarker') : '//maps.google.com/mapfiles/marker_green.png'),
+		'cebo_mapcenter' => get_option('cebo_mapcenter'),
+		'template_directory' => get_bloginfo('template_directory'),
+		'template_url' => get_bloginfo('template_url'),
+		'perm' => preg_replace('/(?<!href=["\'])http:\/\//', '', get_permalink()),
+		'img' => preg_replace('/(?<!href=["\'])http:\/\//', '', sp_get_image()),
+		'bloginfo_url' => get_bloginfo ('url'),
+
+	);
+
+	wp_localize_script( 'php_init', 'php_vars', $php_vars);
+	wp_enqueue_script( 'php_init' );
+}
+
+add_action('wp_enqueue_scripts', 'php_init');
+
+function get_image_alt_text_by_post_id($post_id) {
+    if(has_post_thumbnail($post_id)) $post_meta = get_post_meta(get_post_thumbnail_id($post_id));
+    else $post_meta = get_post_meta($post_id);
+    if(is_array($post_meta)) {
+        if(array_key_exists('_wp_attachment_image_alt', $post_meta) && $post_meta['_wp_attachment_image_alt'][0]) {
+            return $post_meta['_wp_attachment_image_alt'][0];
+        }
+    }
+    return get_the_title();
+}
+
+function get_post_meta_img_id($img_url) {
+    global $wpdb;
+    $uploads_img_path = implode('/', array_slice(explode('/', $img_url), -3));
+    $post_id = $wpdb->get_col($wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '%1\$s' AND meta_value = '%2\$s';", "_wp_attached_file", $uploads_img_path));
+    return $post_id[0];
+}
+
+function get_custom_image_thumb_alt_text($img_url,$img_id) {
+    if($img_url) $post_id = get_post_meta_img_id($img_url);
+	else $post_id = $img_id;
+    $image_thumb_alt_text =get_image_alt_text_by_post_id($post_id);
+    return $image_thumb_alt_text;
+}
+
+/*
+	widget-calendar.js in plugin transfer to ic theme tribe-events-widget-calendar.js
+	mini-calendar in neighborhood page
+*/
+
+add_action('wp_enqueue_scripts', 'enqueue_js');
+
+function enqueue_js() {
+	wp_register_script('tribe-mini-calendar', get_template_directory_uri().'/js/tribe-events-widget-calendar.js', array( 'jquery' ));
+	wp_localize_script( 'your_unique_js_name', 'youruniquejs_vars', 
+
+	array(
+		'ajaxurl' => admin_url( 'admin-ajax.php' ),
+		'current' => $current,
+		'next' => $next,
+		'prev' => $prev,
+
+		)
+	);
+}
+
+function upcoming_query($current_date, $next_date) {
+	$query = new WP_Query(array(
+		'post_type' => 'tribe_events',
+		'eventDisplay' => 'upcoming',
+		'posts_per_page' => 4,
+		'meta_query' => array(
+		'relation' => 'AND',
+			array(
+				'relation' => 'AND',
+					array(
+						'key' => '_EventStartDate',
+						'value' => date('Y-m-d H:i:s', strtotime($next_date)),
+						'compare' => '<='
+					),
+					array(
+						'key' => '_EventStartDate',
+						'value' => date('Y-m-d H:i:s', strtotime($current_date)),
+						'compare' => '>='
+					)
+			)
+		)
+	));
+
+	return $query;
+}
+
+/* ajax for upcoming events */
+add_action('wp_ajax_upcoming_event_tiles', 'upcoming_events_tiles');
+add_action('wp_ajax_nopriv_upcoming_event_tiles', 'upcoming_events_tiles');
+function upcoming_events_tiles() {
+
+$class_even = '';
+header('Content-Type: text/html');
+
+$query = upcoming_query($_GET['current'], $_GET['next']);
+
+if($query->have_posts()) : while ($query->have_posts()) : $query->the_post();
+	$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full");
+	$shortdater = tribe_get_start_date($post->ID, true, 'M'); $shortdaterz = substr($shortdater, 0, 3);
+	$shortdate = tribe_get_start_date($post->ID, true, 'j'); $shortdatez = substr($shortdate, 0, 2);
+?>
+
+<li <?php echo $class_even ?>>
+	<a href="<?php the_permalink(); ?>">
+
+	<img src="<?php echo tt($imgsrc[0], 275, 178); ?>"  alt="<?php echo get_custom_image_thumb_alt_text('', $post->ID); ?>"/>
+	<div class="event-date">
+		<?php echo $shortdaterz . " <span>" . $shortdatez. "</span>"; ?>
+	</div>
+
+	<div class="event-description">
+		<p><?php the_title(); ?></p>
+	</div>
+
+	</a>
+</li>
+<?php
+
+$class_even = $class_even ? '' : 'class="even"';
+
+endwhile; endif; wp_reset_postdata(); wp_die();
+}
+
+// Image with src, srcset and sizes $class => image class
+
+function get_image_with_detail( $photo_id, $size = 'Full' ) {
+	$imgsrc = wp_get_attachment_image_src( $photo_id, $size);
+	$srcset = esc_attr( wp_get_attachment_image_srcset( $photo_id, $size ) );
+	$imgsize = esc_attr( wp_get_attachment_image_sizes( $photo_id, $size ) );
+
+	return array( 'imgsrc' => $imgsrc, 'srcset' => $srcset, 'sizes' => $imgsize );
+}
+
+function get_attachment_id_by_url($attachment_url = '') {
+
+	global $wpdb;
+	$attachment_id = false;
+
+	if ('' == $attachment_url)
+		return;
+
+	$upload_dir_paths = wp_upload_dir();
+
+	if (false !== strpos($attachment_url, $upload_dir_paths['baseurl'])) {
+		$attachment_url = preg_replace('/-\d+x\d+(?=\.(jpg|jpeg|png|gif)$)/i', '', $attachment_url);
+		$attachment_url = str_replace($upload_dir_paths['baseurl'] . '/', '', $attachment_url);
+		$attachment_id = $wpdb->get_var($wpdb->prepare("SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url));
+	}
+
+	return $attachment_id;
+}
+
+add_image_size('Image 540x290', 540, 290, false);
+add_image_size('Image 260x290', 260, 290, false);
+
+function custom_tribe_event_thumbnail_image( $post_id = null, $size = 'full', $link = true, $wrapper = true ) {
+	if ( is_null( $post_id ) ) {
+		$post_id = get_the_ID();
+	}
+
+	/**
+	 * Provides an opportunity to modify the featured image size.
+	 *
+	 * @param string $size
+	 * @param int    $post_id
+	 */
+	$size = apply_filters( 'tribe_event_featured_image_size', $size, $post_id );
+
+	$featured_image = $wrapper
+		? get_the_post_thumbnail( $post_id, $size )
+		: wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), $size, false );
+
+	if ( is_array( $featured_image ) ) {
+		$featured_image = $featured_image[ 0 ];
+	}
+
+	/**
+	 * Controls whether the featured image should be wrapped in a link
+	 * or not.
+	 *
+	 * @param bool $link
+	 */
+
+	if (get_field('thumbnail')) :
+		$image_detail = get_image_with_detail( get_field('thumbnail'), $size );
+		$banner_photo = $image_detail['imgsrc'];
+		$banner = $banner_photo;
+		$featured_image = '<img src="'.$banner[0].'" class="attachment-full size-full wp-post-image" srcset="'.$image_detail['srcset'].'" sizes="'.$image_detail['sizes'].'" alt="'.get_the_title().'">';
+
+	endif;
+
+	if ( ! empty( $featured_image ) && apply_filters( 'tribe_event_featured_image_link', $link ) ) {
+		$featured_image = '<a href="' . esc_url( tribe_get_event_link( $post_id ) ) . '">' . $featured_image . '</a>';
+	}
+
+	/**
+	 * Whether to wrap the featured image in our standard div (used to
+	 * assist in targeting featured images from stylesheets, etc).
+	 *
+	 * @param bool $wrapper
+	 */
+	if ( ! empty( $featured_image ) && apply_filters( 'tribe_events_featured_image_wrap', $wrapper ) ) {
+		$featured_image = '<div class="tribe-events-event-image">' . $featured_image . '</div>';
+	}
+
+	/**
+	 * Provides an opportunity to modify the featured image HTML.
+	 *
+	 * @param string $featured_image
+	 * @param int    $post_id
+	 * @param string $size
+	 */
+	return apply_filters( 'tribe_event_featured_image', $featured_image, $post_id, $size );
+}
+function home_nav_wrap() {
+
+$mobilenav = wp_nav_menu( array(
+	'theme_location'=> 'mobilenav',
+	'fallback_cb'	=> false,
+	'container'		=> '',
+	'items_wrap' => '%3$s',
+	'echo' => false,
+) );
+
+$getTel = get_option('cebo_tele');
+$getTel = str_replace('(', '', $getTel);
+$getTel = str_replace(')', '', $getTel);
+$getTel = str_replace(' ', '-', $getTel);
+$getTel = str_replace('.', '-', $getTel);
+
+	// $wrap  = '<ul>';
+
+	$wrap .= '<li class="navis-mobile">
+			<a id="lnkP2Talkmobile" href="tel:+1-'.$getTel.'" target="new"><span class="ic-navis"><i class="fa fa-phone"></i> <span id="NavisTFNmobnav">'.get_option('cebo_tele').'</span></span></a>
+								</li>';
+
+	$wrap .= '%3$s';
+
+	$wrap .= '<li class="hamburgermenu">
+				<a class="cheese" href="#">
+					<div class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<span class="menutext">Menu</span>
+				</a>
+			</li>';
+
+	$wrap .= $mobilenav;
+
+	// $wrap .= '</ul>';
+
+	return $wrap;
+}
+
+if (!class_exists('walker_menu')) {
+	class walker_menu extends Walker_Nav_Menu {
+		function start_el( &$output, $item, $depth = 0, $args = array() ) {
+			$has_children = array_search ( 'menu-item-has-children' , $item->classes );
+			// if($has_children != false) :
+				$item_output .= '<div class="toggle-button"></div>';
+			// endif;
+		}
 	}
 }

@@ -19,8 +19,7 @@ footer nav ul li.navitem a:hover,
 #room-featured-slider .iosslider-prev:hover i, 
 #room-details-slider .iosslider-next:hover i, 
 #room-details-slider .iosslider-prev:hover i,
-.cbp-qtrotator blockquote p:hover,
-#primary-nav nav ul li.current-menu-item a {
+.cbp-qtrotator blockquote p:hover {
 		color: #F27333;
 }
 

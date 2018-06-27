@@ -23,7 +23,7 @@ get_header();
 				<div class="fl">
 					<?php if(get_option('cebo_shorttitle')) { ?>
 
-					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
+					<span class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></span>
 
 					<div class="section-header-divider fl"></div>
 
@@ -31,7 +31,7 @@ get_header();
 
 					<?php if(get_option('cebo_longtitle')) { ?>
 
-					<h2 class="section-title fr"><?php echo get_option('cebo_longtitle'); ?></h2>
+					<span class="section-title fr"><?php echo get_option('cebo_longtitle'); ?></span>
 
 					<?php } ?>
 
@@ -75,134 +75,91 @@ get_header();
 				<ul>
 
 
+					<?php
+						$counter = 0;
+						$image_sizes['name'] = array( 'Image 260x290', 'Image 260x290', 'Image 540x290' );
+						$image_sizes['sizes'] = array( array(260, 290), array(260, 290), array(540, 290));
+
+						if( have_rows( 'homepage_tiles', 'options' ) ) : while( have_rows( 'homepage_tiles', 'options' ) ) : the_row();
+
+							$image = array();
+							$page_info = get_sub_field('related_page');
+							$title = '';
+							$subtitle = '';
+							$image_size = $image_sizes['name'][$counter];
+							$size = $image_sizes['sizes'][$counter];
+
+							if (get_sub_field('image')) {
+								$imageDetail = get_sub_field('image');
+								$image['url'] = $imageDetail['sizes'][$image_size];
+								$image['alt'] = $imageDetail['alt'] ? $imageDetail['alt'] : $imageDetail['name'];
+							} else {
+								$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $page_info->ID ), $image_size);
+								$image_id = get_attachment_id_by_url(get_post_meta($page_info->ID, 'cebo_homethumb', true));
+								$image_url = wp_get_attachment_image_src($image_id , $image_size);
+								$image['alt'] = ( get_image_alt_text_by_post_id('',$post->ID) ? get_image_alt_text_by_post_id('',$post->ID) : get_image_alt_text_by_post_id(get_post_meta($post->ID, 'cebo_homethumb', true), '') );
+
+								if(get_post_meta($post->ID, 'cebo_homethumb', true))
+									$image['url'] = $image_url[0];
+								else
+									$image['url'] = $imgsrc[0];
+							}
+
+							if (get_sub_field('title')) {
+								$title = get_sub_field('title');
+
+							} else {
+								$title = $page_info->post_title;
+							}
+
+							if (get_sub_field('subtitle')) {
+								$subtitle = get_sub_field('subtitle');
+							}
 
 
+							if (get_sub_field('link'))
+								$link = get_sub_field('link');
+							else
+								$link = get_the_permalink($page_info->ID);
 
+							if (get_sub_field('open_link_in_new_tab'))
+								$newtab = 'target="_blank"';
+							else
+								$newtab = '';
 
-					<!-- featured Room -->
+					?>
 
-					<?php query_posts('post_type=page&p=2155'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
+						<li class="hover">
 
-					<li class="hover">
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
+							<?php //price ?>
+							<?php if(get_post_meta($page_info->ID, 'cebo_pricepoint', true)) : ?>
+								<div class="from-price">
+									<?php echo get_post_meta($page_info->ID, 'cebo_pricepoint', true); ?>
+								</div>
+							<?php endif; ?>
 
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 291); ?>">
+							<?php //images ?>
+							<img width="<?php echo $size[0]; ?>" height="<?php echo $size[1]; ?>" src="<?php echo tt($image['url'], $size[0], $size[1]); ?>" alt="<?php echo $image['alt']; ?>">
 
-						<?php } else { ?>
+							<span><?php echo $title; ?></span>
 
-						<img src="<?php echo tt($imgsrc[0], 260, 291); ?>">
+							<div class="hover-effect">
 
-						<?php } ?>
+								<?php if($subtitle) { ?>
 
-						<h3><?php the_title(); ?></h3>
+								<a class="special-copy-link" href="<?php echo $link; ?>" <?php echo $newtab; ?>><span><?php echo $subtitle; ?></span></a>
 
-						<div class="hover-effect">
+								<?php } ?>
+								<br>
+								<p><?php echo $title; ?></p>
 
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
+								<a class="special-external" href="<?php echo $link; ?>" <?php echo $newtab; ?>><i class="fa fa-chevron-right fa-lg"></i></a>
 
-							<a class="special-copy-link" href="//www.independentcollection.com/ic-local" target="_blank"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
+							</div>
 
-							<?php } ?>
-							<br>
-							<p><?php the_title(); ?></p>
+						</li>
 
-							<a class="special-external" href="//www.independentcollection.com/ic-local" target="_blank"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-					<?php query_posts('post_type=specials&posts_per_page=1'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
-
-
-
-
-					<!-- Special -->
-
-					<li class="hover">
-
-						<?php if(get_post_meta($post->ID, 'cebo_pricepoint', true)) { ?>
-
-						<div class="from-price">
-							<?php echo get_post_meta($post->ID, 'cebo_pricepoint', true); ?>
-						</div>
-
-						<?php } ?>
-
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
-
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 293); ?>">
-
-						<?php } else { ?>
-
-						<img src="<?php echo tt($imgsrc[0], 260, 293); ?>">
-
-						<?php } ?>
-
-						<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
-
-						<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
-
-
-						<?php } ?>
-
-						<div class="hover-effect">
-
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
-
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
-
-							<?php } ?>
-
-
-							<!-- , and Hotel Oceana Tote Bag., and breakfast at the Hotel. -->
-							<a class="special-external" href="<?php the_permalink(); ?>"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-					<?php query_posts('post_type=page&p=70'); if(have_posts()) : while(have_posts()) : the_post();
-					$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
-
-
-
-
-
-
-
-					<!-- Amenities -->
-
-					<li class="hover">
-						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
-
-						<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 540, 290); ?>">
-
-						<?php } else { ?>
-
-						<img src="<?php echo tt($imgsrc[0], 540, 290); ?>">
-
-						<?php } ?>
-
-						<h3><?php the_title(); ?></h3>
-
-						<div class="hover-effect">
-							<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
-
-							<a class="special-copy-link" href="<?php the_permalink(); ?>"><h3><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h3></a>
-
-							<?php } ?>
-							<br>
-							<p><?php the_title(); ?></p>
-
-							<a class="special-external" href="/?page_id=70"><i class="fa fa-chevron-right fa-lg"></i></a>
-						</div>
-					</li>
-
-					<?php endwhile; endif; wp_reset_query(); ?>
-
+					<?php $counter++; endwhile; endif; ?>
 
 					<div class="clear"></div>
 
@@ -256,16 +213,13 @@ get_header();
 
 				<?php endif; wp_reset_query(); ?>
 
-				</div>
-
-				<div class="ico-quote quote-right fr"></div>
-
 			</div>
+
+			<div class="ico-quote quote-right fr"></div>
 
 		</div>
 
 	</div>
-
 
 
 
@@ -298,7 +252,7 @@ get_header();
 
 				<div class="fl">
 
-					<h2 class="section-pre-title fl">Neighborhood</h2>
+					<span class="section-pre-title fl">Neighborhood</span>
 
 					<div class="section-header-divider fl"></div>
 
@@ -355,7 +309,7 @@ get_header();
 
 						<?php } ?>
 
-							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 540, 292); ?>"></a>
+							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 540, 292); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
 							<div class="ptit">
 								<a href="<?php the_permalink(); ?>"><span><?php the_title_char_limit(40); ?></span></a>
 							</div>
@@ -374,7 +328,7 @@ get_header();
 
 					<!-- <a class="slidesjs-previous slidesjs-navigation" href="#"><i class="icon-chevron-left icon-large"></i></a> -->
 
-					<h3><?php _e('Upcoming events', 'cebolang'); ?></h3>
+					<h3><a href="<?php echo get_option('eventsSlug', 'events'); ?>"><?php _e('Upcoming events', 'cebolang'); ?></a></h3>
 				</div>
 
 				<div class="fr">
@@ -385,7 +339,7 @@ get_header();
 
 
 						<div>
-							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 540, 292); ?>"></a>
+							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 540, 292); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
 							<div class="ptits">
 								<a href="<?php the_permalink(); ?>"><span><?php the_title_char_limit(40); ?></span></a>
 							</div>
@@ -398,7 +352,7 @@ get_header();
 						<a href="#" class="slidesjs-next slidesjs-navigation"><i class="fa fa-chevron-right fa-lg"></i></a>
 					</div>
 
-					<h3><?php _e('From our blog', 'cebolang'); ?></h3>
+					<h3><a href="<?php echo get_permalink(1226); ?>"><?php _e('From our blog', 'cebolang'); ?></a></h3>
 				</div>
 
 			</div>
@@ -406,6 +360,4 @@ get_header();
 
 	</div>
 
-
-<?php include (TEMPLATEPATH . '/library/super-map.php'); ?>
 <?php get_footer(); ?>

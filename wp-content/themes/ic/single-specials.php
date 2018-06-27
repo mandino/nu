@@ -18,7 +18,7 @@
 	<div class="slide-header">
 		<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 	</div>
-	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" />
+	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 
 
 </div>
@@ -37,17 +37,16 @@
 
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
-					
+
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
 
 					<div class="section-header-divider fl"></div>
-					
+
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -84,7 +83,13 @@
 			</div>
 			
 				<div class="wonderline"></div>
-			
+                 <?php                        
+                    if ( function_exists('yoast_breadcrumb') ) {
+                        yoast_breadcrumb('
+                        <p id="breadcrumbs">','</p>
+                        ');
+                    }
+                ?> 
 			<div class="post-content fl">
 			
 				<?php if(have_posts()) : while(have_posts()) : the_post(); ?>
@@ -119,17 +124,17 @@
 								
 								<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 								
-								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>"></a>
+								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" ></a>
 								
 								<?php } else { ?>
 								
-								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>"></a>
+								<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
 								
 								<?php } ?>
 								
 								<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 								
-								<h2><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h2>
+								<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
 								
 								
 								<?php } ?>
@@ -138,7 +143,7 @@
 									
 									<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 									
-									<h2><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h2>
+									<h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4>
 									
 									<?php } ?>
 									

@@ -18,7 +18,7 @@
 	<?php } else { 
 
 		$com_link = basename(get_permalink());
-		echo $com_link;
+		
 	?>
 						
 		<ul class="right-links right" id="toggles">						
@@ -46,9 +46,17 @@
 		<div class="container">
 
 			<div class="section-header">
-					
+                <?php                        
+                    if ( function_exists('yoast_breadcrumb') ) {
+                        yoast_breadcrumb('
+                        <p id="breadcrumbs">','</p>
+                        ');
+                    }
+                ?> 	
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
 					
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
@@ -57,9 +65,6 @@
 					
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -89,20 +94,19 @@
 		</div>
 			
 		<div id="tabs-wrapper" class="tabs-wrapper">
-			
-			<div class="tabs-container">
-				
-				<div class="container">
-					<div class="neighbor-content">
-						<?php the_content(); ?>
-					</div>
-				</div>
-				
-			</div>
-			
+
 			<?php if (is_page(78)) { ?>
 
 			<div class="container">
+				<div class="tabs-container">
+					
+					<div class="container">
+						<div class="neighbor-content">
+							<?php the_content(); ?>
+						</div>
+					</div>
+					
+				</div>
 				<div class="category-neighbor">
 			
 					<!-- ECHO EAT -->
@@ -209,18 +213,29 @@
 									
 									<ul>
 								
-										 <?php
-										              
-											    $gallery = get_post_gallery_images();
-											
-											
-											                        
-											    foreach( $gallery as $image ) {// Loop through each image in each gallery
-											        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . str_replace('-150x150','',$image) . '"  /></li></a>';
-											    }                  
-											    echo $image_list;
-											                     
-											?>
+										<?php
+			                                $gallery = get_post_gallery(get_the_ID(), false);
+			                                $args = array( 
+			                                    'post_type'      => 'attachment', 
+			                                    'posts_per_page' => -1, 
+			                                    'post_status'    => 'any', 
+			                                    'post__in'       => explode(',', $gallery['ids']) 
+			                                ); 
+			                                $attachments = get_posts($args);
+			                                foreach ($attachments as $attachment) {
+			                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_title;
+			                                    }
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_excerpt;
+			                                    }
+			                                    $image_title = $attachment->post_title;
+			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
+			                                }
+			                                echo $image_list;
+			                            ?>
 											
 											<div class="clear"></div>
 									</ul>
@@ -273,18 +288,29 @@
 									
 									<ul>
 								
-										 <?php
-										              
-											    $gallery = get_post_gallery_images();
-											
-											
-											                        
-											    foreach( $gallery as $image ) {// Loop through each image in each gallery
-											        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src="' . str_replace('-150x150','',$image) . '"  /></li></a>';
-											    }                  
-											    echo $image_list;
-											                     
-											?>
+										<?php
+			                                $gallery = get_post_gallery(get_the_ID(), false);
+			                                $args = array( 
+			                                    'post_type'      => 'attachment', 
+			                                    'posts_per_page' => -1, 
+			                                    'post_status'    => 'any', 
+			                                    'post__in'       => explode(',', $gallery['ids']) 
+			                                ); 
+			                                $attachments = get_posts($args);
+			                                foreach ($attachments as $attachment) {
+			                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_title;
+			                                    }
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_excerpt;
+			                                    }
+			                                    $image_title = $attachment->post_title;
+			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
+			                                }
+			                                echo $image_list;
+			                            ?>
 											
 											<div class="clear"></div>
 									</ul>
@@ -335,18 +361,29 @@
 									
 									<ul>
 								
-										 <?php
-										              
-											    $gallery = get_post_gallery_images();
-											
-											
-											                        
-											    foreach( $gallery as $imager ) {// Loop through each image in each gallery
-											        $image_listr .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$imager) . ' "><img src=" ' . str_replace('-150x150','',$imager) . ' "  /></li></a>';
-											    }                  
-											    echo $image_listr;                       
-											                     
-											?>
+										<?php
+			                                $gallery = get_post_gallery(get_the_ID(), false);
+			                                $args = array( 
+			                                    'post_type'      => 'attachment', 
+			                                    'posts_per_page' => -1, 
+			                                    'post_status'    => 'any', 
+			                                    'post__in'       => explode(',', $gallery['ids']) 
+			                                ); 
+			                                $attachments = get_posts($args);
+			                                foreach ($attachments as $attachment) {
+			                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_title;
+			                                    }
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_excerpt;
+			                                    }
+			                                    $image_title = $attachment->post_title;
+			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
+			                                }
+			                                echo $image_list;
+			                            ?>
 											
 											<div class="clear"></div>
 									</ul>
@@ -396,18 +433,29 @@
 									
 									<ul>
 								
-										 <?php
-										              
-											    $gallery = get_post_gallery_images();
-											
-											
-											                        
-											    foreach( $gallery as $imaged ) {// Loop through each image in each gallery
-											        $image_listd .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$imaged) . ' "><img src=" ' . str_replace('-150x150','',$imaged) . ' "  /></li></a>';
-											    }                  
-											    echo $image_listd;                       
-											                     
-											?>
+										<?php
+			                                $gallery = get_post_gallery(get_the_ID(), false);
+			                                $args = array( 
+			                                    'post_type'      => 'attachment', 
+			                                    'posts_per_page' => -1, 
+			                                    'post_status'    => 'any', 
+			                                    'post__in'       => explode(',', $gallery['ids']) 
+			                                ); 
+			                                $attachments = get_posts($args);
+			                                foreach ($attachments as $attachment) {
+			                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_title;
+			                                    }
+			                                    if (empty($image_alt)) {
+			                                        $image_alt = $attachment->post_excerpt;
+			                                    }
+			                                    $image_title = $attachment->post_title;
+			                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+			                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '"/></a></li>';
+			                                }
+			                                echo $image_list;
+			                            ?>
 											
 											<div class="clear"></div>
 									</ul>
@@ -445,25 +493,26 @@
 							|| !dynamic_sidebar('Footer Column 2') ) : ?>
 					<?php endif; ?>  
 
-					<a href="<?php bloginfo('url'); ?>/events" style="text-align: center; margin-top: 10px; display: inline-block;">See all events</a>
+					<a class="all-events button" href="<?php bloginfo('url'); ?>/events" style="text-align: center; margin-top: 10px; display: inline-block;">See all events</a>
 		
 			     	<!-- widgetized  -->		
 								
 				</div>
 
-				<div class="fr">
-					<ul>
-					
-						
-						
-		            	<?php $count = 1; $query = new WP_Query( array( 'post_type' => 'tribe_events','eventDisplay' => 'upcoming', 'posts_per_page' => 4
-							) ); if($query->have_posts()) : while($query->have_posts()) : $query->the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
+				<div class="fr viewall">
+					<img src="<?php bloginfo('template_url') ?>/images/loading-2.gif" class="upcoming-events-img hide">
+
+					<ul id="upcoming-events">
+				    	<?php
+								$count = 1;
+								$query = upcoming_query(date('Y-m-d'), date('M Y',strtotime('first day of +1 month')));
+
+								if($query->have_posts()) : while($query->have_posts()) : $query->the_post(); 
+								$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); 
+							?>
 						
 						<li<?php if($count == 2 || $count == 4) { ?> class="even"<?php } ?>>
-							
-							
-							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 275, 178); ?>"  alt="<?php the_title();?>"/>
-							
+							<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 275, 178); ?>"  alt='<?php echo get_custom_image_thumb_alt_text('', $post->ID); ?>'/>
 							
 							<?php $shortdater = tribe_get_start_date($post->ID, true, 'M'); $shortdaterz = substr($shortdater, 0, 3);  ?>
 							
@@ -477,10 +526,7 @@
 							</a>
 						</li>
 						
-						
-						<?php $count++;  endwhile; endif; wp_reset_query(); ?>	
-						
-
+						<?php $count++; endwhile; endif; wp_reset_query(); ?>	
 					</ul>
 				</div>
 
@@ -504,7 +550,7 @@
 							<?php query_posts('post_type=post&posts_per_page=2&offset=1&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" /></a>
 								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(10); ?></p>
 							</li>
@@ -516,7 +562,7 @@
 						
 						<?php query_posts('post_type=post&posts_per_page=1&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 540, 361); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 540, 361); ?>' alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" /></a>
 								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(80); ?></p>
 							</li>
@@ -530,7 +576,7 @@
 							<?php query_posts('post_type=post&posts_per_page=2&offset=3&cat=-10'); if(have_posts()) : while(have_posts()) : the_post(); $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
 							<li>
-								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt='<?php the_title(); ?>' /></a>
+								<a href="<?php the_permalink(); ?>"><img src='<?php echo tt($imgsrc[0], 240, 161); ?>' alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" /></a>
 								<a href="<?php the_permalink(); ?>"><h3 style="margin-top: 15px;"><?php the_title(); ?></h3></a>
 								<p><?php echo excerpt(10); ?></p>
 							</li>
@@ -560,6 +606,4 @@
 
 	</div>
 
-
-<?php include (TEMPLATEPATH . '/library/super-map.php'); ?>
 <?php get_footer(); ?>

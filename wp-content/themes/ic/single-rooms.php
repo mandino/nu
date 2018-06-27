@@ -21,7 +21,7 @@
 					<div class="slide-header">
 						<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" target="_blank" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 					</div>
-					<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" />
+					<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 				</li>
 				
 			</ul>
@@ -43,18 +43,17 @@
 			<div class="section-header">
 					
 				<div class="fl">
-	
+
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
-					
+
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
 
 					<div class="section-header-divider fl"></div>
-					
+
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -78,7 +77,13 @@
 			
 			
 			<div class="wonderline"></div>
-			
+            <?php                        
+                if ( function_exists('yoast_breadcrumb') ) {
+                    yoast_breadcrumb('
+                    <p id="breadcrumbs">','</p>
+                    ');
+                }
+            ?> 
 			
 			<div class="room-details-content">
 
@@ -89,11 +94,11 @@
 					
 					<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>">
+						<img src="<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" >
 						
 					<?php } else { ?>
 						
-						<img src="<?php echo $imgsrc[0]; ?>">
+						<img src="<?php echo $imgsrc[0]; ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" >
 						
 					<?php } ?>
 
@@ -135,19 +140,29 @@
 					<div class="room-gallery">
 						
 						<ul>
-							
-							 <?php
-							              
-								    $gallery = get_post_gallery_images( $post->ID );
-								
-								
-								                        
-								    foreach( $gallery as $image ) {// Loop through each image in each gallery
-								        $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image) . ' "><img src=" ' . $image  . ' "  style="width: 80px; height: 80px;" /></li></a>';
-								    }                  
-								    echo $image_list;                       
-								                     
-								?>
+							<?php
+                                $gallery = get_post_gallery(get_the_ID(), false);
+                                $args = array( 
+                                    'post_type'      => 'attachment', 
+                                    'posts_per_page' => -1, 
+                                    'post_status'    => 'any', 
+                                    'post__in'       => explode(',', $gallery['ids']) 
+                                ); 
+                                $attachments = get_posts($args);
+                                foreach ($attachments as $attachment) {
+                                    $image_alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
+                                    if (empty($image_alt)) {
+                                        $image_alt = $attachment->post_title;
+                                    }
+                                    if (empty($image_alt)) {
+                                        $image_alt = $attachment->post_excerpt;
+                                    }
+                                    $image_title = $attachment->post_title;
+                                    $image_url = wp_get_attachment_image_src( $attachment->ID, 'full' );
+                                    $image_list .= '<li><a rel="prettyPhoto[gal]" href=" ' . str_replace('-150x150','',$image_url[0]) . ' "><img src="' . str_replace('-150x150','',$image_url[0]) . '"  alt="' . $image_alt . '" style="width: 80px; height: 80px;" /></a></li>';
+                                }
+                                echo $image_list;
+                            ?>
 						</ul>
 						
 					
@@ -175,17 +190,17 @@
 									
 									<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>"></a>
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" ></a>
 									
 									<?php } else { ?>
 									
-									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>"></a>
+									<a href="<?php the_permalink(); ?>"><img src="<?php echo tt($imgsrc[0], 260, 290); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" ></a>
 									
 									<?php } ?>
 									
 									<?php if(get_post_meta($post->ID, 'cebo_subtagline', true)) { ?>
 									
-									<h2><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h2>
+									<h3><?php echo get_post_meta($post->ID, 'cebo_subtagline', true); ?></h3>
 									
 									
 									<?php } ?>
@@ -194,7 +209,7 @@
 										
 										<?php if(get_post_meta($post->ID, 'cebo_tagline', true)) { ?>
 										
-										<h2><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h2>
+										<h4><?php echo get_post_meta($post->ID, 'cebo_tagline', true); ?></h4>
 										
 										<?php } ?>
 										
@@ -258,7 +273,7 @@
 				<?php query_posts(array('post_type' => 'rooms', 'posts_per_page' => -1,  'post__not_in' => array($post->ID))); if(have_posts()) : while(have_posts()) : the_post(); ?>
 				
 				<div class='item item1 current'>
-					<a href="<?php the_permalink(); ?>"><img src = '<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>' /></a>
+					<a href="<?php the_permalink(); ?>"><img src = '<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>' alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" /></a>
 					
 					<h3><?php the_title(); ?></h3>
 				</div>

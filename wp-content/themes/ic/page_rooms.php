@@ -13,9 +13,9 @@
 <div class="fullpic">
 
 	<div class="slide-header">
-		<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
+		<a class="button"  onclick="_gaq.push(['_link', this.href]); return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>"><?php _e('RESERVE NOW', 'cebolang'); ?></a>
 	</div>
-	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" />
+	<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_fullpic', true), 1400, 350); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_fullpic', true), ''); ?>" />
 
 
 </div>
@@ -32,6 +32,8 @@
 					
 				<div class="fl">
 	
+					<h1 class="section-title fr"><?php the_title(); ?></h1>
+
 					<?php if(get_option('cebo_shorttitle')) { ?>
 					
 					<h2 class="section-pre-title fl"><?php echo get_option('cebo_shorttitle'); ?></h2>
@@ -40,9 +42,6 @@
 					
 					<?php } ?>
 
-		
-					<h1 class="section-title fr"><?php the_title(); ?></h1>
-	
 				</div>
 	
 				<div class="fr">
@@ -70,7 +69,13 @@
 			</div>
 
 			<div class="wonderline"></div>
-
+            <?php                        
+                if ( function_exists('yoast_breadcrumb') ) {
+                    yoast_breadcrumb('
+                    <p id="breadcrumbs">','</p>
+                    ');
+                }
+            ?> 
 			<div class="post-content" style="padding: 20px;">
 				<?php the_content(); ?>
 			</div>
@@ -87,11 +92,11 @@
 
 							<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
 						
-								<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 557, 400); ?>">
+								<img src="<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 557, 400); ?>" alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" >
 							
 							<?php } else { ?>
 							
-								<img src="<?php echo tt($imgsrc[0], 557, 400); ?>">
+								<img src="<?php echo tt($imgsrc[0], 557, 400); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', get_post_thumbnail_id( $post->ID ));?>" >
 							
 							<?php } ?>
 								
@@ -99,17 +104,21 @@
 
 						<div class="fr">
 							
-							<h2><?php the_title(); ?></h2>
+							<h3><?php the_title(); ?></h3>
 
-							<p><?php echo excerpt(100); ?></p>
+							<p><?php echo excerpt(50); ?></p>
 
 							<div class="room-list-buttons">
-
-								<a class="button"  onclick="_gaq.push(['_link', this.href]);return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a>
+  
+								<a class="button"  onclick="_gaq.push(['_link', this.href]); return false;" href="<?php if(get_post_meta ($post->ID, 'cebo_booklink', true)) { echo get_post_meta ($post->ID, 'cebo_booklink', true); } else { echo get_option('cebo_genbooklink'); } ?>">Reserve Now</a>
 								<?php
 								$postid=get_the_ID();
-								 if ($postid=='90') { ?>
-									<a class="button" href="//www.nuhotelbrooklyn.com/downtown-brooklyn-hotel/nu-perspectives/">Read More</a>
+									if ($postid=='90') { ?>
+									<a class="button" href="<?php echo get_bloginfo('url'); ?>/nu-perspective-rooms/">Read More</a>
+								<?php } else { ?>
+
+								<a class="button" href="<?php the_permalink(); ?>">Read More</a>
+
 								<?php } ?>
 
 								<!--<a class="button" href="<?php the_permalink(); ?>"><?php _e('More Info', 'cebolang'); ?></a>-->

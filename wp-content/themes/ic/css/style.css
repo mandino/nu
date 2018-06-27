@@ -502,7 +502,7 @@ img.scaleimg {
 .container {
 	max-width: 1180px;
 	margin: auto;
-	padding: 0 20px;
+	padding: 0;
 }
 .without {
 	background: transparent !important;
@@ -679,7 +679,7 @@ img.scaleimg {
 Typography
 --------------------------------------------------------*/
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, .section-photos span {
 	text-transform: uppercase;
 	font-weight: 400;
 }
@@ -696,7 +696,7 @@ h1.white {
 	color: white;
 }
 
-h2 {
+h2, span.section-title {
 	font-family:  sans-serif;
 	font-weight: 100;
 	font-size: 45px;
@@ -708,7 +708,7 @@ h2.white {
 }
 
 
-h3 {
+h3, .section-photos span {
 	font-family: 'Oswald', sans-serif;
 	font-size: 22px;
 }
@@ -1726,7 +1726,7 @@ nav .container .columns {
 
 ul.tabs {
 	float: left; 
-	height: 44px; 
+	height: 54px; 
 	width: 100%; 
 	padding-left: 0 !important; 
 	margin-bottom: 0 !important;
@@ -1734,17 +1734,6 @@ ul.tabs {
 
 .tabs-container p:last-child {
 	margin-bottom:0;
-}
-
-ul.tabs li { 
-	float: left; 
-	padding-left: 0 !important; 
-	overflow: hidden; 
-	padding-bottom: 0; 
-	position: relative; 
-	text-align:center;
-	outline:none;
-	padding-top: 5px;
 }
 
 ul.tabs li a { 
