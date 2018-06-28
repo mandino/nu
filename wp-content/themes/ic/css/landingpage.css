@@ -394,3 +394,8 @@ h2 {
 .bottom-content p {
     margin-bottom: 0;
 }
+
+.unstick {
+    min-height: none;
+
+}
