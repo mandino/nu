@@ -824,11 +824,11 @@ $(document).ready(function() {
     
 }); 
     
-jQuery(window).resize(function() {
+$(window).resize(function() {
 	docReady_winResize_functions();
 });
     
-jQuery(document).ready(function() {
+$(document).ready(function() {
      docReady_winResize_functions();
 });
     
