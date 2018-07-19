@@ -823,11 +823,16 @@ $(document).ready(function() {
 		}
 
   });    
-  
-});    
 
+    
+}); 
+    
 $(window).resize(function() {
 	docReady_winResize_functions();
+});
+    
+$(document).ready(function() {
+     docReady_winResize_functions();
 });
     
 function fullBleedImage( elem, multiplier ) {
