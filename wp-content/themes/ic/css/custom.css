@@ -2053,3 +2053,16 @@ h1.tribe-events-page-title {
 .page-template-page_landing_template .post-content h2 {
     margin-bottom: 20px;
 }
+
+/*banner landing page*/
+
+.img-hidden {
+    visibility: hidden;
+}
+
+.banner-lp {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

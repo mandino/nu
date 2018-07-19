@@ -823,8 +823,7 @@ $(document).ready(function() {
 		}
 
   });    
-
-	docReady_winResize_functions();    
+  
 });    
 
 $(window).resize(function() {
