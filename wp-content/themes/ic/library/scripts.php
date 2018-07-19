@@ -822,6 +822,35 @@ $(document).ready(function() {
 
   });    
     
-});    
+}); 
+    
+$(window).resize(function() {
+	docReady_winResize_functions();
+});
+    
+$(document).ready(function() {
+     docReady_winResize_functions();
+});
+    
+function fullBleedImage( elem, multiplier ) {
+
+	var getHeight = jQuery(window).height();
+	var getWidth = jQuery(window).width();
+
+	elem.css('height', ''); // reset
+
+	elem.height(getHeight * multiplier);
+
+}        
+    
+function docReady_winResize_functions() {
+	fullBleedImage( jQuery('.banner--40'), 0.4 );
+	fullBleedImage( jQuery('.banner--50'), 0.5 );
+	fullBleedImage( jQuery('.banner--60'), 0.6 );
+	fullBleedImage( jQuery('.banner--70'), 0.7 );
+	fullBleedImage( jQuery('.banner--80'), 0.8 );
+	fullBleedImage( jQuery('.banner--90'), 0.9 );
+	fullBleedImage( jQuery('.banner--100'), 1 );
+}     
 
 </script>
