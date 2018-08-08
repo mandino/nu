@@ -85,6 +85,11 @@
 						<li class="instagram"><a href="//instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>twitter</span></a></li>
 						
 					<?php } ?>
+					<?php if(get_option('cebo_instagram')) { ?>
+					
+						<li class="instagram"><a href="//instagram.com/<?php echo get_option('cebo_instagram'); ?>" target="_blank"><i class="fa fa-instagram fa-2x"></i><span>twitter</span></a></li>
+						
+					<?php } ?>
 					</ul>
 	
 				</div>
