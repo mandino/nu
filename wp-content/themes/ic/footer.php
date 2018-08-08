@@ -35,11 +35,6 @@
 					<?php if(get_option('cebo_email')) { ?>
 					<li class="email"><i class="fa fa-envelope fa-lg"></i> <a href="mailto:<?php echo get_option('cebo_email'); ?>"><?php echo get_option('cebo_email'); ?></a></li>
 					<?php } ?>
-					<?php if(get_option('cebo_spotify')) { ?>
-					
-						<li class="spotify"><a href="<?php echo get_option('cebo_spotify'); ?>" target="_blank"><i class="fa fa-spotify fa-2x"></i><span>spotify</span></a></li>
-						
-					<?php } ?>
 				</ul>
 	
 				<div class="newsletter-form">
@@ -104,6 +99,11 @@
 					
 						<li class="youtube"><a href="//youtube.com/<?php echo get_option('cebo_youtube'); ?>" target="_blank"><i class="fa fa-youtube fa-2x"></i><span>youtube</span></a></li>
 					
+					<?php } ?>
+					<?php if(get_option('cebo_spotify')) { ?>
+					
+						<li class="spotify"><a href="<?php echo get_option('cebo_spotify'); ?>" target="_blank"><i class="fa fa-spotify fa-2x"></i><span>spotify</span></a></li>
+						
 					<?php } ?>
 				</ul>
 
