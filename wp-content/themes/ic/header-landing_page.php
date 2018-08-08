@@ -61,7 +61,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/landingpage.css">
 
 	<!-- Fonts -->
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 	
 	<!-- Plugins CSS -->

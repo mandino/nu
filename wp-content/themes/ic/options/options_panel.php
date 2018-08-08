@@ -1640,7 +1640,13 @@ $options[] = array( "name" => __('Youtbe Username, @ ex: cebocampbell','cebolang
 			"desc" => "DO NOT USE //YOUTUBE.COM, JUST THE HANDLE.",
 			"id" => $shortname."_youtube",
 			"std" => "",
-			"type" => "text");					
+			"type" => "text");
+
+$options[] = array( "name" => __('Spotify Playlist','cebolang'),
+			"desc" => "DO NOT USE //SPOTIFY.COM, JUST THE HANDLE.",
+			"id" => $shortname."_spotify",
+			"std" => "",
+			"type" => "text");				
 					
 
 
