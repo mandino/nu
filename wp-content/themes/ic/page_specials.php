@@ -57,6 +57,11 @@
 						<li class="twitter"><a href="//twitter.com/<?php echo get_option('cebo_twitter'); ?>" target="_blank"><i class="fa fa-twitter fa-2x"></i><span>twitter</span></a></li>
 						
 					<?php } ?>
+					<?php if(get_option('cebo_spotify')) { ?>
+					
+						<li class="spotify"><a href="<?php echo get_option('cebo_spotify'); ?>" target="_blank"><i class="fa fa-spotify fa-2x"></i><span>spotify</span></a></li>
+						
+					<?php } ?>
 					</ul>
 	
 				</div>

@@ -60,6 +60,28 @@
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom.css">
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/landingpage.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+
+	<!-- Fonts -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+	
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+
+	<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+		<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
+	<?php } ?>
+
+	<!-- Custom Plugin Settings -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
+
+	<!-- responsive style -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/media.css">
+	
+    <!--    slick css-->
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/js/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/js/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/magnific-popup.css">
