@@ -1,5 +1,5 @@
 <!-- Fonts -->
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
 <!-- MailChimp Subscription script -->
@@ -52,7 +52,7 @@
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/ticker.js"></script>
 
 	<!-- Fonts -->
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
 	<!-- MailChimp Subscription script -->
@@ -747,7 +747,7 @@
 $(window).scroll(function () {
 	$trigger = $('.banner').height();
 
-	if ( $(window).scrollTop() >= ($trigger - 350) ) {
+	if ( $(window).scrollTop() >= 350 ) {
 		$('body').addClass('onscroll');
         $('.landing-page').removeClass('display-none');
         $(".landing-page").fadeIn(700);
@@ -822,6 +822,35 @@ $(document).ready(function() {
 
   });    
     
-});    
+}); 
+    
+$(window).resize(function() {
+	docReady_winResize_functions();
+});
+    
+$(document).ready(function() {
+     docReady_winResize_functions();
+});
+    
+function fullBleedImage( elem, multiplier ) {
+
+	var getHeight = jQuery(window).height();
+	var getWidth = jQuery(window).width();
+
+	elem.css('height', ''); // reset
+
+	elem.height(getHeight * multiplier);
+
+}        
+    
+function docReady_winResize_functions() {
+	fullBleedImage( jQuery('.banner--40'), 0.4 );
+	fullBleedImage( jQuery('.banner--50'), 0.5 );
+	fullBleedImage( jQuery('.banner--60'), 0.6 );
+	fullBleedImage( jQuery('.banner--70'), 0.7 );
+	fullBleedImage( jQuery('.banner--80'), 0.8 );
+	fullBleedImage( jQuery('.banner--90'), 0.9 );
+	fullBleedImage( jQuery('.banner--100'), 1 );
+}     
 
 </script>
