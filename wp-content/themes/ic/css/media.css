@@ -1913,6 +1913,9 @@ and (max-width : 480px)
     .landing-page-logo, .landing-page-logo-header {
         display:none;
     }
+    .ressys {
+        right: 5px;
+    }
 
 }
 
