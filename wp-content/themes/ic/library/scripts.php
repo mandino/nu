@@ -764,15 +764,17 @@ $(document).ready(function() {
     
    $('.rm-slider').slick({
       centerMode:true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true,
-        infinite: true,
-        cssEase: 'linear',
-        variableWidth: true,
-        variableHeight: true,
-        arrows: true,
-       adaptiveHeight: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: true,
+      cssEase: 'linear',
+      variableWidth: true,
+      variableHeight: true,
+      arrows: true,
+      adaptiveHeight: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
       prevArrow: $('.iosslider-prev'),
       nextArrow: $('.iosslider-next')
   });
