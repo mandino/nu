@@ -2145,6 +2145,19 @@ footer nav ul.footling li a {
 	left: 0px;
 }
 
+.item {
+    position: relative;
+}
+
+.rm-slider .item h3{
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    font-size: 35px;
+}
+
 
 .pp_inline h3 {
 	padding-bottom: 10px;
