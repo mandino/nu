@@ -773,8 +773,8 @@ $(document).ready(function() {
       variableHeight: true,
       arrows: true,
       adaptiveHeight: true,
-      autoplay: true,
-      autoplaySpeed: 4000,
+//      autoplay: true,
+//      autoplaySpeed: 4000,
       prevArrow: $('.iosslider-prev'),
       nextArrow: $('.iosslider-next')
   });
