@@ -256,20 +256,7 @@
 
 	<div id="room-details-slider" style="margin-top: -69px;">
 
-		<div class='slideSelectors'>
-			
-			<div class='item selected'></div>
-			<div class='item'></div>					
-			<div class='item'></div>
-			<div class='item'></div>
-			<div class='item'></div>
-		
-		</div>
-
-				
-		<div class='iosSlider'>
-		
-			<div class='slider'>
+			<div class='rm-slider'>
 				<?php $thisid = $post->ID; ?>
 				
 				
@@ -285,7 +272,7 @@
 				
 			</div>
 		
-		</div>
+
 
 		<div class="iosslider-prev"><i class="fa fa-chevron-left"></i></div>
 		<div class="iosslider-next"><i class="fa fa-chevron-right"></i></div>
