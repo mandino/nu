@@ -396,69 +396,6 @@
 
 		// iosslider
 
-		<?php if ( 'rooms' == get_post_type() || 'perspective_room' == get_post_type() ) 	{ ?>
-            
-			$('#room-details-slider .iosSlider').iosSlider({
-				snapToChildren: true,
-				desktopClickDrag: true,
-				infiniteSlider: true,
-				snapSlideCenter: true,
-				onSlideChange: slideChange,
-				autoSlideTransTimer: 2000,
-				keyboardControls: true,
-				onSlideComplete: slideComplete,
-				navNextSelector: $('.iosslider-next'),
-			    navPrevSelector: $('.iosslider-prev'),
-			});
-        
-
-			function slideComplete(args) {
-					
-				$('.iosslider-next, .iosslider-prev').removeClass('unselectable');
-			    if(args.currentSlideNumber == 1) {
-			        $('.iosslider-prev').addClass('unselectable');
-			    } else if(args.currentSliderOffset == args.data.sliderMax) {
-			        $('.iosslider-next').addClass('unselectable');
-		    	}
-
-		    }
-
-			function slideChange(args) {
-
-				try {
-					console.log('changed: ' + (args.currentSlideNumber - 1));
-				} catch(err) {
-				}
-				
-				$('.indicators .item').removeClass('selected');
-				$('.indicators .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
-
-				$('.slideSelectors .item').removeClass('selected');
-				$('.slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
-
-				$('.iosSlider .item').removeClass('current');
-			    $(args.currentSlideObject).addClass('current');
-
-			}
-
-			$('.iosSlider').bind('mousewheel', function(event, delta) {
-
-			    var currentSlide = $('.iosSlider').data('args').currentSlideNumber;
-
-			    //if delta is a positive number, go to prev slide. If delta is a negative number, go to next slide.
-			    if(delta > 0) {
-
-			        $('.iosSlider').iosSlider('goToSlide', currentSlide - 1);
-
-			    } else {
-
-			        $('.iosSlider').iosSlider('goToSlide', currentSlide + 1);
-
-			    }
-
-			});
-
-		<?php } ?>
 
 	
 
@@ -820,7 +757,25 @@ $(document).ready(function() {
 			$hiddenContent.slideUp();
 		}
 
-  });    
+  });   
+    
+   $('.rm-slider').slick({
+      centerMode:true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      infinite: true,
+      cssEase: 'linear',
+      variableWidth: true,
+      variableHeight: true,
+      arrows: true,
+      adaptiveHeight: true,
+//      autoplay: true,
+//      autoplaySpeed: 4000,
+      prevArrow: $('.iosslider-prev'),
+      nextArrow: $('.iosslider-next')
+  });
+        
     
 }); 
     
