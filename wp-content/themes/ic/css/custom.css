@@ -2066,3 +2066,7 @@ h1.tribe-events-page-title {
     background-size: cover;
     position: relative;
 }
+
+.cf7sr-g-recaptcha {
+    display: inline-block;
+}
