@@ -256,14 +256,39 @@
 
 	<div id="room-details-slider" style="margin-top: -69px;">
 
-			<div class='rm-slider'>
+		<div class='slideSelectors'>
+			
+			<div class='item selected'></div>
+			<div class='item'></div>					
+			<div class='item'></div>
+			<div class='item'></div>
+			<div class='item'></div>
+		
+		</div>
+
+				
+		<div class='iosSlider'>
+		
+            <div class='slider'>
 				<?php $thisid = $post->ID; ?>
 				
 				
 				<?php query_posts(array('post_type' => 'rooms', 'posts_per_page' => -1,  'post__not_in' => array($post->ID))); if(have_posts()) : while(have_posts()) : the_post(); ?>
+
+				<?php $imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 				
 				<div class='item item1 current'>
-					<a href="<?php the_permalink(); ?>"><img src = '<?php echo get_post_meta($post->ID, 'cebo_homethumb', true); ?>' alt="<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>" /></a>
+					<a href="<?php the_permalink(); ?>">
+						<?php if(get_post_meta($post->ID, 'cebo_homethumb', true)) { ?>
+
+							<img src = '<?php echo tt(get_post_meta($post->ID, 'cebo_homethumb', true), 600, 400); ?>' alt='<?php echo get_custom_image_thumb_alt_text(get_post_meta($post->ID, 'cebo_homethumb', true), ''); ?>'/>
+
+						<?php } else { ?>
+
+							<img src="<?php echo tt($imgsrc[0], 600, 400); ?>" alt="<?php echo get_custom_image_thumb_alt_text('', $post->ID); ?>">
+
+						<?php } ?>
+					</a>
 					
 					<h3><?php the_title(); ?></h3>
 				</div>
@@ -272,7 +297,7 @@
 				
 			</div>
 		
-
+		</div>
 
 		<div class="iosslider-prev"><i class="fa fa-chevron-left"></i></div>
 		<div class="iosslider-next"><i class="fa fa-chevron-right"></i></div>

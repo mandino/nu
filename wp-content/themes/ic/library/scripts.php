@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
 <link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
 
-<?php if ( 'rooms' == get_post_type() ) 	{ ?>
+<?php if ( 'rooms' == get_post_type() || 'perspective_room' == get_post_type() ) 	{ ?>
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
 <?php } ?>
 
@@ -51,33 +51,33 @@
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.lazyloadxt.extra.js"></script>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/ticker.js"></script>
 
-
 	<!-- Fonts -->
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
 
+	<!-- MailChimp Subscription script -->
+	<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+	
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
+	<!-- <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" /> -->
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
 
-<!-- MailChimp Subscription script -->
-<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+<!--
+	<?php //if (// 'rooms' == get_post_type() ) 	{ ?>
+		<link rel="stylesheet" type="text/css" href="<?php// bloginfo ('template_url'); ?>/css/iosslider.css">
+	<?php //} ?>
+-->
 
-<!-- Plugins CSS -->
-<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/quotes-rotator/component.css" />
-<!-- <link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/slidejs.css" type="text/css" media="screen" /> -->
-<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/js/flexslider/flexslider.css" type="text/css" media="screen" />
-<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/jquery.mmenu.css">
+	<!-- Custom Plugin Settings -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
+	
+	<!-- Lightbox - Prettyphoto -->	
+	<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
 
-<?php if ( 'rooms' == get_post_type() ) 	{ ?>
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/iosslider.css">
-<?php } ?>
-
-<!-- Custom Plugin Settings -->
-<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/custom-plugins.css">
-
-<!-- Lightbox - Prettyphoto -->	
-<link rel="stylesheet" href="<?php bloginfo ('template_url'); ?>/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet"/>
-
-<!-- Color Override CSS -->
-<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
+	<!-- Color Override CSS -->
+	<link rel="stylesheet" type="text/css" href="<?php bloginfo ('template_url'); ?>/css/nu-hotel.css">
 
 <!-- Jquery UI -->
 <!-- <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js?ver=3.5.2'></script> -->
@@ -89,7 +89,6 @@
 
 <!-- jquery mmenu -->
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/js/jquery.magnific-popup.min.js"></script>
 
 <script type="text/javascript">
 
@@ -399,6 +398,69 @@
 
 		// iosslider
 
+		<?php if ( 'rooms' == get_post_type() || 'perspective_room' == get_post_type() ) 	{ ?>
+            
+			$('#room-details-slider .iosSlider').iosSlider({
+				snapToChildren: true,
+				desktopClickDrag: true,
+				infiniteSlider: true,
+				snapSlideCenter: true,
+				onSlideChange: slideChange,
+				autoSlideTransTimer: 2000,
+				keyboardControls: true,
+				onSlideComplete: slideComplete,
+				navNextSelector: $('.iosslider-next'),
+			    navPrevSelector: $('.iosslider-prev'),
+			});
+        
+
+			function slideComplete(args) {
+					
+				$('.iosslider-next, .iosslider-prev').removeClass('unselectable');
+			    if(args.currentSlideNumber == 1) {
+			        $('.iosslider-prev').addClass('unselectable');
+			    } else if(args.currentSliderOffset == args.data.sliderMax) {
+			        $('.iosslider-next').addClass('unselectable');
+		    	}
+
+		    }
+
+			function slideChange(args) {
+
+				try {
+					console.log('changed: ' + (args.currentSlideNumber - 1));
+				} catch(err) {
+				}
+				
+				$('.indicators .item').removeClass('selected');
+				$('.indicators .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+
+				$('.slideSelectors .item').removeClass('selected');
+				$('.slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+
+				$('.iosSlider .item').removeClass('current');
+			    $(args.currentSlideObject).addClass('current');
+
+			}
+
+			$('.iosSlider').bind('mousewheel', function(event, delta) {
+
+			    var currentSlide = $('.iosSlider').data('args').currentSlideNumber;
+
+			    //if delta is a positive number, go to prev slide. If delta is a negative number, go to next slide.
+			    if(delta > 0) {
+
+			        $('.iosSlider').iosSlider('goToSlide', currentSlide - 1);
+
+			    } else {
+
+			        $('.iosSlider').iosSlider('goToSlide', currentSlide + 1);
+
+			    }
+
+			});
+
+		<?php } ?>
 
 	
 
@@ -705,20 +767,19 @@ $(window).scroll(function () {
 //slick
 $(document).ready(function() {
     
-	if ( $('.lp-slider').length || $('.lp-slider-no-map').length ) {
-		$('.lp-slider, .lp-slider-no-map').slick({
-			dots: false,
-			infinite: true,
-			speed: 300,
-			slidesToShow: 1,
-			adaptiveHeight: true,
-			arrows: true,
-			fade: true,
-			cssEase: 'linear',
-			prevArrow: $('.lp-slider-prev'),
-			nextArrow: $('.lp-slider-next')
-		});
-	}
+
+ $('.lp-slider, .lp-slider-no-map').slick({
+      dots: false,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 1,
+      adaptiveHeight: true,
+      arrows: true,
+      fade: true,
+      cssEase: 'linear',
+      prevArrow: $('.lp-slider-prev'),
+      nextArrow: $('.lp-slider-next')
+  });
     
     var gallery_magnific_popup = {
 		type: 'image',
@@ -760,25 +821,9 @@ $(document).ready(function() {
 
 			$hiddenContent.slideUp();
 		}
-  });   
+
+  });    
     
-   $('.rm-slider').slick({
-      centerMode:true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: true,
-      infinite: true,
-      cssEase: 'linear',
-      variableWidth: true,
-      variableHeight: true,
-      arrows: true,
-      adaptiveHeight: true,
-//      autoplay: true,
-//      autoplaySpeed: 4000,
-      prevArrow: $('.iosslider-prev'),
-      nextArrow: $('.iosslider-next')
-  });
-           
 }); 
     
 $(window).resize(function() {
@@ -790,22 +835,24 @@ $(document).ready(function() {
 });
     
 function fullBleedImage( elem, multiplier ) {
-	var getHeight = $(window).height();
-	var getWidth = $(window).width();
+
+	var getHeight = jQuery(window).height();
+	var getWidth = jQuery(window).width();
 
 	elem.css('height', ''); // reset
 
 	elem.height(getHeight * multiplier);
-}
+
+}        
     
 function docReady_winResize_functions() {
-	fullBleedImage( $('.banner--40'), 0.4 );
-	fullBleedImage( $('.banner--50'), 0.5 );
-	fullBleedImage( $('.banner--60'), 0.6 );
-	fullBleedImage( $('.banner--70'), 0.7 );
-	fullBleedImage( $('.banner--80'), 0.8 );
-	fullBleedImage( $('.banner--90'), 0.9 );
-	fullBleedImage( $('.banner--100'), 1 );
-}
+	fullBleedImage( jQuery('.banner--40'), 0.4 );
+	fullBleedImage( jQuery('.banner--50'), 0.5 );
+	fullBleedImage( jQuery('.banner--60'), 0.6 );
+	fullBleedImage( jQuery('.banner--70'), 0.7 );
+	fullBleedImage( jQuery('.banner--80'), 0.8 );
+	fullBleedImage( jQuery('.banner--90'), 0.9 );
+	fullBleedImage( jQuery('.banner--100'), 1 );
+}     
 
 </script>
