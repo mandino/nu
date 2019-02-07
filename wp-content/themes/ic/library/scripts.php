@@ -94,6 +94,20 @@
 
 	$(document).ready(function(){
 
+		$('.hustle-icon.hustle-i_close').on('click', function() {
+            var current_this = $(this);
+            
+            $(this).parents('.wph-modal.hui-module-type--slidein').find('.hustle-modal.hustle-animate-slideInLeft').animate({ "left": "-100%" }, 400, function() {
+                current_this.parents('.wph-modal.hui-module-type--slidein').removeClass('wph-modal-active');
+                $('body').css('overflow', 'auto');
+            });
+            
+            $(this).parents('.wph-modal.hui-module-type--popup').find('.hustle-modal.hustle-animate-fadeIn').fadeOut(400, function() {
+                current_this.parents('.wph-modal.hui-module-type--popup').removeClass('wph-modal-active');
+                $('body').css('overflow', 'auto');
+            });
+	    });
+
 		$(window).scroll(function() {
 			var verschil = ($(window).scrollTop() / 5);
 
