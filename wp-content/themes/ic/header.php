@@ -83,6 +83,13 @@
 		wp_head();
 	?>
 
+	<?php
+		// Do not index date based archives eg. www.site.com/2016/07
+		if ( is_date() ) {
+			echo ('<meta name="robots" content="noindex,nofollow" />');
+		}
+	?>
+
 	<!-- Google Tag Manager -->
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
