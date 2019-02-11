@@ -434,3 +434,18 @@ if (!class_exists('walker_menu')) {
 		}
 	}
 }
+
+//seo yoast excerpt
+// Register Custom Variable in Yoast and increase Character limit
+add_action('wp_head','custom_length_meta_desc');
+
+function custom_length_meta_desc () {
+	global $post;
+	return substr(strip_tags($post->post_content), 0, 156); 
+}
+
+function hersha_custom_excerpt () {
+	wpseo_register_var_replacement( '%%longer_excerpt%%', 'custom_length_meta_desc', 'advanced', 'Auto generate meta description from the content up to 156 characters' );
+}
+
+add_action( 'wpseo_register_extra_replacements', hersha_custom_excerpt );
