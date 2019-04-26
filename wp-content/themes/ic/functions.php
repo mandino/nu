@@ -469,3 +469,33 @@ function hersha_custom_excerpt () {
 }
 
 add_action( 'wpseo_register_extra_replacements', hersha_custom_excerpt );
+
+/*
+ * Swaps the canonical URL for the /all/ page on recurring events
+ */
+
+function tribe_recurring_canonical_adjuster() {
+	if ( ! tribe_is_recurring_event() ) return;
+	remove_action( 'wp_head', 'rel_canonical' );
+    add_filter( 'wpseo_canonical', '__return_false' );
+	add_action( 'wp_head', 'tribe_rel_canonical' );
+}
+add_action( 'wp', 'tribe_recurring_canonical_adjuster' );
+
+
+
+/*
+ * Echoes the <meta> canonical= /all/ tag
+ */
+function tribe_rel_canonical() {
+	$postId = get_queried_object_id();
+	
+	// set the EventStartDate so Tribe__Events__Main can filter the permalink appropriately
+	if( tribe_is_recurring_event() && !tribe_is_day() ) :
+		$post = get_post( $postId );
+		$post->EventStartDate = get_query_var( 'eventDate' );
+		$link = tribe_all_occurences_link( $postId, false );
+		echo "<link rel='canonical' href='" . esc_url( $link ) . "' />\n";		
+	endif;
+	
+}
