@@ -475,7 +475,7 @@ add_action( 'wpseo_register_extra_replacements', hersha_custom_excerpt );
  */
 
 function tribe_recurring_canonical_adjuster() {
-	if ( ! tribe_is_recurring_event() ) return;
+	if ( ! tribe_is_recurring_event() || tribe_is_past() || tribe_is_upcoming() && !is_tax() || tribe_is_event_category() ) return;
 	remove_action( 'wp_head', 'rel_canonical' );
     add_filter( 'wpseo_canonical', '__return_false' );
 	add_action( 'wp_head', 'tribe_rel_canonical' );
@@ -496,6 +496,5 @@ function tribe_rel_canonical() {
 		$post->EventStartDate = get_query_var( 'eventDate' );
 		$link = tribe_all_occurences_link( $postId, false );
 		echo "<link rel='canonical' href='" . esc_url( $link ) . "' />\n";		
-	endif;
-	
+	endif;		
 }
