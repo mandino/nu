@@ -498,3 +498,24 @@ function tribe_rel_canonical() {
 		echo "<link rel='canonical' href='" . esc_url( $link ) . "' />\n";		
 	endif;		
 }
+
+// Get the Values of the image array from ACF
+
+function getImageValues( $img_arr, $values_to_return = array( 'url', 'alt' ) ) {
+
+	if( !$img_arr ) return false;
+
+	$return_val = array();
+
+	foreach ( $values_to_return as $key => $value ) {
+		$return_val[$value] = $img_arr[$value];
+
+		// Special case for alt
+		if( $value == 'alt' && !$return_val[$value] ) {
+			$return_val[$value] = $img_arr['name'];
+		}
+	}
+
+	return $return_val;
+
+}

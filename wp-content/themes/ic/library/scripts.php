@@ -91,23 +91,54 @@
 <script src="<?php bloginfo ('template_url'); ?>/js/jquery.mmenu.min.js"></script>
 
 <script type="text/javascript">
+	function checkPressItems() {
+		var press_item = $('.press-logo').find('.press-logo__item--hidden');
+			if (!press_item.length) {
+				$('.press_logo__view-more').css('display', 'none');
+			}
+	}
 
+	function pressLogoDisplay() {
+		$('.press_logo__view-more span').click(function() {
+
+			var press_item = $('.press-logo').find('.press-logo__item--hidden');
+			
+			for (var i = 0; i < press_item.length; i++) {
+				if ($(press_item[i]).hasClass('press-logo__item--hidden')) {
+				
+					$(press_item[i]).removeClass('press-logo__item--hidden');
+					$(press_item[i]).addClass('press-logo__item--displayed');
+
+				}
+				
+				if (i >= 7) {
+					break;
+				}
+			}
+
+			checkPressItems();
+		});
+	}
+
+	$('.hustle-icon.hustle-i_close').on('click', function() {
+        var current_this = $(this);
+        
+        $(this).parents('.wph-modal.hui-module-type--slidein').find('.hustle-modal.hustle-animate-slideInLeft').animate({ "left": "-100%" }, 400, function() {
+            current_this.parents('.wph-modal.hui-module-type--slidein').removeClass('wph-modal-active');
+            $('body').css('overflow', 'auto');
+        });
+        
+        $(this).parents('.wph-modal.hui-module-type--popup').find('.hustle-modal.hustle-animate-fadeIn').fadeOut(400, function() {
+            current_this.parents('.wph-modal.hui-module-type--popup').removeClass('wph-modal-active');
+            $('body').css('overflow', 'auto');
+        });
+    });
+
+
+
+	
 	$(document).ready(function(){
-
-		$('.hustle-icon.hustle-i_close').on('click', function() {
-            var current_this = $(this);
-            
-            $(this).parents('.wph-modal.hui-module-type--slidein').find('.hustle-modal.hustle-animate-slideInLeft').animate({ "left": "-100%" }, 400, function() {
-                current_this.parents('.wph-modal.hui-module-type--slidein').removeClass('wph-modal-active');
-                $('body').css('overflow', 'auto');
-            });
-            
-            $(this).parents('.wph-modal.hui-module-type--popup').find('.hustle-modal.hustle-animate-fadeIn').fadeOut(400, function() {
-                current_this.parents('.wph-modal.hui-module-type--popup').removeClass('wph-modal-active');
-                $('body').css('overflow', 'auto');
-            });
-	    });
-
+		pressLogoDisplay();
 		$(window).scroll(function() {
 			var verschil = ($(window).scrollTop() / 5);
 
