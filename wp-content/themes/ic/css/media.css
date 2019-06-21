@@ -456,6 +456,14 @@ and (max-width : 1024px) {
 		display: none;
 	}
 
+	.press-logo {
+		width: 90%;
+	}
+
+	.press-logo__item {
+		width: calc(33% - 10%);
+	}
+
 }
 
 
@@ -1577,7 +1585,13 @@ and (max-width : 640px)
         top: 0;
     }    
 	
+    .press-logo {
+    	width: 80%;
+    }
 
+    .press-logo__item {
+    	width: 100%;
+    }
 }
 
 
