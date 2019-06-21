@@ -2149,8 +2149,8 @@ h1.tribe-events-page-title {
 .press-logo__item p {
     color: #000;
     display: inline-block;
-    font-family: 'LeMonde-Sans', Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-family: 'scala-sans';
+    font-size: 20px;
     letter-spacing: 4px;
     text-transform: uppercase;
 }
@@ -2158,6 +2158,7 @@ h1.tribe-events-page-title {
 .press_logo__view-more {
     text-align: center;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 .press_logo__view-more span {
@@ -2166,8 +2167,9 @@ h1.tribe-events-page-title {
     font-family: scala-sans, sans-serif;
     font-size: 16px;
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 0;
     text-transform: uppercase;
+    padding: 0 45px;
 }
 
 .press-logo__item--hidden {
