@@ -113,8 +113,14 @@
 				
 				<ul class="thumbgal">
 						
-						<?php query_posts('post_type=specials&posts_per_page=3'); if(have_posts()) : while(have_posts()) : the_post(); 
-						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
+						<?php 
+							query_posts(array(
+								'post_type' => 'specials',
+								'post__not_in' => array($post->ID),
+								'posts_per_page' => 3
+							));
+							if(have_posts()) : while(have_posts()) : the_post(); 
+							$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 							
 							<li>
 								
