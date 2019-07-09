@@ -39,7 +39,7 @@ switch ( $reason ) {
 }
 
 $classes = array();
-$classes[] = 'small';
+$classes[] = 'wpmudui wpmudui-modal';
 
 if ( $auto_show ) {
 	$classes[] = 'no-close';
@@ -62,11 +62,11 @@ if ( $auto_show ) {
 	<li><?php esc_html_e( '24/7 Expert WordPress Support', 'wpmudev' ); ?></li>
 	</ul>
 	<p>
-	<a href="<?php echo esc_url( $url_upgrade ); ?>" class="block button button-big button-cta" target="_blank">
+	<a href="<?php echo esc_url( $url_upgrade ); ?>" class="wpmudui-btn is-lg is-full is-cta" target="_blank">
 		<?php esc_html_e( 'Upgrade Membership', 'wpmudev' ); ?>
 	</a>
 	</p>
-	<div class="dev-man">
+	<div aria-hidden="true" class="dev-man">
 		<img src="<?php echo esc_url( $url_devman ); ?>" />
 	</div>
 	<?php if ( $auto_show && $is_logged_in ) : ?>
@@ -74,8 +74,8 @@ if ( $auto_show ) {
 		<small>
 		<?php
 		printf(
-			esc_html__( 'You can also %srefresh data%s or %slogout%s', 'wpmudev' ),
-			'<a href="' . esc_url( $url_refresh ) . '"class="has-spinner"><i class="wdv-icon wdv-icon-refresh spin-on-click"></i> ',
+			esc_html__( 'You can also %srefresh%s your membership status or %slogin%s to a different account.', 'wpmudev' ),
+			'<a href="' . esc_url( $url_refresh ) . '"class="has-spinner"><i aria-hidden="true" class="wdv-icon wdv-icon-refresh spin-on-click"></i> ',
 			'</a>',
 			'<a href="' . esc_url( $url_logout ) . '">',
 			'</a>'

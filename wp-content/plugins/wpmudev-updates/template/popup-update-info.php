@@ -64,7 +64,7 @@ if ( 'plugin' == $item->type ) {
 }
 
 if ( ! $item->is_installed ) : ?>
-<dialog title="<?php echo esc_attr( $title_not_installed ); ?>" class="small">
+<dialog title="<?php echo esc_attr( $title_not_installed ); ?>" class="wpmudui wpmudui-modal">
 <p class="tc">
 	<?php esc_html_e( 'Something unexpected happened.', 'wpmudev' ); ?><br />
 	<?php esc_html_e( 'Please wait one moment while we refresh the page...', 'wpmudev' ); ?>
@@ -74,22 +74,22 @@ if ( ! $item->is_installed ) : ?>
 </script>
 </dialog>
 <?php else : ?>
-<dialog title="<?php echo esc_attr( $title_is_installed ); ?>" class="small">
+<dialog title="<?php echo esc_attr( $title_is_installed ); ?>" class="wpmudui wpmudui-modal">
 <div class="wdp-update <?php echo esc_attr( $dlg_id ); ?>" data-project="<?php echo esc_attr( $pid ); ?>">
 
 <div class="title-action">
 	<?php if ( $item->is_licensed ) : ?>
 		<?php if ( $item->has_update && $item->url->update ) { ?>
-		<a href="<?php echo esc_url( $item->url->update ); ?>" class="button button-small button-yellow btn-update-ajax">
+		<a href="<?php echo esc_url( $item->url->update ); ?>" class="wpmudui-btn is-sm is-brand btn-update-ajax">
 			<?php esc_html_e( 'Update Now', 'wpmudev' ); ?>
 		</a>
 		<?php } elseif ( $item->has_update ) { ?>
-		<a href="<?php echo esc_url( $item->url->download ); ?>" class="button button-small">
+		<a href="<?php echo esc_url( $item->url->download ); ?>" class="wpmudui-btn is-sm is-brand">
 			<?php esc_html_e( 'Download Now', 'wpmudev' ); ?>
 		</a>
 		<?php } ?>
 	<?php else : ?>
-		<a href="#upgrade" class="button button-small" rel="dialog">
+		<a role="button" href="#upgrade" class="wpmudui-btn is-sm" rel="dialog">
 			<?php esc_html_e( 'Upgrade', 'wpmudev' ); ?>
 		</a>
 	<?php endif; ?>
@@ -109,15 +109,15 @@ if ( ! $item->is_installed ) : ?>
 				<?php echo esc_html( $item->version_latest ); ?>
 			</span>
 			&nbsp;
-			<span tooltip="<?php esc_html_e( 'Show changelog', 'wpmudev' ); ?>" class="pointer tooltip-s tooltip-right">
+			<span aria-hidden="true" tooltip="<?php esc_html_e( 'Show changelog', 'wpmudev' ); ?>" class="pointer tooltip-s tooltip-right">
 			<i class="show-project-changelog dev-icon dev-icon-info"></i>
-			</span>
+			</span><button class="wpdui-sr-only show-project-changelog"><span class="wpdui-sr-only"><?php esc_html_e( 'Show changelog', 'wpmudev' ); ?></span></button>
 		</td>
 	</tr>
 	<tr class="after-update" style="display:none">
 		<td colspan="3">
 			<div class="update-complete">
-				<i class="wdv-icon wdv-icon-ok"></i>
+				<i aria-hidden="true" class="wdv-icon wdv-icon-ok"></i>
 				<?php esc_html_e( 'Update complete!', 'wpmudev' ); ?>
 			</div>
 		</td>
@@ -132,7 +132,7 @@ if ( ! $item->is_installed ) : ?>
 			printf(
 				'<p class="tc">%s</p>',
 				sprintf(
-					'<i class="wdv-icon wdv-icon-thumbs-up"></i> ' .
+					'<i aria-hidden="true" class="wdv-icon wdv-icon-thumbs-up"></i> ' .
 					esc_html__( 'You\'ve got the latest version of %s!', 'wpmudev' ),
 					'<strong>' . esc_html( $item->name ) . '</strong>'
 				)
@@ -165,7 +165,7 @@ if ( ! $item->is_installed ) : ?>
 			if ( count( $notes_details ) ) {
 				printf(
 					'<li class="toggle-details">
-					<a href="#" class="for-intro">%s</a><a href="#" class="for-detail">%s</a>
+					<a role="button" href="#" class="for-intro">%s</a><a href="#" class="for-detail">%s</a>
 					</li>',
 					esc_html__( 'Show all changes', 'wpmudev' ),
 					esc_html__( 'Hide details', 'wpmudev' )

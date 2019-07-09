@@ -17,7 +17,7 @@ class WPMUDEV_Dashboard_Message {
 	 * Max number of notices that are stored in the message-queue.
 	 * If more messages are added then the oldest ones are removed.
 	 */
-	const MAX_QUEUE_COUNT = 10;
+	const MAX_QUEUE_COUNT = 1;
 
 	/**
 	 * The message-queue contains recently scheduled messages.
@@ -194,7 +194,7 @@ class WPMUDEV_Dashboard_Message {
 	public function enqueue( $id, $content, $can_dismiss = true ) {
 		// Notifications are completely disabled while logged out.
 		if ( ! WPMUDEV_Dashboard::$api->has_key() ) {
-			return;
+			return false;
 		}
 
 		$this->load_queue();
@@ -357,7 +357,7 @@ class WPMUDEV_Dashboard_Message {
 	public function maybe_setup_message() {
 		// Initialize the WPMUDEV message only for authorized admins.
 		if ( WPMUDEV_Dashboard::$site->allowed_user() ) {
-			add_action( 'all_admin_notices', array( $this, 'setup_message' ), 999 );	 	 		     	  	   
+			add_action( 'all_admin_notices', array( $this, 'setup_message' ), 999 );
 		}
 	}
 

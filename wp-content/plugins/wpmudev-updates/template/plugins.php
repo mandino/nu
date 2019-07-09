@@ -6,7 +6,7 @@
  * like installing, activating or updating plugins.
  *
  * Following variables are passed into the template:
- *   $data (membership data)
+ *   $data (project data)
  *   $urls (urls of all dashboard menu items)
  *   $tags (list of plugin tags)
  *
@@ -21,7 +21,8 @@ $this->render_header( $page_title );
 ?>
 <div class="row row-space">
 	<div class="col-half">
-		<input type="search" placeholder="<?php esc_attr_e( 'Search plugins', 'wpmudev' ) ?>" class="search" data-no-empty-msg="true" />
+		<label for="search-plugins-id" class="wpdui-sr-only"><?php esc_html_e( 'Search plugins', 'wpmudev' ); ?></label>
+		<input type="search" placeholder="<?php esc_attr_e( 'Search plugins', 'wpmudev' ) ?>" class="search" id="search-plugins-id" data-no-empty-msg="true" />
 	</div>
 	<div class="col-half tr">
 		<span class="input-group">
@@ -96,6 +97,7 @@ $this->render_header( $page_title );
 
 
 <?php $this->load_template( 'element-last-refresh' ); ?>
+<?php $this->load_template('footer'); ?>
 
 <div class="project-list hidden">
 	<?php
