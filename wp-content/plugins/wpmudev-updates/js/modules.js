@@ -15,15 +15,20 @@ jQuery(function initModules() {
 		,rows  // used for plugins/themes; each row is a project-category
 		,lastFilter  // used for the filter text field on plugins/themes page.
 		,filterProgress // same as lastFilter.
+		,wpMediaFrame // used for wpMedia modal reference.
 	;
 
 
 	// ------------------------------------------------------------------------
 	// MAIN DASHBOARD PAGE
 	function initDashboard() {
-		var projectSearch = jQuery('#project-search');
+		var projectSearch = jQuery('#project-search'),
+				loginForm = jQuery('#wpmudui-login-form');
 
 		projectSearch.on('search', searchProjects);
+
+		loginForm.on("click", ".one-click", disableFields);
+
 	}
 
 	// ------------------------------------------------------------------------
@@ -139,7 +144,7 @@ jQuery(function initModules() {
 		var searchForm = jQuery("#support-search");
 		searchForm.submit(function() {
 			var query = jQuery('#support-search input[name="q"]').val();
-			window.location.href = 'https://premium.wpmudev.org/support/?search=true#stq='+query+'&stp=1';
+			window.open('https://premium.wpmudev.org/forums/search.php?q='+query+'&forum=support', '_blank');
 			return false;
 		});
 		searchForm.on('click', '.search-icon', function() {
@@ -152,7 +157,11 @@ jQuery(function initModules() {
 	function initSettings() {
 		var userSearch = jQuery('#user-search'),
 			btnAdd = jQuery('#user-add'),
-			autoUpdate = jQuery('#chk_autoupdate');
+			autoUpdate = jQuery('#chk_autoupdate'),
+		    mediaLibBtn = jQuery('.wpmud-media-library'),
+		    clearImageBtn = jQuery('.wpmud-clear-image-input'),
+		    body = jQuery('body')
+		;
 
 		userSearch.on('search', searchUsers);
 		userSearch.on('item:select', function() { formState(true); });
@@ -167,6 +176,67 @@ jQuery(function initModules() {
 				btnAdd.prop('disabled', true).addClass('disabled');
 			}
 		}
+
+		mediaLibBtn.on('click', function (event) {
+			event.preventDefault();
+
+			// If the media frame already exists, reopen it.
+			if (wpMediaFrame) {
+				wpMediaFrame.open();
+				return false;
+			}
+
+			// Create a new media frame
+			wpMediaFrame = wp.media({
+				title: mediaLibBtn.data('frame-title'),
+				button: {
+					text: mediaLibBtn.data('button-text')
+				},
+				multiple: false
+			});
+
+			// When an image is selected in the media frame...
+			wpMediaFrame.on('select', function () {
+
+				// Get media attachment details from the frame state
+				var attachment = wpMediaFrame.state().get('selection').first().toJSON(),
+				    input      = $('#' + mediaLibBtn.data('input-id')),
+				    preview    = $('#' + mediaLibBtn.data('preview-id'))
+				;
+
+				// Send the attachment URL to our custom image input field.
+				preview.css('background-image', 'url(' + attachment.url + ')');
+				// Send the attachment url to our input
+				input.val(attachment.url);
+			});
+
+			wpMediaFrame.on('open', function () {
+				if (body.hasClass('wpmud')) {
+					body.removeClass('wpmud')
+				}
+			});
+
+			wpMediaFrame.on('close', function () {
+				if (!body.hasClass('wpmud')) {
+					body.addClass('wpmud')
+				}
+			});
+
+			// Finally, open the modal on click
+			wpMediaFrame.open();
+		});
+
+		clearImageBtn.on('click', function (event) {
+			event.preventDefault();
+			var input   = $('#' + mediaLibBtn.data('input-id')),
+			    preview = $('#' + mediaLibBtn.data('preview-id'))
+			;
+			// Send the attachment URL to our custom image input field.
+			preview.css('background-image', 'url()');
+			// Send the attachment url to our input
+			input.val('');
+		});
+
 	}
 
 	// ------------------------------------------------------------------------
@@ -709,15 +779,15 @@ jQuery(function initModules() {
 			return true;
 		}
 
-		if (response.statusText) {
-			// The requiest failed, we have a server error-status.
-			WDP.showError('Server error status: ' + response.statusText + ' [' + response.status + ']');
-			return true;
-		}
-
 		if (response.success && 'function' !== typeof response.success) {
 			// This is no error, it's a success message!
 			return false;
+		}
+
+		if (200 != response.status && response.statusText) {
+			// The requiest failed, we have a server error-status.
+			WDP.showError('Server error status: ' + response.statusText + ' [' + response.status + ']');
+			return true;
 		}
 
 		// WordPress returned an error-state.
@@ -734,4 +804,23 @@ jQuery(function initModules() {
 		WDP.showOverlay('#reload');
 		window.location.reload();
 	}
+
+	// Make fields disabled on form submit (from shared-ui)
+	function disableFields() {
+		var form, el = jQuery(this);
+
+		window.setTimeout(function() {
+			el.prop("disabled", true).addClass("disabled").loading(true);
+
+			if (el.hasClass("wpmudui-btn")) {
+				form = el.closest("form");
+				if ( form.length ) {
+					form.find(":input").prop("disabled", true).addClass("disabled");
+					form.prop("disabled", true).addClass("disabled");
+				}
+			}
+		}, 20);
+
+	}
+
 });

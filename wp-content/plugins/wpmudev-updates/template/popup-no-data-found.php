@@ -11,7 +11,7 @@
  */
 
 ?>
-<dialog title="<?php esc_html_e( 'Wait a moment...', 'wpmudev' ); ?>" class="small">
+<dialog title="<?php esc_html_e( 'Wait a moment...', 'wpmudev' ); ?>" class="wpmudui wpmudui-modal">
 <div class="tc dev-error">
 	<?php
 	if ( WPMUDEV_Dashboard::$api->has_key() ) {
@@ -57,6 +57,6 @@
 	);
 	?>
 	</small></p>
-	<span class="the-hero"><i class="dev-icon dev-icon-devman"></i></span>
+	<span aria-hidden="true" class="the-hero"><i class="dev-icon dev-icon-devman"></i></span>
 </div>
 </dialog>
