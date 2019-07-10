@@ -1157,6 +1157,18 @@ and (max-width : 768px) {
     .landing-page-logo a img {
         width: 200px;
     }
+    .post-content .imagegal.photos ul li {
+	    display: inline-block;
+	    float: none;
+	    margin: 5px 0 0 0;
+	    width: 99.3%
+	}
+	.post-content .imagegal ul li:before {
+		display: block;
+	}
+	.post-content .imagegal.photos ul li:nth-child(3n), .post-content .imagegal.photos ul li:nth-child(4n) {
+		margin-right: 1.5%;
+	}
 }
 
 
