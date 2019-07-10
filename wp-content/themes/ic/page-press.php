@@ -67,7 +67,7 @@
 
 				<?php 
 					$cnt = 0;
-					var_dump(have_rows('press_logos'));
+					
 					if ( have_rows('press_logos') ) : while( have_rows('press_logos') ) : the_row();
 
 						// SHOW/HIDE
