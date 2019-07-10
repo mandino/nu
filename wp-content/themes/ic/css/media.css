@@ -1157,7 +1157,7 @@ and (max-width : 768px) {
         width: 200px;
     }
     .post-content .imagegal.photos ul li {
-	    display: inline-block;
+	    display: inline-block !important;
 	    float: none;
 	    margin: 0;
 	    width: 50%;
@@ -1205,7 +1205,7 @@ and (max-width : 767px) {
         width: 200px;
     }
     .post-content .imagegal.photos ul li {
-	    display: inline-block;
+	    display: inline-block !important;
 	    float: none;
 	    margin: 5px 0 0 0;
 	    width: 99.3%

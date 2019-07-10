@@ -605,9 +605,11 @@ color: #333;
 	display: none;
 }
 .post-content .imagegal.photos ul li {
-    margin-right: 1.5%;
-    width: 32.3%;
+    margin-right: auto;
+    width: 33%;
     margin-bottom: 11px;
+    padding: 0 7px;
+    box-sizing: border-box;
 }
 
 .post-content .imagegal.photos ul li:nth-child(3n) {
