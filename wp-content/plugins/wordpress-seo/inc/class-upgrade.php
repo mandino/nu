@@ -6,11 +6,12 @@
  */
 
 /**
- * This code handles the option upgrades
+ * This code handles the option upgrades.
  */
 class WPSEO_Upgrade {
+
 	/**
-	 * Class constructor
+	 * Class constructor.
 	 */
 	public function __construct() {
 		$version = WPSEO_Options::get( 'version' );
@@ -70,7 +71,7 @@ class WPSEO_Upgrade {
 		}
 
 		if ( version_compare( $version, '5.0', '>=' )
-			 && version_compare( $version, '5.1', '<' )
+			&& version_compare( $version, '5.1', '<' )
 		) {
 			$this->upgrade_50_51();
 		}
@@ -99,12 +100,44 @@ class WPSEO_Upgrade {
 			$this->upgrade_71();
 		}
 
+		if ( version_compare( $version, '7.3-RC0', '<' ) ) {
+			$this->upgrade_73();
+		}
+
+		if ( version_compare( $version, '7.4-RC0', '<' ) ) {
+			$this->upgrade_74();
+		}
+
+		if ( version_compare( $version, '7.5.3', '<' ) ) {
+			$this->upgrade_753();
+		}
+
+		if ( version_compare( $version, '7.7-RC0', '<' ) ) {
+			$this->upgrade_77();
+		}
+
+		if ( version_compare( $version, '7.7.2-RC0', '<' ) ) {
+			$this->upgrade_772();
+		}
+
+		if ( version_compare( $version, '9.0-RC0', '<' ) ) {
+			$this->upgrade90();
+		}
+
+		if ( version_compare( $version, '10.0-RC0', '<' ) ) {
+			$this->upgrade_100();
+		}
+
+		if ( version_compare( $version, '11.1-RC0', '<' ) ) {
+			$this->upgrade_111();
+		}
+
 		// Since 3.7.
 		$upsell_notice = new WPSEO_Product_Upsell_Notice();
 		$upsell_notice->set_upgrade_notice();
 
 		/**
-		 * Filter: 'wpseo_run_upgrade' - Runs the upgrade hook which are dependent on Yoast SEO
+		 * Filter: 'wpseo_run_upgrade' - Runs the upgrade hook which are dependent on Yoast SEO.
 		 *
 		 * @api        string - The current version of Yoast SEO
 		 */
@@ -114,19 +147,34 @@ class WPSEO_Upgrade {
 	}
 
 	/**
+	 * Adds a new upgrade history entry.
+	 *
+	 * @param string $current_version The old version from which we are upgrading.
+	 * @param string $new_version     The version we are upgrading to.
+	 */
+	protected function add_upgrade_history( $current_version, $new_version ) {
+		$upgrade_history = new WPSEO_Upgrade_History();
+		$upgrade_history->add( $current_version, $new_version, array_keys( WPSEO_Options::$options ) );
+	}
+
+	/**
 	 * Runs the needed cleanup after an update, setting the DB version to latest version, flushing caches etc.
 	 */
 	protected function finish_up() {
 		WPSEO_Options::set( 'version', WPSEO_VERSION );
 
-		add_action( 'shutdown', 'flush_rewrite_rules' );                     // Just flush rewrites, always, to at least make them work after an upgrade.
-		WPSEO_Sitemaps_Cache::clear();                                       // Flush the sitemap cache.
+		// Just flush rewrites, always, to at least make them work after an upgrade.
+		add_action( 'shutdown', 'flush_rewrite_rules' );
 
-		WPSEO_Options::ensure_options_exist();                               // Make sure all our options always exist - issue #1245.
+		// Flush the sitemap cache.
+		WPSEO_Sitemaps_Cache::clear();
+
+		// Make sure all our options always exist - issue #1245.
+		WPSEO_Options::ensure_options_exist();
 	}
 
 	/**
-	 * Run the Yoast SEO 1.5 upgrade routine
+	 * Run the Yoast SEO 1.5 upgrade routine.
 	 *
 	 * @param string $version Current plugin version.
 	 */
@@ -137,12 +185,12 @@ class WPSEO_Upgrade {
 	}
 
 	/**
-	 * Moves options that moved position in WPSEO 2.0
+	 * Moves options that moved position in WPSEO 2.0.
 	 */
 	private function upgrade_20() {
 		/**
 		 * Clean up stray wpseo_ms options from the options table, option should only exist in the sitemeta table.
-		 * This could have been caused in many version of Yoast SEO, so deleting it for everything below 2.0
+		 * This could have been caused in many version of Yoast SEO, so deleting it for everything below 2.0.
 		 */
 		delete_option( 'wpseo_ms' );
 
@@ -177,7 +225,7 @@ class WPSEO_Upgrade {
 	}
 
 	/**
-	 * Performs upgrade functions to Yoast SEO 2.2
+	 * Performs upgrade functions to Yoast SEO 2.2.
 	 */
 	private function upgrade_22() {
 		// Unschedule our tracking.
@@ -187,7 +235,7 @@ class WPSEO_Upgrade {
 	}
 
 	/**
-	 * Schedules upgrade function to Yoast SEO 2.3
+	 * Schedules upgrade function to Yoast SEO 2.3.
 	 */
 	private function upgrade_23() {
 		add_action( 'wp', array( $this, 'upgrade_23_query' ), 90 );
@@ -195,7 +243,7 @@ class WPSEO_Upgrade {
 	}
 
 	/**
-	 * Performs upgrade query to Yoast SEO 2.3
+	 * Performs upgrade query to Yoast SEO 2.3.
 	 */
 	public function upgrade_23_query() {
 		$wp_query = new WP_Query( 'post_type=any&meta_key=_yoast_wpseo_sitemap-include&meta_value=never&order=ASC' );
@@ -255,12 +303,8 @@ class WPSEO_Upgrade {
 	 * Removes the about notice when its still in the database.
 	 */
 	private function upgrade_40() {
-		$center       = Yoast_Notification_Center::get();
-		$notification = $center->get_notification_by_id( 'wpseo-dismiss-about' );
-
-		if ( $notification ) {
-			$center->remove_notification( $notification );
-		}
+		$center = Yoast_Notification_Center::get();
+		$center->remove_notification_by_id( 'wpseo-dismiss-about' );
 	}
 
 	/**
@@ -286,7 +330,7 @@ class WPSEO_Upgrade {
 		$wpdb->query(
 			$wpdb->prepare(
 				'UPDATE ' . $wpdb->postmeta . ' SET meta_key = %s WHERE meta_key = "yst_is_cornerstone"',
-				WPSEO_Cornerstone::META_NAME
+				WPSEO_Cornerstone_Filter::META_NAME
 			)
 		);
 	}
@@ -308,7 +352,8 @@ class WPSEO_Upgrade {
 		$meta_key = $wpdb->get_blog_prefix() . Yoast_Notification_Center::STORAGE_KEY;
 
 		$usermetas = $wpdb->get_results(
-			$wpdb->prepare( '
+			$wpdb->prepare(
+				'
 				SELECT user_id, meta_value
 				FROM ' . $wpdb->usermeta . '
 				WHERE meta_key = %s AND meta_value LIKE %s
@@ -408,8 +453,8 @@ class WPSEO_Upgrade {
 	}
 
 	/**
-	 * Updates the links for the link count when there is a difference between the site and home url. We've used the
-	 * site url instead of the home url.
+	 * Updates the links for the link count when there is a difference between the site and home url.
+	 * We've used the site url instead of the home url.
 	 *
 	 * @return void
 	 */
@@ -509,6 +554,8 @@ class WPSEO_Upgrade {
 
 	/**
 	 * Perform the 7.1 upgrade.
+	 *
+	 * @return void
 	 */
 	private function upgrade_71() {
 		$this->cleanup_option_data( 'wpseo_social' );
@@ -521,6 +568,157 @@ class WPSEO_Upgrade {
 
 			$this->cleanup_option_data( 'wpseo_titles' );
 		}
+	}
+
+	/**
+	 * Perform the 7.3 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_73() {
+		global $wpdb;
+		// We've moved the cornerstone checkbox to our proper namespace.
+		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_yoast_wpseo_is_cornerstone' WHERE meta_key = '_yst_is_cornerstone'" );
+
+		// Remove the previous Whip dismissed message, as this is a new one regarding PHP 5.2.
+		delete_option( 'whip_dismiss_timestamp' );
+	}
+
+	/**
+	 * Performs the 7.4 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_74() {
+		$this->remove_sitemap_validators();
+	}
+
+	/**
+	 * Performs the 7.5.3 upgrade.
+	 *
+	 * When upgrading purging media is potentially relevant.
+	 *
+	 * @return void
+	 */
+	private function upgrade_753() {
+		// Only when attachments are not disabled.
+		if ( WPSEO_Options::get( 'disable-attachment' ) === true ) {
+			return;
+		}
+
+		// Only when attachments are not no-indexed.
+		if ( WPSEO_Options::get( 'noindex-attachment' ) === true ) {
+			return;
+		}
+
+		// Set purging relevancy.
+		WPSEO_Options::set( 'is-media-purge-relevant', true );
+	}
+
+	/**
+	 * Performs the 7.7 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_77() {
+		// Remove all OpenGraph content image cache.
+		$this->delete_post_meta( '_yoast_wpseo_post_image_cache' );
+	}
+
+	/**
+	 * Performs the 7.7.2 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_772() {
+		if ( WPSEO_Utils::is_woocommerce_active() ) {
+			$this->migrate_woocommerce_archive_setting_to_shop_page();
+		}
+	}
+
+	/**
+	 * Performs the 9.0 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade90() {
+		global $wpdb;
+
+		// Invalidate all sitemap cache transients.
+		WPSEO_Sitemaps_Cache_Validator::cleanup_database();
+
+		// Removes all scheduled tasks for hitting the sitemap index.
+		wp_clear_scheduled_hook( 'wpseo_hit_sitemap_index' );
+
+		$wpdb->query( 'DELETE FROM ' . $wpdb->options . ' WHERE option_name LIKE "wpseo_sitemap_%"' );
+	}
+
+	/**
+	 * Performs the 10.0 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_100() {
+		// Removes recalibration notifications.
+		$this->clean_all_notifications();
+
+		// Removes recalibration options.
+		WPSEO_Options::clean_up( 'wpseo' );
+		delete_option( 'wpseo_recalibration_beta_mailinglist_subscription' );
+	}
+
+	/**
+	 * Performs the 11.1 upgrade.
+	 *
+	 * @return void
+	 */
+	private function upgrade_111() {
+		// Set company_or_person to company when it's an invalid value.
+		$company_or_person = WPSEO_Options::get( 'company_or_person', '' );
+
+		if ( ! in_array( $company_or_person, array( 'company', 'person' ), true ) ) {
+			WPSEO_Options::set( 'company_or_person', 'company' );
+		}
+	}
+
+	/**
+	 * Removes all notifications saved in the database under 'wp_yoast_notifications'.
+	 *
+	 * @return void
+	 */
+	private function clean_all_notifications() {
+		global $wpdb;
+		delete_metadata( 'user', 0, $wpdb->get_blog_prefix() . Yoast_Notification_Center::STORAGE_KEY, '', true );
+	}
+
+	/**
+	 * Removes the post meta fields for a given meta key.
+	 *
+	 * @param string $meta_key The meta key.
+	 *
+	 * @return void
+	 */
+	private function delete_post_meta( $meta_key ) {
+		global $wpdb;
+		$deleted = $wpdb->delete( $wpdb->postmeta, array( 'meta_key' => $meta_key ), array( '%s' ) );
+
+		if ( $deleted ) {
+			wp_cache_set( 'last_changed', microtime(), 'posts' );
+		}
+	}
+
+	/**
+	 * Removes all sitemap validators.
+	 *
+	 * This should be executed on every upgrade routine until we have removed the sitemap caching in the database.
+	 *
+	 * @return void
+	 */
+	private function remove_sitemap_validators() {
+		global $wpdb;
+
+		// Remove all sitemap validators.
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'wpseo_sitemap%validator%'" );
 	}
 
 	/**
@@ -581,6 +779,77 @@ class WPSEO_Upgrade {
 
 		if ( isset( $source_data[ $source_setting ] ) ) {
 			WPSEO_Options::set( $target_setting, $source_data[ $source_setting ] );
+		}
+	}
+
+	/**
+	 * Migrates WooCommerce archive settings to the WooCommerce Shop page meta-data settings.
+	 *
+	 * If no Shop page is defined, nothing will be migrated.
+	 *
+	 * @return void
+	 */
+	private function migrate_woocommerce_archive_setting_to_shop_page() {
+		$shop_page_id = wc_get_page_id( 'shop' );
+
+		if ( $shop_page_id === -1 ) {
+			return;
+		}
+
+		$title = WPSEO_Meta::get_value( 'title', $shop_page_id );
+
+		if ( empty( $title ) ) {
+			$option_title = WPSEO_Options::get( 'title-ptarchive-product' );
+
+			WPSEO_Meta::set_value(
+				'title',
+				$option_title,
+				$shop_page_id
+			);
+
+			WPSEO_Options::set( 'title-ptarchive-product', '' );
+		}
+
+		$meta_description = WPSEO_Meta::get_value( 'metadesc', $shop_page_id );
+
+		if ( empty( $meta_description ) ) {
+			$option_metadesc = WPSEO_Options::get( 'metadesc-ptarchive-product' );
+
+			WPSEO_Meta::set_value(
+				'metadesc',
+				$option_metadesc,
+				$shop_page_id
+			);
+
+			WPSEO_Options::set( 'metadesc-ptarchive-product', '' );
+		}
+
+		$bc_title = WPSEO_Meta::get_value( 'bctitle', $shop_page_id );
+
+		if ( empty( $bc_title ) ) {
+			$option_bctitle = WPSEO_Options::get( 'bctitle-ptarchive-product' );
+
+			WPSEO_Meta::set_value(
+				'bctitle',
+				$option_bctitle,
+				$shop_page_id
+			);
+
+			WPSEO_Options::set( 'bctitle-ptarchive-product', '' );
+		}
+
+		$noindex = WPSEO_Meta::get_value( 'meta-robots-noindex', $shop_page_id );
+
+		if ( $noindex === '0' ) {
+			$option_noindex = WPSEO_Options::get( 'noindex-ptarchive-product' );
+
+			WPSEO_Meta::set_value(
+				'meta-robots-noindex',
+				$option_noindex,
+				$shop_page_id
+			);
+
+			WPSEO_Options::set( 'noindex-ptarchive-product', false );
 		}
 	}
 }
