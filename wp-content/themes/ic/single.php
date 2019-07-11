@@ -120,11 +120,9 @@ if( count( $children ) != 0 ) { ?>
 				
 				<ul class="thumbgal">
 						
-						<?php query_posts('post_type=specials&posts_per_page=4'); if(have_posts()) : while(have_posts()) : the_post(); 
+						<?php query_posts('post_type=specials&posts_per_page=3'); if(have_posts()) : while(have_posts()) : the_post(); 
 						$imgsrc = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "Full"); ?>
 
-							<?php if(get_post_meta($post->ID, 'cebo_available_on_sidebar', true)) { ?>
-							
 								<li>
 									
 						
@@ -168,8 +166,6 @@ if( count( $children ) != 0 ) { ?>
 									
 								</li>
 
-							<?php } ?>
-							
 							<?php endwhile; endif; wp_reset_query(); ?>
 							
 														
