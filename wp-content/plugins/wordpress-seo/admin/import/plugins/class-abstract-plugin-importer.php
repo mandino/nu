@@ -6,11 +6,12 @@
  */
 
 /**
- * Class WPSEO_Plugin_Importer
+ * Class WPSEO_Plugin_Importer.
  *
  * Class with functionality to import meta data from other plugins.
  */
 abstract class WPSEO_Plugin_Importer {
+
 	/**
 	 * Holds the import status object.
 	 *
@@ -26,11 +27,18 @@ abstract class WPSEO_Plugin_Importer {
 	protected $plugin_name;
 
 	/**
-	 * Meta key, used in SQL LIKE clause for detect query.
+	 * Meta key, used in SQL LIKE clause for delete query.
 	 *
 	 * @var string
 	 */
 	protected $meta_key;
+
+	/**
+	 * Array of meta keys to detect and import.
+	 *
+	 * @var array
+	 */
+	protected $clone_keys;
 
 	/**
 	 * Class constructor.
@@ -98,6 +106,9 @@ abstract class WPSEO_Plugin_Importer {
 	 */
 	protected function cleanup() {
 		global $wpdb;
+		if ( empty( $this->meta_key ) ) {
+			return true;
+		}
 		$wpdb->query(
 			$wpdb->prepare(
 				"DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
@@ -106,11 +117,20 @@ abstract class WPSEO_Plugin_Importer {
 		);
 		$result = $wpdb->__get( 'result' );
 		if ( ! $result ) {
-			/* translators: %s is replaced with the plugin's name. */
-			$this->status->set_msg( sprintf( __( 'Cleanup of %s data failed.', 'wordpress-seo' ), $this->plugin_name ) );
+			$this->cleanup_error_msg();
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Sets the status message for when a cleanup has gone bad.
+	 *
+	 * @return void
+	 */
+	protected function cleanup_error_msg() {
+		/* translators: %s is replaced with the plugin's name. */
+		$this->status->set_msg( sprintf( __( 'Cleanup of %s data failed.', 'wordpress-seo' ), $this->plugin_name ) );
 	}
 
 	/**
@@ -135,10 +155,13 @@ abstract class WPSEO_Plugin_Importer {
 	 */
 	protected function detect() {
 		global $wpdb;
-		$result = $wpdb->get_var(
+
+		$meta_keys    = wp_list_pluck( $this->clone_keys, 'old_key' );
+		$placeholders = implode( ', ', array_fill( 0, count( $meta_keys ), '%s' ) );
+		$result       = $wpdb->get_var(
 			$wpdb->prepare(
-				"SELECT COUNT(*) AS `count` FROM {$wpdb->postmeta} WHERE meta_key LIKE %s",
-				$this->meta_key
+				"SELECT COUNT(*) AS `count` FROM {$wpdb->postmeta} WHERE meta_key IN ( $placeholders )",
+				$meta_keys
 			)
 		);
 		if ( $result === '0' ) {
@@ -171,6 +194,7 @@ abstract class WPSEO_Plugin_Importer {
 			$this->set_missing_db_rights_status();
 			return false;
 		}
+
 		// Delete all the values in our temp table for posts that already have data for $new_key.
 		$wpdb->query(
 			$wpdb->prepare(
@@ -179,7 +203,10 @@ abstract class WPSEO_Plugin_Importer {
 			)
 		);
 
-		// We set meta_id to NULL so on re-insert into the postmeta table, MYSQL can set new meta_id's and we don't get duplicates.
+		/*
+		 * We set meta_id to NULL so on re-insert into the postmeta table, MYSQL can set
+		 * new meta_id's and we don't get duplicates.
+		 */
 		$wpdb->query( 'UPDATE tmp_meta_table SET meta_id = NULL' );
 
 		// Now we rename the meta_key.
@@ -228,6 +255,22 @@ abstract class WPSEO_Plugin_Importer {
 	}
 
 	/**
+	 * Helper function to search for a key in an array and maybe save it as a meta field.
+	 *
+	 * @param string $plugin_key The key in the $data array to check.
+	 * @param string $yoast_key  The identifier we use in our meta settings.
+	 * @param array  $data       The array of data for this post to sift through.
+	 * @param int    $post_id    The post ID.
+	 *
+	 * @return void
+	 */
+	protected function import_meta_helper( $plugin_key, $yoast_key, $data, $post_id ) {
+		if ( ! empty( $data[ $plugin_key ] ) ) {
+			$this->maybe_save_post_meta( $yoast_key, $data[ $plugin_key ], $post_id );
+		}
+	}
+
+	/**
 	 * Saves a post meta value if it doesn't already exist.
 	 *
 	 * @param string $new_key The key to save.
@@ -235,9 +278,21 @@ abstract class WPSEO_Plugin_Importer {
 	 * @param int    $post_id The Post to save the meta for.
 	 */
 	protected function maybe_save_post_meta( $new_key, $value, $post_id ) {
-		$existing_value = get_post_meta( $post_id, WPSEO_Meta::$meta_prefix . $new_key, true );
+		// Big. Fat. Sigh. Mostly used for _yst_is_cornerstone, but might be useful for other hidden meta's.
+		$key        = WPSEO_Meta::$meta_prefix . $new_key;
+		$wpseo_meta = true;
+		if ( substr( $new_key, 0, 1 ) === '_' ) {
+			$key        = $new_key;
+			$wpseo_meta = false;
+		}
+
+		$existing_value = get_post_meta( $post_id, $key, true );
 		if ( empty( $existing_value ) ) {
-			WPSEO_Meta::set_value( $new_key, $value, $post_id );
+			if ( $wpseo_meta ) {
+				WPSEO_Meta::set_value( $new_key, $value, $post_id );
+				return;
+			}
+			update_post_meta( $post_id, $new_key, $value );
 		}
 	}
 

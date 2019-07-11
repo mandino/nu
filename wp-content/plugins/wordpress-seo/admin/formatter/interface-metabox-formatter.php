@@ -6,7 +6,7 @@
  */
 
 /**
- * Interface to force get_values
+ * Interface to force get_values.
  */
 interface WPSEO_Metabox_Formatter_Interface {
 
@@ -16,5 +16,4 @@ interface WPSEO_Metabox_Formatter_Interface {
 	 * @return array
 	 */
 	public function get_values();
-
 }
