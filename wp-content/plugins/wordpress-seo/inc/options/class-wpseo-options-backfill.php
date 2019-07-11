@@ -11,7 +11,12 @@
  * @since 7.0.2
  */
 class WPSEO_Options_Backfill implements WPSEO_WordPress_Integration {
-	/** @var bool Are the filters hooked or not. */
+
+	/**
+	 * Are the filters hooked or not.
+	 *
+	 * @var bool
+	 */
 	protected $hooked = false;
 
 	/**
@@ -84,7 +89,7 @@ class WPSEO_Options_Backfill implements WPSEO_WordPress_Integration {
 	 */
 	protected function get_settings( $option ) {
 		$settings = array(
-			'wpseo'               => array(
+			'wpseo' => array(
 				'website_name'           => 'website_name',
 				'alternate_website_name' => 'alternate_website_name',
 				'company_logo'           => 'company_logo',
@@ -92,30 +97,26 @@ class WPSEO_Options_Backfill implements WPSEO_WordPress_Integration {
 				'company_or_person'      => 'company_or_person',
 				'person_name'            => 'person_name',
 			),
-			'wpseo_internallinks' =>
-				array(
-					'breadcrumbs-404crumb'      => 'breadcrumbs-404crumb',
-					'breadcrumbs-blog-remove'   => 'breadcrumbs-display-blog-page',
-					'breadcrumbs-boldlast'      => 'breadcrumbs-boldlast',
-					'breadcrumbs-archiveprefix' => 'breadcrumbs-archiveprefix',
-					'breadcrumbs-enable'        => 'breadcrumbs-enable',
-					'breadcrumbs-home'          => 'breadcrumbs-home',
-					'breadcrumbs-prefix'        => 'breadcrumbs-prefix',
-					'breadcrumbs-searchprefix'  => 'breadcrumbs-searchprefix',
-					'breadcrumbs-sep'           => 'breadcrumbs-sep',
-				),
-
-			'wpseo_rss'        =>
-				array(
-					'rssbefore' => 'rssbefore',
-					'rssafter'  => 'rssafter',
-				),
-			'wpseo_xml'        =>
-				array(
-					'enablexmlsitemap'       => 'enable_xml_sitemap',
-					'disable_author_sitemap' => 'noindex-author-wpseo',
-					'disable_author_noposts' => 'noindex-author-noposts-wpseo',
-				),
+			'wpseo_internallinks' => array(
+				'breadcrumbs-404crumb'      => 'breadcrumbs-404crumb',
+				'breadcrumbs-blog-remove'   => 'breadcrumbs-display-blog-page',
+				'breadcrumbs-boldlast'      => 'breadcrumbs-boldlast',
+				'breadcrumbs-archiveprefix' => 'breadcrumbs-archiveprefix',
+				'breadcrumbs-enable'        => 'breadcrumbs-enable',
+				'breadcrumbs-home'          => 'breadcrumbs-home',
+				'breadcrumbs-prefix'        => 'breadcrumbs-prefix',
+				'breadcrumbs-searchprefix'  => 'breadcrumbs-searchprefix',
+				'breadcrumbs-sep'           => 'breadcrumbs-sep',
+			),
+			'wpseo_rss' => array(
+				'rssbefore' => 'rssbefore',
+				'rssafter'  => 'rssafter',
+			),
+			'wpseo_xml' => array(
+				'enablexmlsitemap'       => 'enable_xml_sitemap',
+				'disable_author_sitemap' => 'noindex-author-wpseo',
+				'disable_author_noposts' => 'noindex-author-noposts-wpseo',
+			),
 			'wpseo_permalinks' => array(
 				'redirectattachment' => 'disable-attachment',
 				'stripcategorybase'  => 'stripcategorybase',

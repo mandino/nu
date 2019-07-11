@@ -11,12 +11,11 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
 	exit();
 }
 
-$yform = Yoast_Form::get_instance();
-
+$yform  = Yoast_Form::get_instance();
 $import = false;
 
 /**
- * The import method is used to dermine if there should be something imported.
+ * The import method is used to determine if there should be something imported.
  *
  * In case of POST the user is on the Yoast SEO import page and in case of the GET the user sees a notice from
  * Yoast SEO that we can import stuff for that plugin.
@@ -25,24 +24,27 @@ if ( filter_input( INPUT_POST, 'import' ) || filter_input( INPUT_GET, 'import' )
 	check_admin_referer( 'wpseo-import' );
 
 	$post_wpseo = filter_input( INPUT_POST, 'wpseo', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
-	$action = 'import';
+	$action     = 'import';
 }
 elseif ( filter_input( INPUT_POST, 'import_external' ) ) {
 	check_admin_referer( 'wpseo-import-plugins' );
 
 	$class = filter_input( INPUT_POST, 'import_external_plugin' );
-	$import = new WPSEO_Import_Plugin( new $class, 'import' );
+	if ( class_exists( $class ) ) {
+		$import = new WPSEO_Import_Plugin( new $class(), 'import' );
+	}
 }
 elseif ( filter_input( INPUT_POST, 'clean_external' ) ) {
 	check_admin_referer( 'wpseo-clean-plugins' );
 
 	$class = filter_input( INPUT_POST, 'clean_external_plugin' );
-	$import = new WPSEO_Import_Plugin( new $class, 'cleanup' );
+	if ( class_exists( $class ) ) {
+		$import = new WPSEO_Import_Plugin( new $class(), 'cleanup' );
+	}
 }
-elseif ( isset( $_FILES['settings_import_file'] ) ) {
-	check_admin_referer( 'wpseo-import-file' );
-
+elseif ( filter_input( INPUT_POST, 'settings_import' ) ) {
 	$import = new WPSEO_Import_Settings();
+	$import->import();
 }
 
 /**
@@ -72,7 +74,7 @@ if ( $import ) {
 			$status = 'updated';
 		}
 
-		echo '<div id="message" class="message ', $status, '"><p>', $msg, '</p></div>';
+		echo '<div id="message" class="message ', $status, '"><p>', esc_html( $msg ), '</p></div>';
 	}
 }
 
@@ -101,7 +103,7 @@ $tabs = array(
 
 		<?php
 		/**
-		 * Allow adding a custom import tab header
+		 * Allow adding a custom import tab header.
 		 */
 		do_action( 'wpseo_import_tab_header' );
 		?>
@@ -115,8 +117,11 @@ foreach ( $tabs as $identifier => $tab ) {
 	if ( ! empty( $tab['screencast_video_url'] ) ) {
 		$tab_video_url = $tab['screencast_video_url'];
 
-		$helpcenter_tab = new WPSEO_Option_Tab( $identifier, $tab['label'],
-			array( 'video_url' => $tab['screencast_video_url'] ) );
+		$helpcenter_tab = new WPSEO_Option_Tab(
+			$identifier,
+			$tab['label'],
+			array( 'video_url' => $tab['screencast_video_url'] )
+		);
 	}
 
 	$helpcenter_tabs->add_tab( $helpcenter_tab );
@@ -133,6 +138,6 @@ foreach ( $tabs as $identifier => $tab ) {
 }
 
 /**
- * Allow adding a custom import tab
+ * Allow adding a custom import tab.
  */
 do_action( 'wpseo_import_tab_content' );
