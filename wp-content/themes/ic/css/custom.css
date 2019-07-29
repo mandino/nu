@@ -2085,7 +2085,7 @@ h1.tribe-events-page-title {
 
 .press-logo {
     position: relative;
-    width: 80%;
+    width: 100%;
     font-size: 0;
     text-align: center;
     margin: 0 auto;
@@ -2184,4 +2184,9 @@ h1.tribe-events-page-title {
     -ms-transition: visibility 1s ease,opacity 1s ease;
     -o-transition: visibility 1s ease,opacity 1s ease;
     transition: visibility 1s ease,opacity 1s ease;
+}
+
+.page-template-default input,
+.page-template-default input:focus {
+    border: unset;
 }
