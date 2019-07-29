@@ -2162,3 +2162,8 @@ h1.tribe-events-page-title {
     -o-transition: visibility 1s ease,opacity 1s ease;
     transition: visibility 1s ease,opacity 1s ease;
 }
+
+.page-template-default input,
+.page-template-default input:focus {
+    border: unset;
+}
