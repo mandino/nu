@@ -2167,3 +2167,107 @@ h1.tribe-events-page-title {
 .page-template-default input:focus {
     border: unset;
 }
+
+#login-portal {
+    width: 50%;
+    padding: 5%;
+    box-sizing: content-box;
+}
+
+.login-portal {
+    position: relative;
+    display: none;
+}
+
+#login-portal input {
+    width: 45%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.postal-greetings {
+    position: absolute;
+    top: 15vh;
+    right: 8vw;
+}
+
+.postal-greetings span {
+    font-size: 34px;
+    font-family: didot, serif;
+}
+.btn--circle {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    position: absolute;
+    border: 1px solid transparent;
+    background-color: #f27333;
+    top: 10vh;
+    right: 78vh;
+}
+#login-portal .btn--circle input[type="submit"] {
+    width: 100%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    color: #fff;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.login-portal__trigger {
+    position: absolute;
+    width: 115px;
+    height: 40px;
+    background-color: #f27333;
+    top: 0;
+    left: 5vw;
+    z-index: 1135;
+}
+
+.login-portal__trigger span {
+    color: #fff;
+    font-family: scala-sans, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.login-portal__trigger:after{
+    border-top: 35px solid #f27333;
+    border-left: 57px solid transparent;
+    border-right: 57px solid transparent;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    bottom: -35px;
+    width: 0;
+}
+
+#primary-nav.open-portal {
+    position: absolute;
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+#primary-nav.open-portal nav ul li a {
+    color: #fff;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}

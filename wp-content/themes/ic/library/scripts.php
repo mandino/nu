@@ -1,3 +1,4 @@
+
 <!-- Fonts -->
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
@@ -122,6 +123,16 @@
 	}
 	
 	$(document).ready(function(){
+		$('.login-portal__trigger span').click(function() {
+			if ($('.login-portal').is(':visible')) {
+				$('.login-portal').slideUp(1000);
+				$('#primary-nav').removeClass('open-portal');
+			} else{
+				$('.login-portal').slideDown(1000);
+				$('#primary-nav').addClass('open-portal');
+			}
+			
+		});
 		pressLogoDisplay();
 		$(window).scroll(function() {
 			var verschil = ($(window).scrollTop() / 5);
