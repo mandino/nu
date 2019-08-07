@@ -464,6 +464,20 @@ and (max-width : 1024px) {
 		width: calc(33% - 10%);
 	}
 
+	.login-portal__trigger {
+	    left: 2vw;
+	}
+	
+	.btn--circle {
+		top: 20vh;
+    	right: 55vw;
+	}
+
+	.postal-greetings {
+		top: 25vh;
+    	right: 15vw;
+	}
+
 }
 
 
