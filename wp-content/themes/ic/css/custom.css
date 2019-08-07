@@ -2256,6 +2256,51 @@ h1.tribe-events-page-title {
     z-index: 1135;
 }
 
+.login-portal__trigger--secondary {
+    display: none;
+    position: absolute;
+    width: 115px;
+    height: 40px;
+    background-color: #f27333;
+    top: 0;
+    left: 5vw;
+    z-index: 1135;
+}
+
+.login-portal__trigger--secondary.active {
+    display: block;
+    top: 100px;
+    left: 2vw;
+    
+}
+
+.login-portal__trigger--secondary span {
+    color: #fff;
+    font-family: scala-sans, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.login-portal__trigger--secondary:after{
+    border-top: 20px solid #f27333;
+    border-left: 57px solid transparent;
+    border-right: 57px solid transparent;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    bottom: -20px;
+    width: 0;
+}
+
 .login-portal__trigger span {
     color: #fff;
     font-family: scala-sans, sans-serif;
@@ -2272,14 +2317,14 @@ h1.tribe-events-page-title {
 }
 
 .login-portal__trigger:after{
-    border-top: 35px solid #f27333;
+    border-top: 20px solid #f27333;
     border-left: 57px solid transparent;
     border-right: 57px solid transparent;
     content: "";
     height: 0;
     left: 0;
     position: absolute;
-    bottom: -35px;
+    bottom: -20px;
     width: 0;
 }
 

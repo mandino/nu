@@ -139,7 +139,7 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger span').click(function() {
+		$('.login-portal__trigger span, .login-portal__trigger--secondary span').click(function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
@@ -579,17 +579,20 @@
 
 	// FadeIn logo
 
-	 $(window).scroll(function() {
+	$(window).scroll(function() {
 		        
         var verschil = ($(window).scrollTop() / 5);
     
-      if (verschil > 40) 
+    	if (verschil > 40) {
+    		$('.droplogo').addClass('jumpshot');
+
+	        $('.login-portal__trigger--secondary').addClass('active');
+    	} else if (verschil < 40) {
+    		$('.droplogo').removeClass('jumpshot');
+	       	$('.login-portal__trigger--secondary').removeClass('active');
+    	}
             
-           $('.droplogo').addClass('jumpshot');
-        
-        else if (verschil < 40)
-            
-           $('.droplogo').removeClass('jumpshot');
+	        
     });
 
 
