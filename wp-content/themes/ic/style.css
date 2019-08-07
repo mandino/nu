@@ -1334,6 +1334,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     border-bottom: 1px solid #ddd;
     z-index: 999;
     overflow: visible;
+    position: relative;
 }
 
 .navitem {

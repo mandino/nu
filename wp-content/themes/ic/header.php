@@ -222,7 +222,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</nav>
 
 		</div>
-	
+		<div class="login-portal__trigger">
+			<span>Sign Up Now</span>
+		</div>
+		<div class="login-portal">
+			<form id="login-portal">
+				<input type="text" name="fname" placeholder="First Name">
+				<input type="text" name="lname" placeholder="Last Name">
+				<input type="text" name="email" placeholder="Email">
+				<input type="text" name="zipcode" placeholder="Zip Code">
+				<span class="btn--circle">
+					<input type="submit" name="submit" value="Join Us">
+				</span>	
+			</form>
+			<div class="postal-greetings">
+				<span>Your Perks are Waiting</span>
+			</div>
+		</div>
 		<div id="primary-nav" style="overflow:visible;">
 
 			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
