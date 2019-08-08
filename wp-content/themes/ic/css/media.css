@@ -1,3 +1,90 @@
+/* ================================================  MAX WIDTH 2560 ======================================= */
+
+@media only screen 
+and (max-width : 2560px) {
+
+	.btn--circle {
+		top: 9vh;
+    	right: 75vh;
+    	width: 110px;
+	    height: 110px;
+	    border-radius: 60px;
+	}
+
+	.postal-greetings {
+	    top: 11vh;
+    	right: 20vw;
+	}
+
+	.postal-greetings span {
+	    font-size: 50px;
+	}
+
+	#login-portal input[type="text"] {
+		font-size: 24px;
+	}
+
+
+}
+
+/* ================================================  MAX WIDTH 1920 ======================================= */
+
+@media only screen 
+and (max-width : 1920px) {
+
+	.btn--circle {
+		top: 9vh;
+    	right: 70vh;
+	}
+
+	.postal-greetings {
+	    top: 12vh;
+    	right: 15vw;
+	}
+
+	.postal-greetings span {
+	    font-size: 40px;
+	}
+
+
+}
+
+/* ================================================  MAX WIDTH 1680 ======================================= */
+
+@media only screen 
+and (max-width : 1680px) {
+
+	.btn--circle {
+		top: 8vh;
+    	right: 60vh;
+	}
+
+	.postal-greetings {
+	    top: 11vh;
+    	right: 14vw;
+	}
+
+
+}
+
+/* ================================================  MAX WIDTH 1440 ======================================= */
+
+@media only screen 
+and (max-width : 1440px) {
+
+	.btn--circle {
+		top: 8vh;
+    	right: 59vh;
+	}
+
+	.postal-greetings {
+	    top: 12vh;
+    	right: 10vw;
+	}
+
+
+}
+
 
 /* ================================================  MAX WIDTH 1280 ======================================= */
 
@@ -11,6 +98,20 @@ and (max-width : 1280px) {
 
 	#primary-nav .container {
 	    width: 1040px;
+	}
+
+	#login-portal input {
+		width: 40%;
+	}
+
+	.btn--circle {
+		top: 7.5vh;
+    	right: 40vw;
+	}
+
+	.postal-greetings {
+		top: 11vh;
+    	right: 10vw;
 	}
 
 
