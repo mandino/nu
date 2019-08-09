@@ -1955,14 +1955,20 @@ h1.tribe-events-page-title {
 
 .menu-table tr td {
     width: 300px;
-    
 }
+
+#primary-nav nav ul li.navis-mobile {
+    display: none;
+}
+
 .item-title {
     text-align: left;
-}  
+}
+
 .menu-table tr .item-price{
     text-align: center;
 }
+
 #primary-nav nav ul li.navis-mobile {
     display: none;
 }
@@ -1988,6 +1994,7 @@ h1.tribe-events-page-title {
 .video-banner video {
     max-width: initial;
 }
+
 #home-slider.home-video {
     background-size: 100% 100%;
 }
@@ -2030,6 +2037,21 @@ h1.tribe-events-page-title {
     font-size: 13px;
     letter-spacing: 1px; }
 
+.img-hidden {
+    visibility: hidden;
+}
+
+.banner-lp {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.menu-wrap {
+    overflow: hidden;
+}
+
 .page-template-page_landing_template .post-content h2 {
     margin-bottom: 20px;
 }
@@ -2046,6 +2068,7 @@ h1.tribe-events-page-title {
     background-size: cover;
     position: relative;
 }
+
 
 .cf7sr-g-recaptcha {
     display: inline-block;
@@ -2074,7 +2097,7 @@ h1.tribe-events-page-title {
 }
 
 .press-logo__item {
-    width: calc(25% - 10%);
+    width: calc(33% - 10%);
     display: inline-block;
     margin: 0 5%;
     vertical-align: top;
@@ -2252,7 +2275,7 @@ h1.tribe-events-page-title {
 .login-portal__trigger--secondary.active {
     display: block;
     top: 135px;
-    left: 1vw;
+    left: 10px;
     
 }
 
