@@ -4,24 +4,24 @@
 and (max-width : 2560px) {
 
 	.btn--circle {
-		top: 9vh;
-    	right: 75vh;
-    	width: 110px;
-	    height: 110px;
-	    border-radius: 60px;
+		top: 120px;
+    	right: 40vw;
+    	width: 125px;
+	    height: 125px;
+	    border-radius: 70px;
 	}
 
 	.postal-greetings {
-	    top: 11vh;
+	    top: 155px;
     	right: 20vw;
 	}
 
 	.postal-greetings span {
-	    font-size: 50px;
+	    font-size: 55px;
 	}
 
 	#login-portal input[type="text"] {
-		font-size: 24px;
+		font-size: 18px;
 	}
 
 
@@ -33,19 +33,22 @@ and (max-width : 2560px) {
 and (max-width : 1920px) {
 
 	.btn--circle {
-		top: 9vh;
-    	right: 70vh;
+		top: 90px;
+    	right: 38vw;
 	}
 
 	.postal-greetings {
-	    top: 12vh;
-    	right: 15vw;
+	    top: 125px;
+    	right: 8vw;
 	}
 
 	.postal-greetings span {
-	    font-size: 40px;
+	    font-size: 50px;
 	}
 
+	#login-portal input[type="text"] {
+    	font-size: 15px;
+	}
 
 }
 
@@ -55,13 +58,24 @@ and (max-width : 1920px) {
 and (max-width : 1680px) {
 
 	.btn--circle {
-		top: 8vh;
-    	right: 60vh;
+		top: 85px;
+    	right: 38vw;
+    	width: 100px;
+		height: 100px;
+		border-radius: 50px;
 	}
 
 	.postal-greetings {
-	    top: 11vh;
-    	right: 14vw;
+	    top: 110px;
+    	right: 7vw;
+	}
+
+	#login-portal input[type="text"] {
+    	font-size: 13px;
+	}
+
+	.postal-greetings span {
+    	font-size: 45px;
 	}
 
 
@@ -73,13 +87,20 @@ and (max-width : 1680px) {
 and (max-width : 1440px) {
 
 	.btn--circle {
-		top: 8vh;
-    	right: 59vh;
+		top: 80px;
+    	right: 38vw;
+    	width: 85px;
+		height: 85px;
+		border-radius: 50px;
 	}
 
 	.postal-greetings {
-	    top: 12vh;
-    	right: 10vw;
+	    top: 95px;
+    	right: 8vw;
+	}
+
+	#login-portal input[type="text"] {
+	    font-size: 13px;
 	}
 
 
@@ -100,20 +121,27 @@ and (max-width : 1280px) {
 	    width: 1040px;
 	}
 
-	#login-portal input {
+	#login-portal input[type="text"] {
 		width: 40%;
 	}
 
 	.btn--circle {
-		top: 7.5vh;
+		top: 65px;
     	right: 40vw;
+        width: 100px;
+	    height: 100px;
+	    border-radius: 50px;
+
 	}
 
 	.postal-greetings {
-		top: 11vh;
-    	right: 10vw;
+		top: 90px;
+    	right: 6vw;
 	}
 
+	#login-portal input[type="text"] {
+	    font-size: 13px;
+	}
 
 }
 
@@ -570,15 +598,29 @@ and (max-width : 1024px) {
 	}
 	
 	.btn--circle {
-		top: 20vh;
-    	right: 55vw;
+		top: 12vh;
+    	right: 40vw;
+    	width: 80px;
+	    height: 80px;
+	    border-radius: 50px;
 	}
 
 	.postal-greetings {
-		top: 25vh;
-    	right: 15vw;
+	    top: 16vh;
+    	right: 4vw;
 	}
 
+	#login-portal input[type="text"] {
+	    font-size: 13px;
+	}
+
+	.postal-greetings span {
+	    font-size: 34px;
+	}
+
+	.login-portal__trigger--secondary.active {
+	    top: 45px;
+	}
 }
 
 

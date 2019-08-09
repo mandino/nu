@@ -571,9 +571,11 @@
     		$('.droplogo').addClass('jumpshot');
 
 	        $('.login-portal__trigger--secondary').addClass('active');
+	        $('.login-portal__trigger').addClass('inactive');
     	} else if (verschil < 40) {
     		$('.droplogo').removeClass('jumpshot');
 	       	$('.login-portal__trigger--secondary').removeClass('active');
+	       	$('.login-portal__trigger').removeClass('inactive');
     	}
             
 	        
