@@ -176,6 +176,25 @@ and (max-width : 1439px) {
 
 }
 
+@media only screen 
+and (max-width : 1366px) {
+	.postal-greetings span {
+	    font-size: 45px;
+	}
+
+	.btn--circle {
+	    top: 80px;
+	    right: 43vw;
+	    width: 85px;
+	    height: 85px;
+	    border-radius: 50px;
+	}
+
+	.postal-greetings {
+	    top: 95px;
+	    right: 7vw;
+	}
+}
 
 
 /* ================================================  MAX WIDTH 1240 ======================================= */
