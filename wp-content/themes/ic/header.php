@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 
 	if ( file_exists( TEMPLATEPATH.'/library/mobile-detect.php' ) ) {
 
@@ -242,7 +242,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div id="primary-nav" style="overflow:visible;">
 
 			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
-			<div class="login-portal__trigger--secondary">
+			<div class="login-portal__trigger--secondary desktop">
+				<span>Sign Up Now</span>
+			</div>
+
+			<div class="login-portal__trigger--secondary mobile">
 				<span>Sign Up Now</span>
 			</div>
 

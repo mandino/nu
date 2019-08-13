@@ -2272,7 +2272,7 @@ h1.tribe-events-page-title {
     z-index: 1135;
 }
 
-.login-portal__trigger--secondary.active {
+.login-portal__trigger--secondary.desktop.active {
     display: block;
     top: 135px;
     left: 10px;

@@ -139,7 +139,7 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger span, .login-portal__trigger--secondary span').click(function() {
+		$('.login-portal__trigger span, .login-portal__trigger--secondary.desktop span, .login-portal__trigger--secondary.mobile span').click(function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
@@ -149,6 +149,7 @@
 			}
 			
 		});
+
 		pressLogoDisplay();
 		$(window).scroll(function() {
 			var verschil = ($(window).scrollTop() / 5);
@@ -585,13 +586,25 @@
     
     	if (verschil > 40) {
     		$('.droplogo').addClass('jumpshot');
+    		if ($('.login-portal__trigger--secondary').hasClass('desktop')) {
+    			$('.login-portal__trigger--secondary.desktop').addClass('active');
+	        	$('.login-portal__trigger').addClass('inactive');
+    		}
 
-	        $('.login-portal__trigger--secondary').addClass('active');
-	        $('.login-portal__trigger').addClass('inactive');
+    		if ($('.login-portal__trigger--secondary').hasClass('mobile') && $('.login-portal__trigger--secondary').is(':visible')) {
+    			$('.login-portal__trigger--secondary.mobile').addClass('active');
+	        	$('.login-portal__trigger').addClass('inactive');
+    		}
+	        
     	} else if (verschil < 40) {
     		$('.droplogo').removeClass('jumpshot');
-	       	$('.login-portal__trigger--secondary').removeClass('active');
+	       	$('.login-portal__trigger--secondary.desktop').removeClass('active');
 	       	$('.login-portal__trigger').removeClass('inactive');
+
+	       	if ($('.login-portal__trigger--secondary').hasClass('mobile')) {
+    			$('.login-portal__trigger--secondary.mobile').removeClass('active');
+	        	$('.login-portal__trigger').removeClass('inactive');
+    		}
     	}
             
 	        
