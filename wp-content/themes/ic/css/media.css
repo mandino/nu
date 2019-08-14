@@ -5,7 +5,7 @@ and (max-width : 2560px) {
 
 	.btn--circle {
 		top: 120px;
-    	right: 40vw;
+    	right: 45vw;
     	width: 125px;
 	    height: 125px;
 	    border-radius: 70px;
@@ -24,6 +24,10 @@ and (max-width : 2560px) {
 		font-size: 18px;
 	}
 
+	#login-portal .btn--circle input[type="submit"] {
+		font-size: 16px;
+	}
+
 
 }
 
@@ -34,12 +38,12 @@ and (max-width : 1920px) {
 
 	.btn--circle {
 		top: 90px;
-    	right: 38vw;
+    	right: 42vw;
 	}
 
 	.postal-greetings {
 	    top: 125px;
-    	right: 8vw;
+    	right: 12vw;
 	}
 
 	.postal-greetings span {
@@ -48,6 +52,9 @@ and (max-width : 1920px) {
 
 	#login-portal input[type="text"] {
     	font-size: 15px;
+	}
+	#login-portal .btn--circle input[type="submit"] {
+		font-size: 15px;
 	}
 
 }
@@ -59,7 +66,7 @@ and (max-width : 1680px) {
 
 	.btn--circle {
 		top: 85px;
-    	right: 38vw;
+    	right: 42vw;
     	width: 100px;
 		height: 100px;
 		border-radius: 50px;
@@ -67,11 +74,15 @@ and (max-width : 1680px) {
 
 	.postal-greetings {
 	    top: 110px;
-    	right: 7vw;
+    	right: 11vw;
 	}
 
 	#login-portal input[type="text"] {
     	font-size: 13px;
+	}
+
+	#login-portal .btn--circle input[type="submit"] {
+		font-size: 14px;	
 	}
 
 	.postal-greetings span {
@@ -88,7 +99,7 @@ and (max-width : 1440px) {
 
 	.btn--circle {
 		top: 80px;
-    	right: 38vw;
+    	right: 42vw;
     	width: 85px;
 		height: 85px;
 		border-radius: 50px;
@@ -105,50 +116,6 @@ and (max-width : 1440px) {
 
 
 }
-
-
-/* ================================================  MAX WIDTH 1280 ======================================= */
-
-
-@media only screen 
-and (max-width : 1280px) {
-
-
-
-	/* Navigation */
-
-	#primary-nav .container {
-	    width: 1040px;
-	}
-
-	#login-portal input[type="text"] {
-		width: 40%;
-	}
-
-	.btn--circle {
-		top: 65px;
-    	right: 40vw;
-        width: 100px;
-	    height: 100px;
-	    border-radius: 50px;
-
-	}
-
-	.postal-greetings {
-		top: 90px;
-    	right: 6vw;
-	}
-
-	#login-portal input[type="text"] {
-	    font-size: 13px;
-	}
-
-	.postal-greetings span {
-	    font-size: 39px;
-	}
-
-}
-
 
 
 /* ================================================  MAX WIDTH 1439 ======================================= */
@@ -176,6 +143,9 @@ and (max-width : 1439px) {
 
 }
 
+
+/* ================================================  MAX WIDTH 1366 ======================================= */
+
 @media only screen 
 and (max-width : 1366px) {
 	.postal-greetings span {
@@ -195,6 +165,53 @@ and (max-width : 1366px) {
 	    right: 7vw;
 	}
 }
+
+/* ================================================  MAX WIDTH 1280 ======================================= */
+
+
+@media only screen 
+and (max-width : 1280px) {
+
+
+
+	/* Navigation */
+
+	#primary-nav .container {
+	    width: 1040px;
+	}
+
+	#login-portal input[type="text"] {
+		width: 40%;
+	}
+
+	#login-portal .btn--circle input[type="submit"] {
+		font-size: 14px;
+	}
+
+	.btn--circle {
+		top: 65px;
+    	right: 40vw;
+        width: 100px;
+	    height: 100px;
+	    border-radius: 50px;
+
+	}
+
+	.postal-greetings {
+		top: 95px;
+		right: 5vw;
+	}
+
+	#login-portal input[type="text"] {
+	    font-size: 13px;
+	}
+
+	.postal-greetings span {
+	    font-size: 39px;
+	}
+
+}
+
 
 
 /* ================================================  MAX WIDTH 1240 ======================================= */
@@ -643,6 +660,24 @@ and (max-width : 1024px) {
 
 	.login-portal__trigger--secondary.active {
 	    top: 45px;
+	}
+
+	.login-portal__trigger--secondary.desktop.active {
+	    display: block;
+	    top: 80px;
+	    left: 5px;
+	    width: 90px;
+		height: 40px;
+	}
+
+	.login-portal__trigger--secondary span {
+		font-size: 11px;
+	}
+
+	.login-portal__trigger--secondary::after {
+		border-top: 20px solid #f27333;
+		border-left: 46px solid transparent;
+		border-right: 46px solid transparent;
 	}
 }
 
@@ -1359,13 +1394,14 @@ and (max-width : 768px) {
 		position: relative;
 	}
 
-	.login-portal__trigger--secondary.desktop {
+	.login-portal__trigger--secondary.desktop, .login-portal__trigger--secondary.desktop.active {
 		display: none;
 	}
 
 	.login-portal__trigger--secondary.mobile {
 		display: block;
 		top: 68px;
+		width: 92px;
 		-webkit-transition: all 1s ease;
     	transition: all 1s ease;
 	}

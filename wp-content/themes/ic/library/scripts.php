@@ -139,7 +139,7 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger span, .login-portal__trigger--secondary.desktop span, .login-portal__trigger--secondary.mobile span').click(function() {
+		$('.login-portal__trigger--container').click(function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');

@@ -2207,6 +2207,9 @@ h1.tribe-events-page-title {
     display: inline-block;
     margin-right: 10px;
 }
+.login-portal__trigger--container {
+    cursor: pointer;
+}
 
 .postal-greetings {
     position: absolute;
