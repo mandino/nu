@@ -222,9 +222,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			</nav>
 
 		</div>
-		<div class="login-portal__trigger">
-			<span>Sign Up Now</span>
+		<div class="login-portal__trigger--container">
+			<div class="login-portal__trigger">
+				<span>Sign Up Now</span>
+			</div>
 		</div>
+		
 		<div class="login-portal">
 			<form id="login-portal">
 				<input type="text" name="fname" placeholder="First Name">
@@ -242,13 +245,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div id="primary-nav" style="overflow:visible;">
 
 			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
-			<div class="login-portal__trigger--secondary desktop">
-				<span>Sign Up Now</span>
+			<div class="login-portal__trigger--container">
+				<div class="login-portal__trigger--secondary desktop">
+					<span>Sign Up Now</span>
+				</div>
 			</div>
-
-			<div class="login-portal__trigger--secondary mobile">
-				<span>Sign Up Now</span>
+			
+			<div class="login-portal__trigger--container">
+				<div class="login-portal__trigger--secondary mobile">
+					<span>Sign Up Now</span>
+				</div>
 			</div>
+			
 
 			<a href="<?php bloginfo('url'); ?>" class="logo mobile"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 
