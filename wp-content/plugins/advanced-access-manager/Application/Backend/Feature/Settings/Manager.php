@@ -16,43 +16,19 @@
 class AAM_Backend_Feature_Settings_Manager  extends AAM_Backend_Feature_Abstract {
     
     /**
-     * Save AAM option
+     * Save AAM utility options
      * 
      * @return string
      *
      * @access public
      */
     public function save() {
-        $param = filter_input(INPUT_POST, 'param');
-        $value = filter_input(INPUT_POST, 'value');
+        $param = AAM_Core_Request::post('param');
+        $value = stripslashes(AAM_Core_Request::post('value'));
         
         AAM_Core_Config::set($param, $value);
         
-        return wp_json_encode(array('status' => 'success'));
-    }
-    
-    /**
-     * Clear all AAM settings
-     * 
-     * @return string
-     * 
-     * @access public
-     */
-    public function clearSettings() {
-        AAM_Core_API::clearSettings();
-
-        return wp_json_encode(array('status' => 'success'));
-    }
-
-    /**
-     * Clear AAM cache manually
-     * 
-     * @return string
-     * 
-     * @access public
-     */
-    public function clearCache() {
-        return wp_json_encode(array('status' => 'success'));
+        return json_encode(array('status' => 'success'));
     }
     
 }

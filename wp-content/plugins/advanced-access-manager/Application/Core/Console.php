@@ -51,7 +51,9 @@ class AAM_Core_Console {
             array_push($replace, "<{$key}>", "</{$key}>");
         }
         
-        self::$_messages[] = preg_replace($search, $replace, $message, 1);
+        self::$_messages[] = preg_replace(
+                $search, $replace, __($message, AAM_KEY), 1
+        );
     }
 
     /**

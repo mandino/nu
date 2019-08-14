@@ -34,50 +34,30 @@ class AAM_Core_Object_Post extends AAM_Core_Object {
      *
      * @access public
      */
-    public function __construct(AAM_Core_Subject $subject, $post, $param = null) {
+    public function __construct(AAM_Core_Subject $subject, $post) {
         parent::__construct($subject);
 
-        // Make sure that we are dealing with WP_Post object
-        // This is done to remove redundant calls to the database on the backend view
-        if (is_object($param) && is_a($param, 'WP_Post')) {
-            $this->setPost($param);
-        } elseif (is_numeric($post)) {
+        //make sure that we are dealing with WP_Post object
+        if (is_object($post)) {
+            $this->setPost($post);
+        } elseif (intval($post)) {
             $this->setPost(get_post($post));
         }
-
-        // Determine if we need to skip inheritance chain from the parent subject
-        // This is done to eliminate constrains related to Inherit From Parent Post
-        if (is_array($param)) {
-            $void = !empty($param['voidInheritance']);
-        } else {
-            $void = false;
-        }
         
-        $this->initialize($void);
+        if ($this->getPost()) {
+            $this->read();
+        }
     }
     
     /**
-     * Get WP post property
      * 
-     * @param string $name
-     * 
-     * @return mixed
-     * 
-     * @access public
+     * @param type $name
+     * @return type
      */
     public function __get($name) {
         $post = $this->getPost();
         
         return (is_object($post) && property_exists($post, $name) ? $post->$name : null);
-    }
-    
-    /**
-     * 
-     */
-    public function initialize($voidInheritance = false) {
-        if ($this->getPost()) {
-            $this->read($voidInheritance);
-        }
     }
 
     /**
@@ -89,79 +69,57 @@ class AAM_Core_Object_Post extends AAM_Core_Object {
      *
      * @access public
      */
-    public function read($voidInheritance = false) {
+    public function read() {
         $subject = $this->getSubject();
         $post    = $this->getPost();
+        $opname  = $this->getOptionName();
+        $chname  = $opname . '|' . $post->ID;
         
-        $option = get_post_meta($post->ID, $this->getOptionName(), true);
-        $this->setOverwritten(!empty($option));
+        //read cache first
+        $option = AAM_Core_Cache::get($chname);
         
-        // Read settings from access policy
-        if (empty($option)) {
-            $stms = AAM_Core_Policy_Factory::get($subject)->find(
-                "/^post:{$post->post_type}:({$post->post_name}|{$post->ID}):/",
-                array('post' => $post)
-            );
-
+        if ($option === false) { //if false, then the cache is empty but exist
             $option = array();
-
-            foreach($stms as $key => $stm) {
-                $chunks = explode(':', $key);
-                $action = (isset($chunks[3]) ? $chunks[3] : 'read');
-                $meta   = (isset($stm['Metadata']) ? $stm['Metadata'] : array());
-
-                $option = array_merge(
-                    $option,
-                    AAM_Core_Compatibility::convertPolicyAction(
-                        $action,
-                        $stm['Effect'] === 'deny',
-                        '',
-                        ($action === 'read' ? $meta : array()),
-                        array($post)
-                    )
-                );
+        } else {
+            //Cache is empty. Get post access for current subject (user or role)
+            if (empty($option)) { //no cache for this element
+                $option = get_post_meta($post->ID, $opname, true);
+                $this->setOverwritten(!empty($option));
+            }
+            
+            //try to inherit from terms or default settings - AAM Plus Package or any
+            //other extension that use this filter
+            if (empty($option)) {
+                $option = apply_filters('aam-post-access-filter', $option, $this);
+            }
+            
+            //No settings for a post. Try to inherit from the parent
+            if (empty($option)) {
+                $option = $subject->inheritFromParent('post', $post->ID, $post);
             }
         }
-
-        // Inherit from terms or default settings - AAM Plus Package
-        if (empty($option)) {
-            $option = apply_filters('aam-post-access-filter', $option, $this);
-        }
         
-        // No settings for a post. Try to inherit from the parent
-        if (empty($option) && ($voidInheritance === false)) { 
-            $option = $subject->inheritFromParent('post', $post->ID, $post);
-        }
-
         $this->setOption($option);
+        
+        //if result is empty, simply cache the false to speed-up
+        AAM_Core_Cache::set($chname, (empty($option) ? false : $option));
     }
     
     /**
      * Save options
      * 
-     * @param string $property
-     * @param mixed  $value
-     * 
      * @return boolean
      * 
      * @access public
      */
-    public function save($property, $value) {
+    public function save($property, $checked) {
         $option = $this->getOption();
         
-        $option[$property] = $value;
+        $option[$property] = $checked;
         
-        // Very specific WP case. According to the WP core, you are not allowed to
-        // set meta for revision, so let's bypass this constrain.
-        if ($this->getPost()->post_type === 'revision') {
-            $result =  update_metadata(
-                'post', $this->getPost()->ID, $this->getOptionName(), $option
-            );
-        } else {
-            $result = update_post_meta(
-                    $this->getPost()->ID, $this->getOptionName(), $option
-            );
-        }
+        $result = update_post_meta(
+                $this->getPost()->ID, $this->getOptionName(), $option
+        );
         
         if ($result) {
             $this->setOption($option);
@@ -178,19 +136,11 @@ class AAM_Core_Object_Post extends AAM_Core_Object {
      * @access public
      */
     public function reset() {
-        // Very specific WP case. According to the WP core, you are not allowed to
-        // set meta for revision, so let's bypass this constrain.
-        if ($this->getPost()->post_type === 'revision') {
-            $result = delete_metadata(
-                'post', $this->getPost()->ID, $this->getOptionName()
-            );
-        } else {
-            $result = delete_post_meta($this->getPost()->ID, $this->getOptionName());
-        }
+        AAM_Core_Cache::clear();
         
-        return $result;
+        return delete_post_meta($this->getPost()->ID, $this->getOptionName());
     }
-    
+
     /**
      * Set Post
      *
@@ -224,86 +174,19 @@ class AAM_Core_Object_Post extends AAM_Core_Object {
     /**
      * Check if option is set
      * 
-     * @param string $property
+     * @param string $area
+     * @param string $action
      * 
      * @return boolean
      * 
      * @access public
      */
-    public function has($property) {
+    public function has($action) {
         $option = $this->getOption();
 
-        return (array_key_exists($property, $option) && !empty($option[$property]));
+        return (isset($option[$action]) && $option[$action]);
     }
-    
-    /**
-     * Check if subject can do certain action
-     * 
-     * The difference between `can` and `allowed` is that can is more in-depth way 
-     * to take in consideration relationships between properties.
-     *  
-     * @return boolean
-     * 
-     * @access public
-     */
-    public function allowed() {
-        return apply_filters(
-            'aam-post-action-allowed-filter', 
-            !call_user_func_array(array($this, 'has'), func_get_args()), 
-            func_get_arg(0), 
-            $this
-        );
-    }
-    
-    /**
-     * Update property
-     * 
-     * @param string $property
-     * @param mixed  $value
-     * 
-     * @return boolean
-     * 
-     * @access public
-     */
-    public function update($property, $value) {
-        return $this->save($property, $value);
-    }
-    
-    /**
-     * Remove property
-     * 
-     * @param string $property
-     * 
-     * @return boolean
-     * 
-     * @access public
-     */
-    public function remove($property) {
-        $option = $this->getOption();
-        
-        if (array_key_exists($property, $option)) {
-            unset($option[$property]);
-        }
-        
-        // Very specific WP case. According to the WP core, you are not allowed to
-        // set meta for revision, so let's bypass this constrain.
-        if ($this->getPost()->post_type === 'revision') {
-            $result =  update_metadata(
-                'post', $this->getPost()->ID, $this->getOptionName(), $option
-            );
-        } else {
-            $result = update_post_meta(
-                    $this->getPost()->ID, $this->getOptionName(), $option
-            );
-        }
-        
-        if ($result) {
-            $this->setOption($option);
-        }
-        
-        return $result;
-    }
-    
+
     /**
      * Get option
      * 
@@ -340,15 +223,6 @@ class AAM_Core_Object_Post extends AAM_Core_Object {
         $this->setOption($option);
         
         return true;
-    }
-    
-    /**
-     * 
-     * @param type $external
-     * @return type
-     */
-    public function mergeOption($external) {
-        return AAM::api()->mergeSettings($external, $this->getOption(), 'post');
     }
     
     /**

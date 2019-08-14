@@ -33,7 +33,6 @@ class AAM_Shortcode_Strategy_LoginRedirect implements AAM_Shortcode_Strategy_Int
      * Expecting attributes in $args are:
      *   "class"    => CSS class for login button
      *   "callback" => callback function that returns the login button
-     *   "label"    => if stand-alone shortcode then defined text label will be used
      * 
      * @param type $args
      * @param type $content
@@ -60,14 +59,8 @@ class AAM_Shortcode_Strategy_LoginRedirect implements AAM_Shortcode_Strategy_Int
                     wp_login_url($redirect)
             );
             
-            if (empty($this->content)) {
-                $label = (!empty($this->args['label']) ? $this->args['label'] : __('Login to continue', AAM_KEY));
-            } else {
-                $label = $this->content;
-            }
-            
             $button  = '<a href="' . $url . '" ';
-            $button .= 'class="' . $class . '">' . $label . '</a>';
+            $button .= 'class="' . $class . '">' . $this->content . '</a>';
         }
         
         return $button;

@@ -44,28 +44,32 @@ class AAM_Core_Media {
      * @access protected
      */
     protected function __construct() {
-        $media   = filter_input(INPUT_GET, 'aam-media');
-        $request = (is_numeric($media) ? urldecode(AAM_Core_Request::server('REQUEST_URI')) : $media);
-        $root    = AAM_Core_Request::server('DOCUMENT_ROOT');
-        
-        $this->request     = str_replace('\\', '/', $root . $request);
-        $this->request_uri = preg_replace('/\?.*$/', '', $request);
+        if (AAM_Core_Request::get('aam-media')) {
+            $this->initialize();
+            
+            if (AAM_Core_Config::get('media-access-control', false)) {
+                $area = (is_admin() ? 'backend' : 'frontend');
+                if (AAM_Core_Config::get("{$area}-access-control", true)) {
+                    $this->checkMediaAccess();
+                } else {
+                    $this->printMedia();
+                }
+            } else {
+                $this->printMedia();
+            }
+        }
     }
     
     /**
      * 
      */
-    public function authorize() {
-        if (AAM_Core_Config::get('core.settings.mediaAccessControl', false)) {
-            $area = AAM_Core_Api_Area::get();
-            if (AAM_Core_Config::get("core.settings.{$area}AccessControl", true)) {
-                $this->checkMediaAccess();
-            } else {
-                $this->printMedia();
-            }
-        } else {
-            $this->printMedia();
-        }
+    protected function initialize() {
+        $media   = filter_input(INPUT_GET, 'aam-media');
+        $request = ($media != '1' ? $media : urldecode(AAM_Core_Request::server('REQUEST_URI')));
+        $root    = AAM_Core_Request::server('DOCUMENT_ROOT');
+        
+        $this->request     = str_replace('\\', '/', $root . $request);
+        $this->request_uri = preg_replace('/\?.*$/', '', $request);
     }
     
     /**
@@ -83,17 +87,19 @@ class AAM_Core_Media {
             if (empty($media)) {
                 $this->printMedia();
             } else {
-                if (!$media->allowed('frontend.read')) {
+                $read   = $media->has('frontend.read');
+                $others = $media->has('frontend.read_others');
+                $author = ($media->post_author == get_current_user_id());
+                
+                if ($read || ($others && !$author)) {
                     $args = array(
                         'hook'   => 'media_read', 
                         'action' => "{$area}.read", 
                         'post'   => $media->getPost()
                     );
-                        
-                    $default = AAM_Core_Config::get('media.default.placeholder');
-                    
-                    if ($default) {
-                        do_action('aam-access-rejected-action', $area, $args);
+
+                    if ($default = AAM_Core_Config::get('media.restricted.default')) {
+                        do_action('aam-rejected-action', $area, $args);
                         $this->printMedia(get_post($default));
                     } else {
                         AAM_Core_API::reject($area, $args);
@@ -157,39 +163,18 @@ class AAM_Core_Media {
     protected function findMedia() {
         global $wpdb;
         
-        // 1. replace the cropped extension for images
-        $s = preg_replace('/(-[\d]+x[\d]+)(\.[\w]+)$/', '$2', $this->request);
-        
-        // 2. Replace the path to the media
-        $basedir = wp_upload_dir();
-        $s       = ltrim(str_replace($basedir['basedir'], '', $s), '/');
-        
+        $s   = preg_replace('/(-[\d]+x[\d]+)(\.[\w]+)$/', '$2', $this->request_uri);
         $id  = apply_filters(
-            'aam-found-media-filter',  
-            $wpdb->get_var(
-                $wpdb->prepare(
-                    "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s AND meta_value = %s", 
-                    array('_wp_attached_file', $s)
-                )
-            ), 
-            $this->request_uri,
-            $this->request
-        );
-                    
-        if (empty($id)) { // Try to find the image by GUID
-            $id  = apply_filters(
-                'aam-found-media-filter',  
+                'aam-find-media',  
                 $wpdb->get_var(
                     $wpdb->prepare(
                         "SELECT ID FROM {$wpdb->posts} WHERE guid LIKE %s", 
                         array('%' . $s)
                     )
                 ), 
-                $this->request_uri,
-                $this->request
-            );
-        }
-        
+                $this->request_uri
+        );
+                        
         return ($id ? AAM::getUser()->getObject('post', $id) : null);
     }
     

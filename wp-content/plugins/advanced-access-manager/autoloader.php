@@ -53,7 +53,7 @@ class AAM_Autoloader {
             $prefix = array_shift($chunks);
 
             if ($prefix === 'AAM') {
-                $base_path = dirname(__FILE__) . '/application';
+                $base_path = dirname(__FILE__) . '/Application';
                 $filename = $base_path . '/' . implode('/', $chunks) . '.php';
             }
         }
