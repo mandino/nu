@@ -33,6 +33,8 @@
   $table_prefix = ($_SERVER['TABLE_PREFIX']) ? $_SERVER['TABLE_PREFIX'] : 'wp_';
   define('WP_DEBUG', false);
   define('COOKIE_DOMAIN', $_SERVER['HTTP_HOST'] );
+  define( 'DISALLOW_FILE_EDIT', true );
+  define( 'DISALLOW_FILE_MODS', true );
   
   if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');
