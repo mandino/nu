@@ -10,7 +10,7 @@
 		'posts_per_page' => 1,
 	));
 ?>
-<div id="home-slider" <?php echo $video_class; ?> <?php if(get_option("cebo_video_thumbnail_homepage_hero_banner")) { ?>style="background-image: url('<?php echo get_option("cebo_video_thumbnail_homepage_hero_banner") ?>');"><?php } ?>
+<div id="home-slider" <?php echo $video_class; ?> <?php if(get_option("cebo_video_thumbnail_homepage_hero_banner")) { ?>style="background-image: url('<?php echo get_option("cebo_video_thumbnail_homepage_hero_banner") ?>');"<?php } ?>>
 
 	<?php
 		if(get_option('cebo_video_homepage_hero_banner') && is_home()) :
