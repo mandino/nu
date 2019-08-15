@@ -177,7 +177,7 @@ and (max-width : 1280px) {
 	/* Navigation */
 
 	#primary-nav .container {
-	    width: 1040px;
+	    width: 720px;
 	}
 
 	#login-portal input[type="text"] {
@@ -678,6 +678,10 @@ and (max-width : 1024px) {
 		border-top: 20px solid #f27333;
 		border-left: 46px solid transparent;
 		border-right: 46px solid transparent;
+	}
+
+	#property-nav nav ul li a.clicknav-clicker {
+		font-size: 9px;
 	}
 }
 
