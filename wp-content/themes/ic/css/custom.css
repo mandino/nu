@@ -436,6 +436,7 @@ color: #333;
     width: 1000px;
     position: relative;
     z-index: 100;
+    margin-right: 20px;
 }
 
 #primary-nav nav {
