@@ -224,7 +224,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div class="login-portal__trigger--container">
 			<div class="login-portal__trigger">
-				<span>Sign Up Now</span>
+				<span class="login-portal__text">Sign Up Now</span>
+				<div class="login-portal__close-btn">
+					<span class="line-one"></span>
+					<span class="line-two"></span>
+				</div>
+				
 			</div>
 		</div>
 		
@@ -247,13 +252,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 			<div class="login-portal__trigger--container">
 				<div class="login-portal__trigger--secondary desktop">
-					<span>Sign Up Now</span>
+					<span class="login-portal__text">Sign Up Now</span>
+					<div class="login-portal__close-btn">
+					<span class="line-one"></span>
+					<span class="line-two"></span>
+				</div>
 				</div>
 			</div>
 			
 			<div class="login-portal__trigger--container">
 				<div class="login-portal__trigger--secondary mobile">
-					<span>Sign Up Now</span>
+					<span class="login-portal__text">Sign Up Now</span>
+					<div class="login-portal__close-btn">
+					<span class="line-one"></span>
+					<span class="line-two"></span>
+				</div>
 				</div>
 			</div>
 			

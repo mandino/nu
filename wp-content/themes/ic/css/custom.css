@@ -2350,3 +2350,61 @@ h1.tribe-events-page-title {
     transition: all 1s ease;
 }
 
+.login-portal__close-btn {
+    width: 25px;
+    height: 25px;
+    display: none;
+    margin: 0 auto;
+    margin-top: 4px;
+    position: relative;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.login-portal__close-btn.show {
+    display: block;
+}
+
+.login-portal__trigger span.line-one,
+.login-portal__trigger--secondary span.line-one {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 0;
+    position: absolute;
+    top: 48%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.login-portal__trigger span.line-two,
+.login-portal__trigger--secondary span.line-two {
+    width: 2px;
+    height: 100%;
+    background-color: #fff;
+    display: inline-block;
+    padding: 0;
+    position: absolute;
+    left: 49%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.login-portal__text {
+    display: block;
+}
+
+.login-portal__text.hidden {
+    display: none;
+}
+
