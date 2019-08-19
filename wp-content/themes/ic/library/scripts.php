@@ -143,9 +143,16 @@
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
+				$('.login-portal__text').removeClass('hidden');
+				$('.login-portal__close-btn').removeClass('show');
+
+
 			} else{
 				$('.login-portal').slideDown(1000);
 				$('#primary-nav').addClass('open-portal');
+				console.log($(this).find('.login-portal__text'));
+				$('.login-portal__text').addClass('hidden');
+				$('.login-portal__close-btn').addClass('show');
 			}
 			
 		});
