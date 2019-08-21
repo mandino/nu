@@ -15,15 +15,17 @@ function wpcf7_l10n() {
 
 	$api = translations_api( 'plugins', array(
 		'slug' => 'contact-form-7',
-		'version' => WPCF7_VERSION ) );
+		'version' => WPCF7_VERSION,
+	) );
 
-	if ( is_wp_error( $api ) || empty( $api['translations'] ) ) {
+	if ( is_wp_error( $api )
+	or empty( $api['translations'] ) ) {
 		return $l10n;
 	}
 
 	foreach ( (array) $api['translations'] as $translation ) {
 		if ( ! empty( $translation['language'] )
-		&& ! empty( $translation['english_name'] ) ) {
+		and ! empty( $translation['english_name'] ) ) {
 			$l10n[$translation['language']] = $translation['english_name'];
 		}
 	}
@@ -45,9 +47,11 @@ function wpcf7_is_rtl( $locale = '' ) {
 		'haz' => 'Hazaragi',
 		'he_IL' => 'Hebrew',
 		'ps' => 'Pashto',
-		'ug_CN' => 'Uighur' );
+		'ug_CN' => 'Uighur',
+	);
 
-	if ( empty( $locale ) && function_exists( 'is_rtl' ) ) {
+	if ( empty( $locale )
+	and function_exists( 'is_rtl' ) ) {
 		return is_rtl();
 	}
 
@@ -63,7 +67,7 @@ function wpcf7_load_textdomain( $locale = null ) {
 
 	$domain = 'contact-form-7';
 
-	if ( get_locale() == $locale ) {
+	if ( ( is_admin() ? get_user_locale() : get_locale() ) === $locale ) {
 		$locale = null;
 	}
 

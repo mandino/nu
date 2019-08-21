@@ -1,6 +1,6 @@
 <?php
 
-class WPCF7_FormTag {
+class WPCF7_FormTag implements ArrayAccess {
 
 	public $type;
 	public $basetype;
@@ -13,10 +13,13 @@ class WPCF7_FormTag {
 	public $attr = '';
 	public $content = '';
 
-	public function __construct( $tag ) {
-		foreach ( $tag as $key => $value ) {
-			if ( property_exists( __CLASS__, $key ) ) {
-				$this->{$key} = $value;
+	public function __construct( $tag = array() ) {
+		if ( is_array( $tag )
+		or $tag instanceof self ) {
+			foreach ( $tag as $key => $value ) {
+				if ( property_exists( __CLASS__, $key ) ) {
+					$this->{$key} = $value;
+				}
 			}
 		}
 	}
@@ -36,7 +39,8 @@ class WPCF7_FormTag {
 			'int' => '[0-9]+',
 			'signed_int' => '-?[0-9]+',
 			'class' => '[-0-9a-zA-Z_]+',
-			'id' => '[-0-9a-zA-Z_]+' );
+			'id' => '[-0-9a-zA-Z_]+',
+		);
 
 		if ( isset( $preset_patterns[$pattern] ) ) {
 			$pattern = $preset_patterns[$pattern];
@@ -101,7 +105,8 @@ class WPCF7_FormTag {
 		$matches_a = $this->get_all_match_options( '%^([0-9]*)/[0-9]*$%' );
 
 		foreach ( (array) $matches_a as $matches ) {
-			if ( isset( $matches[1] ) && '' !== $matches[1] ) {
+			if ( isset( $matches[1] )
+			and '' !== $matches[1] ) {
 				return $matches[1];
 			}
 		}
@@ -168,7 +173,8 @@ class WPCF7_FormTag {
 			'%^([0-9]*)x([0-9]*)(?:/[0-9]+)?$%' );
 
 		foreach ( (array) $matches_a as $matches ) {
-			if ( isset( $matches[2] ) && '' !== $matches[2] ) {
+			if ( isset( $matches[2] )
+			and '' !== $matches[2] ) {
 				return $matches[2];
 			}
 		}
@@ -201,7 +207,9 @@ class WPCF7_FormTag {
 
 	public function get_default_option( $default = '', $args = '' ) {
 		$args = wp_parse_args( $args, array(
-			'multiple' => false ) );
+			'multiple' => false,
+			'shifted' => false,
+		) );
 
 		$options = (array) $this->get_option( 'default' );
 		$values = array();
@@ -213,7 +221,8 @@ class WPCF7_FormTag {
 		foreach ( $options as $opt ) {
 			$opt = sanitize_key( $opt );
 
-			if ( 'user_' == substr( $opt, 0, 5 ) && is_user_logged_in() ) {
+			if ( 'user_' == substr( $opt, 0, 5 )
+			and is_user_logged_in() ) {
 				$primary_props = array( 'user_login', 'user_email', 'user_url' );
 				$opt = in_array( $opt, $primary_props ) ? $opt : substr( $opt, 5 );
 
@@ -228,7 +237,7 @@ class WPCF7_FormTag {
 					}
 				}
 
-			} elseif ( 'post_meta' == $opt && in_the_loop() ) {
+			} elseif ( 'post_meta' == $opt and in_the_loop() ) {
 				if ( $args['multiple'] ) {
 					$values = array_merge( $values,
 						get_post_meta( get_the_ID(), $this->name ) );
@@ -240,7 +249,7 @@ class WPCF7_FormTag {
 					}
 				}
 
-			} elseif ( 'get' == $opt && isset( $_GET[$this->name] ) ) {
+			} elseif ( 'get' == $opt and isset( $_GET[$this->name] ) ) {
 				$vals = (array) $_GET[$this->name];
 				$vals = array_map( 'wpcf7_sanitize_query_var', $vals );
 
@@ -254,7 +263,7 @@ class WPCF7_FormTag {
 					}
 				}
 
-			} elseif ( 'post' == $opt && isset( $_POST[$this->name] ) ) {
+			} elseif ( 'post' == $opt and isset( $_POST[$this->name] ) ) {
 				$vals = (array) $_POST[$this->name];
 				$vals = array_map( 'wpcf7_sanitize_query_var', $vals );
 
@@ -277,6 +286,22 @@ class WPCF7_FormTag {
 							$values[] = $val;
 						} else {
 							return $val;
+						}
+					}
+				}
+
+			} elseif ( preg_match( '/^[0-9_]+$/', $opt ) ) {
+				$nums = explode( '_', $opt );
+
+				foreach ( $nums as $num ) {
+					$num = absint( $num );
+					$num = $args['shifted'] ? $num : $num - 1;
+
+					if ( isset( $this->values[$num] ) ) {
+						if ( $args['multiple'] ) {
+							$values[] = $this->values[$num];
+						} else {
+							return $this->values[$num];
 						}
 					}
 				}
@@ -317,5 +342,26 @@ class WPCF7_FormTag {
 		}
 
 		return $result;
+	}
+
+	public function offsetSet( $offset, $value ) {
+		if ( property_exists( __CLASS__, $offset ) ) {
+			$this->{$offset} = $value;
+		}
+	}
+
+	public function offsetGet( $offset ) {
+		if ( property_exists( __CLASS__, $offset ) ) {
+			return $this->{$offset};
+		}
+
+		return null;
+	}
+
+	public function offsetExists( $offset ) {
+		return property_exists( __CLASS__, $offset );
+	}
+
+	public function offsetUnset( $offset ) {
 	}
 }
