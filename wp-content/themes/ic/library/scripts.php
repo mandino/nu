@@ -139,7 +139,8 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger--container').click(function() {
+		
+		$('.login-portal__trigger--container').bind('touchstart click', function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
@@ -154,7 +155,6 @@
 				$('.login-portal__text').addClass('hidden');
 				$('.login-portal__close-btn').addClass('show');
 			}
-			
 		});
 
 		pressLogoDisplay();
