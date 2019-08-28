@@ -118,13 +118,28 @@
 			}
 
 			checkPressItems();
-
 		});
 	}
+
+	$('.hustle-icon.hustle-i_close').on('click', function() {
+        var current_this = $(this);
+        
+        $(this).parents('.wph-modal.hui-module-type--slidein').find('.hustle-modal.hustle-animate-slideInLeft').animate({ "left": "-100%" }, 400, function() {
+            current_this.parents('.wph-modal.hui-module-type--slidein').removeClass('wph-modal-active');
+            $('body').css('overflow', 'auto');
+        });
+        
+        $(this).parents('.wph-modal.hui-module-type--popup').find('.hustle-modal.hustle-animate-fadeIn').fadeOut(400, function() {
+            current_this.parents('.wph-modal.hui-module-type--popup').removeClass('wph-modal-active');
+            $('body').css('overflow', 'auto');
+        });
+    });
+
+
+
 	
 	$(document).ready(function(){
-		
-		$('.login-portal__trigger--container').bind('touchstart click', function() {
+		$('.login-portal__trigger--container').click(function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
@@ -139,6 +154,7 @@
 				$('.login-portal__text').addClass('hidden');
 				$('.login-portal__close-btn').addClass('show');
 			}
+			
 		});
 
 		pressLogoDisplay();
