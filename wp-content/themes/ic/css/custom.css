@@ -2257,9 +2257,15 @@ h1.tribe-events-page-title {
     width: 115px;
     height: 40px;
     background-color: #f27333;
-    top: 0;
+    bottom: -40px;
     left: 5vw;
     z-index: 1135;
+}
+
+.open-portal .login-portal__trigger {
+    top: 0;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 .login-portal__trigger.inactive {
@@ -2338,6 +2344,10 @@ h1.tribe-events-page-title {
     width: 0;
 }
 
+#primary-nav {
+    position: relative;
+}
+
 #primary-nav.open-portal {
     position: absolute;
     width: 100%;
@@ -2407,4 +2417,5 @@ h1.tribe-events-page-title {
 .login-portal__text.hidden {
     display: none;
 }
+
 
