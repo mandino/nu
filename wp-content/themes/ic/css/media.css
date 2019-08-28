@@ -1341,7 +1341,48 @@ and (max-width : 939px) {
 		display: none;
 	}
 
+	#login-portal input[type="text"] {
+    	font-size: 11px;
+	}
+
+	#login-portal .btn--circle input[type="submit"] {
+	    font-size: 12px;
+	}
+
+	.btn--circle {
+	    top: 60px;
+	    right: 37vw;
+	    width: 70px;
+	    height: 70px;
+	    border-radius: 50px;
+	}
+
+	.postal-greetings span {
+	    font-size: 25px;
+	}
+	.login-portal__trigger {
+		display: none;
+	}
+	#primary-nav.open-portal {
+		position: relative;
+	}
+
+	.login-portal__trigger--secondary.desktop, .login-portal__trigger--secondary.desktop.active {
+		display: none;
+	}
 	
+	.login-portal__trigger--secondary.mobile {
+		display: block;
+		top: 68px;
+		width: 92px;
+		-webkit-transition: all 1s ease;
+    	transition: all 1s ease;
+	}
+	.login-portal__trigger--secondary.mobile.active {
+		top: 50px;
+		-webkit-transition: all 1s ease;
+    	transition: all 1s ease;
+	}	
 
 }
 

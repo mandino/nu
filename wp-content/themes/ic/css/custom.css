@@ -2196,6 +2196,7 @@ h1.tribe-events-page-title {
     width: 50%;
     padding: 5%;
     box-sizing: content-box;
+    margin-bottom: 0;
 }
 
 .login-portal {
