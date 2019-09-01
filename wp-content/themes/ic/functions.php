@@ -1,76 +1,21 @@
 <?php
-/**
 
- Functions
- 
- */
- 
- 
-//.................. BASIC FUNCTIONS .................. //
-
-/* language include.*/
-$lang = TEMPLATE_PATH . '/languages';
-load_theme_textdomain('cebolang', $lang);
-
-//.................. BASIC FUNCTIONS .................. //
-
-/* Below is an include to default custom fields for the posts.*/
 include(TEMPLATEPATH . '/library/simple_functions.php');
-
-
-/* Include Super Furu Custom Options Panel*/
-require_once(TEMPLATEPATH .  '/options/options_panel.php');
-
-
- /* ................. CUSTOM POST TYPES .................... */
-/* Below is an include to a default custom post type.*/
 include(TEMPLATEPATH . '/library/post_types.php');
-
- /* ................. SOME OPTIONS FOR POSTS .................... */
-/* Below is an include to a few options for your posts.*/
-include(TEMPLATEPATH . '/options/single-options.php'); 
-
-
-/* ................. SOME OPTIONS FOR POPOUT BOXES .................... */
-/* Below is an include to a few options for your popout boxes.*/
-include(TEMPLATEPATH . '/options/popout-box-options.php'); 
-
-
- /* ................. SOME OPTIONS FOR SLIDES .................... */
-/* Below is an include to a few options for your slides.*/
 include(TEMPLATEPATH . '/library/videobox.php'); 
-
-
- /* ................. SOME OPTIONS FOR PROJECTS .................... */
-/* Below is an include to a few options for your projects.*/
-include(TEMPLATEPATH . '/options/project-options.php'); 
-include(TEMPLATEPATH . '/options/email-signup-options.php'); 
-include(TEMPLATEPATH . '/options/neighborhood-options.php'); 
-
-
- /* ................. SOME OPTIONS FOR PROJECTS .................... */
-/* Below is an include to a few options for your projects.*/
-include(TEMPLATEPATH . '/options/local-options.php'); 
-
-
-
-
- /* ................. CUSTOM FIELDS .................... */
-/* Below is an include to a few options for your projects.*/
 include(TEMPLATEPATH . '/library/custom_fields.php'); 
-
-/* .................. SHORTCODES ...…… */
-/* Below is an include to default custom fields for the posts.*/
 include(TEMPLATEPATH . '/library/shortcodes.php');
-
-
-
-/* .................. SHORTCODES ...…… */
-/* Below is an include to default custom fields for the posts.*/
 include(TEMPLATEPATH . '/library/widgets.php');
 
-
-
+if(is_admin()) {
+	include(TEMPLATEPATH . '/options/project-options.php'); 
+	include(TEMPLATEPATH . '/options/email-signup-options.php'); 
+	include(TEMPLATEPATH . '/options/neighborhood-options.php'); 
+	include(TEMPLATEPATH . '/options/local-options.php'); 
+	include(TEMPLATEPATH . '/options/single-options.php'); 
+	include(TEMPLATEPATH . '/options/popout-box-options.php');
+	require_once(TEMPLATEPATH .  '/options/options_panel.php');
+}
 
 function is_subpage() {
 	global $post;                              // load details about this page

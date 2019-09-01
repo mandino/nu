@@ -1,33 +1,4 @@
 <?php
-$categories = get_categories('hide_empty=0&orderby=name');
-$taxers = get_terms('location', 'orderby=name&hide_empty=0');
-$proptype = get_terms('propertytype', 'orderby=name&hide_empty=0');
-$pages_array = get_pages('hide_empty=0');
-$terms = array();
-$site_pages = array();
-$wp_cats = array();
-$type = array();
-
-foreach ($pages_array as $pagg) {
-	$site_pages[$pagg->ID] = htmlspecialchars($pagg->post_title);
-	$pages_ids[] = $pagg->ID;
-}
-
-foreach ($taxers as $taxers_list ) {
-       $terms[] = $taxers_list->name;
-}
-
-foreach ($proptype as $typeall ) {
-       $type[] = $typeall->name;
-}
-
-foreach ($categories as $category_list ) {
-       $wp_cats[$category_list->cat_ID] = $category_list->cat_name;
-}
-
-array_unshift($wp_cats, "Select a category"); 
-array_unshift($terms, "Select a Location"); 
-array_unshift($type, "Select a Type"); 
 
 $prefix = 'cebo';
 
@@ -93,9 +64,10 @@ $meta_boxel = array(
 
 
 
-
+if(is_admin()) {
 	wp_enqueue_style('color-picker', get_template_directory_uri().'/options/colorpicker.css');
-wp_enqueue_script('color-picker', get_template_directory_uri().'/options/js/colorpicker.js', array('jquery'));
+	wp_enqueue_script('color-picker', get_template_directory_uri().'/options/js/colorpicker.js', array('jquery'));
+}
 
 
 
@@ -257,4 +229,3 @@ function mythemes_save_data($post_id) {
 		}
 	}
 }
-?>

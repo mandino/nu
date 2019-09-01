@@ -249,27 +249,21 @@ function cebo_options_page(){
 <?php
 }
 
-
-
-
-
-
-
-
 /*-----------------------------------------------------------------------------------*/
 /* Load required styles for Options Page
 /*-----------------------------------------------------------------------------------*/
 
 function of_style_only() {
-	wp_enqueue_style('admin-style', get_template_directory_uri().'/options/admin-style.css');
-	wp_enqueue_style('color-picker', get_template_directory_uri().'/options/colorpicker.css');
-	wp_enqueue_style('scrollToStyle', get_template_directory_uri().'/options/options_panel.css');
-	$color = get_user_option('admin_color');
-	if ($color == "fresh")
-		{
-		wp_enqueue_style('admin-style-grey', get_template_directory_uri().'/options/admin-style-grey.css');
+	if(is_admin()) {
+		wp_enqueue_style('admin-style', get_template_directory_uri().'/options/admin-style.css');
 		wp_enqueue_style('color-picker', get_template_directory_uri().'/options/colorpicker.css');
+		wp_enqueue_style('scrollToStyle', get_template_directory_uri().'/options/options_panel.css');
+		$color = get_user_option('admin_color');
+		if ($color == "fresh") {
+			wp_enqueue_style('admin-style-grey', get_template_directory_uri().'/options/admin-style-grey.css');
+			wp_enqueue_style('color-picker', get_template_directory_uri().'/options/colorpicker.css');
 		}
+	}
 }
 
 
@@ -282,16 +276,17 @@ function of_style_only() {
 
 function of_load_only() {
 
-	add_action('admin_head', 'of_admin_head');
-	
-	wp_enqueue_script('jquery-ui-core');
-	wp_register_script('jquery-input-mask', get_template_directory_uri().'/options/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
-	wp_enqueue_script('jquery-input-mask');
-	wp_enqueue_script('color-picker', get_template_directory_uri().'/options/js/colorpicker.js', array('jquery'));
-	wp_enqueue_script('ajaxupload', get_template_directory_uri().'/options/js/ajaxupload.js', array('jquery'));
-	wp_enqueue_script("checkboxesiphone", get_template_directory_uri()."/options/iphone-style-checkboxes.js", false, "");
-	wp_enqueue_script("twitterscript",  get_template_directory_uri()."/options/jquery.tweet.js", array( 'jquery' ));
-	
+	if(is_admin()) {
+		add_action('admin_head', 'of_admin_head');
+		
+		wp_enqueue_script('jquery-ui-core');
+		wp_register_script('jquery-input-mask', get_template_directory_uri().'/options/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
+		wp_enqueue_script('jquery-input-mask');
+		wp_enqueue_script('color-picker', get_template_directory_uri().'/options/js/colorpicker.js', array('jquery'));
+		wp_enqueue_script('ajaxupload', get_template_directory_uri().'/options/js/ajaxupload.js', array('jquery'));
+		wp_enqueue_script("checkboxesiphone", get_template_directory_uri()."/options/iphone-style-checkboxes.js", false, "");
+		wp_enqueue_script("twitterscript",  get_template_directory_uri()."/options/jquery.tweet.js", array( 'jquery' ));
+	}
 	
 	function of_admin_head() { 
 	?>
@@ -1722,5 +1717,3 @@ update_option('of_shortname',$shortname);
 
 }
 }
-
-?>
