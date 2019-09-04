@@ -1,3 +1,8 @@
+# BEGIN W3TC CDN
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+# END W3TC CDN
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
