@@ -235,10 +235,10 @@ get_header();
 
 	<ul style="" class="right-links right" id="toggles">
 
-		<li class="dine"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/?page_id=505" title="Eat">Eat</a></li>
-		<li class="shop"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/?page_id=507" title="Shop">Shop</a></li>
-		<li class="arts"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/?page_id=503" title="Culture">Culture</a></li>
-		<li class="sights"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/?page_id=509" title="Landmarks">Landmarks</a></li>
+		<li class="dine"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/echo-dining/" title="Eat">Eat</a></li>
+		<li class="shop"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/echo-shop/" title="Shop">Shop</a></li>
+		<li class="arts"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/echo-culture/" title="Culture">Culture</a></li>
+		<li class="sights"><a class="linkerd active" href="#" data-pins="<?php bloginfo('url'); ?>/echo-sights/" title="Landmarks">Landmarks</a></li>
 
 	</ul>
 
