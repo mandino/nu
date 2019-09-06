@@ -676,8 +676,8 @@ and (max-width : 1024px) {
 
 	.login-portal__trigger--secondary::after {
 		border-top: 20px solid #f27333;
-		border-left: 46px solid transparent;
-		border-right: 46px solid transparent;
+		border-left: 52px solid transparent;
+		border-right: 52px solid transparent;
 	}
 
 	#property-nav nav ul li a.clicknav-clicker {
@@ -1446,7 +1446,7 @@ and (max-width : 768px) {
 	.login-portal__trigger--secondary.mobile {
 		display: block;
 		top: 68px;
-		width: 92px;
+		width: 105px;
 		-webkit-transition: all 1s ease;
     	transition: all 1s ease;
 	}

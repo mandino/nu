@@ -2294,7 +2294,7 @@ h1.tribe-events-page-title {
 .login-portal__trigger--secondary span {
     color: #fff;
     font-family: scala-sans, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     display: inline-block;
@@ -2321,7 +2321,7 @@ h1.tribe-events-page-title {
 .login-portal__trigger span {
     color: #fff;
     font-family: scala-sans, sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
     display: inline-block;
@@ -2417,6 +2417,14 @@ h1.tribe-events-page-title {
 
 .login-portal__text.hidden {
     display: none;
+}
+
+.postal-signin {
+    display: block;
+    position: absolute;
+    padding-left: 5%;
+    bottom: 50px;
+    font-size: 16px;
 }
 
 
