@@ -158,7 +158,7 @@
 
 		setTimeout(function() {
 			if (!$('.login-portal').is(':visible')) {
-				$('.click-nav').on('mouseover', function() {
+				$('.click-nav ul li').on('mouseover', function() {
 					$('.login-portal').slideDown(1000);
 					$('#primary-nav').addClass('open-portal');
 					$('.login-portal__text').addClass('hidden');
@@ -166,7 +166,7 @@
 				});
 
 			}
-			$('.click-nav').on('mouseout', function() {
+			$('.click-nav  ul li').on('mouseout', function() {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
 				$('.login-portal__text').removeClass('hidden');
