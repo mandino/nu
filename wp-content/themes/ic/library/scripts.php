@@ -164,14 +164,7 @@
 					$('.login-portal__text').addClass('hidden');
 					$('.login-portal__close-btn').addClass('show');
 				});
-
 			}
-			$('.click-nav  ul li').on('mouseout', function() {
-				$('.login-portal').slideUp(1000);
-				$('#primary-nav').removeClass('open-portal');
-				$('.login-portal__text').removeClass('hidden');
-				$('.login-portal__close-btn').removeClass('show');	
-			});
 		}, 1000)
 
 		
