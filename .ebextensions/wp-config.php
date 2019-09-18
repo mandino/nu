@@ -40,7 +40,7 @@
   define( 'WPOSES_AWS_ACCESS_KEY_ID', $_SERVER['AWS_KEY'] );
   define( 'WPOSES_AWS_SECRET_ACCESS_KEY', $_SERVER['AWS_SECRET'] );
 
-  define('DISALLOW_FILE_EDIT',true);
+  define('DISALLOW_FILE_EDIT',fales);
   
   $table_prefix = ($_SERVER['TABLE_PREFIX']) ? $_SERVER['TABLE_PREFIX'] : 'wp_';
   define('WP_DEBUG', false);
