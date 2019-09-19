@@ -1315,7 +1315,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     padding: 10px 70px;
 }
 
-#navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
+#navigation-sticky-wrapper.sticky #property-nav nav ul li span.clicknav-clicker {
     font-size: 10px;
     padding: 6px;
 }
@@ -1378,7 +1378,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 	text-align: center;
 }
 
-#property-nav nav ul li a.clicknav-clicker {
+#property-nav nav ul li span.clicknav-clicker {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -1392,7 +1392,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     padding: 11px;
 }
 
-#property-nav nav ul li a.clicknav-clicker span {
+#property-nav nav ul li span.clicknav-clicker span {
 	font-style: normal;
 }
 

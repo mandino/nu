@@ -139,7 +139,7 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger--container').click(function() {
+		$('.login-portal__trigger--container, .click-nav ul li').click(function() {
 			if ($('.login-portal').is(':visible')) {
 				$('.login-portal').slideUp(1000);
 				$('#primary-nav').removeClass('open-portal');
@@ -156,16 +156,18 @@
 			
 		});
 
-		setTimeout(function() {
-			if (!$('.login-portal').is(':visible')) {
-				$('.click-nav ul li').on('mouseover', function() {
-					$('.login-portal').slideDown(1000);
-					$('#primary-nav').addClass('open-portal');
-					$('.login-portal__text').addClass('hidden');
-					$('.login-portal__close-btn').addClass('show');
-				});
-			}
-		}, 1000)
+		// setTimeout(function() {
+		// 	if (!$('.login-portal').is(':visible')) {
+		// 		$('.click-nav ul li').on('click', function() {
+		// 			$('.login-portal').slideDown(1000);
+		// 			$('#primary-nav').addClass('open-portal');
+		// 			$('.login-portal__text').addClass('hidden');
+		// 			$('.login-portal__close-btn').addClass('show');
+		// 		});
+		// 	} else {
+
+		// 	}
+		// }, 1000)
 
 		
 
