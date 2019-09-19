@@ -665,8 +665,8 @@ and (max-width : 1024px) {
 	.login-portal__trigger--secondary.desktop.active {
 	    display: block;
 	    top: 80px;
-	    left: 5px;
-	    width: 90px;
+	    left: 0;
+	    width: 102px;
 		height: 40px;
 	}
 
@@ -676,12 +676,17 @@ and (max-width : 1024px) {
 
 	.login-portal__trigger--secondary::after {
 		border-top: 20px solid #f27333;
-		border-left: 52px solid transparent;
-		border-right: 52px solid transparent;
+		border-left: 51px solid transparent;
+		border-right: 51px solid transparent;
 	}
 
 	#property-nav nav ul li a.clicknav-clicker {
 		font-size: 9px;
+	}
+
+	.postal-signin {
+		padding-left: 5%;
+    	bottom: 15%;
 	}
 }
 
