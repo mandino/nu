@@ -1379,7 +1379,7 @@ and (max-width : 939px) {
 	.login-portal__trigger--secondary.mobile {
 		display: block;
 		top: 68px;
-		width: 92px;
+		width: 103px;
 		-webkit-transition: all 1s ease;
     	transition: all 1s ease;
 	}
