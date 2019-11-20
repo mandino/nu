@@ -223,7 +223,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 		</div>
 		
-		<div class="login-portal">
+		<div class="login-portal" aria-label="Membership Portal" aria-modal="true" tabindex="0">
 			<form id="login-portal">
 				<input type="text" name="fname" placeholder="First Name">
 				<input type="text" name="lname" placeholder="Last Name">
@@ -240,34 +240,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 		<div id="primary-nav" style="overflow:visible;">
 			<div class="login-portal__trigger--container">
-				<div class="login-portal__trigger">
+				<button class="login-portal__trigger">
 					<span class="login-portal__text">Sign In / Sign Up</span>
 					<div class="login-portal__close-btn">
 						<span class="line-one"></span>
 						<span class="line-two"></span>
 					</div>
 					
-				</div>
+				</button>
 			</div>
 			<a href="<?php bloginfo('url'); ?>" class="logo droplogo"><img src="<?php echo get_option('cebo_logo'); ?>" alt="<?php echo the_title(); ?>" /></a>
 			<div class="login-portal__trigger--container">
-				<div class="login-portal__trigger--secondary desktop">
+				<button class="login-portal__trigger--secondary desktop">
 					<span class="login-portal__text">Sign In / Sign Up</span>
 					<div class="login-portal__close-btn">
 					<span class="line-one"></span>
 					<span class="line-two"></span>
 				</div>
-				</div>
+				</button>
 			</div>
 			
 			<div class="login-portal__trigger--container">
-				<div class="login-portal__trigger--secondary mobile">
+				<button class="login-portal__trigger--secondary mobile">
 					<span class="login-portal__text">Sign In / Sign Up</span>
 					<div class="login-portal__close-btn">
 					<span class="line-one"></span>
 					<span class="line-two"></span>
 				</div>
-				</div>
+				</button>
 			</div>
 			
 

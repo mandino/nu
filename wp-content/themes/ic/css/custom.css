@@ -2303,7 +2303,7 @@ h1.tribe-events-page-title {
     width: 100%;
     vertical-align: top;
     text-align: center;
-    padding-top: 13px;
+    padding-top: 0;
     cursor: pointer;
 }
 
@@ -2330,7 +2330,7 @@ h1.tribe-events-page-title {
     width: 100%;
     vertical-align: top;
     text-align: center;
-    padding-top: 13px;
+    padding-top: 0;
     cursor: pointer;
 }
 
@@ -2388,6 +2388,7 @@ h1.tribe-events-page-title {
     display: inline-block;
     padding: 0;
     position: absolute;
+    left: 0;
     top: 48%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);

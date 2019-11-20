@@ -139,36 +139,60 @@
 
 	
 	$(document).ready(function(){
-		$('.login-portal__trigger--container, .click-nav ul li').click(function() {
-			if ($('.login-portal').is(':visible')) {
-				$('.login-portal').slideUp(1000);
-				$('#primary-nav').removeClass('open-portal');
-				$('.login-portal__text').removeClass('hidden');
-				$('.login-portal__close-btn').removeClass('show');
 
-
-			} else{
-				$('.login-portal').slideDown(1000);
-				$('#primary-nav').addClass('open-portal');
-				$('.login-portal__text').addClass('hidden');
-				$('.login-portal__close-btn').addClass('show');
-			}
+		$(document).on('keydown', function(e) {			
+			var input = $('#login-portal').find('input');
+			if ((e.keyCode || e.which) == 9) {
+	        	var focused = $(':focus');
+		        if ($(focused).hasClass('login-portal__trigger')) {  	
+		        	if ($('.login-portal').is(':visible')) {
+		        		
+						$('.login-portal').focus();
+					}
+		        }
+	    	}
+		    
+		});
+		
+		$('.login-portal__trigger--container, .click-nav ul li').on('click touchstart', function(e) {
 			
+			if (!$('body').hasClass('portal-active')) {
+				if (!$('.login-portal').is(':visible')) {
+					$('.login-portal').slideDown(1000);
+					$('#primary-nav').addClass('open-portal');
+					$('.login-portal__text').addClass('hidden');
+					$('.login-portal__close-btn').addClass('show');
+					$('body').addClass('portal-active');
+					if (e.keyCode === 13) {
+						if ($('.login-portal').is(':visible')) {
+							$('#login-portal').find('input[name="fname"]').addClass('first-item');
+							$('.login-portal').focus();
+						}
+					}
+
+					
+				}
+			} else {
+
+				if ($('.login-portal').is(':visible')) {
+					$('.login-portal').slideUp(1000);
+					$('#primary-nav').removeClass('open-portal');
+					$('.login-portal__text').removeClass('hidden');
+					$('.login-portal__close-btn').removeClass('show');
+					$('body').removeClass('portal-active');
+				}
+				if (e.keyCode === 13) {
+					if ($('.login-portal').is(':visible')) {
+						$('body').removeClass('portal-active');
+					}
+				}
+			}
+
+
+	
 		});
 
-		// setTimeout(function() {
-		// 	if (!$('.login-portal').is(':visible')) {
-		// 		$('.click-nav ul li').on('click', function() {
-		// 			$('.login-portal').slideDown(1000);
-		// 			$('#primary-nav').addClass('open-portal');
-		// 			$('.login-portal__text').addClass('hidden');
-		// 			$('.login-portal__close-btn').addClass('show');
-		// 		});
-		// 	} else {
-
-		// 	}
-		// }, 1000)
-
+		
 		
 
 		pressLogoDisplay();
