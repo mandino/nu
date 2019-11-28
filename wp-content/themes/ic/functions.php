@@ -119,7 +119,7 @@ function remove_events_css() {
 add_action( 'wp_enqueue_scripts', 'remove_events_css', 20 );
 
 function tt($image,$width,$height){
-	return bloginfo('template_url') . "/library/thumb.php?src=$image&w=$width&h=$height";
+	return $image;
 }
 
 
@@ -498,4 +498,35 @@ function getImageValues( $img_arr, $values_to_return = array( 'url', 'alt' ) ) {
 
 	return $return_val;
 
+}
+
+//custom title for event archive
+
+add_filter('wpseo_title', 'custom_titles', 10, 1);
+function custom_titles($title) {
+	global $post;
+	$_tempTtitle = "";
+	$_tempTtitle = $title;
+
+	if (!tribe_check_page_if_archive()) {
+		$_tempTtitle = $title;
+	} else {	
+		$_tempTtitle = "All events for ".get_the_title()." - ".get_bloginfo('name');
+	}
+
+	return $_tempTtitle;
+}
+
+function tribe_check_page_if_archive () {
+
+	$assgn_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";  
+	$u_path = parse_url($assgn_url, PHP_URL_PATH);
+	$param = end(array_filter(explode('/',$u_path) ) );
+	
+	if ($param == "all") {
+		return true;
+	} else {
+		return false;
+	}
+	
 }

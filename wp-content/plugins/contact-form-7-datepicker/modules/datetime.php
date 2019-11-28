@@ -13,7 +13,7 @@ class ContactForm7Datepicker_DateTime {
 		add_filter('wpcf7_validate_datetime*', array(__CLASS__, 'validation_filter'), 10, 2);
 
 		// Tag generator
-		add_action('load-toplevel_page_wpcf7', array(__CLASS__, 'tag_generator'));
+		add_action('wpcf7_admin_init', array(__CLASS__, 'tag_generator'), 70);
 
 		// Messages
 		add_filter('wpcf7_messages', array(__CLASS__, 'messages'));
@@ -121,33 +121,35 @@ class ContactForm7Datepicker_DateTime {
 		$value = trim($_POST[$name]);
 
 		if ('datetime*' == $type && empty($value)) {
-			$result['valid'] = false;
-			$result['reason'][$name] = wpcf7_get_message('invalid_required');
+            		$result->invalidate($tag, wpcf7_get_message('invalid_required'));
 		}
 
 		if (! empty($value) && ! self::is_valid_date($value)) {
-			$result['valid'] = false;
-			$result['reason'][$name] = wpcf7_get_message('invalid_datetime');
+            		$result->invalidate($tag, wpcf7_get_message('invalid_datetime'));
 		}
 
 		return $result;
 	}
 
 	public static function tag_generator() {
-		wpcf7_add_tag_generator('datetime',
-			__('Date Time field', 'wpcf7'),
-			'wpcf7-tg-pane-datetime',
-			array(__CLASS__, 'tg_pane')
-		);
+        if (! class_exists( 'WPCF7_TagGenerator' ))
+            return;
+
+        $tag_generator = WPCF7_TagGenerator::get_instance();
+        $tag_generator->add( 'datetime', __( 'datetime', 'contact-form-7' ),
+            array(__CLASS__, 'tg_pane') );
 	}
 
-	public static function tg_pane() {
+	public static function tg_pane($contact_form, $args = '') {
+        $args = wp_parse_args( $args, array() );
+        $type = 'datetime';
+
 		require_once dirname(__FILE__) . '/generators/datetime.php';
 	}
 
 	public static function add_shortcodes() {
-		if (function_exists('wpcf7_add_shortcode')) {
-			wpcf7_add_shortcode(array('datetime', 'datetime*'), array(__CLASS__, 'shortcode_handler'), true);
+		if (function_exists('wpcf7_add_form_tag')) {
+			wpcf7_add_form_tag(array('datetime', 'datetime*'), array(__CLASS__, 'shortcode_handler'), true);
 		}
 	}
 
@@ -187,11 +189,11 @@ class ContactForm7Datepicker_DateTime {
 
 		if (! $valid) {
 			// Validate dd/mm/yy
-			$value = str_replace('/', '-', $value);
-			$valid = strtotime($value) ? true : false;
+			$new_value = str_replace('/', '-', $value);
+			$valid = strtotime($new_value) ? true : false;
 		}
 
-		return $valid;
+		return apply_filters( 'cf7dp_is_valid_datetime', $valid, $value );
 	}
 
 }

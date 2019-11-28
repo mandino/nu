@@ -2299,8 +2299,15 @@ h3.featured-gallery-thumb-title {
     width: 100%;
 }
 
+.room-box .fl {
+    width: 50%;
+    overflow: hidden;
+}
+
 .room-box .fl > img {
-    height: 400px;
+    height: auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .room-box .fr {

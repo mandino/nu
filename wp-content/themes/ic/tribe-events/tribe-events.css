@@ -2838,7 +2838,7 @@ body .ui-tooltip {
 }
 
 .dp-highlight .ui-state-default {
-          /* background: #A3A3A3 !important; */
+          background: #F27333;
           color: #FFF;
         }
         .ui-datepicker.ui-datepicker-multi  {
