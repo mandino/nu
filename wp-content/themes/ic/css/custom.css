@@ -357,7 +357,7 @@ input[type="submit"] {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
 }
 
-#navigation-sticky-wrapper.sticky #property-nav nav ul li a.clicknav-clicker {
+#navigation-sticky-wrapper.sticky #property-nav nav ul li span.clicknav-clicker {
     font-size: 11px;
     padding: 13px 6px;
     font-weight: bold;
@@ -435,12 +435,13 @@ input[type="submit"] {
     max-width: 100%;
 }
 
-#property-nav nav ul li a.clicknav-clicker {
+#property-nav nav ul li span.clicknav-clicker {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     color: #000;
+    display: block;
     font-family: didot, georgia;
     font-size: 11px;
     font-style: italic;
@@ -455,7 +456,7 @@ input[type="submit"] {
     font-weight: bold;
 }
 
-#property-nav nav:hover ul li a.clicknav-clicker {
+#property-nav nav:hover ul li span.clicknav-clicker {
     color: #fff;
 }
 
@@ -497,6 +498,7 @@ input[type="submit"] {
     width: 1000px;
     position: relative;
     z-index: 100;
+    margin-right: 20px;
 }
 
 #primary-nav nav {
@@ -2089,7 +2091,10 @@ h1.tribe-events-page-title {
 
 .menu-table tr td {
     width: 300px;
+}
 
+#primary-nav nav ul li.navis-mobile {
+    display: none;
 }
 
 .item-title {
@@ -2175,6 +2180,21 @@ h1.tribe-events-page-title {
     letter-spacing: 1px;
 }
 
+.img-hidden {
+    visibility: hidden;
+}
+
+.banner-lp {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.menu-wrap {
+    overflow: hidden;
+}
+
 .page-template-page_landing_template .post-content h2 {
     margin-bottom: 20px;
 }
@@ -2191,6 +2211,7 @@ h1.tribe-events-page-title {
     background-size: cover;
     position: relative;
 }
+
 
 .cf7sr-g-recaptcha {
     display: inline-block;
@@ -2312,3 +2333,241 @@ h1.tribe-events-page-title {
 .page-template-default input:focus {
     border: unset;
 }
+
+#login-portal {
+    width: 50%;
+    padding: 5%;
+    box-sizing: content-box;
+    margin-bottom: 0;
+}
+
+.login-portal {
+    position: relative;
+    display: none;
+}
+
+#login-portal input {
+    width: 40%;
+    display: inline-block;
+    margin-right: 10px;
+}
+.login-portal__trigger--container {
+    cursor: pointer;
+}
+
+.postal-greetings {
+    position: absolute;
+    top: 15vh;
+    right: 8vw;
+}
+
+.postal-greetings span {
+    font-size: 34px;
+    font-family: didot, serif;
+}
+.btn--circle {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    position: absolute;
+    border: 1px solid transparent;
+    background-color: #f27333;
+    top: 10vh;
+    right: 78vh;
+}
+#login-portal .btn--circle input[type="submit"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    color: #fff;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.login-portal__trigger {
+    display: block;
+    position: absolute;
+    width: 115px;
+    height: 40px;
+    background-color: #f27333;
+    bottom: -40px;
+    left: 5vw;
+    z-index: 1135;
+}
+
+.open-portal .login-portal__trigger {
+    top: 0;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.login-portal__trigger.inactive {
+    display: none;
+}
+
+.login-portal__trigger--secondary {
+    display: none;
+    position: absolute;
+    width: 115px;
+    height: 40px;
+    background-color: #f27333;
+    top: 0;
+    left: 5vw;
+    z-index: 1135;
+}
+
+.login-portal__trigger--secondary.desktop.active {
+    display: block;
+    top: 135px;
+    left: 10px;
+    
+}
+
+.login-portal__trigger--secondary span {
+    color: #fff;
+    font-family: scala-sans, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 0;
+    cursor: pointer;
+}
+
+.login-portal__trigger--secondary:after{
+    border-top: 20px solid #f27333;
+    border-left: 57px solid transparent;
+    border-right: 57px solid transparent;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    bottom: -20px;
+    width: 0;
+}
+
+.login-portal__trigger span {
+    color: #fff;
+    font-family: scala-sans, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 0;
+    cursor: pointer;
+}
+
+.login-portal__trigger:after{
+    border-top: 20px solid #f27333;
+    border-left: 57px solid transparent;
+    border-right: 57px solid transparent;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    bottom: -20px;
+    width: 0;
+}
+
+#primary-nav {
+    position: relative;
+}
+
+#primary-nav.open-portal {
+    position: absolute;
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+#primary-nav.open-portal nav ul li a {
+    color: #fff;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.login-portal__close-btn {
+    width: 25px;
+    height: 25px;
+    display: none;
+    margin: 0 auto;
+    margin-top: 4px;
+    position: relative;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.login-portal__close-btn.show {
+    display: block;
+}
+
+.login-portal__trigger span.line-one,
+.login-portal__trigger--secondary span.line-one {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 48%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.login-portal__trigger span.line-two,
+.login-portal__trigger--secondary span.line-two {
+    width: 2px;
+    height: 100%;
+    background-color: #fff;
+    display: inline-block;
+    padding: 0;
+    position: absolute;
+    left: 49%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.login-portal__text {
+    display: block;
+}
+
+.login-portal__text.hidden {
+    display: none;
+}
+
+.postal-signin {
+    display: block;
+    position: absolute;
+    padding-left: 5%;
+    bottom: 50px;
+    font-size: 16px;
+}
+
+
